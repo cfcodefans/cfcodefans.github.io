@@ -1,0 +1,50 @@
+{
+  "name": "react-static-example-typescript",
+  "private": true,
+  "scripts": {
+    "start": "tsc src/data-loader.ts && react-static start --debug",
+    "stage": "tsc src/data-loader.ts && react-static build --staging --debug",
+    "build": "tsc src/data-loader.ts && react-static build --debug",
+    "bundle": "tsc src/data-loader.ts && react-static bundle --debug",
+    "export": "tsc src/data-loader.ts && react-static export  --debug",
+    "test": "set TS_NODE_COMPILER_OPTIONS={\"module\":\"commonjs\"} && mocha --require ts-node/register --module commonjs",
+    "serve": "serve dist -p 3000 -s"
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^1.0.0-rc.4",
+    "@mdx-js/react": "^1.5.1",
+    "@mdx-js/runtime": "^1.5.1",
+    "@reach/router": "^1.2.1",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "node": "^12.12.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-static": "^7.2.0",
+    "react-static-plugin-less": "^7.2.0",
+    "react-static-plugin-mdx": "^7.2.2",
+    "react-static-plugin-reach-router": "^7.2.0",
+    "react-static-plugin-sitemap": "^7.2.0",
+    "react-static-plugin-source-filesystem": "^7.2.0",
+    "react-static-plugin-typescript": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^4.3.1",
+    "@types/jquery": "^3.3.31",
+    "@types/lodash": "^4.14.144",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.2",
+    "@types/reach__router": "^1.2",
+    "@types/react": "^16.9.1",
+    "@types/react-dom": "^16.8.5",
+    "@types/react-hot-loader": "^4.1.0",
+    "@types/webpack-env": "^1.14.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.1",
+    "react-hot-loader": "^4.12.11",
+    "serve": "^11.1.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}
