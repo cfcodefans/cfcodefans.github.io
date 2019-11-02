@@ -30,7 +30,18 @@ describe("get mdx metadata", () => {
         console.info(`${typeof (mdxContent)}\n\t${mdxContent}`)
     })
 
-    it.skip("try parse", () => {
+    function getMeta(mdxNode: Node): any {
+        let children: Node[] = mdxNode["children"] as Node[]
+        if (!children || children.length == 0) return {}
+        let exportNode: Node = children.find((child: Node) => child.type === "export")
+        if (!(exportNode && typeof (exportNode["value"]) === "string")) return {}
+        let exportStr: string = exportNode["value"] as string
+        let content: string = exportStr.match(/\{.*\}/)[0]
+        console.info(`export content:\n\t${content}`)
+        return JSON.parse(content)
+    }
+
+    it("try parse", () => {
         const DEFAULT_OPTIONS = {
             footnotes: true,
             remarkPlugins: [],
@@ -41,18 +52,6 @@ describe("get mdx metadata", () => {
         console.info(`${typeof compiler}\n\t${JSON.stringify(compiler)}`)
         const mdxContent: Node = compiler.parse(mdxStr)
         console.info(`${typeof (mdxContent)}\n\t${JSON.stringify(mdxContent, null, '    ')}`)
-
-        function getMeta(mdxNode: Node): any {
-            let children: Node[] = mdxNode["children"] as Node[]
-            if (!children || children.length == 0) return {}
-            let exportNode: Node = children.find((child: Node) => child.type === "export")
-            if (!(exportNode && typeof (exportNode["value"]) === "string")) return {}
-            let exportStr: string = exportNode["value"] as string
-            let content: string = exportStr.match(/\{.*\}/)[0]
-            console.info(`export content:\n\t${content}`)
-            return JSON.parse(content)
-        }
-
         let meta = getMeta(mdxContent)
         console.info(`${typeof (meta)}\n\t${JSON.stringify(meta, null, ' ')}`)
     })
@@ -202,7 +201,7 @@ describe("list folder", () => {
 })
 
 describe("final test", () => {
-    it("get routes", async () => {
+    it.skip("get routes", async () => {
         const ROOT_PATH = _p.resolve(`${__dirname}/../src/pages/blogs`)
         const BASE_PATH = _p.resolve(`${__dirname}/../src/pages/`)
         const { LOAD_ROUTES, LOAD_MENUS } = require("../src/data-loader.ts")

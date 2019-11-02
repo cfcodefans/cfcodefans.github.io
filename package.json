@@ -7,7 +7,7 @@
     "build": "tsc src/data-loader.ts && react-static build --debug",
     "bundle": "tsc src/data-loader.ts && react-static bundle --debug",
     "export": "tsc src/data-loader.ts && react-static export  --debug",
-    "test": "set TS_NODE_COMPILER_OPTIONS={\"module\":\"commonjs\"} && mocha --require ts-node/register --module commonjs",
+    "test": "set TS_NODE_COMPILER_OPTIONS={\"module\":\"commonjs\",\"noEmit\":\"false\"} && mocha --require ts-node/register --module commonjs",
     "serve": "serve dist -p 3000 -s"
   },
   "dependencies": {
