@@ -31,16 +31,9 @@ export default {
         // console.info(`routes:\n${JSON.stringify(routes, null, "  ")}`)
         return [
             { path: "/", template: "src/pages/home" },
-            {
-                path: "/docs",
-                template: "src/pages/home",
-                children: [
-                    { path: "/", template: "src/pages/home" },
-                    { path: "/home", template: "src/pages/home" },
-                    { path: "/resume", template: "src/pages/resume.md" },
-                ].concat(...routes)
-            }
-        ]
+            { path: "/home", template: "src/pages/home" },
+            { path: "/resume", template: "src/pages/resume.md" },
+        ].concat(...routes)
     },
 
     plugins: [
