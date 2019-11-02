@@ -2,7 +2,7 @@ import * as _ from "lodash"
 import { promises as fsp, PathLike, Dirent, readdir, readFileSync, Stats } from "fs"
 import * as _p from "path"
 import * as unified from "unified"
-import { Node } from "unist"
+import { Node, Parent } from "unist"
 import { async } from "q"
 const _mdx = require("@mdx-js/mdx")
 
@@ -41,6 +41,15 @@ describe("get mdx metadata", () => {
         return JSON.parse(content)
     }
 
+    const rExcerpt: RegExp = /<!--+\s*more\s*--+>/i
+    function loadExcerpt(root: Parent, mdxStr: string): string {
+        let excerptTag: Node = root.children.find((child: Node) => child["value"] && rExcerpt.test(child["value"] as string))
+        if (excerptTag == null)
+            return ""
+
+        return mdxStr.substring(0, 118)
+    }
+
     it("try parse", () => {
         const DEFAULT_OPTIONS = {
             footnotes: true,
@@ -54,6 +63,8 @@ describe("get mdx metadata", () => {
         console.info(`${typeof (mdxContent)}\n\t${JSON.stringify(mdxContent, null, '    ')}`)
         let meta = getMeta(mdxContent)
         console.info(`${typeof (meta)}\n\t${JSON.stringify(meta, null, ' ')}`)
+        let excerpt: string = loadExcerpt(mdxContent as Parent, mdxStr)
+        console.info(`\n\t excerpt is \n\n${excerpt}`)
     })
 })
 

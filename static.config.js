@@ -38,7 +38,7 @@ export default {
                     { path: "/", template: "src/pages/home" },
                     { path: "/home", template: "src/pages/home" },
                     { path: "/resume", template: "src/pages/resume.md" },
-                ]//.concat(...routes)
+                ].concat(...routes)
             }
         ]
     },

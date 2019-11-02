@@ -2,10 +2,12 @@ import { Dirent, promises as fsp, Stats, link } from "fs"
 import * as _ from "lodash"
 import * as _p from "path"
 import * as unified from "unified"
-import { Node } from "unist"
+import { Node, Parent } from "unist"
 import { compare } from "./commons"
 
 const _mdx = require("@mdx-js/mdx")
+
+const rExcerpt: RegExp = /<!--+\s*more\s*--+>/i
 
 type RouteModal = {
     path: string
@@ -17,7 +19,9 @@ type RouteModal = {
 }
 
 
-type PathInfo = { isFile: boolean, path: string }
+export type PathInfo = { isFile: boolean, path: string }
+
+export type MarkdownMetaInfo = { excerpt: string, meta: any }
 
 async function pathInfo(path: string): Promise<PathInfo> {
     let fstats: Stats = await fsp.stat(`${_p.resolve(path)}`)
@@ -66,9 +70,17 @@ function loadMeta(mdxNode: Node): any {
     return JSON.parse(content)
 }
 
-function getMDXMeta(mdxStr: string): any {
+function loadExcerpt(root: Parent, mdxStr: string): string {
+    let excerptTag: Node = root.children.find((child: Node) => child["value"] && rExcerpt.test(child["value"] as string))
+    if (excerptTag == null)
+        return ""
+
+    return mdxStr.substring(0, 118)
+}
+
+function getMDXMeta(mdxStr: string): MarkdownMetaInfo {
     const mdxContent: Node = compiler.parse(mdxStr)
-    return loadMeta(mdxContent)
+    return { meta: loadMeta(mdxContent), excerpt: loadExcerpt(mdxContent as Parent, mdxStr) }
 }
 
 async function LOAD_ROUTES(_path: string, basePath: string): Promise<RouteModal[]> {
@@ -106,7 +118,7 @@ async function pathToRouteModal(pi: PathInfo, basePath: string): Promise<RouteMo
     let children: RouteModal[] = pi.isFile ? null : []
     let data: any = []
 
-    if (pi.isFile && _p.extname(pi.path) == '.mdx') {
+    if (pi.isFile && /.mdx$/.test(_p.extname(pi.path))) {
         data = getMDXMeta(await fsp.readFile(pi.path, "utf-8"))
     }
 
