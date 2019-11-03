@@ -28,7 +28,7 @@ export default {
     entry: _p.join(__dirname, "src", "index.tsx"),
     getRoutes: async () => {
         let routes = await LOAD_ROUTES(ROOT_PATH, BASE_PATH)
-        // console.info(`routes:\n${JSON.stringify(routes, null, "  ")}`)
+        console.info(`routes:\n${JSON.stringify(routes, null, "  ")}`)
         return [
             { path: "/", template: "src/pages/home" },
             { path: "/home", template: "src/pages/home" },

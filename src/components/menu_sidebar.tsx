@@ -14,7 +14,7 @@ const MenuItem: React.FC<TMenuItemProps> = (props: TMenuItemProps) => {
     const modal: MenuItemModal = props.modal
 
     return (<nav className={`menu-layer-${modal.layer} nav-item w-lg-100`}>
-        <Link to={modal.link} className={`icon-${modal.icon} nav-link hoverable rounded-pill`}>{modal.label}</Link>
+        <Link to={`/${modal.link}`} className={`icon-${modal.icon} nav-link hoverable rounded-pill`}>{modal.label}</Link>
         {
             children && children.length > 0 &&
             (<nav className={`${UL_STYLE} `}>

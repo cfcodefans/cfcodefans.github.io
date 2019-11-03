@@ -14,14 +14,13 @@ type RouteModal = {
     _path: string
     template: string
     children?: RouteModal[]
-    data?: any
+    data?: any | any[]
     getData: () => any
 }
 
-
 export type PathInfo = { isFile: boolean, path: string }
 
-export type MarkdownMetaInfo = { excerpt: string, meta: any }
+export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string }
 
 async function pathInfo(path: string): Promise<PathInfo> {
     let fstats: Stats = await fsp.stat(`${_p.resolve(path)}`)
@@ -78,9 +77,9 @@ function loadExcerpt(root: Parent, mdxStr: string): string {
     return mdxStr.substring(0, 118)
 }
 
-function getMDXMeta(mdxStr: string): MarkdownMetaInfo {
+function getMDXMeta(path:string, mdxStr: string): MarkdownMetaInfo {
     const mdxContent: Node = compiler.parse(mdxStr)
-    return { meta: loadMeta(mdxContent), excerpt: loadExcerpt(mdxContent as Parent, mdxStr) }
+    return { meta: loadMeta(mdxContent), excerpt: loadExcerpt(mdxContent as Parent, mdxStr), path }
 }
 
 async function LOAD_ROUTES(_path: string, basePath: string): Promise<RouteModal[]> {
@@ -96,7 +95,7 @@ async function LOAD_ROUTES(_path: string, basePath: string): Promise<RouteModal[
             let route: RouteModal = await pathToRouteModal(pi, basePath)
             pathAndRoutes.set(pi.path, route)
             parentRoute.children && parentRoute.children.push(route)
-            parentRoute.data && (parentRoute.data as any[]).push(route)
+            parentRoute.data && (parentRoute.data as any[]).push(route.data)
         }
         return pis
     })
@@ -116,20 +115,29 @@ async function pathToRouteModal(pi: PathInfo, basePath: string): Promise<RouteMo
     let path: string = `/${_p.basename(_path)}`
     let template: string = pi.isFile ? _p.resolve(basePath, _path) : "src/pages/blog_list"
     let children: RouteModal[] = pi.isFile ? null : []
-    let data: any = []
+    let data: any[] = []
 
-    if (pi.isFile && /.mdx$/.test(_p.extname(pi.path))) {
-        data = getMDXMeta(await fsp.readFile(pi.path, "utf-8"))
+    if (pi.isFile && /.mdx?$/.test(_p.extname(pi.path))) {
+        console.info(`loading markdown meta for ${pi.path}`)
+        data = [getMDXMeta(_path, await fsp.readFile(pi.path, "utf-8"))]
     }
 
-    return {
+    function getData() {
+        return _.flattenDeep(this.data)
+    }
+
+    let route: RouteModal = {
         path,
         _path,
         template,
         children,
-        // data,
-        getData: () => data
+        data,
+        getData: null
     }
+
+    route.getData = getData.bind(route)
+
+    return route
 }
 
 function routeToMenuItem(route: RouteModal): MenuItemModal {

@@ -50,7 +50,7 @@ describe("get mdx metadata", () => {
         return mdxStr.substring(0, 118)
     }
 
-    it("try parse", () => {
+    it.skip("try parse", () => {
         const DEFAULT_OPTIONS = {
             footnotes: true,
             remarkPlugins: [],
@@ -212,16 +212,15 @@ describe("list folder", () => {
 })
 
 describe("final test", () => {
-    it.skip("get routes", async () => {
+    it("get routes", async () => {
         const ROOT_PATH = _p.resolve(`${__dirname}/../src/pages/blogs`)
         const BASE_PATH = _p.resolve(`${__dirname}/../src/pages/`)
         const { LOAD_ROUTES, LOAD_MENUS } = require("../src/data-loader.ts")
         let routes = await LOAD_ROUTES(ROOT_PATH, BASE_PATH)
-        // console.info(JSON.stringify(routes, null, "  "))
+        console.info(JSON.stringify(routes, null, "  "))
         let menus = await LOAD_MENUS(routes)
-        // console.info(JSON.stringify(menus, null, "  "))
-
-        console.info(deepTraverse(menus))
+        console.info(JSON.stringify(menus, null, "  "))
+        // console.info(deepTraverse(menus))
     })
 })
 
