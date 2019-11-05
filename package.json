@@ -4,7 +4,7 @@
   "scripts": {
     "start": "tsc src/data-loader.ts && react-static start --debug",
     "stage": "tsc src/data-loader.ts && react-static build --staging --debug",
-    "build": "tsc src/data-loader.ts && react-static build --debug",
+    "build": "tsc src/data-loader.ts && react-static build --debug && copy _git docs\\.git",
     "bundle": "tsc src/data-loader.ts && react-static bundle --debug",
     "export": "tsc src/data-loader.ts && react-static export  --debug",
     "test": "set TS_NODE_COMPILER_OPTIONS={\"module\":\"commonjs\",\"noEmit\":\"false\"} && mocha --require ts-node/register --module commonjs",
