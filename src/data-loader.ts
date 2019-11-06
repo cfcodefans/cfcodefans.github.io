@@ -74,7 +74,7 @@ function loadExcerpt(root: Parent, mdxStr: string): string {
     if (excerptTag == null)
         return ""
 
-    return mdxStr.substring(0, 118)
+    return mdxStr.substring(0, excerptTag.position.start.offset)
 }
 
 function getMDXMeta(path:string, mdxStr: string): MarkdownMetaInfo {

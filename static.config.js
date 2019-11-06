@@ -70,6 +70,11 @@ export default {
             return rule
         })
 
+        //https://github.com/webpack-contrib/css-loader/issues/447
+        config.node = {
+            fs: "empty"
+        }
+
         // console.info(JSON.stringify(config))
         return config
     },
