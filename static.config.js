@@ -71,7 +71,7 @@ export default {
         })
 
         //https://github.com/webpack-contrib/css-loader/issues/447
-        config.node = {
+        config["node"] = {
             fs: "empty"
         }
 

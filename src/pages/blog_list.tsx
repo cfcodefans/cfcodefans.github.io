@@ -26,7 +26,7 @@ export default () => {
      */
     return (<PageFrame>
         <div className="w-100 d-flex flex-column">
-            {routeData.map(mt => <BlogItem {...mt}></BlogItem>)}
+            {routeData.map((mt, i) => <BlogItem key={i} {...mt}></BlogItem>)}
             <hr />
         </div>
     </PageFrame>)

@@ -11,7 +11,8 @@
     "serve": "serve dist -p 3000 -s"
   },
   "dependencies": {
-    "@mdx-js/loader": "^1.0.0-rc.4",
+    "@babel/core": "^7.7.2",
+    "@mdx-js/loader": "^1.5.1",
     "@mdx-js/react": "^1.5.1",
     "@mdx-js/runtime": "^1.5.1",
     "@reach/router": "^1.2.1",
