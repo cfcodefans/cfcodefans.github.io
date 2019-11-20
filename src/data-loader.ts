@@ -113,10 +113,10 @@ function countChildren(rootRoutes: RouteModal[]): RouteModal[] {
         let currentRoute: RouteModal = routeStack.pop()
 
         if (!_.isEmpty(currentRoute.children)) {
-            let parent: RouteModal = _.last(ancestorRoutes)
-
-            if (parent && _.findIndex(parent.children, currentRoute) < 0) {
-                ancestorRoutes.pop()
+            for (let parent: RouteModal = _.last(ancestorRoutes);
+                parent && _.findIndex(parent.children, currentRoute) < 0;
+                parent = ancestorRoutes.pop()) {
+                console.info(parent)
             }
 
             ancestorRoutes.push(currentRoute)
