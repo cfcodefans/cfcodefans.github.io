@@ -16,6 +16,7 @@ type RouteModal = {
     children?: RouteModal[]
     data?: any | any[]
     getData: () => any
+    childrenCount: number
 }
 
 export type PathInfo = { isFile: boolean, path: string }
@@ -77,7 +78,7 @@ function loadExcerpt(root: Parent, mdxStr: string): string {
     return mdxStr.substring(0, excerptTag.position.start.offset)
 }
 
-function getMDXMeta(path:string, mdxStr: string): MarkdownMetaInfo {
+function getMDXMeta(path: string, mdxStr: string): MarkdownMetaInfo {
     const mdxContent: Node = compiler.parse(mdxStr)
     return { meta: loadMeta(mdxContent), excerpt: loadExcerpt(mdxContent as Parent, mdxStr), path }
 }
@@ -99,7 +100,33 @@ async function LOAD_ROUTES(_path: string, basePath: string): Promise<RouteModal[
         }
         return pis
     })
-    return [pathAndRoutes.get(_path)]
+    return countChildren([pathAndRoutes.get(_path)])
+}
+
+function countChildren(rootRoutes: RouteModal[]): RouteModal[] {
+    let pathAndRoutes: Map<string, RouteModal> = new Map()
+    rootRoutes.forEach(r => pathAndRoutes.set(r.path, r))
+
+    let routeStack: RouteModal[] = [...rootRoutes]
+    let ancestorRoutes: RouteModal[] = []
+    while (routeStack.length > 0) {
+        let currentRoute: RouteModal = routeStack.pop()
+
+        if (!_.isEmpty(currentRoute.children)) {
+            let parent: RouteModal = _.last(ancestorRoutes)
+
+            if (parent && _.findIndex(parent.children, currentRoute) < 0) {
+                ancestorRoutes.pop()
+            }
+
+            ancestorRoutes.push(currentRoute)
+            routeStack.push(...currentRoute.children)
+            continue
+        }
+
+        ancestorRoutes.forEach(ancestor => ancestor.childrenCount++)
+    }
+    return rootRoutes
 }
 
 export type MenuItemModal = {
@@ -108,6 +135,7 @@ export type MenuItemModal = {
     children: MenuItemModal[]
     icon: string
     layer: number
+    childrenCount: number
 }
 
 async function pathToRouteModal(pi: PathInfo, basePath: string): Promise<RouteModal> {
@@ -132,7 +160,8 @@ async function pathToRouteModal(pi: PathInfo, basePath: string): Promise<RouteMo
         template,
         children,
         data,
-        getData: null
+        getData: null,
+        childrenCount: 0
     }
 
     route.getData = getData.bind(route)
@@ -146,6 +175,7 @@ function routeToMenuItem(route: RouteModal): MenuItemModal {
         link: route._path,
         children: [],
         icon: _p.basename(route.path),
+        childrenCount: route.childrenCount,
         layer: route._path.split("/").indexOf(route.path.replace("/", ""))
     }
 }

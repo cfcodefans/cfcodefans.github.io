@@ -13,8 +13,11 @@ const MenuItem: React.FC<TMenuItemProps> = (props: TMenuItemProps) => {
     const children: ReactNodeArray = props.children
     const modal: MenuItemModal = props.modal
 
-    return (<nav className={`menu-layer-${modal.layer} nav-item w-lg-100`}>
-        <Link to={`/${modal.link}`} className={`icon-${modal.icon} nav-link hoverable rounded-pill`}>{modal.label}</Link>
+    return (<nav className={`menu-layer-${modal.layer} nav-item w-100`}>
+        <Link to={`/${modal.link}`} className={`icon-${modal.icon} nav-link hoverable rounded-pill d-flex justify-content-between`}>
+            <span>{modal.label}</span>
+            <span className="badge badge-pill badge-primary align-self-center">{modal.childrenCount}</span>
+        </Link>
         {
             children && children.length > 0 &&
             (<nav className={`${UL_STYLE} `}>

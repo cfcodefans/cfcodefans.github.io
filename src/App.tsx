@@ -9,7 +9,7 @@ import { MDXProvider } from "@mdx-js/react"
 addPrefetchExcludes(["dynamic"])
 
 //https://github.com/react-static/react-static/tree/master/packages/react-static-plugin-mdx
-const MDXWrapper = ({ children }) => <main style={{ background: "blue" }} children={children} />
+const MDXWrapper = ({ children }) => <article style={{ background: "lightgray" }} children={children} />
 
 function App() {
     return (<Root>

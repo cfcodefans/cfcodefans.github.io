@@ -15,6 +15,7 @@ type RouteModal = {
     template: string
     children?: RouteModal[]
     data?: any
+    childrenCount: number
 }
 
 type PathInfo = { isFile: boolean, path: string }
@@ -135,7 +136,8 @@ describe("list folder", () => {
             path,
             template,
             children,
-            data
+            data,
+            childrenCount: 0
         }
     }
 
@@ -212,7 +214,7 @@ describe("list folder", () => {
 })
 
 describe("final test", () => {
-    it("get routes", async () => {
+    it.skip("get routes", async () => {
         const ROOT_PATH = _p.resolve(`${__dirname}/../src/pages/blogs`)
         const BASE_PATH = _p.resolve(`${__dirname}/../src/pages/`)
         const { LOAD_ROUTES, LOAD_MENUS } = require("../src/data-loader.ts")
@@ -224,4 +226,43 @@ describe("final test", () => {
     })
 })
 
+describe("count children", () => {
+    function countChildren(rootRoutes: RouteModal[]):RouteModal[] {
+        let pathAndRoutes: Map<string, RouteModal> = new Map()
+        rootRoutes.forEach(r => pathAndRoutes.set(r.path, r))
+    
+        let routeStack: RouteModal[] = [...rootRoutes]
+        let ancestorRoutes: RouteModal[] = []
+        while (routeStack.length > 0) {
+            let currentRoute: RouteModal = routeStack.pop()
+    
+            if (!_.isEmpty(currentRoute.children)) {
+                let parent: RouteModal = _.last(ancestorRoutes)
+    
+                if (parent && _.findIndex(parent.children, currentRoute) < 0) {
+                    ancestorRoutes.pop()
+                }
+    
+                ancestorRoutes.push(currentRoute)
+                routeStack.push(...currentRoute.children)
+                continue
+            }
+    
+            ancestorRoutes.forEach(ancestor => ancestor.childrenCount++)
+        }
+        return rootRoutes
+    }
+
+    it("count blogs", async () => {
+        const ROOT_PATH = _p.resolve(`${__dirname}/../src/pages/blogs`)
+        const BASE_PATH = _p.resolve(`${__dirname}/../src/pages/`)
+        const { LOAD_ROUTES, LOAD_MENUS } = require("../src/data-loader.ts")
+        let routes = await LOAD_ROUTES(ROOT_PATH, BASE_PATH)
+        // countChildren(routes)
+        // console.info(JSON.stringify(routes, null, "  "))
+        let menus = await LOAD_MENUS(routes)
+        console.info(JSON.stringify(menus, null, "  "))
+        // console.info(deepTraverse(menus))
+    })
+})
 
