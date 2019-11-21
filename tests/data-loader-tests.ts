@@ -6,17 +6,17 @@ import { Node, Parent } from "unist"
 import { async } from "q"
 const _mdx = require("@mdx-js/mdx")
 
-import { deepTraverse } from "../src/commons"
+// import { deepTraverse } from "../src/commons"
 
 // import MDX from '@mdx-js/runtime'
 
-type RouteModal = {
-    path: string
-    template: string
-    children?: RouteModal[]
-    data?: any
-    childrenCount: number
-}
+// type RouteModal = {
+//     path: string
+//     template: string
+//     children?: RouteModal[]
+//     data?: any
+//     childrenCount: number
+// }
 
 type PathInfo = { isFile: boolean, path: string }
 

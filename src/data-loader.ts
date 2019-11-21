@@ -9,7 +9,7 @@ const _mdx = require("@mdx-js/mdx")
 
 const rExcerpt: RegExp = /<!--+\s*more\s*--+>/i
 
-type RouteModal = {
+export type RouteModal = {
     path: string
     _path: string
     template: string
@@ -211,3 +211,4 @@ async function LOAD_MENUS(routes: RouteModal[]): Promise<MenuItemModal[]> {
 
 exports.LOAD_ROUTES = LOAD_ROUTES
 exports.LOAD_MENUS = LOAD_MENUS
+// exports.RouteModal = RouteModal
