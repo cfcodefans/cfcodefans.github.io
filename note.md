@@ -13,3 +13,19 @@
 "serve": "serve dist -p 3000 -s"
 
 https://github.com/react-static/react-static/issues/1110
+
+blogs true
+blogs/tech true
+blogs/tech/web true
+blogs/tech/web/react-static true
+blogs/tech/web/react-static/react-static-intro.mdx true
+blogs/tech/web/markdown true
+blogs/tech/web/markdown/markdown-sample.mdx true
+blogs/tech/data true
+blogs/tech/data/h2db true
+blogs/tech/data/h2db/h2db-source.mdx true
+blogs/study true
+blogs/study/finance true
+blogs/study/finance/tushare true
+blogs/study/finance/tushare/tushare-setup.mdx true
+

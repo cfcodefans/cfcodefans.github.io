@@ -1,26 +1,27 @@
 import * as _ from "lodash"
 import React, { ReactElement, ReactNodeArray } from "react"
 import { useSiteData } from "react-static"
-import { MenuItemModal } from "../data-loader"
+import { IMenuItemModal } from "../blog-loader"
 import { Link } from "@reach/router"
 import "./menu_sidebar.less"
+import { deepTraverse } from "../commons"
 
-type TMenuItemProps = { children: ReactNodeArray, modal: MenuItemModal }
+type TMenuItemProps = { children: ReactNodeArray, modal: IMenuItemModal }
 
 const UL_STYLE: string = "nav default-pills nav-pills nav-fills"
 
 const MenuItem: React.FC<TMenuItemProps> = (props: TMenuItemProps) => {
     const children: ReactNodeArray = props.children
-    const modal: MenuItemModal = props.modal
+    const modal: IMenuItemModal = props.modal
 
     return (<nav className={`menu-layer-${modal.layer} nav-item w-100`}>
         <Link to={`/${modal.link}`} className={`icon-${modal.icon} nav-link hoverable rounded-pill d-flex justify-content-between`}>
             <span>{modal.label}</span>
-            <span className="badge badge-pill badge-primary align-self-center">{modal.childrenCount}</span>
+            <span className="badge badge-pill badge-primary align-self-center">{modal.leaveCount}</span>
         </Link>
         {
             children && children.length > 0 &&
-            (<nav className={`${UL_STYLE} `}>
+            (<nav className={`${UL_STYLE} `} key={modal.label}>
                 {children}
             </nav>)
         }
@@ -30,28 +31,26 @@ const MenuItem: React.FC<TMenuItemProps> = (props: TMenuItemProps) => {
 const NavSidebar: React.FC = () => {
     const siteData: any = useSiteData()
 
-    const _menus = (siteData["menus"] as MenuItemModal[])[0].children
-    const modalStack: MenuItemModal[] = [...Object.values(_menus)]
+    const _menus = (siteData["menus"] as IMenuItemModal[])
+    let modalStack: IMenuItemModal[] = [...Object.values(_menus)]
     const linkAndElements: Map<string, ReactElement> = new Map()
 
-    modalStack.forEach(m => linkAndElements.set(m.link, <MenuItem modal={m} children={[]} key={m.link} />))
-    let i: number = 100
+    deepTraverse(modalStack, (mi: IMenuItemModal) => {
+        linkAndElements.set(mi.link, <MenuItem modal={mi} children={[]} key={mi.link} />)
+        if (mi.layer >= 2) return []
+        return mi.children.filter(c => !_.isEmpty(c))
+    })
 
-    while (modalStack.length > 0 && i-- > 0) {
-        let modal: MenuItemModal = modalStack.pop()
-        let subModals: MenuItemModal[] = modal.children.filter(m => !_.isEmpty(m.children))
-        if (_.isEmpty(subModals))
-            continue
+    deepTraverse(modalStack, (mi: IMenuItemModal) => {
+        if (!_.isEmpty(mi.children)) {
+            let menuItemElm: ReactElement = linkAndElements.get(mi.link)
+            let elementChildrenRef: ReactNodeArray = menuItemElm.props.children
+            elementChildrenRef.push(...mi.children.map(subMI => linkAndElements.get(subMI.link)))
+        }
 
-        let menuElement: ReactElement = linkAndElements.get(modal.link)
-
-        const subElements: ReactElement[] = subModals.map(sm => <MenuItem modal={sm} children={[]} key={sm.link} />)
-        let elementChildrenRef: ReactNodeArray = menuElement.props.children
-        elementChildrenRef.push(...subElements)
-        subElements.forEach(se => linkAndElements.set(se.props.modal.link, se))
-
-        modalStack.push(...subModals)
-    }
+        if (mi.layer >= 2) return []
+        return mi.children.filter(c => !_.isEmpty(c))
+    })
 
     return (<header className="menu_sidebar d-flex flex-column mr-lg-1">
         <div className="menu_header d-flex flex-lg-column align-items-center">

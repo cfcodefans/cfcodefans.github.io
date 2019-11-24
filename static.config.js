@@ -1,22 +1,13 @@
 // import { path as _p } from "path"
 const _p = require("path")
 import React, { Component } from "react"
-import { LOAD_ROUTES, LOAD_MENUS } from "./src/data-loader.js"
+import { createSharedData } from 'react-static/node'
+// import { LOAD_ROUTES, LOAD_MENUS, ITERATE_ROUTES } from "./src/data-loader.js"
+import { LOAD_PATHS, LOAD_ROUTES, LOAD_MENUS } from "./src/blog-loader.js"
 
 // Typescript support in static.config.js is not yet supported, but is coming in a future update!
-
-let routes = []
-let menus = []
-
-async function loading() {
-    const ROOT_PATH = _p.resolve(`${__dirname}/src/pages/blogs`)
-    const BASE_PATH = _p.resolve(`${__dirname}/src/pages/`)
-
-    routes = await LOAD_ROUTES(ROOT_PATH, BASE_PATH)
-    menus = await LOAD_MENUS(routes)
-}
-
-loading()
+const ROOT_PATH = _p.resolve(`${__dirname}/src/pages/blogs`)
+const BASE_PATH = _p.resolve(`${__dirname}/src/pages/`)
 
 export default {
     siteRoot: "/",
@@ -24,17 +15,24 @@ export default {
         dist: "docs"
     },
 
-    getSiteData: async () => ({ menus }),
+    getSiteData: async () => {
+        let menuItems = LOAD_MENUS(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
+        console.info(menuItems)
+        return { menus: menuItems }
+    },
 
     entry: _p.join(__dirname, "src", "index.tsx"),
     getRoutes: async () => {
-        // let routes = await LOAD_ROUTES(ROOT_PATH, BASE_PATH)
-        console.info(`routes:\n${JSON.stringify(routes, null, "  ")}`)
+        let routes = await LOAD_ROUTES(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
+
+        console.info(JSON.stringify(routes, null, "  "))
+
         return [
             { path: "/", template: "src/pages/home" },
             { path: "/home", template: "src/pages/home" },
             { path: "/resume", template: "src/pages/resume.md" },
-        ].concat(...routes)
+            { path: "/blogs", template: "src/pages/blog_list", children: [...routes] }
+        ]//.concat(...routes)
     },
 
     plugins: [
@@ -103,5 +101,6 @@ export default {
                 </Body>
             </Html>)
         }
-    }
+    },
+    maxThreads: 6
 }
