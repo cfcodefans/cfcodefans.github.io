@@ -102,5 +102,5 @@ export default {
             </Html>)
         }
     },
-    maxThreads: 6
+    maxThreads: 8
 }

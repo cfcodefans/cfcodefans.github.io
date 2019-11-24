@@ -5,6 +5,7 @@ import "./app.less"
 
 import { MDXProvider } from "@mdx-js/react"
 import PageFrame from "./components/page_frame"
+import _ from "lodash"
 
 // Any routes that start with "dynamic" will be treated as non-static routes
 addPrefetchExcludes(["dynamic"])
