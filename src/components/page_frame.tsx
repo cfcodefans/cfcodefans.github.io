@@ -13,8 +13,8 @@ const PageFrame: React.FC = (props: { children: ReactNodeArray }) => (<div class
         <meta name="robots" content={HOME_META_ROBOTS} />
     </Head>
     <NavSidebar />
-    <main className="w-100 bg-light d-flex flex-lg-row flex-md-column flex-sm-column justify-content-between">
-        <div className="primary flex-grow-1 yellow">
+    <main className="w-100 d-flex flex-lg-row flex-md-column flex-sm-column justify-content-between">
+        <div className="primary flex-grow-1">
             {props.children}
         </div>
         <MiscSidebar />

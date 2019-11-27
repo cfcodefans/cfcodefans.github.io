@@ -95,7 +95,11 @@ function loadMeta(mdxNode: Node): any {
         return {}
 
     let exportStr: string = exportNode["value"] as string
-    let content: string = exportStr.match(/\{.*\}/)[0]
+    if (!exportStr) {
+        return {}
+    }
+    let matches = exportStr.match(/\{.*\}/)
+    let content: string = _.isEmpty(matches) ? "{}" : matches[0]
     return JSON.parse(content)
 }
 
@@ -113,7 +117,7 @@ function getMDXMeta(path: string, mdxStr: string): MarkdownMetaInfo {
 }
 
 export function pathToMenu(pi: IPathInfo, basePath: string): IMenuItemModal {
-    let _path:string = _p.relative(basePath, pi.path).replace(/\\/g, "/")
+    let _path: string = _p.relative(basePath, pi.path).replace(/\\/g, "/")
     let baseName: string = _p.basename(pi.path)
     let menuItem: IMenuItemModal = {
         label: baseName,

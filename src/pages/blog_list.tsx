@@ -1,8 +1,7 @@
-import React from "react"
-import { Link } from "@reach/router"
-import PageFrame from "../components/page_frame"
-import { useSiteData, useRouteData, useBasepath } from "react-static"
 import MDX from "@mdx-js/runtime"
+import React from "react"
+import { useRouteData, useSiteData } from "react-static"
+import PageFrame from "../components/page_frame"
 
 export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string }
 
@@ -11,12 +10,10 @@ const BlogItem: React.FC<MarkdownMetaInfo> = (props: MarkdownMetaInfo) => {
     let meta: any = props.meta
     let _link: string = props.path
     _link = _link.substring(0, _link.lastIndexOf(".mdx"))
-    let itemTitle: string = meta ? meta["title"] : "fuck"
-    return (<div>
-        <a href={`/${_link}`}><h2>{itemTitle}</h2></a>
-        {/* <Link to={`/${props.path}`}>{itemTitle}</Link> */}
+    return (<section className="d-flex flex-column align-items-center rounded shadow container pt-3 mt-3 mb-3">
         <MDX>{excerpt}</MDX>
-    </div>)
+        <a href={`/${_link}`}><h3>read more »</h3></a>
+    </section>)
 }
 
 export default () => {
@@ -26,7 +23,6 @@ export default () => {
     return (<PageFrame>
         <div className="w-100 d-flex flex-column">
             {routeData.filter(rd => rd.meta).map((mt, i) => <BlogItem key={i} {...mt}></BlogItem>)}
-            <hr />
         </div>
     </PageFrame>)
 }

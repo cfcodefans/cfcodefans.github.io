@@ -52,15 +52,15 @@ const NavSidebar: React.FC = () => {
         return mi.children.filter(c => !_.isEmpty(c))
     })
 
-    return (<header className="menu_sidebar d-flex flex-column mr-lg-1">
+    return (<header className="menu_sidebar d-flex flex-column mr-lg-1 rounded shadow">
         <div className="menu_header d-flex flex-lg-column align-items-center">
             <div className="logo text-center d-flex align-items-center m-lg-4">
                 <a href="/home">
                     <img className="rounded-circle w-100 h-100" src="/res/cfcodefans.jpg" />
                 </a>
             </div>
-            <div className="nav-title blue-gradient text-center pt-3 pb-1 mb-lg-3">
-                <h5 className="text-white">cfcodefans</h5>
+            <div className="nav-title text-center pt-3 pb-1 mb-lg-3">
+                <h5 className="text-black">cfcodefans</h5>
             </div>
         </div>
         <nav id="menu_nav" className="d-flex pl-0 pr-0 align-items-center mt-3">

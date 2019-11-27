@@ -22,13 +22,13 @@
     "node": "^12.12.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-static": "^7.2.0",
-    "react-static-plugin-less": "^7.2.0",
+    "react-static": "^7.2.2",
+    "react-static-plugin-less": "^7.2.2",
     "react-static-plugin-mdx": "^7.2.2",
-    "react-static-plugin-reach-router": "^7.2.0",
-    "react-static-plugin-sitemap": "^7.2.0",
-    "react-static-plugin-source-filesystem": "^7.2.0",
-    "react-static-plugin-typescript": "^7.2.0"
+    "react-static-plugin-reach-router": "^7.2.2",
+    "react-static-plugin-sitemap": "^7.2.2",
+    "react-static-plugin-source-filesystem": "^7.2.2",
+    "react-static-plugin-typescript": "^7.2.2"
   },
   "devDependencies": {
     "@types/bootstrap": "^4.3.1",

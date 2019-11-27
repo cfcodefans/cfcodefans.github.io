@@ -1,4 +1,4 @@
-<h1>Resume of Chen Fan 陈凡</h1>
+<h1 align="center">Resume of Chen Fan 陈凡</h1>
 
 ***
 
