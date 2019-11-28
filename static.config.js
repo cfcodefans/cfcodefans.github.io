@@ -17,7 +17,7 @@ export default {
 
     getSiteData: async () => {
         let menuItems = LOAD_MENUS(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
-        console.info(menuItems)
+        console.info(JSON.stringify(menuItems, null, "  "))
         return { menus: menuItems }
     },
 
@@ -30,7 +30,6 @@ export default {
         return [
             { path: "/", template: "src/pages/home" },
             { path: "/home", template: "src/pages/home" },
-            { path: "/resume", template: "src/pages/resume.md" },
             { path: "/blogs", template: "src/pages/blog_list", children: [...routes] }
         ]//.concat(...routes)
     },
@@ -49,12 +48,14 @@ export default {
         require.resolve("react-static-plugin-mdx"),
     ],
 
-    babelExcludes: [/jquery/, /bootstrap/],
+    babelExcludes: [/jquery/, /bootstrap/, /react/],
 
     webpack: (config, { stage }) => {
         let externals = {
             "jquery": "$",
-            "bootstrap": "BootStrap"
+            "bootstrap": "BootStrap",
+            "react-dom": "ReactDom",
+            "react": "React"
         }
         config["externals"] = externals
 
@@ -64,7 +65,8 @@ export default {
             }
             rule.oneOf.unshift({
                 test: /.mdx$/,
-                use: ["babel-loader", "@mdx-js/loader"]
+                use: [{ loader: "babel-loader" },
+                { loader: "@mdx-js/loader", options: { remarkPlugins: [attr] } }]
             })
             return rule
         })

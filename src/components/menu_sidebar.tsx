@@ -38,7 +38,7 @@ const NavSidebar: React.FC = () => {
     deepTraverse(modalStack, (mi: IMenuItemModal) => {
         linkAndElements.set(mi.link, <MenuItem modal={mi} children={[]} key={mi.link} />)
         if (mi.layer >= 2) return []
-        return mi.children.filter(c => !_.isEmpty(c))
+        return mi.children.filter(c => !_.isEmpty(c.children))
     })
 
     deepTraverse(modalStack, (mi: IMenuItemModal) => {
