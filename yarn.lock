@@ -4469,6 +4469,11 @@ html-comment-regex@^1.1.0:
   resolved "https://registry.npm.taobao.org/html-comment-regex/download/html-comment-regex-1.1.2.tgz#97d4688aeb5c81886a364faa0cad1dda14d433a7"
   integrity sha1-l9RoiutcgYhqNk+qDK0d2hTUM6c=
 
+html-element-attributes@^2.0.0:
+  version "2.2.0"
+  resolved "https://registry.npm.taobao.org/html-element-attributes/download/html-element-attributes-2.2.0.tgz?cache=0&sync_timestamp=1571126558624&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhtml-element-attributes%2Fdownload%2Fhtml-element-attributes-2.2.0.tgz#14c45a0480e1afd1f227b3a84b6f158f595f3d49"
+  integrity sha1-FMRaBIDhr9HyJ7OoS28Vj1lfPUk=
+
 html-entities@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npm.taobao.org/html-entities/download/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
@@ -5539,6 +5544,11 @@ match-sorter@^3.1.1:
   integrity sha1-pJiJJF2oCj1qAy7KDBjiHyZbtCo=
   dependencies:
     remove-accents "0.4.2"
+
+md-attr-parser@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npm.taobao.org/md-attr-parser/download/md-attr-parser-1.3.0.tgz#23e1d507858746d4e84beb244c089799979cfce8"
+  integrity sha1-I+HVB4WHRtToS+skTAiXmZec/Og=
 
 md5.js@^1.3.4:
   version "1.3.5"
@@ -7550,6 +7560,14 @@ relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.npm.taobao.org/relateurl/download/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
+
+remark-attr@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.npm.taobao.org/remark-attr/download/remark-attr-0.9.0.tgz#5b213c4e9815fa4f8c07cbaa674aeb525966b15a"
+  integrity sha1-WyE8TpgV+k+MB8uqZ0rrUllmsVo=
+  dependencies:
+    html-element-attributes "^2.0.0"
+    md-attr-parser "^1.3.0"
 
 remark-mdx@^1.5.1:
   version "1.5.1"

@@ -1,8 +1,7 @@
-// import { path as _p } from "path"
 const _p = require("path")
+const _attr = require("remark-attr")
 import React, { Component } from "react"
 import { createSharedData } from 'react-static/node'
-// import { LOAD_ROUTES, LOAD_MENUS, ITERATE_ROUTES } from "./src/data-loader.js"
 import { LOAD_PATHS, LOAD_ROUTES, LOAD_MENUS } from "./src/blog-loader.js"
 
 // Typescript support in static.config.js is not yet supported, but is coming in a future update!
@@ -17,7 +16,7 @@ export default {
 
     getSiteData: async () => {
         let menuItems = LOAD_MENUS(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
-        console.info(JSON.stringify(menuItems, null, "  "))
+        console.info(JSON.stringify(menuItems.map(mi => mi.link), null, "  "))
         return { menus: menuItems }
     },
 
@@ -25,12 +24,26 @@ export default {
     getRoutes: async () => {
         let routes = await LOAD_ROUTES(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
 
-        console.info(JSON.stringify(routes, null, "  "))
+        const allBlogItems = routes.map(r => r.data).flat()
+        console.info(JSON.stringify(allBlogItems, null, "  "))
 
         return [
-            { path: "/", template: "src/pages/home" },
-            { path: "/home", template: "src/pages/home" },
-            { path: "/blogs", template: "src/pages/blog_list", children: [...routes] }
+            {
+                path: "/",
+                getData: () => allBlogItems,
+                template: "src/pages/blog_list"
+            },
+            {
+                path: "/home",
+                getData: () => allBlogItems,
+                template: "src/pages/blog_list"
+            },
+            {
+                path: "/blogs",
+                template: "src/pages/blog_list",
+                getData: () => allBlogItems,
+                children: [...routes]
+            }
         ]//.concat(...routes)
     },
 
@@ -45,7 +58,14 @@ export default {
         require.resolve("react-static-plugin-reach-router"),
         require.resolve("react-static-plugin-sitemap"),
         require.resolve("react-static-plugin-less"),
-        require.resolve("react-static-plugin-mdx"),
+        [require.resolve("react-static-plugin-mdx"),
+        {
+            includePaths: [_p.resolve("./src/pages/blogs")],
+            extensions: ['.md', '.mdx'],
+            mdxOptions: {
+                remarkPlugins: [_attr]
+            }
+        }],
     ],
 
     babelExcludes: [/jquery/, /bootstrap/, /react/],
@@ -63,11 +83,11 @@ export default {
             if (typeof rule.test !== "undefined" || typeof rule.oneOf === "undefined") {
                 return rule
             }
-            rule.oneOf.unshift({
-                test: /.mdx$/,
-                use: [{ loader: "babel-loader" },
-                { loader: "@mdx-js/loader", options: { remarkPlugins: [attr] } }]
-            })
+            // rule.oneOf.unshift({
+            //     test: /.mdx$/,
+            //     use: [{ loader: "babel-loader" },
+            //     { loader: "@mdx-js/loader", options: { remarkPlugins: [_attr] } }]
+            // })
             return rule
         })
 

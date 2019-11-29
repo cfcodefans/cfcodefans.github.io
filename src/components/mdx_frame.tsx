@@ -13,12 +13,12 @@ const MDX_Frame: React.FC = (props: { children: ReactNodeArray }) => {
 
     if (_.isEmpty(routeData)) {
         return (<PageFrame>
-            <div className="w-100 d-flex flex-column container">
+            <div className="d-flex flex-column container">
                 <article children={reactChildren} />
             </div>
         </PageFrame>)
     } else {
-        return (<div className="w-100 d-flex flex-column">
+        return (<div className="container d-flex flex-column">
             <article children={reactChildren} />
         </div>)
     }

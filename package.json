@@ -28,7 +28,8 @@
     "react-static-plugin-reach-router": "^7.2.2",
     "react-static-plugin-sitemap": "^7.2.2",
     "react-static-plugin-source-filesystem": "^7.2.2",
-    "react-static-plugin-typescript": "^7.2.2"
+    "react-static-plugin-typescript": "^7.2.2",
+    "remark-attr": "^0.9.0"
   },
   "devDependencies": {
     "@types/bootstrap": "^4.3.1",

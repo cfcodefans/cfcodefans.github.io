@@ -1,6 +1,7 @@
 .menu-layer-1 {
     font-size: 1.5rem;
     font-weight: bolder;
+    margin-bottom: 0.3rem;
 
     a {
         margin-left: 0.75rem;
@@ -54,12 +55,18 @@
             &:after {
                 margin: 0 0 0 2px;
             }
+
+        }
+
+        .logo a>img {
+            transform: scaleX(-1);
         }
     }
 
-
     #menu_nav {
-        // background-color: lightcoral;
+        .navbar-toggler {
+            display: none;
+        }
     }
 }
 
@@ -72,8 +79,8 @@
             position: fixed;
 
             .logo {
-                height: 5rem;
-                width: 5rem;
+                height: 3rem;
+                width: 3rem;
             }
 
             z-index: 100;
@@ -89,11 +96,13 @@
             right: 0px;
             bottom: 0px;
             z-index: 100;
+
+            .navbar-toggler {
+                display: block;
+            }
         }
 
         .menu-layer-1 {
-            border-right: gray 1px solid;
-
             a {
                 margin-left: auto;
             }
