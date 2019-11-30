@@ -16,7 +16,7 @@ export default {
 
     getSiteData: async () => {
         let menuItems = LOAD_MENUS(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
-        console.info(JSON.stringify(menuItems.map(mi => mi.link), null, "  "))
+        // console.info(JSON.stringify(menuItems.map(mi => mi.link), null, "  "))
         return { menus: menuItems }
     },
 
@@ -25,7 +25,7 @@ export default {
         let routes = await LOAD_ROUTES(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
 
         const allBlogItems = routes.map(r => r.data).flat()
-        console.info(JSON.stringify(allBlogItems, null, "  "))
+        // console.info(JSON.stringify(allBlogItems, null, "  "))
 
         return [
             {

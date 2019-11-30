@@ -1,7 +1,7 @@
 import { Link } from "@reach/router"
 import _ from "lodash"
-import React, { ReactElement, ReactNodeArray } from "react"
-import { useSiteData } from "react-static"
+import React, { ReactElement, ReactNodeArray, useState, useEffect } from "react"
+import { useSiteData, useLocation } from "react-static"
 import { IMenuItemModal } from "../blog-loader"
 import { deepTraverse } from "../commons"
 import "./menu_sidebar.less"
@@ -15,18 +15,20 @@ const MenuItem: React.FC<TMenuItemProps> = (props: TMenuItemProps) => {
     const children: ReactNodeArray = props.children
     const modal: IMenuItemModal = props.modal
     const _link: string = `/${modal.link}`
-    // console.info("window", window.location.pathname, "link", modal.link)
-    console.info(children && children.length)
+
+    const [currentPath, setCurrentPath] = useState("")
+    useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
+    // console.info("currentPath", currentPath)
 
     return (<nav className={`menu-layer-${modal.layer} nav-item w-100`}>
-        <Link to={_link} className={`icon-${modal.icon} nav-link ${window.location.pathname.includes(_link) ? "active" : ""} hoverable rounded-pill d-flex justify-content-between`}>
+        <Link to={_link}
+            className={`icon-${modal.icon} nav-link ${_link == currentPath ? "active" : ""} hoverable rounded-pill d-flex justify-content-between`}>
             <span>{modal.label}</span>
             <span className="badge badge-pill badge-info align-self-center">{modal.leaveCount}</span>
         </Link>
         {
             children
-            && children.length > 0
-            && children.findIndex(rn => rn) > -1
+            && children.filter(rn => rn).length > 0
             && (<nav className={`${UL_STYLE} `} key={modal.label}>
                 {children}
             </nav>)
@@ -35,6 +37,7 @@ const MenuItem: React.FC<TMenuItemProps> = (props: TMenuItemProps) => {
 }
 
 const NavSidebar: React.FC = () => {
+
     const siteData: any = useSiteData()
 
     const _menus = (siteData["menus"] as IMenuItemModal[])
@@ -58,39 +61,44 @@ const NavSidebar: React.FC = () => {
         return mi.children.filter(c => !_.isEmpty(c))
     })
 
-    return (<header className="menu_sidebar d-flex flex-column mr-lg-1 rounded shadow">
+    const [currentPath, setCurrentPath] = useState("")
+    useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
+    // console.info("currentPath", currentPath)
+
+    return (<header className="menu_sidebar d-flex flex-column mr-lg-1 rounded-1 shadow">
         <div className="menu_header d-flex flex-lg-column align-items-center">
             <div className="logo text-center d-flex align-items-center m-lg-4">
                 <a href="/home">
                     <img className="rounded-circle w-100 h-100 hoverable" src="/res/cfcodefans.jpg" />
                 </a>
             </div>
-            <div className="nav-title text-center mb-lg-3 flex-grow-1 w-100">
+            <div className="nav-title text-center flex-grow-1 w-100">
                 <h5 className="text-black">cfcodefans</h5>
             </div>
         </div>
-        <nav id="menu_nav" className="d-flex pl-0 pr-0 align-items-center navbar ">
+        <div id="menu_nav" className="d-flex align-items-center navbar pl-1 pr-1 border border-0 z-depth-0 ">
+            <nav aria-label="breadcrumb" className="d-flex d-lg-none justify-content-between w-100 mb-2 primary-color font-up-bold">
+                <BreadCrumb _path={currentPath} />
 
-            <BreadCrumb _path={window.location.pathname} />
+                <button className="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#menu_box"
+                    aria-controls="menu_box"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span className="dark-blue-text">
+                        <i className="fas fa-bars fa-1x"></i>
+                    </span>
+                </button>
+            </nav>
 
-            <button className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#menu_box"
-                aria-controls="menu_box"
-                aria-expanded="false"   
-                aria-label="Toggle navigation">
-                <span className="dark-blue-text">
-                    <i className="fas fa-bars fa-1x"></i>
-                </span>
-            </button>
-
-            <div className="navbar-collapse collapse" id="menu_box">
-                <nav className={`menu ${UL_STYLE} smooth-scroll w-100 pl-2 pr-2`}>
+            <div className="navbar-collapse border border-0 z-depth-0 d-lg-block collapse" id="menu_box">
+                <nav className={`menu ${UL_STYLE} smooth-scroll w-100 `}>
                     {_menus.map(m => linkAndElements.get(m.link))}
                 </nav>
             </div>
-        </nav>
+        </div>
     </header>)
 }
 

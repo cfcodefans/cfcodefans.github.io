@@ -7,7 +7,7 @@ const BreadCrumb: React.FC<{ _path: string }> = (props: { _path: string }) => {
         {
             _p.split("/")
                 .filter(part => part.length > 0)
-                .map((part: string, i: number) => (<li className="breadcrumb-item active" key={i}>{part}</li>))
+                .map((part: string, i: number) => (<li className="breadcrumb-item black-text" key={i}>{part}</li>))
         }
     </ol>)
 }
