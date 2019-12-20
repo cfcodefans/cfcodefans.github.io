@@ -3,9 +3,9 @@ import { useRouteData, useSiteData } from "react-static"
 import PageFrame from "../components/page_frame"
 
 import MDX from "@mdx-js/runtime"
+import MDX_Header from "../components/mdx_header"
 const REMARK_ATTR = require("remark-attr")
-
-export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string }
+import { MarkdownMetaInfo } from "../commons"
 
 const BlogItem: React.FC<MarkdownMetaInfo> = (props: MarkdownMetaInfo) => {
     let excerpt: string = props.excerpt
@@ -13,6 +13,7 @@ const BlogItem: React.FC<MarkdownMetaInfo> = (props: MarkdownMetaInfo) => {
     let _link: string = props.path
     _link = _link.substring(0, _link.lastIndexOf(".mdx"))
     return (<section className="d-flex flex-column align-items-center rounded-1 shadow container pt-3 mt-3 mb-3">
+        <MDX_Header {...props} />
         <MDX remarkPlugins={[REMARK_ATTR]}>{excerpt}</MDX>
         <a href={`/${_link}`}><h3>read more »</h3></a>
     </section>)

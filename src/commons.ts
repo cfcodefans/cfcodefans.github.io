@@ -105,3 +105,6 @@ export function iterateTree(roots: ITNode[], visitor: TreeVisitor): ITNode[] {
 
     return roots
 }
+
+
+export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string, createdAt: Date, modifiedAt: Date }
