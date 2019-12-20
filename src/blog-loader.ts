@@ -3,7 +3,7 @@ import * as _ from "lodash"
 import * as _p from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
-import { compare, deepTraverse, ITNode, IComparable, iterateTree_a, deepTraverse_a } from "./commons"
+import { compare, deepTraverse, ITNode, IComparable, iterateTree_a, deepTraverse_a, MarkdownMetaInfo } from "./commons"
 
 const _mdx = require("@mdx-js/mdx")
 
@@ -73,9 +73,6 @@ export async function searchBlogs(roots: IPathInfo[]): Promise<IPathInfo[]> {
 
     return results
 }
-
-
-export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string, createdAt: Date, modifiedAt: Date }
 
 const DEFAULT_OPTIONS = {
     footnotes: true,

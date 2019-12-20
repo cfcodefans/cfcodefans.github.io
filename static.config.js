@@ -23,9 +23,8 @@ export default {
     entry: _p.join(__dirname, "src", "index.tsx"),
     getRoutes: async () => {
         let routes = await LOAD_ROUTES(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
-
+        console.info(JSON.stringify(routes))
         const allBlogItems = routes.map(r => r.data).flat()
-        // console.info(JSON.stringify(allBlogItems, null, "  "))
 
         return [
             {
@@ -83,11 +82,6 @@ export default {
             if (typeof rule.test !== "undefined" || typeof rule.oneOf === "undefined") {
                 return rule
             }
-            // rule.oneOf.unshift({
-            //     test: /.mdx$/,
-            //     use: [{ loader: "babel-loader" },
-            //     { loader: "@mdx-js/loader", options: { remarkPlugins: [_attr] } }]
-            // })
             return rule
         })
 
@@ -96,7 +90,7 @@ export default {
             fs: "empty"
         }
 
-        // console.info(JSON.stringify(config))
+        console.info(JSON.stringify(config))
         return config
     },
 
