@@ -1,8 +1,8 @@
-import MDX from "@mdx-js/runtime"
 import React from "react"
 import { useRouteData, useSiteData } from "react-static"
 import PageFrame from "../components/page_frame"
 
+import MDX from "@mdx-js/runtime"
 const REMARK_ATTR = require("remark-attr")
 
 export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string }

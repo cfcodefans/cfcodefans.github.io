@@ -75,7 +75,7 @@ export async function searchBlogs(roots: IPathInfo[]): Promise<IPathInfo[]> {
 }
 
 
-export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string }
+export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string, createdAt: Date, modifiedAt: Date }
 
 const DEFAULT_OPTIONS = {
     footnotes: true,
@@ -111,9 +111,20 @@ function loadExcerpt(root: Parent, mdxStr: string): string {
     return mdxStr.substring(0, excerptTag.position.start.offset)
 }
 
-function getMDXMeta(path: string, mdxStr: string): MarkdownMetaInfo {
+async function getMDXMeta(path: string, filePath: string): Promise<MarkdownMetaInfo> {
+    // const fileStats: Stats = await fsp.lstat(filePath)
+    // const mdxStr: string = await fsp.readFile(filePath, "utf-8")
+
+    const [fileStats, mdxStr] = await Promise.all([fsp.lstat(filePath), fsp.readFile(filePath, "utf-8")])
+
     const mdxContent: Node = compiler.parse(mdxStr)
-    return { meta: loadMeta(mdxContent), excerpt: loadExcerpt(mdxContent as Parent, mdxStr), path }
+    return {
+        meta: loadMeta(mdxContent),
+        excerpt: loadExcerpt(mdxContent as Parent, mdxStr),
+        path,
+        createdAt: fileStats.birthtime,
+        modifiedAt: fileStats.ctime
+    }
 }
 
 export function pathToMenu(pi: IPathInfo, basePath: string): IMenuItemModal {
@@ -162,7 +173,7 @@ export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise
 
     if (pi.isFile && /.mdx?$/.test(_p.extname(pi.path))) {
         console.info(`loading markdown meta for ${pi.path}`)
-        data = getMDXMeta(_path, await fsp.readFile(pi.path, "utf-8"))
+        data = await getMDXMeta(_path, pi.path)
     }
 
     function getData() {
