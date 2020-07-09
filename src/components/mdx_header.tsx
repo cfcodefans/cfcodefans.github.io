@@ -8,7 +8,7 @@ function MDX_Header(mdMate: MarkdownMetaInfo): JSX.Element {
         ${JSON.stringify(mdMate)}`)
     const meta: any = mdMate.meta
 
-    return (<div>
+    return (<header>
         <Head>
             <title>{meta["title"] || HOME_TITLE}</title>
             <meta name="description" content={meta["desc"] || HOME_META_DESCRIPTION} />
@@ -16,7 +16,7 @@ function MDX_Header(mdMate: MarkdownMetaInfo): JSX.Element {
         </Head>
         <h1>{meta["title"]}</h1>
         <div>Created at: {mdMate.createdAt} | Modified at: {mdMate.modifiedAt}</div>
-    </div>)
+    </header>)
 }
 
 export default MDX_Header
