@@ -2,6 +2,7 @@ import React, { ReactNodeArray } from "react"
 import { useRouteData } from "react-static"
 import PageFrame from "./page_frame"
 import _ from "lodash"
+import MDX_Header from "./mdx_header"
 
 //https://github.com/react-static/react-static/tree/master/packages/react-static-plugin-mdx
 const MDX_Frame: React.FC = (props: { children: ReactNodeArray }) => {
@@ -17,11 +18,10 @@ const MDX_Frame: React.FC = (props: { children: ReactNodeArray }) => {
                 <article children={reactChildren} />
             </div>
         </PageFrame>)
-    } else {
-        return (<div className="container d-flex flex-column">
-            <article children={reactChildren} />
-        </div>)
     }
+    return (<div className="container d-flex flex-column">
+        <article children={reactChildren} />
+    </div>)
 }
 
 export default MDX_Frame

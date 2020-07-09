@@ -22,7 +22,7 @@
       "types/*": ["types/*"],
       "tests/*": ["tests/*"]
     },
-    "lib": ["dom", "es2015", "es2016"]
+    "lib": ["dom", "es2015", "es2016", "ESNext"]
   },
   "include": ["tests/**/*"],
   "exclude": ["artifacts/**/*", "dist/**/*", "public/**/*", "node_modules", "node_modules/**/*"]

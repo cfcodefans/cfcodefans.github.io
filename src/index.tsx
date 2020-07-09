@@ -12,7 +12,6 @@ export default App
 function main() {
     if (typeof document === 'undefined') return
 
-
     const target: HTMLElement = document.getElementById('root')
     const renderMethod: Renderer = target.hasChildNodes() ? ReactDOM.hydrate : ReactDOM.render
     const render = (Comp: Function) => renderMethod(<AppContainer><Comp /></AppContainer>, target)

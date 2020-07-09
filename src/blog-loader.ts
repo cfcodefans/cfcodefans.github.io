@@ -1,9 +1,9 @@
-import { Dirent, promises as fsp, Stats, link } from "fs"
+import { Dirent, promises as fsp } from "fs"
 import * as _ from "lodash"
 import * as _p from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
-import { compare, deepTraverse, ITNode, IComparable, iterateTree_a, deepTraverse_a, MarkdownMetaInfo } from "./commons"
+import { compare, deepTraverse, deepTraverse_a, IComparable, iterateTree_a, ITNode, MarkdownMetaInfo } from "./commons"
 
 const _mdx = require("@mdx-js/mdx")
 
@@ -229,3 +229,10 @@ function LOAD_MENUS(rootPaths: IPathInfo[], basePath: string): IMenuItemModal[] 
     return pathTreeToMenuTree(rootPaths, basePath)
 }
 exports.LOAD_MENUS = LOAD_MENUS
+
+// async function main() {
+//     const ROOT_PATH = _p.resolve(`${__dirname}/src/pages/blogs`)
+//     const BASE_PATH = _p.resolve(`${__dirname}/src/pages/`)
+//     const pathInfos: IPathInfo[] = await LOAD_PATHS(ROOT_PATH)
+
+// }

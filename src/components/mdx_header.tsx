@@ -1,15 +1,16 @@
-import React, { ReactNodeArray } from "react"
-import { useRouteData, Head } from "react-static"
+import React from "react"
+import { Head } from "react-static"
+import { HOME_META_DESCRIPTION, HOME_TITLE } from "../../types"
 import { MarkdownMetaInfo } from "../commons"
-import { HOME_TITLE, HOME_META_DESCRIPTION } from "../../types"
 
 function MDX_Header(mdMate: MarkdownMetaInfo): JSX.Element {
-    console.info(mdMate)
+    console.info(`MDX_Header
+        ${JSON.stringify(mdMate)}`)
     const meta: any = mdMate.meta
 
     return (<div>
         <Head>
-            <title>{mdMate.meta["title"] || HOME_TITLE}</title>
+            <title>{meta["title"] || HOME_TITLE}</title>
             <meta name="description" content={meta["desc"] || HOME_META_DESCRIPTION} />
             <meta name="keywords" content={meta["tags"]} />
         </Head>

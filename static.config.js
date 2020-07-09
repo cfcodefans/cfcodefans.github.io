@@ -1,8 +1,7 @@
 const _p = require("path")
 const _attr = require("remark-attr")
 import React, { Component } from "react"
-import { createSharedData } from 'react-static/node'
-import { LOAD_PATHS, LOAD_ROUTES, LOAD_MENUS } from "./src/blog-loader.js"
+import { LOAD_MENUS, LOAD_PATHS, LOAD_ROUTES } from "./src/blog-loader.js"
 
 // Typescript support in static.config.js is not yet supported, but is coming in a future update!
 const ROOT_PATH = _p.resolve(`${__dirname}/src/pages/blogs`)
@@ -23,10 +22,10 @@ export default {
     entry: _p.join(__dirname, "src", "index.tsx"),
     getRoutes: async () => {
         let routes = await LOAD_ROUTES(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
-        console.info(JSON.stringify(routes))
+        console.info(JSON.stringify(routes, null, "  "))
         const allBlogItems = routes.map(r => r.data).flat()
 
-        return [
+        return Promise.resolve([
             {
                 path: "/",
                 getData: () => allBlogItems,
@@ -43,7 +42,7 @@ export default {
                 getData: () => allBlogItems,
                 children: [...routes]
             }
-        ]//.concat(...routes)
+        ])
     },
 
     plugins: [
@@ -60,14 +59,13 @@ export default {
         [require.resolve("react-static-plugin-mdx"),
         {
             includePaths: [_p.resolve("./src/pages/blogs")],
-            extensions: ['.md', '.mdx'],
             mdxOptions: {
                 remarkPlugins: [_attr]
             }
         }],
     ],
 
-    babelExcludes: [/jquery/, /bootstrap/, /react/],
+    babelExcludes: [/jquery/, /bootstrap/, /react/, /fs/],
 
     webpack: (config, { stage }) => {
         let externals = {
@@ -77,7 +75,6 @@ export default {
             "react": "React"
         }
         config["externals"] = externals
-
         config.module.rules.map(rule => {
             if (typeof rule.test !== "undefined" || typeof rule.oneOf === "undefined") {
                 return rule
@@ -86,37 +83,81 @@ export default {
         })
 
         //https://github.com/webpack-contrib/css-loader/issues/447
+        config["target"] = "node"
         config["node"] = {
+            global: true,
             fs: "empty"
         }
+        // config["output"] = {
+        //     libraryTarget: 'umd' // Fix: "Uncaught ReferenceError: exports is not defined".
+        // }
 
+        console.info(JSON.stringify(stage))
         console.info(JSON.stringify(config))
         return config
     },
 
-    Document: class SiteHtml extends Component {
-        render() {
-            const { Html, Head, Body, children, renderMeta } = this.props
-            return (<Html>
-                <Head>
-                    <meta charSet="UTF-8" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-                    <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
-                    <meta name="format-detection" content="telephone=no" />
-                    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
-                    <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.css" rel="stylesheet" />
-                    <link href="https://cdn.bootcss.com/mdbootstrap/4.8.7/css/mdb.min.css" rel="stylesheet" />
-                    <link href="https://cdn.bootcss.com/flag-icon-css/3.3.0/css/flag-icon.css" rel="stylesheet" />
-                </Head>
-                <Body>
-                    {children}
-                    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
-                    <script src="https://cdn.bootcss.com/popper.js/1.14.7/umd/popper.js"></script>
-                    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.js"></script>
-                    <script src="https://cdn.bootcss.com/mdbootstrap/4.8.7/js/mdb.min.js"></script>
-                </Body>
-            </Html>)
-        }
+    Document: ({
+        Html,
+        Head,
+        Body,
+        children,
+        state: { siteData, renderMeta },
+    }) => {
+        console.info(`
+
+        Head:
+        ${JSON.stringify(Head)}
+
+        renderMeta:
+        ${JSON.stringify(renderMeta)}
+        
+        
+        `)
+        return (<Html>
+            <Head>
+                <meta charSet="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+                <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
+                <meta name="format-detection" content="telephone=no" />
+                <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.css" rel="stylesheet" />
+                <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.css" rel="stylesheet" />
+                <link href="https://cdn.bootcss.com/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet" />
+                <link href="https://cdn.bootcss.com/flag-icon-css/3.3.0/css/flag-icon.css" rel="stylesheet" />
+            </Head>
+            <Body>
+                {children}
+                <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+                <script src="https://cdn.bootcss.com/popper.js/1.16.1/umd/popper.js"></script>
+                <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+                <script src="https://cdn.bootcss.com/mdbootstrap/4.16.0/js/mdb.min.js"></script>
+            </Body>
+        </Html>)
     },
+
+    // Document: class SiteHtml extends Component {
+    //     render() {
+    //         const { Html, Head, Body, children, state: { siteData, renderMeta } } = this.props
+    //         return (<Html>
+    //             <Head>
+    //                 <meta charSet="UTF-8" />
+    //                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    //                 <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
+    //                 <meta name="format-detection" content="telephone=no" />
+    //                 <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.css" rel="stylesheet" />
+    //                 <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.css" rel="stylesheet" />
+    //                 <link href="https://cdn.bootcss.com/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet" />
+    //                 <link href="https://cdn.bootcss.com/flag-icon-css/3.3.0/css/flag-icon.css" rel="stylesheet" />
+    //             </Head>
+    //             <Body>
+    //                 {children}
+    //                 <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+    //                 <script src="https://cdn.bootcss.com/popper.js/1.16.1/umd/popper.js"></script>
+    //                 <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+    //                 <script src="https://cdn.bootcss.com/mdbootstrap/4.16.0/js/mdb.min.js"></script>
+    //             </Body>
+    //         </Html>)
+    //     }
+    // },
     maxThreads: 8
 }

@@ -18,7 +18,7 @@ const MenuItem: React.FC<TMenuItemProps> = (props: TMenuItemProps) => {
 
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
-    // console.info("currentPath", currentPath)
+    console.info("currentPath", currentPath)
 
     return (<nav className={`menu-layer-${modal.layer} nav-item w-100`}>
         <Link to={_link}
@@ -85,7 +85,7 @@ const NavSidebar: React.FC = () => {
                     data-toggle="collapse"
                     data-target="#menu_box"
                     aria-controls="menu_box"
-                    aria-expanded="false"
+                    aria-expanded="true"
                     aria-label="Toggle navigation">
                     <span className="dark-blue-text">
                         <i className="fas fa-bars fa-1x"></i>
