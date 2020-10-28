@@ -1,29 +1,29 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext", //has to be commonjs for ts-node
-    "jsx": "react",
+    "target": "ES6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "removeComments": false,
-    "preserveConstEnums": true,
-    "sourceMap": true,
     "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "components/*": ["src/components/*"],
-      "containers/*": ["src/containers/*"],
-      "types/*": ["types/*"],
-      "tests/*": ["tests/*"]
-    },
-    "lib": ["dom", "es2015", "es2016", "ESNext"]
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
   },
-  "include": ["tests/**/*"],
-  "exclude": ["artifacts/**/*", "dist/**/*", "public/**/*", "node_modules", "node_modules/**/*"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
