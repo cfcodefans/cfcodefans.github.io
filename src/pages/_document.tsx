@@ -35,12 +35,13 @@ class TemplateDoc extends Document {
             </Head>
             <body className="root">
                 <Main />
-                <script src="https://cdn.bootcss.com/jquery/3.5.1/jquery.js"></script>
-                <script src="https://cdn.bootcss.com/popper.js/2.5.3/umd/popper.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/2.5.3/cjs/popper.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.js"></script>
 
                 <script src="https://cdn.bootcdn.net/ajax/libs/react/16.14.0/umd/react.development.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.14.0/umd/react-dom.development.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.js"></script>
                 <NextScript />
             </body>
         </Html>

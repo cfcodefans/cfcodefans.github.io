@@ -6,17 +6,28 @@ export const PHASE_DEVELOPMENT_SERVER = 'phase-development-server'
  */
 const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_EXPORT } = require("next/constants")
 
+const _attr = require("remark-attr")
+const withMDX = require("@next/mdx")()
+
+const withMDX = require('@next/mdx')({
+    extension: /\.mdx?$/,
+    options: {
+        remarkPlugins: [_attr]
+    }
+})
+
 const externals = {
     "jquery": "$",
     "bootstrap": "BootStrap",
     "react-dom": "ReactDOM",
+    "lodash": "_",
     "react": "React"
 }
 
-module.exports = (phase, { defaultConfig }) => {
+module.exports = withMDX((phase, { defaultConfig }) => {
     return {
         /* config options here */
-        pageExtensions: ['mdx', 'jsx', 'js', 'ts', 'tsx'],
+        pageExtensions: ["md", "mdx", "jsx", "js", "ts", "tsx"],
 
         webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
             // Note: we provide webpack above so you should not `require` it
@@ -37,4 +48,4 @@ module.exports = (phase, { defaultConfig }) => {
             return config
         },
     }
-}
+})
