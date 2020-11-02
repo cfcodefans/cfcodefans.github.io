@@ -7,8 +7,6 @@ export const PHASE_DEVELOPMENT_SERVER = 'phase-development-server'
 const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_EXPORT } = require("next/constants")
 
 const _attr = require("remark-attr")
-const withMDX = require("@next/mdx")()
-
 const withMDX = require('@next/mdx')({
     extension: /\.mdx?$/,
     options: {
@@ -45,6 +43,14 @@ module.exports = withMDX((phase, { defaultConfig }) => {
             console.info("config.externals", JSON.stringify(config["externals"]))
 
             config["externals"] = [...config["externals"], externals]
+
+            if (!isServer) {
+                config["node"] = {
+                    global: true,
+                    fs: "empty"
+                }
+            }
+
             return config
         },
     }

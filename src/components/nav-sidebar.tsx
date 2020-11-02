@@ -1,6 +1,6 @@
-import React, { ReactNode, ReactNodeArray, useEffect, useState } from "react"
-import { IMenuItemModal } from "../types"
 import Link from "next/link"
+import React, { ReactNodeArray, useEffect, useState } from "react"
+import { IMenuItemModal } from "../types"
 
 type TMenuItemProps = { children: ReactNodeArray, modal: IMenuItemModal }
 

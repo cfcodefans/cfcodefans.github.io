@@ -1,21 +1,9 @@
 import * as _ from "lodash"
+import { ITNode, TNode, TTraverser } from "../types"
+
 
 export function compare<T>(s1: T, s2: T): number {
     return (s1 == s2) ? 0 : (s1 > s2 ? 1 : -1)
-}
-
-export type TNode = {
-    children: TNode[]
-}
-
-export type TTraverser = (node: TNode) => TNode[]
-
-export interface IComparable {
-    comparedTo(another: IComparable): number
-}
-
-export interface ITNode extends IComparable, TNode {
-    children: ITNode[]
 }
 
 export function deepTraverse(nodes: TNode[], traverser?: TTraverser): TNode[] {

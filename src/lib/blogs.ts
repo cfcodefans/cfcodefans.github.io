@@ -1,15 +1,38 @@
 import { Dirent, promises as fsp } from "fs"
-import path from "path"
-import { compare, deepTraverse, deepTraverse_a, IComparable, iterateTree_a, ITNode, MarkdownMetaInfo } from "./commons"
 import * as _ from "lodash"
-import * as _p from "path"
+import path, * as _p from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
-import { IMenuItemModal } from "../types"
+import { IComparable, IMenuItemModal, ITNode } from "../types"
+import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a, MarkdownMetaInfo } from "./commons"
 
 const _mdx = require("@mdx-js/mdx")
 
 const BLOGS_DIR: string = path.join(process.cwd(), "blogs")
+
+// export type TNode = {
+//     children: TNode[]
+// }
+
+// export type TTraverser = (node: TNode) => TNode[]
+
+// export interface IComparable {
+//     comparedTo?(another: IComparable): number
+// }
+
+// export interface ITNode extends IComparable, TNode {
+//     children: ITNode[]
+// }
+
+// export interface IMenuItemModal extends ITNode {
+//     label: string
+//     link: string
+//     children: IMenuItemModal[]
+//     icon: string
+//     layer: number
+//     leaveCount: number
+//     comparedTo?: any
+// }
 
 export interface IPathInfo extends ITNode {
     isFile: boolean
@@ -23,7 +46,7 @@ function makePathInfo(path: string, d: Dirent): IPathInfo {
         path: _p.resolve(path, d.name),
         children: [],
         leaves: [],
-        comparedTo: undefined
+        comparedTo: null
     }
     pi.comparedTo = ((p1: IPathInfo) => compare(pi.path, p1.path)).bind(pi)
     return pi
@@ -146,11 +169,11 @@ export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise
         data,
         getData: null,
         childrenCount: 0,
-        comparedTo: undefined
+        comparedTo: null
     }
 
     route.getData = getData.bind(route)
-    route.comparedTo = ((r1: IRouteModal) => compare(this._path, r1._path)).bind(route)
+    // route.comparedTo = ((r1: IRouteModal) => compare(this._path, r1._path)).bind(route)
     return route
 }
 
@@ -166,8 +189,8 @@ export async function pathTreeToRouteTree(rootPaths: IPathInfo[], basePath: stri
 
     await deepTraverse_a(rootPaths, async (pi: IPathInfo) => {
         let route: IRouteModal = pathAndRouteModals.get(pi.path)
-        route.children = [...pi.children.map(childPath => pathAndRouteModals.get(childPath.path))]
-        route.data = [...pi.leaves.map(childPath => pathAndRouteModals.get(childPath.path).data)]
+        route.children = pi.children.map(childPath => pathAndRouteModals.get(childPath.path))
+        route.data = pi.leaves.map(childPath => pathAndRouteModals.get(childPath.path).data)
         route.childrenCount = route.data.length
         return pi.children
     })
@@ -185,10 +208,10 @@ export function pathToMenu(pi: IPathInfo, basePath: string): IMenuItemModal {
         icon: baseName,
         leaveCount: pi.leaves.length,
         layer: _path.split("/").indexOf(baseName.replace("/", "")),
-        comparedTo: undefined
+        comparedTo: null
     }
 
-    menuItem.comparedTo = ((another: IMenuItemModal) => compare(this.link, another.link)).bind(menuItem)
+    // menuItem.comparedTo = ((another: IMenuItemModal) => compare(this.link, another.link)).bind(menuItem)
 
     return menuItem
 }
@@ -204,7 +227,7 @@ export function pathTreeToMenuTree(rootPaths: IPathInfo[], basePath: string): IM
 
     deepTraverse(rootPaths, (pi: IPathInfo) => {
         let menuItem: IMenuItemModal = pathAndMenuItems.get(pi.path)
-        menuItem.children = [...pi.children.map(childPath => pathAndMenuItems.get(childPath.path))]
+        menuItem.children = pi.children.map(childPath => pathAndMenuItems.get(childPath.path))
         return pi.children
     })
 
@@ -213,4 +236,22 @@ export function pathTreeToMenuTree(rootPaths: IPathInfo[], basePath: string): IM
 
 export function LOAD_MENUS(rootPaths: IPathInfo[], basePath: string): IMenuItemModal[] {
     return pathTreeToMenuTree(rootPaths, basePath)
+}
+
+export async function bootstrap(): Promise<IMenuItemModal[]> {
+    const CWD = process.cwd()
+    const ROOT_PATH = _p.resolve(`${CWD}/blogs/`)
+    const BASE_PATH = _p.resolve(`${CWD}/src/pages/`)
+    i("blogs.ts", "CWD", CWD, "ROOT_PATH", ROOT_PATH, "BASE_PATH", BASE_PATH)
+
+    const paths: IPathInfo[] = await LOAD_PATHS(ROOT_PATH)
+    i("blogs.bootstrap", "paths", paths.length)
+    try {
+        const menus: IMenuItemModal[] = pathTreeToMenuTree(paths, ROOT_PATH)
+        i("blogs.bootstrap", "menus", menus.length)
+        return menus
+    } catch (e) {
+        i("blogs.bootstrap", "e", e)
+        return []
+    }
 }
