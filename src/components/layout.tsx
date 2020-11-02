@@ -15,9 +15,5 @@ export default function Layout({ children, home }: { children: ReactNode, home: 
                 {children}
             </div>
         </main>
-
-        <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/2.5.3/cjs/popper.js"></script>
-        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.slim.js"></script>
-        <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.js"></script>
     </div>)
 }

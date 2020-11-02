@@ -5,18 +5,11 @@ import * as _ from "lodash"
 import * as _p from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
+import { IMenuItemModal } from "../types"
 
 const _mdx = require("@mdx-js/mdx")
 
 const BLOGS_DIR: string = path.join(process.cwd(), "blogs")
-
-// export interface IBlogEntry {
-//     id: string
-//     contentHtml: string
-//     previewHtml: string
-//     dated: Date
-//     meta: { [key: string]: any }
-// }
 
 export interface IPathInfo extends ITNode {
     isFile: boolean
@@ -40,15 +33,6 @@ export async function ls(path: string, predict?: (IPathInfo) => boolean): Promis
     return Promise.resolve(
         ds.map(d => makePathInfo(path, d))
             .filter(p => (predict && predict(p) || true)))
-}
-
-export interface IMenuItemModal extends ITNode {
-    label: string
-    link: string
-    children: IMenuItemModal[]
-    icon: string
-    layer: number
-    leaveCount: number
 }
 
 function isMDX(pi: IPathInfo): boolean {

@@ -107,3 +107,14 @@ export function iterateTree(roots: ITNode[], visitor: TreeVisitor): ITNode[] {
 
 
 export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string, createdAt: Date, modifiedAt: Date }
+
+export function i(filename: string, ...rest: any[]) {
+    const stackTrace = (new Error()).stack
+    const frames = stackTrace.match(/[^\r\n]+/g)
+    const idx = frames.findIndex(frame => frame.includes("at i (")) + 1
+    console.info("\n", filename, frames[idx], "\n\t", ...rest?.map(obj => jsf(obj)), "\n")
+}
+
+export function jsf(v: any, indent: string = "  "): string {
+    return v instanceof Object ? JSON.stringify(v, null, indent) : v
+}
