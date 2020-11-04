@@ -3,8 +3,8 @@ import * as _ from "lodash"
 import path, * as _p from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
-import { IComparable, IMenuItemModal, ITNode } from "../types"
-import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a, MarkdownMetaInfo } from "./commons"
+import { IComparable, IMenuItemModal, ITNode, MarkdownMetaInfo } from "../types"
+import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a } from "./commons"
 
 const _mdx = require("@mdx-js/mdx")
 
@@ -172,7 +172,7 @@ export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise
         comparedTo: null
     }
 
-    route.getData = getData.bind(route)
+    // route.getData = getData.bind(route)
     // route.comparedTo = ((r1: IRouteModal) => compare(this._path, r1._path)).bind(route)
     return route
 }
@@ -260,3 +260,4 @@ export async function bootstrap(): Promise<IMenuItemModal[]> {
         return []
     }
 }
+

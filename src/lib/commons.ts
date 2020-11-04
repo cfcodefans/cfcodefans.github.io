@@ -93,9 +93,6 @@ export function iterateTree(roots: ITNode[], visitor: TreeVisitor): ITNode[] {
     return roots
 }
 
-
-export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string, createdAt: Date, modifiedAt: Date }
-
 export function i(filename: string, ...rest: any[]) {
     const stackTrace = (new Error()).stack
     const frames = stackTrace.match(/[^\r\n]+/g)

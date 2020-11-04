@@ -1,15 +1,13 @@
 import { Html } from "next/document"
 import Head from "next/head"
 import React, { ReactNode, useReducer } from "react"
-import { IMenuItemModal } from "../types"
+import { ILayoutPros, IMenuItemModal } from "../types"
 import MiscSideBar from "./misc-sidebar"
 import NavSideBar from "./nav-sidebar"
 import NavTopBar from "./nav-topbar"
 import * as _ from "lodash"
 
-export interface ILayoutPros {
-    menus: IMenuItemModal[]
-}
+
 
 export class LayoutCtx implements ILayoutPros {
     menus: IMenuItemModal[]

@@ -23,5 +23,14 @@ export interface IMenuItemModal extends ITNode {
 }
 
 export interface IBlogModal {
+    created: Date
+    tags?: string[]
+    path: string
+}
+
+export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string, createdAt: Date, modifiedAt: Date }
+
+export interface ILayoutPros {
+    menus: IMenuItemModal[]
 
 }
