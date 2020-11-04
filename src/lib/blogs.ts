@@ -238,7 +238,11 @@ export function LOAD_MENUS(rootPaths: IPathInfo[], basePath: string): IMenuItemM
     return pathTreeToMenuTree(rootPaths, basePath)
 }
 
+const MENUS: IMenuItemModal[] = []
+
 export async function bootstrap(): Promise<IMenuItemModal[]> {
+    if (MENUS.length > 0) return MENUS
+
     const CWD = process.cwd()
     const ROOT_PATH = _p.resolve(`${CWD}/blogs/`)
     const BASE_PATH = _p.resolve(`${CWD}/src/pages/`)
@@ -249,7 +253,8 @@ export async function bootstrap(): Promise<IMenuItemModal[]> {
     try {
         const menus: IMenuItemModal[] = pathTreeToMenuTree(paths, ROOT_PATH)
         i("blogs.bootstrap", "menus", menus.length)
-        return menus
+        menus.forEach(m => MENUS.push(m))
+        return MENUS
     } catch (e) {
         i("blogs.bootstrap", "e", e)
         return []

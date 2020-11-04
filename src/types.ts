@@ -21,3 +21,7 @@ export interface IMenuItemModal extends ITNode {
     leaveCount: number
     comparedTo?: any
 }
+
+export interface IBlogModal {
+
+}
