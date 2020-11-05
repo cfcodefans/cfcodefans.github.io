@@ -5,7 +5,7 @@ import { i } from "../lib/commons"
 
 
 export default function _App({ Component, pageProps }: AppProps): JSX.Element {
-    i("_app.tsx", "pageProps", pageProps)
+    i("_app.tsx", "pageProps", typeof pageProps)
 
     return (<>
         <Head>

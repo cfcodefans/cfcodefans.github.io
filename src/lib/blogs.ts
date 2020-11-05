@@ -1,10 +1,11 @@
 import { Dirent, promises as fsp } from "fs"
-import * as _ from "lodash"
+import _ from "lodash"
 import path, * as _p from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
-import { IComparable, IMenuItemModal, ITNode, MarkdownMetaInfo } from "../types"
+import { ILayoutPros, IMenuItemModal, IRouteModal, ITNode, TMarkdownMetaInfo } from "../types"
 import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a } from "./commons"
+import { format } from "date-fns"
 
 const _mdx = require("@mdx-js/mdx")
 
@@ -118,7 +119,7 @@ function loadExcerpt(root: Parent, mdxStr: string): string {
     return mdxStr.substring(0, excerptTag.position.start.offset)
 }
 
-async function getMDXMeta(path: string, filePath: string): Promise<MarkdownMetaInfo> {
+async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMetaInfo> {
     // const fileStats: Stats = await fsp.lstat(filePath)
     // const mdxStr: string = await fsp.readFile(filePath, "utf-8")
 
@@ -129,20 +130,9 @@ async function getMDXMeta(path: string, filePath: string): Promise<MarkdownMetaI
         meta: loadMeta(mdxContent),
         excerpt: loadExcerpt(mdxContent as Parent, mdxStr),
         path,
-        createdAt: fileStats.birthtime,
-        modifiedAt: fileStats.ctime
+        createdAt: format(fileStats.birthtime, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"),
+        modifiedAt: format(fileStats.ctime, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
     }
-}
-
-export interface IRouteModal extends ITNode, IComparable {
-    path: string
-    _path: string
-    template: string
-    children: IRouteModal[]
-    data?: any | any[]
-    getData: () => any
-    childrenCount: number
-    sharedData?: any
 }
 
 export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise<IRouteModal> {
@@ -167,7 +157,7 @@ export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise
         template,
         children,
         data,
-        getData: null,
+        // getData: null,
         childrenCount: 0,
         comparedTo: null
     }
@@ -190,7 +180,7 @@ export async function pathTreeToRouteTree(rootPaths: IPathInfo[], basePath: stri
     await deepTraverse_a(rootPaths, async (pi: IPathInfo) => {
         let route: IRouteModal = pathAndRouteModals.get(pi.path)
         route.children = pi.children.map(childPath => pathAndRouteModals.get(childPath.path))
-        route.data = pi.leaves.map(childPath => pathAndRouteModals.get(childPath.path).data)
+        route.data = _.flatten(pi.leaves.map(childPath => pathAndRouteModals.get(childPath.path).data))
         route.childrenCount = route.data.length
         return pi.children
     })
@@ -239,9 +229,14 @@ export function LOAD_MENUS(rootPaths: IPathInfo[], basePath: string): IMenuItemM
 }
 
 const MENUS: IMenuItemModal[] = []
+const ROUTES: IRouteModal[] = []
+const LAYOUT_PROS: ILayoutPros = { menus: MENUS, routes: ROUTES }
 
-export async function bootstrap(): Promise<IMenuItemModal[]> {
-    if (MENUS.length > 0) return MENUS
+export async function bootstrap(): Promise<ILayoutPros> {
+    if (LAYOUT_PROS.menus.length > 0) {
+        i("blogs.bootstrap", "cached!")
+        return LAYOUT_PROS
+    }
 
     const CWD = process.cwd()
     const ROOT_PATH = _p.resolve(`${CWD}/blogs/`)
@@ -251,13 +246,15 @@ export async function bootstrap(): Promise<IMenuItemModal[]> {
     const paths: IPathInfo[] = await LOAD_PATHS(ROOT_PATH)
     i("blogs.bootstrap", "paths", paths.length)
     try {
+        const routes: IRouteModal[] = await pathTreeToRouteTree(paths, ROOT_PATH)
+        i("blogs.bootstrap", "routes", routes.length)
         const menus: IMenuItemModal[] = pathTreeToMenuTree(paths, ROOT_PATH)
         i("blogs.bootstrap", "menus", menus.length)
-        menus.forEach(m => MENUS.push(m))
-        return MENUS
+        LAYOUT_PROS.menus = menus
+        LAYOUT_PROS.routes = routes
     } catch (e) {
         i("blogs.bootstrap", "e", e)
-        return []
     }
+    return LAYOUT_PROS
 }
 

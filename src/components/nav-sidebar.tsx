@@ -1,8 +1,9 @@
 import Link from "next/link"
 import React, { ReactElement, ReactNodeArray, useEffect, useState } from "react"
-import { deepTraverse } from "../lib/commons"
+import { deepTraverse, i } from "../lib/commons"
 import { IMenuItemModal } from "../types"
 import BreadCrumb from "./breadcrumb"
+import _ from "lodash"
 
 type TMenuItemProps = { children: ReactNodeArray, modal: IMenuItemModal }
 
@@ -13,7 +14,7 @@ function MenuItem({ children, modal }: TMenuItemProps): JSX.Element {
 
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
-    console.info("currentPath", currentPath)
+    i("nav-sidebar.tsx", "_link", _link)
 
     return (<nav className={`menu-layer-${modal.layer} nav-item w-100`}>
         <Link href={_link}>
@@ -57,7 +58,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
 
-    return <nav className="nav-sidebar d-flex flex-column mr-lg-1 rounded-1 shadow">
+    return (<nav className="nav-sidebar d-flex flex-column mr-lg-1 rounded-1 shadow">
         <div id="menu_nav" className="d-flex align-items-center navbar pl-1 pr-1 border border-0 z-depth-0 ">
             <nav aria-label="breadcrumb" className="d-flex d-lg-none justify-content-between w-100 mb-2 primary-color font-up-bold">
                 <BreadCrumb _path={currentPath} />
@@ -81,7 +82,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
                 </nav>
             </div>
         </div>
-    </nav>
+    </nav>)
 
     // return <nav className="nav-sidebar">
     //     <div className="navbar navbar-light">

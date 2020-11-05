@@ -1,7 +1,7 @@
 import { Html } from "next/document"
 import Head from "next/head"
 import React, { ReactNode, useReducer } from "react"
-import { ILayoutPros, IMenuItemModal } from "../types"
+import { ILayoutPros, IMenuItemModal, IRouteModal } from "../types"
 import MiscSideBar from "./misc-sidebar"
 import NavSideBar from "./nav-sidebar"
 import NavTopBar from "./nav-topbar"
@@ -11,6 +11,7 @@ import * as _ from "lodash"
 
 export class LayoutCtx implements ILayoutPros {
     menus: IMenuItemModal[]
+    routes: IRouteModal[]
     dispatcher: React.Dispatch<Partial<LayoutCtx>> = null
     constructor(menus: IMenuItemModal[] = []) {
         this.menus = menus

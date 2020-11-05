@@ -28,9 +28,27 @@ export interface IBlogModal {
     path: string
 }
 
-export type MarkdownMetaInfo = { excerpt: string, meta: any, path: string, createdAt: Date, modifiedAt: Date }
+export type TMarkdownMetaInfo = {
+    excerpt: string,
+    meta: any,
+    path: string,
+    createdAt: string,
+    modifiedAt: string
+}
+
+export interface IRouteModal extends ITNode, IComparable {
+    path: string
+    _path: string
+    template: string
+    children: IRouteModal[]
+    data?: TMarkdownMetaInfo[]
+    // getData: () => any
+    childrenCount: number
+    sharedData?: any
+}
+
 
 export interface ILayoutPros {
     menus: IMenuItemModal[]
-
+    routes: IRouteModal[]
 }
