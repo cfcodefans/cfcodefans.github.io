@@ -6,6 +6,7 @@ export const PHASE_DEVELOPMENT_SERVER = 'phase-development-server'
  */
 const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_EXPORT } = require("next/constants")
 
+const withLess = require('@zeit/next-less')
 const _attr = require("remark-attr")
 const withMDX = require('@next/mdx')({
     extension: /\.mdx?$/,
@@ -22,7 +23,7 @@ const externals = {
     "react": "React"
 }
 
-module.exports = withMDX((phase, { defaultConfig }) => {
+module.exports = withLess(withMDX((phase, { defaultConfig }) => {
     return {
         /* config options here */
         pageExtensions: ["md", "mdx", "jsx", "js", "ts", "tsx"],
@@ -54,4 +55,4 @@ module.exports = withMDX((phase, { defaultConfig }) => {
             return config
         },
     }
-})
+}))

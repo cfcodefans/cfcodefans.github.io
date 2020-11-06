@@ -1,10 +1,10 @@
-import { Dirent, promises as fsp } from "fs"
+import { Dirent, promises as fsp, existsSync } from "fs"
 import _ from "lodash"
 import path, * as _p from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
 import { ILayoutPros, IMenuItemModal, IRouteModal, ITNode, TMarkdownMetaInfo } from "../types"
-import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a } from "./commons"
+import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a, jsf } from "./commons"
 import { format } from "date-fns"
 
 const _mdx = require("@mdx-js/mdx")
@@ -230,28 +230,42 @@ export function LOAD_MENUS(rootPaths: IPathInfo[], basePath: string): IMenuItemM
 
 const MENUS: IMenuItemModal[] = []
 const ROUTES: IRouteModal[] = []
-const LAYOUT_PROS: ILayoutPros = { menus: MENUS, routes: ROUTES }
 
 export async function bootstrap(): Promise<ILayoutPros> {
-    if (LAYOUT_PROS.menus.length > 0) {
-        i("blogs.bootstrap", "cached!")
-        return LAYOUT_PROS
+
+    i("blogs.ts", "pid", process.pid)
+    const CWD = process.cwd()
+    const CACHE_PATH = _p.resolve(`${CWD}/cache.json`)
+    if (await existsSync(CACHE_PATH)) {
+        let cachedContent = (await fsp.readFile(CACHE_PATH)).toString()
+        if (cachedContent.length > 0) {
+            i("blogs.bootstrap", "cached!")
+            return JSON.parse(cachedContent) as ILayoutPros
+        }
     }
 
-    const CWD = process.cwd()
     const ROOT_PATH = _p.resolve(`${CWD}/blogs/`)
     const BASE_PATH = _p.resolve(`${CWD}/src/pages/`)
     i("blogs.ts", "CWD", CWD, "ROOT_PATH", ROOT_PATH, "BASE_PATH", BASE_PATH)
 
-    const paths: IPathInfo[] = await LOAD_PATHS(ROOT_PATH)
-    i("blogs.bootstrap", "paths", paths.length)
+    const pathTree: IPathInfo[] = await LOAD_PATHS(ROOT_PATH)
+    i("blogs.bootstrap", "pathTree", pathTree.map(p => p.path))
+
+    const LAYOUT_PROS: ILayoutPros = { menus: MENUS, routeTree: ROUTES, routes: [] }
     try {
-        const routes: IRouteModal[] = await pathTreeToRouteTree(paths, ROOT_PATH)
-        i("blogs.bootstrap", "routes", routes.length)
-        const menus: IMenuItemModal[] = pathTreeToMenuTree(paths, ROOT_PATH)
+        const routeTree: IRouteModal[] = await pathTreeToRouteTree(pathTree, ROOT_PATH)
+        i("blogs.bootstrap", "routes", routeTree.length)
+
+        const routes: IRouteModal[] = deepTraverse(routeTree)
+        i("blogs.bootstrap", "routes", routes.map(p => p._path))
+
+        const menus: IMenuItemModal[] = pathTreeToMenuTree(pathTree, ROOT_PATH)
         i("blogs.bootstrap", "menus", menus.length)
         LAYOUT_PROS.menus = menus
+        LAYOUT_PROS.routeTree = routeTree
         LAYOUT_PROS.routes = routes
+
+        await fsp.writeFile(CACHE_PATH, jsf(LAYOUT_PROS))
     } catch (e) {
         i("blogs.bootstrap", "e", e)
     }

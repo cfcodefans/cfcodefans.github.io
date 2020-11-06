@@ -1,12 +1,11 @@
 import { GetStaticPropsContext, GetStaticPropsResult } from "next"
-import React, { ReactNode } from "react"
+import React from "react"
 import Layout from "../components/layout"
 import { i } from "../lib/commons"
-import { ILayoutPros, IMenuItemModal } from "../types"
-import _ from "lodash"
+import { ILayoutPros } from "../types"
 
 export default function IndexPage(pageProps): JSX.Element {
-    i("index.tsx", "pageProps", typeof (pageProps))
+    // i("index.tsx", "pageProps", typeof (pageProps))
     const { layoutProps } = pageProps
     return (<Layout home layoutProps={layoutProps}>
         <h1>Here is IndexPage</h1>
@@ -14,9 +13,9 @@ export default function IndexPage(pageProps): JSX.Element {
 }
 
 export async function getStaticProps(context: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
-    i("_app.tsx", "context", typeof (context))
+    // i("index.tsx", "context", typeof (context))
     const { bootstrap, } = await import("../lib/blogs")
     const layoutProps: ILayoutPros = await bootstrap()
-    i("_app.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.menus.length])
+    i("index.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.routeTree.length])
     return { props: { layoutProps } }
 }

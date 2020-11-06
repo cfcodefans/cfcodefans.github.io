@@ -6,14 +6,14 @@ export function compare<T>(s1: T, s2: T): number {
     return (s1 == s2) ? 0 : (s1 > s2 ? 1 : -1)
 }
 
-export function deepTraverse(nodes: TNode[], traverser?: TTraverser): TNode[] {
-    const nodeStack: TNode[] = [...nodes.reverse()]
-    const result: TNode[] = []
+export function deepTraverse<N extends TNode = TNode>(nodes: N[], traverser?: TTraverser): N[] {
+    const nodeStack: N[] = [...nodes.reverse()]
+    const result: N[] = []
 
     while (nodeStack.length > 0) {
-        let node: TNode = nodeStack.pop()
+        let node: N = nodeStack.pop()
         result.push(node)
-        let subNodes: TNode[] = (traverser ? traverser(node) : node.children) || node.children
+        let subNodes: N[] = ((traverser ? traverser(node) : node.children) ?? node.children ?? []) as N[]
         nodeStack.push(...subNodes.reverse())
     }
 

@@ -2,7 +2,7 @@ export type TNode = {
     children: TNode[]
 }
 
-export type TTraverser = (node: TNode) => TNode[]
+export type TTraverser<N extends TNode = TNode> = (node: N) => N[]
 
 export interface IComparable {
     comparedTo?(another: IComparable): number
@@ -50,5 +50,6 @@ export interface IRouteModal extends ITNode, IComparable {
 
 export interface ILayoutPros {
     menus: IMenuItemModal[]
+    routeTree: IRouteModal[]
     routes: IRouteModal[]
 }

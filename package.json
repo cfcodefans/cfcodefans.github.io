@@ -12,7 +12,9 @@
     "dependencies": {
         "@mdx-js/loader": "^1.6.19",
         "@next/mdx": "^10.0.0",
+        "@zeit/next-less": "^1.0.1",
         "date-fns": "^2.16.1",
+        "less": "^3.12.2",
         "lodash": "^4.17.20",
         "next": "10.0.0",
         "react": "^17.0.0",

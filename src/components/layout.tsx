@@ -11,6 +11,7 @@ import * as _ from "lodash"
 
 export class LayoutCtx implements ILayoutPros {
     menus: IMenuItemModal[]
+    routeTree: IRouteModal[]
     routes: IRouteModal[]
     dispatcher: React.Dispatch<Partial<LayoutCtx>> = null
     constructor(menus: IMenuItemModal[] = []) {
