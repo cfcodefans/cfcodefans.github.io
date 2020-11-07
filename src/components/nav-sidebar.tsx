@@ -9,7 +9,7 @@ import { NextRouter, useRouter } from "next/dist/client/router"
 
 type TMenuItemProps = { children: ReactNodeArray, modal: IMenuItemModal }
 
-const UL_STYLE: string = "nav default-pills nav-pills nav-fills"
+const UL_STYLE: string = "nav default-pills nav-pills nav-fills pt-1"
 
 function MenuItem({ children, modal }: TMenuItemProps): JSX.Element {
     const _link: string = `/${modal.link}`
@@ -21,8 +21,8 @@ function MenuItem({ children, modal }: TMenuItemProps): JSX.Element {
 
     return (<nav className={`menu-layer-${modal.layer} nav-item w-100`}>
         <Link href={_link}>
-            <a className={`icon-${modal.icon} nav-link ${_link == router.asPath ? "active" : ""} hoverable rounded-pill d-flex px-1 justify-content-between`}>
-                <span className="menu-label">{modal.label}</span>
+            <a className={`icon-${modal.icon} nav-link ${_link == router.asPath ? "active z-depth-1-half" : ""} hoverable rounded-pill d-flex px-2 justify-content-between`}>
+                <span className="menu-label text-capitalize">{modal.label}</span>
                 <span className="badge badge-pill badge-info align-self-center">{modal.leaveCount}</span>
             </a>
         </Link>
@@ -61,15 +61,15 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
 
-    return (<nav className="nav-sidebar menu_sidebar d-flex flex-column mr-lg-1 rounded-1 shadow">
+    return (<nav className="nav-sidebar menu-sidebar d-flex flex-column mr-lg-1 rounded-1 shadow">
         <div className="menu_header d-flex flex-lg-column align-items-center">
             <div className="logo text-center d-flex align-items-center m-lg-4">
-                <a href="/home">
+                <a href="/">
                     <img className="rounded-circle w-100 h-100 hoverable" src="/images/cfcodefans.jpg" />
                 </a>
             </div>
             <div className="nav-title text-center flex-grow-1 w-100">
-                <h5 className="text-black">cfcodefans</h5>
+                <h5 className="text-gray text-capitalize">cfcodefans</h5>
             </div>
         </div>
 

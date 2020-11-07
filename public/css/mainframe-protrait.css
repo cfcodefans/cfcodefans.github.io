@@ -45,6 +45,6 @@ nav #nav_items {
 }
 
 .main-pane {
-    padding-top: var(--nav-sidebar-height);
-    padding-bottom: var(--misc-sidebar-height);
+    margin-top: var(--nav-sidebar-height);
+    margin-bottom: var(--misc-sidebar-height);
 }

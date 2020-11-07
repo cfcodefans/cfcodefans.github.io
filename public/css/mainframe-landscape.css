@@ -51,7 +51,7 @@
 }
 
 .main-pane {
-    padding-top: var(--top-navbar-height);
-    padding-left: var(--nav-sidebar-width);
-    padding-right: var(--misc-sidebar-width);
+    margin-top: var(--top-navbar-height);
+    margin-left: var(--nav-sidebar-width);
+    margin-right: var(--misc-sidebar-width);
 }
