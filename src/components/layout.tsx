@@ -1,12 +1,9 @@
-import { Html } from "next/document"
-import Head from "next/head"
+import * as _ from "lodash"
 import React, { ReactNode, useReducer } from "react"
 import { ILayoutPros, IMenuItemModal, IRouteModal } from "../types"
 import MiscSideBar from "./misc-sidebar"
 import NavSideBar from "./nav-sidebar"
 import NavTopBar from "./nav-topbar"
-import * as _ from "lodash"
-
 
 
 export class LayoutCtx implements ILayoutPros {
@@ -38,12 +35,13 @@ export const CtxProvider: React.FC = ({ children }: { children: ReactNode }) => 
 
 export default function Layout({ children, home, layoutProps }: { children: ReactNode, home: boolean, layoutProps: ILayoutPros }): JSX.Element {
     const { menus } = layoutProps
+
     return (<div style={{ "maxWidth": "1920px", "position": "relative" }} >
         <CtxProvider>
             <NavSideBar menus={menus} />
             <NavTopBar />
             <MiscSideBar />
-            <main className="main-pane">
+            <main className="main-pane p-3">
                 <div className="w-100">
                     {children}
                 </div>
@@ -51,3 +49,4 @@ export default function Layout({ children, home, layoutProps }: { children: Reac
         </CtxProvider>
     </div>)
 }
+

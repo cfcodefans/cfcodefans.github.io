@@ -6,8 +6,18 @@ import { Node, Parent } from "unist"
 import { ILayoutPros, IMenuItemModal, IRouteModal, ITNode, TMarkdownMetaInfo } from "../types"
 import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a, jsf } from "./commons"
 import { format } from "date-fns"
+import React from "react"
+import { mdxStrToHtmlStr } from "./mdx-fn"
 
 const _mdx = require("@mdx-js/mdx")
+
+const DEFAULT_OPTIONS = {
+    footnotes: true,
+    remarkPlugins: [],
+    rehypePlugins: [],
+    compilers: []
+}
+const compiler: unified.Processor = _mdx.createMdxAstCompiler(DEFAULT_OPTIONS)
 
 const BLOGS_DIR: string = path.join(process.cwd(), "blogs")
 
@@ -83,14 +93,6 @@ export async function LOAD_PATHS(_path: string): Promise<IPathInfo[]> {
     return await searchBlogs(rootPaths)
 }
 
-const DEFAULT_OPTIONS = {
-    footnotes: true,
-    remarkPlugins: [],
-    rehypePlugins: [],
-    compilers: []
-}
-const compiler: unified.Processor = _mdx.createMdxAstCompiler(DEFAULT_OPTIONS)
-
 function loadMeta(mdxNode: Node): any {
     let children: Node[] = mdxNode["children"] as Node[]
     if (_.isEmpty(children))
@@ -111,12 +113,16 @@ function loadMeta(mdxNode: Node): any {
 
 const rExcerpt: RegExp = /<!--+\s*more\s*--+>/i
 
-function loadExcerpt(root: Parent, mdxStr: string): string {
+async function loadExcerpt(root: Parent, mdxStr: string): Promise<string> {
     let excerptTag: Node = root.children.find((child: Node) => child["value"] && rExcerpt.test(child["value"] as string))
     if (excerptTag == null)
         return ""
 
-    return mdxStr.substring(0, excerptTag.position.start.offset)
+    const excerptStr: string = mdxStr.substring(0, excerptTag.position.start.offset)
+    const x = mdxStrToHtmlStr(excerptStr)
+    i("blog.ts", "mdx", typeof x, x)
+
+    return x
 }
 
 async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMetaInfo> {
@@ -128,10 +134,10 @@ async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMeta
     const mdxContent: Node = compiler.parse(mdxStr)
     return {
         meta: loadMeta(mdxContent),
-        excerpt: loadExcerpt(mdxContent as Parent, mdxStr),
+        excerpt: await loadExcerpt(mdxContent as Parent, mdxStr),
         path,
-        createdAt: format(fileStats.birthtime, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"),
-        modifiedAt: format(fileStats.ctime, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
+        createdAt: format(fileStats.birthtime, "yyyy-MM-dd"),
+        modifiedAt: format(fileStats.ctime, "yyyy-MM-dd")//yyyy-MM-dd'T'HH:mm:ss.SSSxxx
     }
 }
 

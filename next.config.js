@@ -1,14 +1,14 @@
 /**
- * export const PHASE_EXPORT = 'phase-export'
-export const PHASE_PRODUCTION_BUILD = 'phase-production-build'
-export const PHASE_PRODUCTION_SERVER = 'phase-production-server'
-export const PHASE_DEVELOPMENT_SERVER = 'phase-development-server'
+ * export const PHASE_EXPORT = "phase-export"
+export const PHASE_PRODUCTION_BUILD = "phase-production-build"
+export const PHASE_PRODUCTION_SERVER = "phase-production-server"
+export const PHASE_DEVELOPMENT_SERVER = "phase-development-server"
  */
 const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_EXPORT } = require("next/constants")
 
-const withLess = require('@zeit/next-less')
+const withLess = require("@zeit/next-less")
 const _attr = require("remark-attr")
-const withMDX = require('@next/mdx')({
+const withMDX = require("@next/mdx")({
     extension: /\.mdx?$/,
     options: {
         remarkPlugins: [_attr]
@@ -23,7 +23,7 @@ const externals = {
     "react": "React"
 }
 
-module.exports = withLess(withMDX((phase, { defaultConfig }) => {
+module.exports = withMDX(withLess((phase, { defaultConfig }) => {
     return {
         /* config options here */
         pageExtensions: ["md", "mdx", "jsx", "js", "ts", "tsx"],

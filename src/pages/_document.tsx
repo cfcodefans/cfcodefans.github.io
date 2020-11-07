@@ -30,7 +30,7 @@ class TemplateDoc extends Document {
                 <link href="/css/mainframe-protrait.css" rel="stylesheet" media="(orientation: portrait)" />
                 <link href="/css/mainframe-landscape.css" rel="stylesheet" media="(orientation:landscape)" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.css" rel="stylesheet" />
-                <link href="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/css/mdb.min.css" rel="stylesheet"></link>
+                <link href="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/css/mdb.css" rel="stylesheet"></link>
                 <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" rel="stylesheet" />
 
             </Head>

@@ -1,8 +1,15 @@
 import App, { AppContext, AppInitialProps, AppProps } from "next/app"
 import Head from "next/head"
-import React from "react"
+import React, { ReactNodeArray } from "react"
 import { i } from "../lib/commons"
+import { MDXProvider } from '@mdx-js/react'
 
+const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
+    return <div className="p-5">
+        <h1>MDX_Frame</h1>
+        {children}
+    </div>
+}
 
 export default function _App({ Component, pageProps }: AppProps): JSX.Element {
     // i("_app.tsx", "pageProps", typeof pageProps)
@@ -13,7 +20,9 @@ export default function _App({ Component, pageProps }: AppProps): JSX.Element {
             <meta name="format-detection" content="telephone=no" />
             <meta name="X-FRAME-OPTIONS" content="deny" />
         </Head>
-        <Component {...pageProps} />
+        <MDXProvider components={{ wrapper: MDX_Frame }}>
+            <Component {...pageProps} />
+        </MDXProvider>
     </>)
 }
 
