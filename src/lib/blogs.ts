@@ -1,12 +1,11 @@
-import { Dirent, promises as fsp, existsSync } from "fs"
+import { format } from "date-fns"
+import { Dirent, existsSync, promises as fsp } from "fs"
 import _ from "lodash"
 import path, * as _p from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
-import { ILayoutPros, IMenuItemModal, IRouteModal, ITNode, TMarkdownMetaInfo } from "../types"
+import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, ITNode, TMarkdownMetaInfo } from "../types"
 import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a, jsf } from "./commons"
-import { format } from "date-fns"
-import React from "react"
 import { mdxStrToHtmlStr } from "./mdx-fn"
 
 const _mdx = require("@mdx-js/mdx")
@@ -20,6 +19,7 @@ const DEFAULT_OPTIONS = {
 const compiler: unified.Processor = _mdx.createMdxAstCompiler(DEFAULT_OPTIONS)
 
 const BLOGS_DIR: string = path.join(process.cwd(), "blogs")
+
 
 // export type TNode = {
 //     children: TNode[]
@@ -45,12 +45,7 @@ const BLOGS_DIR: string = path.join(process.cwd(), "blogs")
 //     comparedTo?: any
 // }
 
-export interface IPathInfo extends ITNode {
-    isFile: boolean
-    path: string
-    children: IPathInfo[]
-    leaves: IPathInfo[]
-}
+
 function makePathInfo(path: string, d: Dirent): IPathInfo {
     let pi: IPathInfo = {
         isFile: d.isFile(),
@@ -141,17 +136,17 @@ async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMeta
     }
 }
 
+
+
 export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise<IRouteModal> {
     let _path: string = _p.relative(basePath, pi.path).replace(/\\/g, "/")
     let path: string = `/${_p.basename(_path)}`
-    let template: string = pi.isFile ? _p.resolve(basePath, _path) : "src/pages/blog_list"
     let children: IRouteModal[] = pi.isFile ? null : []
-    let data: any = {}
 
-    if (pi.isFile && /.mdx?$/.test(_p.extname(pi.path))) {
-        console.info(`loading markdown meta for ${pi.path}`)
-        data = await getMDXMeta(_path, pi.path)
-    }
+    // if (pi.isFile && /.mdx?$/.test(_p.extname(pi.path))) {
+    //     console.info(`loading markdown meta for ${pi.path}`)
+    //     data = await getMDXMeta(_path, pi.path)
+    // }
 
     function getData() {
         return _.flattenDeep(this.data)
@@ -160,9 +155,10 @@ export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise
     let route: IRouteModal = {
         path,
         _path,
-        template,
+        // template,
         children,
-        data,
+        offsprings: isMDX(pi) ? [_path] : [],
+        // data,
         // getData: null,
         childrenCount: 0,
         comparedTo: null
@@ -186,8 +182,8 @@ export async function pathTreeToRouteTree(rootPaths: IPathInfo[], basePath: stri
     await deepTraverse_a(rootPaths, async (pi: IPathInfo) => {
         let route: IRouteModal = pathAndRouteModals.get(pi.path)
         route.children = pi.children.map(childPath => pathAndRouteModals.get(childPath.path))
-        route.data = _.flatten(pi.leaves.map(childPath => pathAndRouteModals.get(childPath.path).data))
-        route.childrenCount = route.data.length
+        route.offsprings = _.flatten(pi.leaves.map(childPath => pathAndRouteModals.get(childPath.path).offsprings))
+        route.childrenCount = route.offsprings.length
         return pi.children
     })
 
@@ -252,24 +248,33 @@ export async function bootstrap(): Promise<ILayoutPros> {
 
     const ROOT_PATH = _p.resolve(`${CWD}/blogs/`)
     const BASE_PATH = _p.resolve(`${CWD}/src/pages/`)
-    i("blogs.ts", "CWD", CWD, "ROOT_PATH", ROOT_PATH, "BASE_PATH", BASE_PATH)
 
-    const pathTree: IPathInfo[] = await LOAD_PATHS(ROOT_PATH)
+    const basePath: string = ROOT_PATH
+    i("blogs.ts", "CWD", CWD, "basePath", basePath)
+
+    const pathTree: IPathInfo[] = await LOAD_PATHS(basePath)
     i("blogs.bootstrap", "pathTree", pathTree.map(p => p.path))
 
-    const LAYOUT_PROS: ILayoutPros = { menus: MENUS, routeTree: ROUTES, routes: [] }
+    const paths: IPathInfo[] = deepTraverse(pathTree)
+
+    const LAYOUT_PROS: ILayoutPros = { menus: MENUS, routeTree: ROUTES, pathToMarkdowns: {}, routes: [] }
     try {
-        const routeTree: IRouteModal[] = await pathTreeToRouteTree(pathTree, ROOT_PATH)
+        const routeTree: IRouteModal[] = await pathTreeToRouteTree(pathTree, basePath)
         i("blogs.bootstrap", "routes", routeTree.length)
+        LAYOUT_PROS.routeTree = routeTree
 
         const routes: IRouteModal[] = deepTraverse(routeTree)
         i("blogs.bootstrap", "routes", routes.map(p => p._path))
+        LAYOUT_PROS.routes = routes
 
-        const menus: IMenuItemModal[] = pathTreeToMenuTree(pathTree, ROOT_PATH)
+        const mdMetas: TMarkdownMetaInfo[] = await Promise.all(
+            paths.filter(p => isMDX(p))
+                .map(p => getMDXMeta(_p.relative(basePath, p.path).replace(/\\/g, "/"), p.path)))
+        LAYOUT_PROS.pathToMarkdowns = mdMetas.reduce((dict, md) => (dict[md.path] = md, dict), {})
+
+        const menus: IMenuItemModal[] = pathTreeToMenuTree(pathTree, basePath)
         i("blogs.bootstrap", "menus", menus.length)
         LAYOUT_PROS.menus = menus
-        LAYOUT_PROS.routeTree = routeTree
-        LAYOUT_PROS.routes = routes
 
         await fsp.writeFile(CACHE_PATH, jsf(LAYOUT_PROS))
     } catch (e) {

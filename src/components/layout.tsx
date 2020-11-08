@@ -1,6 +1,6 @@
 import * as _ from "lodash"
 import React, { ReactNode, useReducer } from "react"
-import { ILayoutPros, IMenuItemModal, IRouteModal } from "../types"
+import { ILayoutPros, IMenuItemModal, IRouteModal, TMarkdownMetaInfo } from "../types"
 import MiscSideBar from "./misc-sidebar"
 import NavSideBar from "./nav-sidebar"
 import NavTopBar from "./nav-topbar"
@@ -10,6 +10,7 @@ export class LayoutCtx implements ILayoutPros {
     menus: IMenuItemModal[]
     routeTree: IRouteModal[]
     routes: IRouteModal[]
+    pathToMarkdowns: _.Dictionary<TMarkdownMetaInfo>
     dispatcher: React.Dispatch<Partial<LayoutCtx>> = null
     constructor(menus: IMenuItemModal[] = []) {
         this.menus = menus

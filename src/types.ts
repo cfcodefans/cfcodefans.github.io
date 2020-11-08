@@ -1,3 +1,5 @@
+import { Dictionary } from "lodash"
+
 export type TNode = {
     children: TNode[]
 }
@@ -39,10 +41,9 @@ export type TMarkdownMetaInfo = {
 export interface IRouteModal extends ITNode, IComparable {
     path: string
     _path: string
-    template: string
     children: IRouteModal[]
-    data?: TMarkdownMetaInfo[]
-    // getData: () => any
+    // data?: TMarkdownMetaInfo[]
+    offsprings?: string[]
     childrenCount: number
     sharedData?: any
 }
@@ -52,4 +53,12 @@ export interface ILayoutPros {
     menus: IMenuItemModal[]
     routeTree: IRouteModal[]
     routes: IRouteModal[]
+    pathToMarkdowns: Dictionary<TMarkdownMetaInfo>
+}
+
+export interface IPathInfo extends ITNode {
+    isFile: boolean
+    path: string
+    children: IPathInfo[]
+    leaves: IPathInfo[]
 }

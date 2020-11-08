@@ -1,8 +1,16 @@
 import Head from "next/head"
 import Link from "next/link"
 import React from "react"
+import { compare, jsf } from "../lib/commons"
 import { TMarkdownMetaInfo } from "../types"
 
+export function BlogList({ mds }: { mds: TMarkdownMetaInfo[] }): JSX.Element {
+    return <div className="w-100 d-flex flex-column">
+        {mds.sort((md1, md2) => compare(md1.modifiedAt, md2.modifiedAt))
+            .map((mt, i) => <BlogItem key={i} {...mt}></BlogItem>)}
+        {/* <BlogItem key={i} {...mt}></BlogItem>) */}
+    </div>
+}
 
 export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
     let excerpt: string = props.excerpt
