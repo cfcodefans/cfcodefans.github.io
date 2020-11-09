@@ -6,7 +6,9 @@ import * as unified from "unified"
 import { Node, Parent } from "unist"
 import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, ITNode, TMarkdownMetaInfo } from "../types"
 import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a, jsf } from "./commons"
-import { mdxStrToHtmlStr } from "./mdx-fn"
+import { mdxStrToHtml, mdxStrToHtmlStr } from "./mdx-fn"
+
+import matter from "gray-matter"
 
 const _mdx = require("@mdx-js/mdx")
 
@@ -19,32 +21,6 @@ const DEFAULT_OPTIONS = {
 const compiler: unified.Processor = _mdx.createMdxAstCompiler(DEFAULT_OPTIONS)
 
 const BLOGS_DIR: string = path.join(process.cwd(), "blogs")
-
-
-// export type TNode = {
-//     children: TNode[]
-// }
-
-// export type TTraverser = (node: TNode) => TNode[]
-
-// export interface IComparable {
-//     comparedTo?(another: IComparable): number
-// }
-
-// export interface ITNode extends IComparable, TNode {
-//     children: ITNode[]
-// }
-
-// export interface IMenuItemModal extends ITNode {
-//     label: string
-//     link: string
-//     children: IMenuItemModal[]
-//     icon: string
-//     layer: number
-//     leaveCount: number
-//     comparedTo?: any
-// }
-
 
 function makePathInfo(path: string, d: Dirent): IPathInfo {
     let pi: IPathInfo = {
@@ -88,7 +64,7 @@ export async function LOAD_PATHS(_path: string): Promise<IPathInfo[]> {
     return await searchBlogs(rootPaths)
 }
 
-function loadMeta(mdxNode: Node): any {
+function loadMeta(mdxNode: Node): any & { start: number, end: number } {
     let children: Node[] = mdxNode["children"] as Node[]
     if (_.isEmpty(children))
         return {}
@@ -103,7 +79,10 @@ function loadMeta(mdxNode: Node): any {
     }
     let matches = exportStr.match(/\{.*\}/)
     let content: string = _.isEmpty(matches) ? "{}" : matches[0]
-    return JSON.parse(content)
+    let meta = JSON.parse(content)
+    meta["start"] = exportNode.position.start
+    meta["end"] = exportNode.position.end
+    return meta
 }
 
 const rExcerpt: RegExp = /<!--+\s*more\s*--+>/i
@@ -115,20 +94,19 @@ async function loadExcerpt(root: Parent, mdxStr: string): Promise<string> {
 
     const excerptStr: string = mdxStr.substring(0, excerptTag.position.start.offset)
     const x = mdxStrToHtmlStr(excerptStr)
-    i("blog.ts", "mdx", typeof x, x)
+    // i("blog.ts", "mdx", typeof x, x)
 
     return x
 }
 
 async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMetaInfo> {
-    // const fileStats: Stats = await fsp.lstat(filePath)
-    // const mdxStr: string = await fsp.readFile(filePath, "utf-8")
-
     const [fileStats, mdxStr] = await Promise.all([fsp.lstat(filePath), fsp.readFile(filePath, "utf-8")])
-
     const mdxContent: Node = compiler.parse(mdxStr)
+
+    const _matter: matter.GrayMatterFile<string> = matter(mdxStr) // loadMeta(mdxContent)
+    i("blogs.ts", "_matter", jsf(_matter.data))
     return {
-        meta: loadMeta(mdxContent),
+        meta: _matter.data,
         excerpt: await loadExcerpt(mdxContent as Parent, mdxStr),
         path,
         createdAt: format(fileStats.birthtime, "yyyy-MM-dd"),
@@ -136,17 +114,10 @@ async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMeta
     }
 }
 
-
-
 export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise<IRouteModal> {
     let _path: string = _p.relative(basePath, pi.path).replace(/\\/g, "/")
     let path: string = `/${_p.basename(_path)}`
     let children: IRouteModal[] = pi.isFile ? null : []
-
-    // if (pi.isFile && /.mdx?$/.test(_p.extname(pi.path))) {
-    //     console.info(`loading markdown meta for ${pi.path}`)
-    //     data = await getMDXMeta(_path, pi.path)
-    // }
 
     function getData() {
         return _.flattenDeep(this.data)
@@ -155,17 +126,12 @@ export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise
     let route: IRouteModal = {
         path,
         _path,
-        // template,
         children,
         offsprings: isMDX(pi) ? [_path] : [],
-        // data,
-        // getData: null,
         childrenCount: 0,
         comparedTo: null
     }
 
-    // route.getData = getData.bind(route)
-    // route.comparedTo = ((r1: IRouteModal) => compare(this._path, r1._path)).bind(route)
     return route
 }
 
@@ -202,9 +168,6 @@ export function pathToMenu(pi: IPathInfo, basePath: string): IMenuItemModal {
         layer: _path.split("/").indexOf(baseName.replace("/", "")),
         comparedTo: null
     }
-
-    // menuItem.comparedTo = ((another: IMenuItemModal) => compare(this.link, another.link)).bind(menuItem)
-
     return menuItem
 }
 
@@ -234,9 +197,9 @@ const MENUS: IMenuItemModal[] = []
 const ROUTES: IRouteModal[] = []
 
 export async function bootstrap(): Promise<ILayoutPros> {
-
     i("blogs.ts", "pid", process.pid)
-    const CWD = process.cwd()
+    const CWD: string = process.cwd()
+
     const CACHE_PATH = _p.resolve(`${CWD}/cache.json`)
     if (await existsSync(CACHE_PATH)) {
         let cachedContent = (await fsp.readFile(CACHE_PATH)).toString()
@@ -257,29 +220,37 @@ export async function bootstrap(): Promise<ILayoutPros> {
 
     const paths: IPathInfo[] = deepTraverse(pathTree)
 
-    const LAYOUT_PROS: ILayoutPros = { menus: MENUS, routeTree: ROUTES, pathToMarkdowns: {}, routes: [] }
+    const layoutPros: ILayoutPros = { menus: MENUS, routeTree: ROUTES, pathToMarkdowns: {}, routes: [] }
     try {
         const routeTree: IRouteModal[] = await pathTreeToRouteTree(pathTree, basePath)
         i("blogs.bootstrap", "routes", routeTree.length)
-        LAYOUT_PROS.routeTree = routeTree
+        layoutPros.routeTree = routeTree
 
         const routes: IRouteModal[] = deepTraverse(routeTree)
         i("blogs.bootstrap", "routes", routes.map(p => p._path))
-        LAYOUT_PROS.routes = routes
+        layoutPros.routes = routes
 
         const mdMetas: TMarkdownMetaInfo[] = await Promise.all(
             paths.filter(p => isMDX(p))
                 .map(p => getMDXMeta(_p.relative(basePath, p.path).replace(/\\/g, "/"), p.path)))
-        LAYOUT_PROS.pathToMarkdowns = mdMetas.reduce((dict, md) => (dict[md.path] = md, dict), {})
+        layoutPros.pathToMarkdowns = mdMetas.reduce((dict, md) => (dict[md.path] = md, dict), {})
 
         const menus: IMenuItemModal[] = pathTreeToMenuTree(pathTree, basePath)
         i("blogs.bootstrap", "menus", menus.length)
-        LAYOUT_PROS.menus = menus
+        layoutPros.menus = menus
 
-        await fsp.writeFile(CACHE_PATH, jsf(LAYOUT_PROS))
+        await fsp.writeFile(CACHE_PATH, jsf(layoutPros))
     } catch (e) {
         i("blogs.bootstrap", "e", e)
     }
-    return LAYOUT_PROS
+    return layoutPros
+}
+
+export async function loadBlog(webPath: string): Promise<string> {
+    const CWD: string = process.cwd()
+    const ROOT_PATH = _p.resolve(`${CWD}/blogs/`)
+    const _path: string = _p.resolve(ROOT_PATH, webPath)
+    const mdxContent: string = await fsp.readFile(_path, "utf-8")
+    return mdxContent
 }
 

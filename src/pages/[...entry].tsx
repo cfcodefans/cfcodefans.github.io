@@ -1,19 +1,17 @@
+import _ from "lodash"
 import { GetStaticPathsContext, GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult } from "next"
 import { NextRouter, useRouter } from "next/dist/client/router"
 import React from "react"
 import Layout from "../components/layout"
-import { BlogItem, BlogList } from "../components/mdx-ui"
-import { bootstrap } from "../lib/blogs"
-import { i } from "../lib/commons"
+import { BlogItem, BlogList, MDX_COMPONENTS } from "../components/mdx-ui"
+import { bootstrap, loadBlog } from "../lib/blogs"
+import { i, jsf } from "../lib/commons"
+import { mdxStrToHtml } from "../lib/mdx-fn"
 import { ILayoutPros } from "../types"
 
 import hydrate from "next-mdx-remote/hydrate"
-import renderToString from "next-mdx-remote/render-to-string"
-import dynamic from "next/dynamic"
-import Head from "next/head"
 
-
-export default function BlogsPage({ layoutProps }: { layoutProps: ILayoutPros }): JSX.Element {
+export default function BlogsPage({ layoutProps, content }: { layoutProps: ILayoutPros, content: string }): JSX.Element {
     const router: NextRouter = useRouter()
     i("[category]/index.tsx", "pageProps", typeof (layoutProps))
 
@@ -21,8 +19,10 @@ export default function BlogsPage({ layoutProps }: { layoutProps: ILayoutPros })
     const currentRoute = routes.find(r => ("/" + r._path) == router.asPath)
 
     if (router.asPath.endsWith(".mdx")) {
+        const display = hydrate(content, MDX_COMPONENTS)
         return <Layout home layoutProps={layoutProps}>
             <article>
+                {display}
             </article>
         </Layout>
     }
@@ -33,10 +33,17 @@ export default function BlogsPage({ layoutProps }: { layoutProps: ILayoutPros })
 }
 
 export async function getStaticProps(context: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
-    i("category.index.tsx", "context", context)
+    const { params } = context
+    const { entry } = params
+    const _path: string = [... (_.isArray(entry) ? entry as string[] : [entry])].join("/")
+    i("category.index.tsx", "context", jsf(context), "_path", _path)
+
     const layoutProps: ILayoutPros = await bootstrap()
-    i("category.index.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.routeTree.length])
-    return { props: { layoutProps } }
+    let content = null
+    if (_path.endsWith(".mdx")) content = await mdxStrToHtml(await loadBlog(_path))
+    // i("category.index.tsx", "mdx", content)
+
+    return { props: { layoutProps, content } }
 }
 
 export async function getStaticPaths(context: GetStaticPathsContext): Promise<GetStaticPathsResult<any>> {
@@ -45,7 +52,9 @@ export async function getStaticPaths(context: GetStaticPathsContext): Promise<Ge
     i("category.index.tsx", "layoutProps", layoutProps.routes.map(r => "/" + r._path), "mds", layoutProps.pathToMarkdowns)
 
     return {
-        paths: layoutProps.routes.filter(r => !r.path.endsWith(".mdx")).map(r => "/" + r._path),
+        paths: layoutProps.routes
+            // .filter(r => !r.path.endsWith(".mdx"))
+            .map(r => "/" + r._path),
         fallback: false
     }
 }

@@ -20,9 +20,9 @@ export default function _App({ Component, pageProps }: AppProps): JSX.Element {
             <meta name="format-detection" content="telephone=no" />
             <meta name="X-FRAME-OPTIONS" content="deny" />
         </Head>
-        <MDXProvider components={{ wrapper: MDX_Frame }}>
-            <Component {...pageProps} />
-        </MDXProvider>
+        {/* <MDXProvider components={{ wrapper: MDX_Frame }}> */}
+        <Component {...pageProps} />
+        {/* </MDXProvider> */}
     </>)
 }
 
