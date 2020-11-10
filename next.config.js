@@ -23,7 +23,7 @@ const externals = {
     "react": "React"
 }
 
-module.exports = withMDX(withLess((phase, { defaultConfig }) => {
+cfgs = withMDX(withLess((phase, { defaultConfig }) => {
     return {
         /* config options here */
         pageExtensions: ["md", "mdx", "jsx", "js", "ts", "tsx"],
@@ -58,3 +58,7 @@ module.exports = withMDX(withLess((phase, { defaultConfig }) => {
         },
     }
 }))
+
+cfgs["outDir"] = "docs"
+
+module.exports = cfgs
