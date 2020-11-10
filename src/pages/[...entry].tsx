@@ -5,7 +5,7 @@ import React from "react"
 import Layout from "../components/layout"
 import { BlogItem, BlogList, MDX_COMPONENTS } from "../components/mdx-ui"
 import { bootstrap, loadBlog } from "../lib/blogs"
-import { i, jsf } from "../lib/commons"
+import { getNameAndExt, i, jsf, prependIfMissing } from "../lib/commons"
 import { mdxStrToHtml } from "../lib/mdx-fn"
 import { ILayoutPros } from "../types"
 
@@ -13,22 +13,26 @@ import hydrate from "next-mdx-remote/hydrate"
 
 export default function BlogsPage({ layoutProps, content }: { layoutProps: ILayoutPros, content: string }): JSX.Element {
     const router: NextRouter = useRouter()
-    i("[category]/index.tsx", "pageProps", typeof (layoutProps))
 
     const { routes, pathToMarkdowns } = layoutProps
-    const currentRoute = routes.find(r => ("/" + r._path) == router.asPath)
 
-    if (router.asPath.endsWith(".mdx")) {
+    const _path: string = router.asPath
+    const currentRoute = routes.find(r => r._path == _path)
+    let pageContent = null
+    i("[...entry].tsx", "_path", _path)
+
+    if (pathToMarkdowns[_path + ".mdx"]) {
+        if (_.isNull(content)) {
+            pageContent = <h1>{_path + ".mdx"} has no content!!!</h1>
+        }
         const display = hydrate(content, MDX_COMPONENTS)
-        return <Layout home layoutProps={layoutProps}>
-            <article>
-                {display}
-            </article>
-        </Layout>
+        pageContent = <article>{display}</article>
+    } else {
+        pageContent = <BlogList mds={currentRoute.offsprings?.map(mdPath => pathToMarkdowns[mdPath])} />
     }
 
     return (<Layout home layoutProps={layoutProps}>
-        <BlogList mds={currentRoute.offsprings?.map(mdPath => pathToMarkdowns[mdPath])} />
+        {pageContent}
     </Layout>)
 }
 
@@ -40,8 +44,8 @@ export async function getStaticProps(context: GetStaticPropsContext): Promise<Ge
 
     const layoutProps: ILayoutPros = await bootstrap()
     let content = null
-    if (_path.endsWith(".mdx")) content = await mdxStrToHtml(await loadBlog(_path))
-    // i("category.index.tsx", "mdx", content)
+    if (layoutProps.pathToMarkdowns[prependIfMissing(_path + ".mdx", "/")]) content = await mdxStrToHtml(await loadBlog(_path + ".mdx"))
+    i("category.index.tsx", "Object.keys(pathToMarkdowns)", Object.keys(layoutProps.pathToMarkdowns), "_path", _path + ".mdx", "mdx", content)
 
     return { props: { layoutProps, content } }
 }
@@ -54,7 +58,14 @@ export async function getStaticPaths(context: GetStaticPathsContext): Promise<Ge
     return {
         paths: layoutProps.routes
             // .filter(r => !r.path.endsWith(".mdx"))
-            .map(r => "/" + r._path),
+            .map(r => r._path)
+            .map(p => {
+                const [basePath, ext] = getNameAndExt(p)
+                // if (ext == "mdx") {
+                //     return p + ".html"
+                // }
+                return basePath
+            }),
         fallback: false
     }
 }

@@ -103,3 +103,25 @@ export function i(filename: string, ...rest: any[]) {
 export function jsf(v: any, indent: string = "  "): string {
     return v instanceof Object ? JSON.stringify(v, null, indent) : v
 }
+
+//org.apache.commons.io.FilenameUtils#getExtension
+export function getNameAndExt(pathStr: string): [string, string] {
+    if (_.isEmpty(pathStr)) return [pathStr, ""]
+    const extPos: number = _.lastIndexOf(pathStr, ".")
+    const lastSep: number = Math.max(_.lastIndexOf(pathStr, WINDOWS_SEPARATOR), _.lastIndexOf(pathStr, UNIX_SEPARATOR))
+    if (lastSep > extPos) return [pathStr, ""]
+    return [pathStr.substring(0, extPos), pathStr.substring(extPos + 1)]
+}
+
+const WINDOWS_SEPARATOR = "\\"
+const UNIX_SEPARATOR = "/"
+
+export function prependIfMissing(str: string, prefix: string, ...prefixes: string[]): string {
+    if (_.isEmpty(str) || _.isEmpty(prefix) || str.startsWith(prefix)) return str
+    if (!_.isEmpty(prefixes)) {
+        for (let p of prefix) {
+            if (str.startsWith(p)) return str
+        }
+    }
+    return prefix + str
+}

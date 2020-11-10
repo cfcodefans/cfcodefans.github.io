@@ -1,7 +1,7 @@
 import Head from "next/head"
 import Link from "next/link"
 import React, { ReactNode } from "react"
-import { compare } from "../lib/commons"
+import { compare, jsf } from "../lib/commons"
 import { TMarkdownMetaInfo } from "../types"
 
 export function BlogList({ mds }: { mds: TMarkdownMetaInfo[] }): JSX.Element {
@@ -16,10 +16,13 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
     let meta: any = props.meta
     let _link: string = props.path
     _link = _link.substring(0, _link.lastIndexOf(".mdx"))
+    // return <pre>
+    //     {jsf(props)}
+    // </pre>
 
     return (<section className="d-flex flex-column align-items-center rounded-1 shadow container pt-3 mt-3 mb-3">
         <h1>{meta["title"]}</h1>
-        <div>Created at: {props.createdAt} | By: {meta["authors"]}</div>
+        <div>Created at: {props.createdAt} | By: {meta && meta["authors"]}</div>
         <div dangerouslySetInnerHTML={{ __html: excerpt }}></div>
         <Link href={`/${_link}`}>
             <a><h3>read more »</h3></a>

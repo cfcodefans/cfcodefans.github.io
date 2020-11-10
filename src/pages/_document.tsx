@@ -28,7 +28,7 @@ class TemplateDoc extends Document {
             <Head>
                 <meta charSet="UTF-8" />
                 <link href="/css/mainframe-protrait.css" rel="stylesheet" media="(orientation: portrait)" />
-                <link href="/css/mainframe-landscape.css" rel="stylesheet" media="(orientation:landscape)" />
+                <link href="/css/mainframe-landscape.css" rel="stylesheet" media="(orientation: landscape)" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.css" rel="stylesheet" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/css/mdb.css" rel="stylesheet"></link>
                 <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" rel="stylesheet" />
@@ -40,8 +40,8 @@ class TemplateDoc extends Document {
                 {/* <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/2.5.3/cjs/popper.js"></script> */}
                 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/react/16.14.0/umd/react.development.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.14.0/umd/react-dom.development.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.1/umd/react.development.min.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.1/umd/react-dom.development.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.js"></script>
                 <NextScript />
             </body>
