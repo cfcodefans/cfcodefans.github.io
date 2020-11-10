@@ -1,14 +1,13 @@
 import { format } from "date-fns"
 import { Dirent, existsSync, promises as fsp } from "fs"
+import matter from "gray-matter"
 import _ from "lodash"
 import path, * as _p from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
-import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, ITNode, TMarkdownMetaInfo } from "../types"
+import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "../types"
 import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a, jsf } from "./commons"
-import { mdxStrToHtml, mdxStrToHtmlStr } from "./mdx-fn"
-
-import matter from "gray-matter"
+import { mdxStrToHtmlStr } from "./mdx-fn"
 
 const _mdx = require("@mdx-js/mdx")
 
@@ -253,6 +252,6 @@ export async function loadBlog(webPath: string): Promise<string> {
     const _path: string = _p.resolve(ROOT_PATH, webPath)
 
     const mdxContent: string = await fsp.readFile(_path, "utf-8")
-    i("blog.ts", "_path", _path, mdxContent)
+    // i("blog.ts", "_path", _path, mdxContent)
     return mdxContent
 }

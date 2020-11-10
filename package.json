@@ -7,7 +7,9 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "export": "next build & next export"
+        "opb": "node --v8-pool-size=32 --max_old_space_size=512 ./node_modules/next/dist/bin/next build",
+        "ope": "node --v8-pool-size=32 --max_old_space_size=512 ./node_modules/next/dist/bin/next export",
+        "export": "next build & next  export"
     },
     "dependencies": {
         "@mdx-js/loader": "^1.6.19",
