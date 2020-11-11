@@ -55,3 +55,16 @@
     margin-left: var(--nav-sidebar-width);
     margin-right: var(--misc-sidebar-width);
 }
+
+.menu {
+    flex-direction: column;
+}
+
+.menu_header {
+    display:flex !important;
+}
+
+.menu-sidebar .logo {
+    height: 6rem;
+    width: 6rem;
+}
