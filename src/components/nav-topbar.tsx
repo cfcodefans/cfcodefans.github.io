@@ -17,10 +17,10 @@ export default function NavTopBar(): JSX.Element {
                     <i className="fas fa-search" aria-hidden="true"></i>
                 </button>
             </form>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav_items"
+            {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav_items"
                 aria-controls="nav_items" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="dark-blue-text"><i className="fas fa-bars fa-1x"></i></span>
-            </button>
+            </button> */}
         </nav>
     </div>
 }

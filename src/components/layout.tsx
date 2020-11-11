@@ -40,7 +40,7 @@ export default function Layout({ children, home, layoutProps }: { children: Reac
     return (<div style={{ "maxWidth": "1920px", "position": "relative" }} >
         <CtxProvider>
             <NavSideBar menus={menus} />
-            <NavTopBar />
+            {/* <NavTopBar /> */}
             <MiscSideBar />
             <main className="main-pane p-3">
                 <div className="w-100">

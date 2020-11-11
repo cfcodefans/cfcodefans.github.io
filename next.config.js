@@ -59,6 +59,4 @@ cfgs = withMDX(withLess((phase, { defaultConfig }) => {
     }
 }))
 
-cfgs["outDir"] = "docs"
-
 module.exports = cfgs

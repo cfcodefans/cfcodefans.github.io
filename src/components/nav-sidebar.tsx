@@ -4,7 +4,7 @@ import { deepTraverse, i } from "../lib/commons"
 import { IMenuItemModal } from "../types"
 import BreadCrumb from "./breadcrumb"
 import _ from "lodash"
-import "./nav-sidebar.less"
+// import "./nav-sidebar.less"
 import { NextRouter, useRouter } from "next/dist/client/router"
 
 type TMenuItemProps = { children: ReactNodeArray, modal: IMenuItemModal }
@@ -61,8 +61,8 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
 
-    return (<nav className="nav-sidebar menu-sidebar d-flex flex-column mr-lg-1 rounded-1 shadow">
-        <div className="menu_header d-flex flex-lg-column align-items-center">
+    return (<nav className="nav-sidebar menu-sidebar d-flex flex-column mr-lg-1 shadow">
+        <div className="menu_header flex-lg-column align-items-center">
             <div className="logo text-center d-flex align-items-center m-lg-4">
                 <a href="/">
                     <img className="rounded-circle w-100 h-100 hoverable" src="/images/cfcodefans.jpg" />
@@ -90,7 +90,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
                 </button>
             </nav>
 
-            <div className="navbar-collapse border border-0 z-depth-0 d-lg-block collapse" id="menu_box">
+            <div className="navbar-collapse border border-0 z-depth-0 d-lg-block" id="menu_box">
                 <nav className={`menu ${UL_STYLE} smooth-scroll w-100 `}>
                     {menus.map(m => linkAndElements.get(m.link))}
                 </nav>

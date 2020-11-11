@@ -16,18 +16,39 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
     let meta: any = props.meta
     let _link: string = props.path
     _link = _link.substring(0, _link.lastIndexOf(".mdx"))
-    // return <pre>
-    //     {jsf(props)}
-    // </pre>
 
-    return (<section className="d-flex flex-column align-items-center rounded-1 shadow container pt-3 mt-3 mb-3">
-        <h1>{meta["title"]}</h1>
-        <div>Created at: {props.createdAt} | By: {meta && meta["authors"]}</div>
+    return (<article className="d-flex flex-column align-items-center rounded-1 shadow container pt-3 mt-3 mb-3">
+        <header className="text-center">
+            <h1>{meta["title"]}</h1>
+            <div>Created at: <time dateTime={props.createdAt}>{props.createdAt}</time> | By: {meta && meta["authors"]}</div>
+        </header>
+        <hr />
         <div dangerouslySetInnerHTML={{ __html: excerpt }}></div>
         <Link href={`/${_link}`}>
             <a><h3>read more »</h3></a>
         </Link>
-    </section>)
+    </article>)
+}
+
+export function BlogHeader(props: TMarkdownMetaInfo): JSX.Element {
+    const { meta } = props
+    return <header className="text-center">
+        <Head>
+            {meta["desc"] && <meta name="description" content={meta["desc"]} />}
+            <meta name="keywords" content={meta["tags"]} />
+        </Head>
+        <h3>{meta["title"]}</h3>
+        <div>Created at: <time dateTime={props.createdAt}>{props.createdAt}</time> | By: {meta && meta["authors"]}</div>
+    </header>
+}
+
+export function BlogArticle({ content, metaInfo }: { content: ReactNode, metaInfo: TMarkdownMetaInfo }): JSX.Element {
+    return <article className="d-flex flex-column align-items-center container pt-3 mt-3 mb-3">
+        <BlogHeader {...metaInfo} />
+        <main className="text-wrap text-break w-100">
+            {content}
+        </main>
+    </article>
 }
 
 

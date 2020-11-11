@@ -27,6 +27,7 @@ class TemplateDoc extends Document {
         return <Html>
             <Head>
                 <meta charSet="UTF-8" />
+                <link href="/css/common.css" rel="stylesheet" />
                 <link href="/css/mainframe-protrait.css" rel="stylesheet" media="(orientation: portrait)" />
                 <link href="/css/mainframe-landscape.css" rel="stylesheet" media="(orientation: landscape)" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.css" rel="stylesheet" />

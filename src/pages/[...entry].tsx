@@ -4,7 +4,7 @@ import hydrate from "next-mdx-remote/hydrate"
 import { NextRouter, useRouter } from "next/dist/client/router"
 import React from "react"
 import Layout from "../components/layout"
-import { BlogList, MDX_COMPONENTS } from "../components/mdx-ui"
+import { BlogArticle, BlogList, MDX_COMPONENTS } from "../components/mdx-ui"
 import { bootstrap, loadBlog } from "../lib/blogs"
 import { getNameAndExt, i, jsf, prependIfMissing } from "../lib/commons"
 import { mdxStrToHtml } from "../lib/mdx-fn"
@@ -26,7 +26,7 @@ export default function BlogsPage({ layoutProps, content }: { layoutProps: ILayo
             pageContent = <h1>{_path + ".mdx"} has no content!!!</h1>
         }
         const display = hydrate(content, MDX_COMPONENTS)
-        pageContent = <article>{display}</article>
+        pageContent = <BlogArticle content={display} metaInfo={pathToMarkdowns[_path + ".mdx"]} />
     } else {
         pageContent = <BlogList mds={currentRoute.offsprings?.map(mdPath => pathToMarkdowns[mdPath])} />
     }

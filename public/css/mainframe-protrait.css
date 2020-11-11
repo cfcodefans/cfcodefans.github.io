@@ -1,12 +1,13 @@
 :root {
     --nav-sidebar-height:3rem;
-    --nav-sidebar-width:3rem;
+    --nav-sidebar-width:100%;
     --misc-sidebar-height:3rem;
     --top-navbar-height:3rem;
+    --border-radius: 1rem !important;
 }
 
 .root {
-    background-color: lightskyblue;
+    /* background-color: lightskyblue; */
 }
 
 nav #nav_items {
@@ -47,4 +48,29 @@ nav #nav_items {
 .main-pane {
     margin-top: var(--nav-sidebar-height);
     margin-bottom: var(--misc-sidebar-height);
+}
+
+#menu_box {
+    width: 100%;
+}
+
+.menu {
+    flex-direction: row;
+    background-color: lightgrey;
+    padding: 1rem 0.5rem 1rem !important;
+    border-bottom-right-radius: var(--border-radius) !important;
+    border-bottom-left-radius: var(--border-radius) !important;
+}
+
+.menu_header {
+    display: none;
+}
+
+.nav-title {
+    display: none;
+}
+
+.menu-sidebar .logo {
+    height: 2rem;
+    width: 2rem;
 }
