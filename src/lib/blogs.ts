@@ -1,13 +1,14 @@
 import { format } from "date-fns"
-import { Dirent, existsSync, promises as fsp } from "fs"
+import { Dirent, promises as fsp } from "fs"
 import matter from "gray-matter"
 import _ from "lodash"
-import path, * as _p from "path"
+import * as _p from "path"
+import path, { extname } from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
 import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "../types"
 import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a, jsf } from "./commons"
-import { mdxStrToHtmlStr } from "./mdx-fn"
+import { mdxStrToHtml } from "./mdx-fn"
 
 const _mdx = require("@mdx-js/mdx")
 
@@ -55,7 +56,7 @@ export async function searchBlogs(roots: IPathInfo[]): Promise<IPathInfo[]> {
             return await ls(pi.path, (child) => (!child.isFile || isMDX(child)))
         }) as IPathInfo[]
 
-    return results
+    return results.filter(p => extname(p.path) == "" || isMDX(p))
 }
 
 export async function LOAD_PATHS(_path: string): Promise<IPathInfo[]> {
@@ -93,7 +94,7 @@ async function loadExcerpt(root: Parent, mdxStr: string): Promise<string> {
 
     const excerptStr: string = mdxStr.substring(0, excerptTag.position.start.offset)
     const _matter: matter.GrayMatterFile<string> = matter(excerptStr)
-    const x = mdxStrToHtmlStr(_matter.content)
+    const x = mdxStrToHtml(_matter.content)
     // i("blog.ts", "mdx", typeof x, x)
 
     return x
@@ -201,13 +202,13 @@ export async function bootstrap(): Promise<ILayoutPros> {
     const CWD: string = process.cwd()
 
     const CACHE_PATH = _p.resolve(`${CWD}/cache.json`)
-    if (await existsSync(CACHE_PATH)) {
-        let cachedContent = (await fsp.readFile(CACHE_PATH)).toString()
-        if (cachedContent.length > 0) {
-            i("blogs.bootstrap", "cached!")
-            return JSON.parse(cachedContent) as ILayoutPros
-        }
-    }
+    // if (await existsSync(CACHE_PATH)) {
+    //     let cachedContent = (await fsp.readFile(CACHE_PATH)).toString()
+    //     if (cachedContent.length > 0) {
+    //         i("blogs.bootstrap", "cached!")
+    //         return JSON.parse(cachedContent) as ILayoutPros
+    //     }
+    // }
 
     const ROOT_PATH = _p.resolve(`${CWD}/blogs/`)
     const BASE_PATH = _p.resolve(`${CWD}/src/pages/`)

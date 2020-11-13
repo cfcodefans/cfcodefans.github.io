@@ -8,10 +8,14 @@ const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_EXPORT } = requi
 
 const withLess = require("@zeit/next-less")
 const _attr = require("remark-attr")
+const remarkMath = require("remark-math")
+const rehypeKatex = require("rehype-katex")
+
 const withMDX = require("@next/mdx")({
     extension: /\.mdx?$/,
     options: {
-        remarkPlugins: [_attr]
+        remarkPlugins: [_attr, remarkMath],
+        rehypePlugins: [rehypeKatex],
     }
 })
 
@@ -48,10 +52,7 @@ cfgs = withMDX(withLess((phase, { defaultConfig }) => {
             config["externals"] = [...config["externals"], externals]
 
             if (!isServer) {
-                config["node"] = {
-                    global: true,
-                    fs: "empty"
-                }
+                config["node"] = { global: true, fs: "empty" }
             }
 
             return config

@@ -45,8 +45,10 @@ export async function getStaticProps(context: GetStaticPropsContext): Promise<Ge
     const layoutProps: ILayoutPros = await bootstrap()
     let mdxPath = _path + ".mdx"
     let content = null
-    if (layoutProps.pathToMarkdowns[prependIfMissing(mdxPath, "/")]) content = await mdxStrToHtml(await loadBlog(mdxPath))
-    i("[...entry].tsx", "Object.keys(pathToMarkdowns)", Object.keys(layoutProps.pathToMarkdowns), "_path", mdxPath)//, "mdx", content)
+    if (layoutProps.pathToMarkdowns[prependIfMissing(mdxPath, "/")]) {
+        content = await mdxStrToHtml(await loadBlog(mdxPath))
+    }
+    i("[...entry].tsx", "Object.keys(pathToMarkdowns)", Object.keys(layoutProps.pathToMarkdowns), "_path", mdxPath, "content", typeof content)//, "mdx", content)
 
     return { props: { layoutProps, content } }
 }

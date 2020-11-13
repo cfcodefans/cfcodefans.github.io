@@ -3,6 +3,7 @@ import Link from "next/link"
 import React, { ReactNode } from "react"
 import { compare, jsf } from "../lib/commons"
 import { TMarkdownMetaInfo } from "../types"
+import hydrate from "next-mdx-remote/hydrate"
 
 export function BlogList({ mds }: { mds: TMarkdownMetaInfo[] }): JSX.Element {
     return <div className="w-100 d-flex flex-column">
@@ -17,13 +18,15 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
     let _link: string = props.path
     _link = _link.substring(0, _link.lastIndexOf(".mdx"))
 
+    const display = hydrate(excerpt, MDX_COMPONENTS)
+
     return (<article className="d-flex flex-column align-items-center rounded-1 shadow container pt-3 mt-3 mb-3">
         <header className="text-center">
             <h1>{meta["title"]}</h1>
             <div>Created at: <time dateTime={props.createdAt}>{props.createdAt}</time> | By: {meta && meta["authors"]}</div>
         </header>
         <hr />
-        <div dangerouslySetInnerHTML={{ __html: excerpt }}></div>
+        <div>{display}</div>
         <Link href={`/${_link}`}>
             <a><h3>read more »</h3></a>
         </Link>

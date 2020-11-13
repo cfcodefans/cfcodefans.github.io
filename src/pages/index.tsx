@@ -14,8 +14,8 @@ export default function IndexPage({ layoutProps }: { layoutProps: ILayoutPros })
 }
 
 export async function getStaticProps(context: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
-    i("category.index.tsx", "context", context)
+    i("index.tsx", "context", context)
     const layoutProps: ILayoutPros = await bootstrap()
-    i("category.index.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.routeTree.length])
+    i("index.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.routeTree.length])
     return { props: { layoutProps } }
 }
