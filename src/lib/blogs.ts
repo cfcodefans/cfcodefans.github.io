@@ -2,12 +2,13 @@ import { format } from "date-fns"
 import { Dirent, promises as fsp } from "fs"
 import matter from "gray-matter"
 import _ from "lodash"
+import { GetStaticPathsContext, GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult } from "next"
 import * as _p from "path"
 import path, { extname } from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
 import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "../types"
-import { compare, deepTraverse, deepTraverse_a, i, iterateTree_a, jsf } from "./commons"
+import { compare, deepTraverse, deepTraverse_a, getNameAndExt, i, iterateTree_a, jsf } from "./commons"
 import { mdxStrToHtml } from "./mdx-fn"
 
 const _mdx = require("@mdx-js/mdx")
@@ -115,14 +116,14 @@ async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMeta
     }
 }
 
-export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise<IRouteModal> {
+export function pathToRouteModal(pi: IPathInfo, basePath: string): IRouteModal {
     let _path: string = "/" + _p.relative(basePath, pi.path).replace(/\\/g, "/")
     let path: string = `/${_p.basename(_path)}`
     let children: IRouteModal[] = pi.isFile ? null : []
 
-    function getData() {
-        return _.flattenDeep(this.data)
-    }
+    // function getData() {
+    //     return _.flattenDeep(this.data)
+    // }
 
     let route: IRouteModal = {
         path,
@@ -136,17 +137,17 @@ export async function pathToRouteModal(pi: IPathInfo, basePath: string): Promise
     return route
 }
 
-export async function pathTreeToRouteTree(rootPaths: IPathInfo[], basePath: string): Promise<IRouteModal[]> {
+export function pathTreeToRouteTree(rootPaths: IPathInfo[], basePath: string): IRouteModal[] {
     if (_.isEmpty(rootPaths)) return []
 
     let pathAndRouteModals: Map<string, IRouteModal> = new Map
-    await deepTraverse_a(rootPaths, async (pi: IPathInfo) => {
-        let route: IRouteModal = await pathToRouteModal(pi, basePath)
+    deepTraverse(rootPaths, (pi: IPathInfo) => {
+        let route: IRouteModal = pathToRouteModal(pi, basePath)
         pathAndRouteModals.set(pi.path, route)
         return pi.children
     })
 
-    await deepTraverse_a(rootPaths, async (pi: IPathInfo) => {
+    deepTraverse(rootPaths, (pi: IPathInfo) => {
         let route: IRouteModal = pathAndRouteModals.get(pi.path)
         route.children = pi.children.map(childPath => pathAndRouteModals.get(childPath.path))
         route.offsprings = _.flatten(pi.leaves.map(childPath => pathAndRouteModals.get(childPath.path).offsprings))
@@ -154,7 +155,7 @@ export async function pathTreeToRouteTree(rootPaths: IPathInfo[], basePath: stri
         return pi.children
     })
 
-    return Promise.resolve(rootPaths.map(rp => pathAndRouteModals.get(rp.path)))
+    return rootPaths.map(rp => pathAndRouteModals.get(rp.path))
 }
 
 export function pathToMenu(pi: IPathInfo, basePath: string): IMenuItemModal {
@@ -213,7 +214,7 @@ export async function bootstrap(): Promise<ILayoutPros> {
     const ROOT_PATH = _p.resolve(`${CWD}/blogs/`)
     const BASE_PATH = _p.resolve(`${CWD}/src/pages/`)
 
-    const basePath: string = ROOT_PATH
+    const basePath: string = BASE_PATH
     i("blogs.ts", "CWD", CWD, "basePath", basePath)
 
     const pathTree: IPathInfo[] = await LOAD_PATHS(basePath)
@@ -223,8 +224,8 @@ export async function bootstrap(): Promise<ILayoutPros> {
 
     const layoutPros: ILayoutPros = { menus: MENUS, routeTree: ROUTES, pathToMarkdowns: {}, routes: [] }
     try {
-        const routeTree: IRouteModal[] = await pathTreeToRouteTree(pathTree, basePath)
-        i("blogs.bootstrap", "routes", routeTree.length)
+        const routeTree: IRouteModal[] = pathTreeToRouteTree(pathTree, basePath)
+        i("blogs.bootstrap", "routeTree", routeTree.length)
         layoutPros.routeTree = routeTree
 
         const routes: IRouteModal[] = deepTraverse(routeTree)
@@ -241,7 +242,8 @@ export async function bootstrap(): Promise<ILayoutPros> {
         layoutPros.menus = menus
 
         await fsp.writeFile(CACHE_PATH, jsf(layoutPros))
-    } catch (e) {
+    } catch (e: any) {
+        throw e
         i("blogs.bootstrap", "e", e)
     }
     return layoutPros
@@ -255,4 +257,28 @@ export async function loadBlog(webPath: string): Promise<string> {
     const mdxContent: string = await fsp.readFile(_path, "utf-8")
     // i("blog.ts", "_path", _path, mdxContent)
     return mdxContent
+}
+
+export async function _getStaticPaths(context: GetStaticPathsContext): Promise<GetStaticPathsResult<any>> {
+    const layoutProps: ILayoutPros = await bootstrap()
+
+    const paths: string[] = layoutProps.routes
+        .map(r => r._path)
+        .filter(p => !p.endsWith(".mdx"))
+        .map(p => {
+            const [basePath, ext] = getNameAndExt(p)
+            return basePath
+        })
+    i("[...entry].tsx", "layoutProps", layoutProps.routes.map(r => "/" + r._path),
+        "mds", Object.keys(layoutProps.pathToMarkdowns),
+        "paths", paths)
+
+    return { paths, fallback: false }
+}
+
+export async function _getStaticProps(context: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
+    i("index.tsx", "context", context)
+    const layoutProps: ILayoutPros = await bootstrap()
+    i("index.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.routeTree.length])
+    return { props: { layoutProps } }
 }

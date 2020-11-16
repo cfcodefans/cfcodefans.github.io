@@ -1,15 +1,27 @@
 import { GetStaticPropsContext, GetStaticPropsResult } from "next"
+import { NextRouter, useRouter } from "next/dist/client/router"
 import React from "react"
 import Layout from "../components/layout"
-import { BlogItem, BlogList } from "../components/mdx-ui"
+import { BlogList } from "../components/mdx-ui"
 import { bootstrap } from "../lib/blogs"
-import { compare, i } from "../lib/commons"
+import { i } from "../lib/commons"
 import { ILayoutPros } from "../types"
 
 export default function IndexPage({ layoutProps }: { layoutProps: ILayoutPros }): JSX.Element {
-    const { pathToMarkdowns } = layoutProps
+    const router: NextRouter = useRouter()
+    const { routes, pathToMarkdowns } = layoutProps
+    const _path: string = router.asPath
+    const currentRoute = routes.find(r => r._path == _path)
+
+    let pageContent = null
+    if (currentRoute) {
+        pageContent = <BlogList mds={currentRoute.offsprings?.map(mdPath => pathToMarkdowns[mdPath])} />
+    } else {
+        pageContent = <BlogList mds={Object.values(pathToMarkdowns)} />
+    }
+
     return (<Layout home layoutProps={layoutProps}>
-        <BlogList mds={Object.values(pathToMarkdowns)} />
+        {pageContent}
     </Layout>)
 }
 

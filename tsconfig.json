@@ -22,9 +22,13 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/pages/[...entry].tsx_"  ],
+    "**/*.tsx",
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    ".next",
+    "out",
+    "next.config.js"
   ]
 }

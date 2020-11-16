@@ -1,8 +1,6 @@
-import MDX from "@mdx-js/runtime"
 import matter from "gray-matter"
 import _ from "lodash"
 import renderToString from "next-mdx-remote/render-to-string"
-import ReactDOMServer from "react-dom/server"
 import { MDX_COMPONENTS } from "../components/mdx-ui"
 const _attr = require("remark-attr")
 const remarkMath = require("remark-math")

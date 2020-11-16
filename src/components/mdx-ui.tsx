@@ -4,6 +4,7 @@ import React, { ReactNode } from "react"
 import { compare, jsf } from "../lib/commons"
 import { TMarkdownMetaInfo } from "../types"
 import hydrate from "next-mdx-remote/hydrate"
+import VisxTests_BarGraph from "./lab/visx-tests"
 
 export function BlogList({ mds }: { mds: TMarkdownMetaInfo[] }): JSX.Element {
     return <div className="w-100 d-flex flex-column">
@@ -70,7 +71,12 @@ export function MDX_Header(mdMate: TMarkdownMetaInfo): JSX.Element {
 }
 
 export default function CustomLink({ as, href, children, ...otherProps }: { children: ReactNode, as: string, href: string }): JSX.Element {
-    return <Link as={as} href={href}><a {...otherProps}>{children}</a></Link>
+    return <Link as={as} href={href}>
+        <span>
+            <a {...otherProps}>{children}</a>
+            <a {...otherProps} target="_blank">[+]</a>
+        </span>
+    </Link>
 }
 
 // Custom components/renderers to pass to MDX.
@@ -79,6 +85,7 @@ export default function CustomLink({ as, href, children, ...otherProps }: { chil
 // here.
 export const MDX_COMPONENTS = {
     a: CustomLink,
+    // VisxTests_BarGraph: () => import("./lab/visx-tests"),
     // It also works with dynamically-imported components, which is especially
     // useful for conditionally loading components for certain routes.
     // See the notes in README.md for more details.
