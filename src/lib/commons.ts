@@ -13,7 +13,7 @@ export function deepTraverse<N extends TNode = TNode>(nodes: N[], traverser?: TT
     while (nodeStack.length > 0) {
         let node: N = nodeStack.pop()
         result.push(node)
-        let subNodes: N[] = ((traverser ? traverser(node) : node.children) ?? node.children ?? []) as N[]
+        let subNodes: N[] = ((traverser ? traverser(node) : node.children) || node.children || []) as N[]
         nodeStack.push(...subNodes.reverse())
     }
 
@@ -97,7 +97,7 @@ export function i(filename: string, ...rest: any[]) {
     const stackTrace = (new Error()).stack
     const frames = stackTrace.match(/[^\r\n]+/g)
     const idx = frames.findIndex(frame => frame.includes("at i (")) + 1
-    console.info("\n", filename, frames[idx], "\n\t", ...rest?.map(obj => jsf(obj)), "\n")
+    console.info("\n", filename, frames[idx], "\n\t", ...(rest||[]).map(obj => jsf(obj)), "\n")
 }
 
 export function jsf(v: any, indent: string = "  "): string {

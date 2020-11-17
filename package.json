@@ -2,6 +2,7 @@
     "name": "learn-starter",
     "version": "0.1.0",
     "private": true,
+    "type": "module",
     "scripts": {
         "serve": "serve out -p 3000 -s",
         "dev:watch": "next-remote-watch ./blogs",
@@ -11,6 +12,7 @@
         "opd": "node --v8-pool-size=32 --max_old_space_size=512 ./node_modules/next/dist/bin/next dev",
         "opb": "node --v8-pool-size=32 --max_old_space_size=512 ./node_modules/next/dist/bin/next build",
         "ope": "node --v8-pool-size=32 --max_old_space_size=512 ./node_modules/next/dist/bin/next export",
+        "preload": "ts-node -P tsconfig.preload.json src/blog-loader.ts",
         "export": "next build & next export"
     },
     "dependencies": {
@@ -42,6 +44,8 @@
         "@types/node": "^14.14.2",
         "@types/react": "^16.9.55",
         "next-remote-watch": "^0.2.0",
+        "serve": "^11.3.2",
+        "ts-node": "^9.0.0",
         "typescript": "^4.0.3"
     }
 }

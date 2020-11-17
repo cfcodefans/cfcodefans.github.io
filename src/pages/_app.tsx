@@ -1,8 +1,14 @@
-import App, { AppContext, AppInitialProps, AppProps } from "next/app"
+import { AppContext, AppInitialProps, AppProps } from "next/app"
 import Head from "next/head"
 import React, { ReactNodeArray } from "react"
+import Layout from "../components/layout"
 import { i } from "../lib/commons"
-import { MDXProvider } from '@mdx-js/react'
+import { ILayoutPros } from "../types"
+
+import menus from "../cache/menus.json"
+import routeTree from "../cache/route-tree.json"
+import routes from "../cache/routes.json"
+import pathToMarkdowns from "../cache/mdMetas.json"
 
 const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
     return <div className="p-5">
@@ -11,8 +17,20 @@ const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
     </div>
 }
 
-export default function _App({ Component, pageProps }: AppProps): JSX.Element {
-    // i("_app.tsx", "pageProps", typeof pageProps)
+export default function _App({ Component, pageProps, router }: AppProps): JSX.Element {
+    i("_app.tsx", "router", router.asPath, "pageProps", Object.keys(pageProps))
+
+    const { layoutProps } = pageProps
+
+    let content: JSX.Element = null
+
+    if (router.asPath.includes("404")) {
+        content = <Component {...pageProps} />
+    } else {
+        content = <Layout home layoutProps={layoutProps}>
+            <Component {...pageProps} />
+        </Layout>
+    }
 
     return (<>
         <Head>
@@ -20,9 +38,9 @@ export default function _App({ Component, pageProps }: AppProps): JSX.Element {
             <meta name="format-detection" content="telephone=no" />
             <meta name="X-FRAME-OPTIONS" content="deny" />
         </Head>
-        {/* <MDXProvider components={{ wrapper: MDX_Frame }}> */}
-        <Component {...pageProps} />
-        {/* </MDXProvider> */}
+        {/* <MDXProvider components={{ wrapper: MDX_Frame }}>
+        </MDXProvider> */}
+        {content}
     </>)
 }
 
@@ -31,9 +49,10 @@ export async function getInitialProps(appContext: AppContext): Promise<AppInitia
     // const { bootstrap, } = await import("../lib/blogs")
 
     // const menus: IMenuItemModal[] = await LOAD_MENUS(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
-    const menus = await App.getInitialProps(appContext)
-    i("_app.tsx", "menus", menus)
-    return { pageProps: { menus } }
+    // const layoutProps: ILayoutPros = await bootstrap()
+    const layoutProps: ILayoutPros = { menus, routeTree, routes, pathToMarkdowns }
+    i("_app.tsx", "menus", layoutProps.menus.length)
+    return { pageProps: { layoutProps } }
 }
 
-// _App.getInitialProps = getInitialProps
+_App.getInitialProps = getInitialProps

@@ -1,0 +1,227 @@
+[
+  {
+    "label": "tech",
+    "link": "tech",
+    "children": [
+      {
+        "label": "data",
+        "link": "tech/data",
+        "children": [
+          {
+            "label": "h2db",
+            "link": "tech/data/h2db",
+            "children": [
+              {
+                "label": "h2db-source.mdx",
+                "link": "tech/data/h2db/h2db-source.mdx",
+                "children": [],
+                "icon": "h2db-source.mdx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              },
+              {
+                "label": "index.tsx",
+                "link": "tech/data/h2db/index.tsx",
+                "children": [],
+                "icon": "index.tsx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              }
+            ],
+            "icon": "h2db",
+            "leaveCount": 1,
+            "layer": 2,
+            "comparedTo": null
+          },
+          {
+            "label": "index.tsx",
+            "link": "tech/data/index.tsx",
+            "children": [],
+            "icon": "index.tsx",
+            "leaveCount": 0,
+            "layer": 2,
+            "comparedTo": null
+          }
+        ],
+        "icon": "data",
+        "leaveCount": 1,
+        "layer": 1,
+        "comparedTo": null
+      },
+      {
+        "label": "index.tsx",
+        "link": "tech/index.tsx",
+        "children": [],
+        "icon": "index.tsx",
+        "leaveCount": 0,
+        "layer": 1,
+        "comparedTo": null
+      },
+      {
+        "label": "web",
+        "link": "tech/web",
+        "children": [
+          {
+            "label": "index.tsx",
+            "link": "tech/web/index.tsx",
+            "children": [],
+            "icon": "index.tsx",
+            "leaveCount": 0,
+            "layer": 2,
+            "comparedTo": null
+          },
+          {
+            "label": "markdown",
+            "link": "tech/web/markdown",
+            "children": [
+              {
+                "label": "index.tsx",
+                "link": "tech/web/markdown/index.tsx",
+                "children": [],
+                "icon": "index.tsx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              },
+              {
+                "label": "markdown-sample.mdx",
+                "link": "tech/web/markdown/markdown-sample.mdx",
+                "children": [],
+                "icon": "markdown-sample.mdx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              },
+              {
+                "label": "mdx-study.mdx",
+                "link": "tech/web/markdown/mdx-study.mdx",
+                "children": [],
+                "icon": "mdx-study.mdx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              }
+            ],
+            "icon": "markdown",
+            "leaveCount": 2,
+            "layer": 2,
+            "comparedTo": null
+          },
+          {
+            "label": "react-static",
+            "link": "tech/web/react-static",
+            "children": [
+              {
+                "label": "index.tsx",
+                "link": "tech/web/react-static/index.tsx",
+                "children": [],
+                "icon": "index.tsx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              },
+              {
+                "label": "react-static-intro.mdx",
+                "link": "tech/web/react-static/react-static-intro.mdx",
+                "children": [],
+                "icon": "react-static-intro.mdx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              }
+            ],
+            "icon": "react-static",
+            "leaveCount": 1,
+            "layer": 2,
+            "comparedTo": null
+          }
+        ],
+        "icon": "web",
+        "leaveCount": 3,
+        "layer": 1,
+        "comparedTo": null
+      }
+    ],
+    "icon": "tech",
+    "leaveCount": 4,
+    "layer": 0,
+    "comparedTo": null
+  },
+  {
+    "label": "study",
+    "link": "study",
+    "children": [
+      {
+        "label": "finance",
+        "link": "study/finance",
+        "children": [
+          {
+            "label": "index.tsx",
+            "link": "study/finance/index.tsx",
+            "children": [],
+            "icon": "index.tsx",
+            "leaveCount": 0,
+            "layer": 2,
+            "comparedTo": null
+          },
+          {
+            "label": "tushare-setup.mdx",
+            "link": "study/finance/tushare-setup.mdx",
+            "children": [],
+            "icon": "tushare-setup.mdx",
+            "leaveCount": 0,
+            "layer": 2,
+            "comparedTo": null
+          }
+        ],
+        "icon": "finance",
+        "leaveCount": 1,
+        "layer": 1,
+        "comparedTo": null
+      },
+      {
+        "label": "index.tsx",
+        "link": "study/index.tsx",
+        "children": [],
+        "icon": "index.tsx",
+        "leaveCount": 0,
+        "layer": 1,
+        "comparedTo": null
+      }
+    ],
+    "icon": "study",
+    "leaveCount": 1,
+    "layer": 0,
+    "comparedTo": null
+  },
+  {
+    "label": "about",
+    "link": "about",
+    "children": [
+      {
+        "label": "index.tsx",
+        "link": "about/index.tsx",
+        "children": [],
+        "icon": "index.tsx",
+        "leaveCount": 0,
+        "layer": 1,
+        "comparedTo": null
+      },
+      {
+        "label": "resume.mdx",
+        "link": "about/resume.mdx",
+        "children": [],
+        "icon": "resume.mdx",
+        "leaveCount": 0,
+        "layer": 1,
+        "comparedTo": null
+      }
+    ],
+    "icon": "about",
+    "leaveCount": 1,
+    "layer": 0,
+    "comparedTo": null
+  }
+]

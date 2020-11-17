@@ -1,0 +1,84 @@
+{
+  "/about/resume.mdx": {
+    "meta": {
+      "title": "Resume of Chen Fan 陈凡",
+      "authors": "cfcodefans",
+      "tags": "resume"
+    },
+    "excerpt": {},
+    "path": "about/resume.mdx",
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-16"
+  },
+  "/study/finance/tushare-setup.mdx": {
+    "meta": {
+      "title": "Tushare, Financial data python library",
+      "authors": "cfcodefans",
+      "tags": [
+        "financial",
+        "python",
+        "analysis"
+      ]
+    },
+    "excerpt": {},
+    "path": "study/finance/tushare-setup.mdx",
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-16"
+  },
+  "/tech/data/h2db/h2db-source.mdx": {
+    "meta": {
+      "title": "Study of H2 the Java SQL database",
+      "authors": "cfcodefans",
+      "tags": [
+        "database",
+        "h2db",
+        "study"
+      ]
+    },
+    "excerpt": {},
+    "path": "tech/data/h2db/h2db-source.mdx",
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-16"
+  },
+  "/tech/web/markdown/markdown-sample.mdx": {
+    "meta": {
+      "title": "Welcome to StackEdit!",
+      "authors": "StackEdit",
+      "tags": "markdown"
+    },
+    "excerpt": {},
+    "path": "tech/web/markdown/markdown-sample.mdx",
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-16"
+  },
+  "/tech/web/markdown/mdx-study.mdx": {
+    "meta": {
+      "title": "How to embed react into markdown?",
+      "authors": "cfcodefans",
+      "tags": [
+        "markdown",
+        "react"
+      ]
+    },
+    "excerpt": {},
+    "path": "tech/web/markdown/mdx-study.mdx",
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-16"
+  },
+  "/tech/web/react-static/react-static-intro.mdx": {
+    "meta": {
+      "title": "What is React-static",
+      "authors": "cfcodefans",
+      "tags": [
+        "react",
+        "ssg",
+        "static site",
+        "github page"
+      ]
+    },
+    "excerpt": {},
+    "path": "tech/web/react-static/react-static-intro.mdx",
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-16"
+  }
+}

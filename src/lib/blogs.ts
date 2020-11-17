@@ -1,5 +1,5 @@
 import { format } from "date-fns"
-import { Dirent, promises as fsp } from "fs"
+import { Dirent, existsSync, promises as fsp } from "fs"
 import matter from "gray-matter"
 import _ from "lodash"
 import { GetStaticPathsContext, GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult } from "next"
@@ -8,7 +8,7 @@ import path, { extname } from "path"
 import * as unified from "unified"
 import { Node, Parent } from "unist"
 import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "../types"
-import { compare, deepTraverse, deepTraverse_a, getNameAndExt, i, iterateTree_a, jsf } from "./commons"
+import { compare, deepTraverse, getNameAndExt, i, iterateTree_a, jsf } from "./commons"
 import { mdxStrToHtml } from "./mdx-fn"
 
 const _mdx = require("@mdx-js/mdx")
@@ -41,7 +41,7 @@ export async function ls(path: string, predict?: (IPathInfo) => boolean): Promis
             .filter(p => (predict && predict(p) || true)))
 }
 
-function isMDX(pi: IPathInfo): boolean {
+export function isMDX(pi: IPathInfo): boolean {
     return pi.isFile && /.mdx?$/.test(_p.extname(pi.path))
 }
 
@@ -88,7 +88,7 @@ function loadMeta(mdxNode: Node): any & { start: number, end: number } {
 
 const rExcerpt: RegExp = /<!--+\s*more\s*--+>/i
 
-async function loadExcerpt(root: Parent, mdxStr: string): Promise<string> {
+function loadExcerpt(root: Parent, mdxStr: string): string {
     let excerptTag: Node = root.children.find((child: Node) => child["value"] && rExcerpt.test(child["value"] as string))
     if (excerptTag == null)
         return ""
@@ -96,20 +96,21 @@ async function loadExcerpt(root: Parent, mdxStr: string): Promise<string> {
     const excerptStr: string = mdxStr.substring(0, excerptTag.position.start.offset)
     const _matter: matter.GrayMatterFile<string> = matter(excerptStr)
     const x = mdxStrToHtml(_matter.content)
-    // i("blog.ts", "mdx", typeof x, x)
+    i("blog.ts", "mdx", typeof x, x)
 
+    // return _.get(x, "renderedOutput")
     return x
 }
 
-async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMetaInfo> {
+export async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMetaInfo> {
     const [fileStats, mdxStr] = await Promise.all([fsp.lstat(filePath), fsp.readFile(filePath, "utf-8")])
     const mdxContent: Node = compiler.parse(mdxStr)
 
     const _matter: matter.GrayMatterFile<string> = matter(mdxStr) // loadMeta(mdxContent)
-    i("blogs.ts", "_matter", jsf(_matter.data))
+    // i("blogs.ts", "_matter", jsf(_matter.data))
     return {
         meta: _matter.data,
-        excerpt: await loadExcerpt(mdxContent as Parent, mdxStr),
+        excerpt: loadExcerpt(mdxContent as Parent, mdxStr),
         path,
         createdAt: format(fileStats.birthtime, "yyyy-MM-dd"),
         modifiedAt: format(fileStats.ctime, "yyyy-MM-dd")//yyyy-MM-dd'T'HH:mm:ss.SSSxxx
@@ -203,7 +204,8 @@ export async function bootstrap(): Promise<ILayoutPros> {
     const CWD: string = process.cwd()
 
     const CACHE_PATH = _p.resolve(`${CWD}/cache.json`)
-    // if (await existsSync(CACHE_PATH)) {
+    // const isCached: boolean = existsSync(CACHE_PATH)
+    // if (isCached) {
     //     let cachedContent = (await fsp.readFile(CACHE_PATH)).toString()
     //     if (cachedContent.length > 0) {
     //         i("blogs.bootstrap", "cached!")

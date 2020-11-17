@@ -13,21 +13,22 @@ export default function IndexPage({ layoutProps }: { layoutProps: ILayoutPros })
     const _path: string = router.asPath
     const currentRoute = routes.find(r => r._path == _path)
 
-    let pageContent = null
+    let pageContent: JSX.Element = null
     if (currentRoute) {
         pageContent = <BlogList mds={currentRoute.offsprings?.map(mdPath => pathToMarkdowns[mdPath])} />
     } else {
         pageContent = <BlogList mds={Object.values(pathToMarkdowns)} />
     }
 
-    return (<Layout home layoutProps={layoutProps}>
-        {pageContent}
-    </Layout>)
+    // return (<Layout home layoutProps={layoutProps}>
+    //     {pageContent}
+    // </Layout>)
+    return pageContent
 }
 
-export async function getStaticProps(context: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
-    i("index.tsx", "context", context)
-    const layoutProps: ILayoutPros = await bootstrap()
-    i("index.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.routeTree.length])
-    return { props: { layoutProps } }
-}
+// export async function getStaticProps(context: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
+//     i("index.tsx", "context", context)
+//     const layoutProps: ILayoutPros = await bootstrap()
+//     i("index.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.routeTree.length])
+//     return { props: { layoutProps } }
+// }
