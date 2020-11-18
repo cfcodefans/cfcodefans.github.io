@@ -15,7 +15,7 @@ const rehypeKatex = require("rehype-katex")
 const withMDX = require("@next/mdx")({
     extension: /\.mdx?$/,
     options: {
-        remarkPlugins: [_attr, remarkMath, removeImports],
+        remarkPlugins: [_attr, remarkMath],
         rehypePlugins: [rehypeKatex],
     }
 })

@@ -52,7 +52,11 @@
     "modifiedAt": "2020-11-16"
   },
   "/tech/web/markdown/mdx-study.mdx": {
-    "meta": {},
+    "meta": {
+        "title": "Welcome to StackEdit!",
+        "authors": "StackEdit",
+        "tags": "markdown"
+    },
     "excerpt": "<hr/><p>title : How to embed react into markdown?\nauthors : cfcodefans\ntags : <!-- -->[markdown, react]</p><hr/><p><span><a target=\"_blank\" href=\"https://mdxjs.com/\">MDX</a><a target=\"_blank\" href=\"https://mdxjs.com/\">[+]</a></span> is interesting extension for <span><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">markdown</a><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">[+]</a></span></p>",
     "path": "tech/web/markdown/mdx-study.mdx",
     "createdAt": "2020-11-16",
