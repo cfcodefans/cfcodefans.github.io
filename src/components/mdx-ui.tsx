@@ -19,7 +19,7 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
     let _link: string = props.path
     _link = _link.substring(0, _link.lastIndexOf(".mdx"))
 
-    const display = hydrate(excerpt, MDX_COMPONENTS)
+    // const display = hydrate(excerpt, MDX_COMPONENTS)
 
     return (<article className="d-flex flex-column align-items-center rounded-1 shadow container pt-3 mt-3 mb-3">
         <header className="text-center">
@@ -27,7 +27,8 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
             <div>Created at: <time dateTime={props.createdAt}>{props.createdAt}</time> | By: {meta && meta["authors"]}</div>
         </header>
         <hr />
-        <div>{display}</div>
+        {/* <div>{display}</div> */}
+        <div dangerouslySetInnerHTML={{ __html: excerpt }}></div>
         <Link href={`/${_link}`}>
             <a><h3>read more »</h3></a>
         </Link>
@@ -73,8 +74,8 @@ export function MDX_Header(mdMate: TMarkdownMetaInfo): JSX.Element {
 export default function CustomLink({ as, href, children, ...otherProps }: { children: ReactNode, as: string, href: string }): JSX.Element {
     return <Link as={as} href={href}>
         <span>
-            <a {...otherProps}>{children}</a>
-            <a {...otherProps} target="_blank">[+]</a>
+            <a {...otherProps} href={href}>{children}</a>
+            <a {...otherProps} href={href} target="_blank">[+]</a>
         </span>
     </Link>
 }

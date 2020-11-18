@@ -88,14 +88,14 @@ function loadMeta(mdxNode: Node): any & { start: number, end: number } {
 
 const rExcerpt: RegExp = /<!--+\s*more\s*--+>/i
 
-function loadExcerpt(root: Parent, mdxStr: string): string {
+async function loadExcerpt(root: Parent, mdxStr: string): Promise<string> {
     let excerptTag: Node = root.children.find((child: Node) => child["value"] && rExcerpt.test(child["value"] as string))
     if (excerptTag == null)
         return ""
 
     const excerptStr: string = mdxStr.substring(0, excerptTag.position.start.offset)
     const _matter: matter.GrayMatterFile<string> = matter(excerptStr)
-    const x = mdxStrToHtml(_matter.content)
+    const x = await mdxStrToHtml(_matter.content)
     i("blog.ts", "mdx", typeof x, x)
 
     // return _.get(x, "renderedOutput")
@@ -110,7 +110,7 @@ export async function getMDXMeta(path: string, filePath: string): Promise<TMarkd
     // i("blogs.ts", "_matter", jsf(_matter.data))
     return {
         meta: _matter.data,
-        excerpt: loadExcerpt(mdxContent as Parent, mdxStr),
+        excerpt: await loadExcerpt(mdxContent as Parent, mdxStr),
         path,
         createdAt: format(fileStats.birthtime, "yyyy-MM-dd"),
         modifiedAt: format(fileStats.ctime, "yyyy-MM-dd")//yyyy-MM-dd'T'HH:mm:ss.SSSxxx

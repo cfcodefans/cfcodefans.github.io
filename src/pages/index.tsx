@@ -1,10 +1,6 @@
-import { GetStaticPropsContext, GetStaticPropsResult } from "next"
 import { NextRouter, useRouter } from "next/dist/client/router"
 import React from "react"
-import Layout from "../components/layout"
 import { BlogList } from "../components/mdx-ui"
-import { bootstrap } from "../lib/blogs"
-import { i } from "../lib/commons"
 import { ILayoutPros } from "../types"
 
 export default function IndexPage({ layoutProps }: { layoutProps: ILayoutPros }): JSX.Element {

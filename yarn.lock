@@ -6365,6 +6365,13 @@ remark-math@^4.0.0:
     mdast-util-math "^0.1.0"
     micromark-extension-math "^0.1.0"
 
+remark-mdx-remove-imports@^1.6.21:
+  version "1.6.21"
+  resolved "https://registry.npm.taobao.org/remark-mdx-remove-imports/download/remark-mdx-remove-imports-1.6.21.tgz#d16fd3f6ce8ccb3f82f30bc15890d7a63038d5e6"
+  integrity sha1-0W/T9s6Myz+C8wvBWJDXpjA41eY=
+  dependencies:
+    unist-util-remove "2.0.0"
+
 remark-mdx@1.6.19:
   version "1.6.19"
   resolved "https://registry.yarnpkg.com/remark-mdx/-/remark-mdx-1.6.19.tgz#9f5330a6b151c40643ddda81714d45a751b158e0"
@@ -7464,6 +7471,13 @@ unist-util-remove-position@^2.0.0:
   integrity sha512-fDZsLYIe2uT+oGFnuZmy73K6ZxOPG/Qcm+w7jbEjaFcJgbQ6cqjs/eSPzXhsmGpAsWPkqZM9pYjww5QTn3LHMA==
   dependencies:
     unist-util-visit "^2.0.0"
+
+unist-util-remove@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/unist-util-remove/download/unist-util-remove-2.0.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Funist-util-remove%2Fdownload%2Funist-util-remove-2.0.0.tgz#32c2ad5578802f2ca62ab808173d505b2c898488"
+  integrity sha1-MsKtVXiALyymKrgIFz1QWyyJhIg=
+  dependencies:
+    unist-util-is "^4.0.0"
 
 unist-util-remove@^2.0.0:
   version "2.0.1"

@@ -1,19 +1,20 @@
+import { MDXProvider } from "@mdx-js/react"
 import { AppContext, AppInitialProps, AppProps } from "next/app"
+import { NextRouter, useRouter } from "next/dist/client/router"
 import Head from "next/head"
 import React, { ReactNodeArray } from "react"
-import Layout from "../components/layout"
-import { i } from "../lib/commons"
-import { ILayoutPros } from "../types"
-
+import pathToMarkdowns from "../cache/mdMetas.json"
 import menus from "../cache/menus.json"
 import routeTree from "../cache/route-tree.json"
 import routes from "../cache/routes.json"
-import pathToMarkdowns from "../cache/mdMetas.json"
+import Layout from "../components/layout"
+import { BlogHeader, MDX_COMPONENTS } from "../components/mdx-ui"
+import { i } from "../lib/commons"
+import { ILayoutPros } from "../types"
 
 const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
-    return <div className="p-5">
-        <h1>MDX_Frame</h1>
-        {children}
+    return <div className="container d-flex flex-column">
+        <article children={children} />
     </div>
 }
 
@@ -21,15 +22,25 @@ export default function _App({ Component, pageProps, router }: AppProps): JSX.El
     i("_app.tsx", "router", router.asPath, "pageProps", Object.keys(pageProps))
 
     const { layoutProps } = pageProps
+    const { routes, pathToMarkdowns } = layoutProps
 
     let content: JSX.Element = null
 
-    if (router.asPath.includes("404")) {
+    const _path: string = router.asPath
+    const currentRoute = routes.find(r => r._path == _path)
+
+    if (_path.includes("404")) {
         content = <Component {...pageProps} />
-    } else {
+    } else if (Object.keys(pathToMarkdowns).includes(_path + ".mdx")) {
+        //For markdown mdx content
         content = <Layout home layoutProps={layoutProps}>
-            <Component {...pageProps} />
+            <BlogHeader {...pathToMarkdowns[_path + ".mdx"]} />
+            <MDXProvider components={{ wrapper: MDX_Frame, ...MDX_COMPONENTS }}>
+                <Component {...pageProps} />
+            </MDXProvider>
         </Layout>
+    } else {
+        content = <Layout home layoutProps={layoutProps}><Component {...pageProps} /></Layout>
     }
 
     return (<>
@@ -38,8 +49,6 @@ export default function _App({ Component, pageProps, router }: AppProps): JSX.El
             <meta name="format-detection" content="telephone=no" />
             <meta name="X-FRAME-OPTIONS" content="deny" />
         </Head>
-        {/* <MDXProvider components={{ wrapper: MDX_Frame }}>
-        </MDXProvider> */}
         {content}
     </>)
 }

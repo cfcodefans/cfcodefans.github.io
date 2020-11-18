@@ -5,7 +5,7 @@
       "authors": "cfcodefans",
       "tags": "resume"
     },
-    "excerpt": {},
+    "excerpt": "<hr/><ul><li><span><a>1. Objectives</a><a target=\"_blank\">[+]</a></span></li><li><span><a>2. Contact</a><a target=\"_blank\">[+]</a></span></li><li><span><a>3. Education</a><a target=\"_blank\">[+]</a></span></li><li><span><a>4. Certificate</a><a target=\"_blank\">[+]</a></span></li><li><span><a>5. Experience</a><a target=\"_blank\">[+]</a></span></li></ul><p> </p><h2 id=\"objectives\">1. Objectives</h2>Hi, I am Chen Fan.<pre><code>I have been working as a java coder and enthusiastic about coding (so much to learn).  \n</code></pre><p>I aspire to further my programming knowledge, skills and vision of the evolving internet. </p><pre><code>I firmly believe that internet driven services will flourish through innovations and \n</code></pre><p>connection to other industries thus I wish to participate this exploratory process. I\nbelieve\nI could contribute to business success with combination of my experience, creativity,\nteam spirit, most importantly learning ability.</p><p>Thanks and best regards. </p>",
     "path": "about/resume.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-16"
@@ -20,7 +20,7 @@
         "analysis"
       ]
     },
-    "excerpt": {},
+    "excerpt": "<p><span><a target=\"_blank\">Tushare</a><a target=\"_blank\">[+]</a></span></p><p><em>Tushare is a free, open sourced python financial data interface library</em>.\nIts primary features include collecting data of financial, such as stock; cleaning data and storing data,\nwhich provides financial analysts with quick, neat, and diversy data for analysis, reduces difficulty on\ndata collection for them, allows them to focus more on realization of strategy and modeling....</p>",
     "path": "study/finance/tushare-setup.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-16"
@@ -35,7 +35,7 @@
         "study"
       ]
     },
-    "excerpt": {},
+    "excerpt": "<p>I want to study more about database, not just how to query and store data.\nI wish to know how a database is built, what concerns are to be addressed.\nI figure <span><a>h2databasae</a><a target=\"_blank\">[+]</a></span> could be a good starting point</p>",
     "path": "tech/data/h2db/h2db-source.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-16"
@@ -46,24 +46,17 @@
       "authors": "StackEdit",
       "tags": "markdown"
     },
-    "excerpt": {},
+    "excerpt": "<p>Hi! I&#x27;m your first Markdown file in <strong>StackEdit</strong>. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the <strong>file explorer</strong> on the left corner of the navigation bar.</p>",
     "path": "tech/web/markdown/markdown-sample.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-16"
   },
   "/tech/web/markdown/mdx-study.mdx": {
-    "meta": {
-      "title": "How to embed react into markdown?",
-      "authors": "cfcodefans",
-      "tags": [
-        "markdown",
-        "react"
-      ]
-    },
-    "excerpt": {},
+    "meta": {},
+    "excerpt": "<hr/><p>title : How to embed react into markdown?\nauthors : cfcodefans\ntags : <!-- -->[markdown, react]</p><hr/><p><span><a target=\"_blank\">MDX</a><a target=\"_blank\">[+]</a></span> is interesting extension for <span><a target=\"_blank\">markdown</a><a target=\"_blank\">[+]</a></span></p>",
     "path": "tech/web/markdown/mdx-study.mdx",
     "createdAt": "2020-11-16",
-    "modifiedAt": "2020-11-16"
+    "modifiedAt": "2020-11-18"
   },
   "/tech/web/react-static/react-static-intro.mdx": {
     "meta": {
@@ -76,7 +69,7 @@
         "github page"
       ]
     },
-    "excerpt": {},
+    "excerpt": "<p><span><a>react-static</a><a target=\"_blank\">[+]</a></span> is a static web page generator.\nWe can define some functions in static.config.js to load data, and render\nthese data with templates built by react components. These templates are also\norganized by <span><a>React-Static Route</a><a target=\"_blank\">[+]</a></span></p>",
     "path": "tech/web/react-static/react-static-intro.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-16"

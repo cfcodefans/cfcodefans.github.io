@@ -1,36 +1,37 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext",
-      "ESNext"
+    "compilerOptions": {
+        "target": "ESNext",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext",
+            "ESNext"
+        ],
+        "sourceRoot": "src",
+        "sourceMap": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve"
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.json",
+        "**/*.ts",
+        "**/*.tsx",
     ],
-    "sourceRoot": "src",
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve"
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.json",
-    "**/*.ts",
-    "**/*.tsx",
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".next",
-    "out",
-    "next.config.js"
-  ]
+    "exclude": [
+        "node_modules",
+        "dist",
+        ".next",
+        "out",
+        "next.config.js"
+    ]
 }
