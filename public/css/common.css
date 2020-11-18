@@ -1,6 +1,16 @@
 :root {
-    --border-radius: 1rem !important;
+    --border-radius: 0.8rem !important;
+    --corner-radius-small: 0.4rem;
+    --corner-radius-medium: 0.8rem;
+    --corner-radius-large: 3.2rem;
+    --corner-radius-xlarge: 4.8rem;
+    --corner-radius-full: 50%;
+    --warm-gray-20: #f3f2ef;
   }
+
+.root {
+    background-color: var(--warm-gray-20);
+}
 
 .menu-layer-0 {
     margin-bottom: 0.5rem;
@@ -162,4 +172,12 @@
     border-bottom-left-radius: 50rem !important;
     border-top-right-radius: 50rem !important;
     border-bottom-right-radius: 50rem !important;
+}
+
+.nav-sidebar {
+    background-color: white;
+}
+
+.blog-item {
+    background-color: white;
 }

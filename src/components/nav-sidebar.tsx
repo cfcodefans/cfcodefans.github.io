@@ -7,11 +7,20 @@ import _ from "lodash"
 // import "./nav-sidebar.less"
 import { NextRouter, useRouter } from "next/dist/client/router"
 
-type TMenuItemProps = { children: ReactNodeArray, modal: IMenuItemModal }
-
 const UL_STYLE: string = "nav default-pills nav-pills nav-fills pt-1"
 
-function MenuItem({ children, modal }: TMenuItemProps): JSX.Element {
+function isClosestMenu(mp: string, rp: string): boolean {
+    if (_.isEmpty(mp) || _.isEmpty(rp)) return false
+
+    if (mp == rp) return true
+    const rps: string[] = rp.split("/")
+    if (rps.length >= 5) {
+        return mp == rps.slice(0, 4).join("/")
+    }
+    return false
+}
+
+function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuItemModal }): JSX.Element {
     const _link: string = `/${modal.link}`
 
     // const [currentPath, setCurrentPath] = useState("")
@@ -21,7 +30,7 @@ function MenuItem({ children, modal }: TMenuItemProps): JSX.Element {
 
     return (<nav className={`menu-layer-${modal.layer} nav-item w-100`}>
         <Link href={_link}>
-            <a className={`icon-${modal.icon} nav-link ${_link == router.asPath ? "active z-depth-1-half" : ""} hoverable rounded-pill d-flex px-2 justify-content-between`}>
+            <a className={`icon-${modal.icon} nav-link ${isClosestMenu(_link, router.asPath) ? "active z-depth-1-half" : ""} hoverable rounded-pill d-flex px-2 justify-content-between`}>
                 <span className="menu-label text-capitalize">{modal.label}</span>
                 <span className="badge badge-pill badge-info align-self-center">{modal.leaveCount}</span>
             </a>

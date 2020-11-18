@@ -21,7 +21,7 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
 
     // const display = hydrate(excerpt, MDX_COMPONENTS)
 
-    return (<article className="d-flex flex-column align-items-center rounded-1 shadow container pt-3 mt-3 mb-3">
+    return (<article className="blog-item d-flex flex-column align-items-center rounded-1 shadow container pt-3 mt-3 mb-3">
         <header className="text-center">
             <h1>{meta["title"]}</h1>
             <div>Created at: <time dateTime={props.createdAt}>{props.createdAt}</time> | By: {meta && meta["authors"]}</div>

@@ -13,9 +13,7 @@ import { i } from "../lib/commons"
 import { ILayoutPros } from "../types"
 
 const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
-    return <div className="container d-flex flex-column">
-        <article children={children} />
-    </div>
+    return <article children={children} />
 }
 
 export default function _App({ Component, pageProps, router }: AppProps): JSX.Element {
@@ -34,9 +32,11 @@ export default function _App({ Component, pageProps, router }: AppProps): JSX.El
     } else if (Object.keys(pathToMarkdowns).includes(_path + ".mdx")) {
         //For markdown mdx content
         content = <Layout home layoutProps={layoutProps}>
-            <BlogHeader {...pathToMarkdowns[_path + ".mdx"]} />
             <MDXProvider components={{ wrapper: MDX_Frame, ...MDX_COMPONENTS }}>
-                <Component {...pageProps} />
+                <div className="container d-flex flex-column white">
+                    <BlogHeader {...pathToMarkdowns[_path + ".mdx"]} />
+                    <Component {...pageProps} />
+                </div>
             </MDXProvider>
         </Layout>
     } else {

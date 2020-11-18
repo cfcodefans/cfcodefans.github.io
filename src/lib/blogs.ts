@@ -9,17 +9,7 @@ import * as unified from "unified"
 import { Node, Parent } from "unist"
 import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "../types"
 import { compare, deepTraverse, getNameAndExt, i, iterateTree_a, jsf } from "./commons"
-import { mdxStrToHtml } from "./mdx-fn"
-
-const _mdx = require("@mdx-js/mdx")
-
-const DEFAULT_OPTIONS = {
-    footnotes: true,
-    remarkPlugins: [],
-    rehypePlugins: [],
-    compilers: []
-}
-const compiler: unified.Processor = _mdx.createMdxAstCompiler(DEFAULT_OPTIONS)
+import { mdxCompiler, mdxStrToHtml } from "./mdx-fn"
 
 const BLOGS_DIR: string = path.join(process.cwd(), "blogs")
 
@@ -104,10 +94,11 @@ async function loadExcerpt(root: Parent, mdxStr: string): Promise<string> {
 
 export async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMetaInfo> {
     const [fileStats, mdxStr] = await Promise.all([fsp.lstat(filePath), fsp.readFile(filePath, "utf-8")])
-    const mdxContent: Node = compiler.parse(mdxStr)
+    const mdxContent: Node = mdxCompiler.parse(mdxStr)
 
     const _matter: matter.GrayMatterFile<string> = matter(mdxStr) // loadMeta(mdxContent)
-    // i("blogs.ts", "_matter", jsf(_matter.data))
+    i("blogs.ts", "mdxStr", mdxStr, "_matter", jsf(_matter.data))
+
     return {
         meta: _matter.data,
         excerpt: await loadExcerpt(mdxContent as Parent, mdxStr),
