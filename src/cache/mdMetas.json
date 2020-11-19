@@ -1,79 +1,36 @@
 {
-  "/about/resume.mdx": {
-    "meta": {
-      "title": "Resume of Chen Fan 陈凡",
-      "authors": "cfcodefans",
-      "tags": "resume"
-    },
-    "excerpt": "<hr/><ul><li><span><a href=\"#objectives\">1. Objectives</a><a href=\"#objectives\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#contact\">2. Contact</a><a href=\"#contact\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#education\">3. Education</a><a href=\"#education\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#certificate\">4. Certificate</a><a href=\"#certificate\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#experience\">5. Experience</a><a href=\"#experience\" target=\"_blank\">[+]</a></span></li></ul><p> </p><h2 id=\"objectives\">1. Objectives</h2>Hi, I am Chen Fan.<pre><code>I have been working as a java coder and enthusiastic about coding (so much to learn).  \n</code></pre><p>I aspire to further my programming knowledge, skills and vision of the evolving internet. </p><pre><code>I firmly believe that internet driven services will flourish through innovations and \n</code></pre><p>connection to other industries thus I wish to participate this exploratory process. I\nbelieve\nI could contribute to business success with combination of my experience, creativity,\nteam spirit, most importantly learning ability.</p><p>Thanks and best regards. </p>",
-    "path": "about/resume.mdx",
+  "/resume.mdx": {
+    "excerpt": "<p>title : Resume of Chen Fan 陈凡\nauthors : cfcodefans\ntags : resume</p><hr/><hr/><ul><li><span><a href=\"#objectives\">1. Objectives</a><a href=\"#objectives\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#contact\">2. Contact</a><a href=\"#contact\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#education\">3. Education</a><a href=\"#education\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#certificate\">4. Certificate</a><a href=\"#certificate\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#experience\">5. Experience</a><a href=\"#experience\" target=\"_blank\">[+]</a></span></li></ul><p> </p><h2 id=\"objectives\">1. Objectives</h2>Hi, I am Chen Fan.<pre><code>I have been working as a java coder and enthusiastic about coding (so much to learn).  \n</code></pre><p>I aspire to further my programming knowledge, skills and vision of the evolving internet. </p><pre><code>I firmly believe that internet driven services will flourish through innovations and \n</code></pre><p>connection to other industries thus I wish to participate this exploratory process. I\nbelieve\nI could contribute to business success with combination of my experience, creativity,\nteam spirit, most importantly learning ability.</p><p>Thanks and best regards. </p>",
+    "path": "resume.mdx",
     "createdAt": "2020-11-16",
-    "modifiedAt": "2020-11-16"
+    "modifiedAt": "2020-11-19"
   },
   "/study/finance/tushare-setup.mdx": {
-    "meta": {
-      "title": "Tushare, Financial data python library",
-      "authors": "cfcodefans",
-      "tags": [
-        "financial",
-        "python",
-        "analysis"
-      ]
-    },
-    "excerpt": "<p><span><a target=\"_blank\" href=\"http://tushare.org/\">Tushare</a><a target=\"_blank\" href=\"http://tushare.org/\">[+]</a></span></p><p><em>Tushare is a free, open sourced python financial data interface library</em>.\nIts primary features include collecting data of financial, such as stock; cleaning data and storing data,\nwhich provides financial analysts with quick, neat, and diversy data for analysis, reduces difficulty on\ndata collection for them, allows them to focus more on realization of strategy and modeling....</p>",
+    "excerpt": "<p>title : Tushare, Financial data python library\nauthors : cfcodefans\ntags : <!-- -->[financial, python, analysis]</p><hr/><p><span><a target=\"_blank\" href=\"http://tushare.org/\">Tushare</a><a target=\"_blank\" href=\"http://tushare.org/\">[+]</a></span></p><p><em>Tushare is a free, open sourced python financial data interface library</em>.\nIts primary features include collecting data of financial, such as stock; cleaning data and storing data,\nwhich provides financial analysts with quick, neat, and diversy data for analysis, reduces difficulty on\ndata collection for them, allows them to focus more on realization of strategy and modeling....</p>",
     "path": "study/finance/tushare-setup.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-16"
   },
   "/tech/data/h2db/h2db-source.mdx": {
-    "meta": {
-      "title": "Study of H2 the Java SQL database",
-      "authors": "cfcodefans",
-      "tags": [
-        "database",
-        "h2db",
-        "study"
-      ]
-    },
-    "excerpt": "<p>I want to study more about database, not just how to query and store data.\nI wish to know how a database is built, what concerns are to be addressed.\nI figure <span><a href=\"https://h2database.com\">h2databasae</a><a href=\"https://h2database.com\" target=\"_blank\">[+]</a></span> could be a good starting point</p>",
+    "excerpt": "<p>title : Study of H2 the Java SQL database\nauthors : cfcodefans\ntags : <!-- -->[database,h2db,study]</p><hr/><p>I want to study more about database, not just how to query and store data.\nI wish to know how a database is built, what concerns are to be addressed.\nI figure <span><a href=\"https://h2database.com\">h2databasae</a><a href=\"https://h2database.com\" target=\"_blank\">[+]</a></span> could be a good starting point</p>",
     "path": "tech/data/h2db/h2db-source.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-16"
   },
   "/tech/web/markdown/markdown-sample.mdx": {
-    "meta": {
-      "title": "Welcome to StackEdit!",
-      "authors": "StackEdit",
-      "tags": "markdown"
-    },
-    "excerpt": "<p>Hi! I&#x27;m your first Markdown file in <strong>StackEdit</strong>. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the <strong>file explorer</strong> on the left corner of the navigation bar.</p>",
+    "excerpt": "<p>title : Welcome to StackEdit!\nauthors : StackEdit\ntags : markdown</p><hr/><p>Hi! I&#x27;m your first Markdown file in <strong>StackEdit</strong>. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the <strong>file explorer</strong> on the left corner of the navigation bar.</p>",
     "path": "tech/web/markdown/markdown-sample.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-16"
   },
   "/tech/web/markdown/mdx-study.mdx": {
-    "meta": {
-        "title": "Welcome to StackEdit!",
-        "authors": "StackEdit",
-        "tags": "markdown"
-    },
     "excerpt": "<hr/><p>title : How to embed react into markdown?\nauthors : cfcodefans\ntags : <!-- -->[markdown, react]</p><hr/><p><span><a target=\"_blank\" href=\"https://mdxjs.com/\">MDX</a><a target=\"_blank\" href=\"https://mdxjs.com/\">[+]</a></span> is interesting extension for <span><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">markdown</a><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">[+]</a></span></p>",
     "path": "tech/web/markdown/mdx-study.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-18"
   },
   "/tech/web/react-static/react-static-intro.mdx": {
-    "meta": {
-      "title": "What is React-static",
-      "authors": "cfcodefans",
-      "tags": [
-        "react",
-        "ssg",
-        "static site",
-        "github page"
-      ]
-    },
-    "excerpt": "<p><span><a href=\"https://react-static.js.org/\">react-static</a><a href=\"https://react-static.js.org/\" target=\"_blank\">[+]</a></span> is a static web page generator.\nWe can define some functions in static.config.js to load data, and render\nthese data with templates built by react components. These templates are also\norganized by <span><a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\">React-Static Route</a><a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\" target=\"_blank\">[+]</a></span></p>",
+    "excerpt": "<p>title : What is React-static\nauthors : cfcodefans\ntags : <!-- -->[react,ssg,static site,github page]</p><hr/><p><span><a href=\"https://react-static.js.org/\">react-static</a><a href=\"https://react-static.js.org/\" target=\"_blank\">[+]</a></span> is a static web page generator.\nWe can define some functions in static.config.js to load data, and render\nthese data with templates built by react components. These templates are also\norganized by <span><a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\">React-Static Route</a><a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\" target=\"_blank\">[+]</a></span></p>",
     "path": "tech/web/react-static/react-static-intro.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-16"

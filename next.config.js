@@ -11,11 +11,12 @@ const _attr = require("remark-attr")
 const remarkMath = require("remark-math")
 const removeImports = require("remark-mdx-remove-imports")
 const rehypeKatex = require("rehype-katex")
+const removeExports = require("remark-mdx-remove-exports")
 
 const withMDX = require("@next/mdx")({
     extension: /\.mdx?$/,
     options: {
-        remarkPlugins: [_attr, remarkMath],
+        remarkPlugins: [_attr, remarkMath, removeExports],
         rehypePlugins: [rehypeKatex],
     }
 })

@@ -549,43 +549,33 @@
     "comparedTo": null
   },
   {
-    "path": "/about",
-    "_path": "/about",
-    "children": [
-      {
-        "path": "/resume.mdx",
-        "_path": "/about/resume.mdx",
-        "children": [],
-        "offsprings": [],
-        "childrenCount": 0,
-        "comparedTo": null
-      },
-      {
-        "path": "/index.tsx",
-        "_path": "/about/index.tsx",
-        "children": [],
-        "offsprings": [],
-        "childrenCount": 0,
-        "comparedTo": null
-      }
-    ],
-    "offsprings": [
-      "/about/resume.mdx"
-    ],
-    "childrenCount": 1,
-    "comparedTo": null
-  },
-  {
-    "path": "/index.tsx",
-    "_path": "/about/index.tsx",
+    "path": "/resume.mdx",
+    "_path": "/resume.mdx",
     "children": [],
     "offsprings": [],
     "childrenCount": 0,
     "comparedTo": null
   },
   {
-    "path": "/resume.mdx",
-    "_path": "/about/resume.mdx",
+    "path": "/digest",
+    "_path": "/digest",
+    "children": [
+      {
+        "path": "/index.tsx",
+        "_path": "/digest/index.tsx",
+        "children": [],
+        "offsprings": [],
+        "childrenCount": 0,
+        "comparedTo": null
+      }
+    ],
+    "offsprings": [],
+    "childrenCount": 0,
+    "comparedTo": null
+  },
+  {
+    "path": "/index.tsx",
+    "_path": "/digest/index.tsx",
     "children": [],
     "offsprings": [],
     "childrenCount": 0,

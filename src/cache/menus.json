@@ -177,7 +177,7 @@
           }
         ],
         "icon": "finance",
-        "leaveCount": 1,
+        "leaveCount": 2,
         "layer": 1,
         "comparedTo": null
       },
@@ -192,35 +192,35 @@
       }
     ],
     "icon": "study",
-    "leaveCount": 1,
+    "leaveCount": 2,
     "layer": 0,
     "comparedTo": null
   },
   {
-    "label": "about",
-    "link": "about",
+    "label": "resume.mdx",
+    "link": "resume.mdx",
+    "children": [],
+    "icon": "resume.mdx",
+    "leaveCount": 0,
+    "layer": 0,
+    "comparedTo": null
+  },
+  {
+    "label": "digest",
+    "link": "digest",
     "children": [
       {
         "label": "index.tsx",
-        "link": "about/index.tsx",
+        "link": "digest/index.tsx",
         "children": [],
         "icon": "index.tsx",
         "leaveCount": 0,
         "layer": 1,
         "comparedTo": null
-      },
-      {
-        "label": "resume.mdx",
-        "link": "about/resume.mdx",
-        "children": [],
-        "icon": "resume.mdx",
-        "leaveCount": 0,
-        "layer": 1,
-        "comparedTo": null
       }
     ],
-    "icon": "about",
-    "leaveCount": 1,
+    "icon": "digest",
+    "leaveCount": 0,
     "layer": 0,
     "comparedTo": null
   }
