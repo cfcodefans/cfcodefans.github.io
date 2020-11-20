@@ -64,6 +64,34 @@
         "link": "tech/web",
         "children": [
           {
+            "label": "html",
+            "link": "tech/web/html",
+            "children": [
+              {
+                "label": "index.tsx",
+                "link": "tech/web/html/index.tsx",
+                "children": [],
+                "icon": "index.tsx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              },
+              {
+                "label": "what-is-open-graph.mdx",
+                "link": "tech/web/html/what-is-open-graph.mdx",
+                "children": [],
+                "icon": "what-is-open-graph.mdx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              }
+            ],
+            "icon": "html",
+            "leaveCount": 1,
+            "layer": 2,
+            "comparedTo": null
+          },
+          {
             "label": "index.tsx",
             "link": "tech/web/index.tsx",
             "children": [],
@@ -110,12 +138,12 @@
             "comparedTo": null
           },
           {
-            "label": "react-static",
-            "link": "tech/web/react-static",
+            "label": "ssg",
+            "link": "tech/web/ssg",
             "children": [
               {
                 "label": "index.tsx",
-                "link": "tech/web/react-static/index.tsx",
+                "link": "tech/web/ssg/index.tsx",
                 "children": [],
                 "icon": "index.tsx",
                 "leaveCount": 0,
@@ -124,7 +152,7 @@
               },
               {
                 "label": "react-static-intro.mdx",
-                "link": "tech/web/react-static/react-static-intro.mdx",
+                "link": "tech/web/ssg/react-static-intro.mdx",
                 "children": [],
                 "icon": "react-static-intro.mdx",
                 "leaveCount": 0,
@@ -132,20 +160,20 @@
                 "comparedTo": null
               }
             ],
-            "icon": "react-static",
+            "icon": "ssg",
             "leaveCount": 1,
             "layer": 2,
             "comparedTo": null
           }
         ],
         "icon": "web",
-        "leaveCount": 3,
+        "leaveCount": 4,
         "layer": 1,
         "comparedTo": null
       }
     ],
     "icon": "tech",
-    "leaveCount": 4,
+    "leaveCount": 5,
     "layer": 0,
     "comparedTo": null
   },

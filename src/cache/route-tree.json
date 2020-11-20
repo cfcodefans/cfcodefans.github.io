@@ -79,12 +79,12 @@
         "_path": "/tech/web",
         "children": [
           {
-            "path": "/react-static",
-            "_path": "/tech/web/react-static",
+            "path": "/ssg",
+            "_path": "/tech/web/ssg",
             "children": [
               {
                 "path": "/react-static-intro.mdx",
-                "_path": "/tech/web/react-static/react-static-intro.mdx",
+                "_path": "/tech/web/ssg/react-static-intro.mdx",
                 "children": [],
                 "offsprings": [],
                 "childrenCount": 0,
@@ -92,7 +92,7 @@
               },
               {
                 "path": "/index.tsx",
-                "_path": "/tech/web/react-static/index.tsx",
+                "_path": "/tech/web/ssg/index.tsx",
                 "children": [],
                 "offsprings": [],
                 "childrenCount": 0,
@@ -100,7 +100,7 @@
               }
             ],
             "offsprings": [
-              "/tech/web/react-static/react-static-intro.mdx"
+              "/tech/web/ssg/react-static-intro.mdx"
             ],
             "childrenCount": 1,
             "comparedTo": null
@@ -148,14 +148,42 @@
             "offsprings": [],
             "childrenCount": 0,
             "comparedTo": null
+          },
+          {
+            "path": "/html",
+            "_path": "/tech/web/html",
+            "children": [
+              {
+                "path": "/what-is-open-graph.mdx",
+                "_path": "/tech/web/html/what-is-open-graph.mdx",
+                "children": [],
+                "offsprings": [],
+                "childrenCount": 0,
+                "comparedTo": null
+              },
+              {
+                "path": "/index.tsx",
+                "_path": "/tech/web/html/index.tsx",
+                "children": [],
+                "offsprings": [],
+                "childrenCount": 0,
+                "comparedTo": null
+              }
+            ],
+            "offsprings": [
+              "/tech/web/html/what-is-open-graph.mdx"
+            ],
+            "childrenCount": 1,
+            "comparedTo": null
           }
         ],
         "offsprings": [
-          "/tech/web/react-static/react-static-intro.mdx",
+          "/tech/web/ssg/react-static-intro.mdx",
           "/tech/web/markdown/mdx-study.mdx",
-          "/tech/web/markdown/markdown-sample.mdx"
+          "/tech/web/markdown/markdown-sample.mdx",
+          "/tech/web/html/what-is-open-graph.mdx"
         ],
-        "childrenCount": 3,
+        "childrenCount": 4,
         "comparedTo": null
       },
       {
@@ -214,12 +242,13 @@
       }
     ],
     "offsprings": [
-      "/tech/web/react-static/react-static-intro.mdx",
+      "/tech/web/ssg/react-static-intro.mdx",
       "/tech/web/markdown/mdx-study.mdx",
       "/tech/web/markdown/markdown-sample.mdx",
+      "/tech/web/html/what-is-open-graph.mdx",
       "/tech/data/h2db/h2db-source.mdx"
     ],
-    "childrenCount": 4,
+    "childrenCount": 5,
     "comparedTo": null
   }
 ]

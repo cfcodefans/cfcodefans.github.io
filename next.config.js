@@ -12,11 +12,13 @@ const remarkMath = require("remark-math")
 const removeImports = require("remark-mdx-remove-imports")
 const rehypeKatex = require("rehype-katex")
 const removeExports = require("remark-mdx-remove-exports")
+const highlight = require("remark-highlight.js")
+// const rehypePrism = require("@mapbox/rehype-prism")
 
 const withMDX = require("@next/mdx")({
     extension: /\.mdx?$/,
     options: {
-        remarkPlugins: [_attr, remarkMath, removeExports],
+        remarkPlugins: [_attr, remarkMath, removeExports, highlight],
         rehypePlugins: [rehypeKatex],
     }
 })
@@ -26,7 +28,8 @@ const externals = {
     "bootstrap": "BootStrap",
     "react-dom": "ReactDOM",
     "lodash": "_",
-    "react": "React"
+    "react": "React",
+    "highlight.js": "hljs"
 }
 
 module.exports = withMDX({

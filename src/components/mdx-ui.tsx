@@ -1,10 +1,8 @@
 import Head from "next/head"
 import Link from "next/link"
 import React, { ReactNode } from "react"
-import { compare, jsf } from "../lib/commons"
+import { compare } from "../lib/commons"
 import { TMarkdownMetaInfo } from "../types"
-import hydrate from "next-mdx-remote/hydrate"
-import VisxTests_BarGraph from "./lab/visx-tests"
 
 export function BlogList({ mds }: { mds: TMarkdownMetaInfo[] }): JSX.Element {
     return <div className="w-100 d-flex flex-column">
@@ -37,10 +35,14 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
 
 export function BlogHeader(props: TMarkdownMetaInfo): JSX.Element {
     const { meta } = props
+    const { og } = meta
     return <header className="text-center">
         <Head>
-            {meta["desc"] && <meta name="description" content={meta["desc"]} />}
+            <title>cfcodefans: {meta["title"]}</title>
+            <meta property="og:title" content={meta["title"]} key="title" />
+            <meta name="description" content={meta["desc"] || meta["title"]} />
             <meta name="keywords" content={meta["tags"]} />
+            {og && Object.keys(og).map(k => <meta property={`og:${k}`} content={og[k]} key={k} />)}
         </Head>
         <h3>{meta["title"]}</h3>
         <div>Created at: <time dateTime={props.createdAt}>{props.createdAt}</time> | By: {meta && meta["authors"]}</div>
@@ -54,21 +56,6 @@ export function BlogArticle({ content, metaInfo }: { content: ReactNode, metaInf
             {content}
         </main>
     </article>
-}
-
-
-export function MDX_Header(mdMate: TMarkdownMetaInfo): JSX.Element {
-    const meta: any = mdMate.meta
-
-    return (<header>
-        <Head>
-            <title>{meta["title"]}</title>
-            <meta name="description" content={meta["desc"]} />
-            <meta name="keywords" content={meta["tags"]} />
-        </Head>
-        <h1>{meta["title"]}</h1>
-        <div>Created at: {mdMate.createdAt} | Modified at: {mdMate.modifiedAt}</div>
-    </header>)
 }
 
 export default function CustomLink({ as, href, children, ...otherProps }: { children: ReactNode, as: string, href: string }): JSX.Element {

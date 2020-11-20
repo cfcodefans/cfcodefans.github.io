@@ -43,9 +43,29 @@
       ],
       "title": "Study of H2 the Java SQL database"
     },
-    "excerpt": "<p>I want to study more about database, not just how to query and store data.\nI wish to know how a database is built, what concerns are to be addressed.\nI figure <span><a href=\"https://h2database.com\">h2databasae</a><a href=\"https://h2database.com\" target=\"_blank\">[+]</a></span> could be a good starting point</p>",
+    "excerpt": "<p><img src=\"https://www.h2database.com/html/images/h2-logo-2.png\" alt=\"OGP\"/></p><p>I want to study more about database, not just how to query and store data.\nI wish to know how a database is built, what concerns are to be addressed.\nI figure <span><a href=\"https://h2database.com\">h2databasae</a><a href=\"https://h2database.com\" target=\"_blank\">[+]</a></span> could be a good starting point</p>",
     "path": "tech/data/h2db/h2db-source.mdx",
     "createdAt": "2020-11-15",
+    "modifiedAt": "2020-11-20"
+  },
+  "/tech/web/html/what-is-open-graph.mdx": {
+    "meta": {
+      "authors": [
+        "cfcodefans"
+      ],
+      "tags": [
+        "open-graph-protocal",
+        "seo",
+        "social graph"
+      ],
+      "title": "What is Open Graph?",
+      "og": {
+        "image": "https://ogp.me/logo.png"
+      }
+    },
+    "excerpt": "<p><img src=\"https://ogp.me/logo.png\" alt=\"OGP\"/></p><p>As I studied so far, <span><a target=\"_blank\" href=\"https://ogp.me/\">Open-Graph-Protocol</a><a target=\"_blank\" href=\"https://ogp.me/\">[+]</a></span> is the protocol recognized by social network. In detail,\nyou could add certain set of meta tags into your web pages, then when the web pages are shared by links in soical networks, such as\n<span><a href=\"https://linkedin.com/\">linkedin</a><a href=\"https://linkedin.com/\" target=\"_blank\">[+]</a></span>, the social network could extract the info from the meta tags according to Open Graph Protocol\nand display these info to make the shared links more informative.</p>",
+    "path": "tech/web/html/what-is-open-graph.mdx",
+    "createdAt": "2020-11-20",
     "modifiedAt": "2020-11-20"
   },
   "/tech/web/markdown/markdown-sample.mdx": {
@@ -80,7 +100,7 @@
     "createdAt": "2020-11-18",
     "modifiedAt": "2020-11-20"
   },
-  "/tech/web/react-static/react-static-intro.mdx": {
+  "/tech/web/ssg/react-static-intro.mdx": {
     "meta": {
       "title": "What is React-static",
       "authors": [
@@ -93,7 +113,7 @@
       ]
     },
     "excerpt": "<p><span><a href=\"https://react-static.js.org/\">react-static</a><a href=\"https://react-static.js.org/\" target=\"_blank\">[+]</a></span> is a static web page generator.\nWe can define some functions in static.config.js to load data, and render\nthese data with templates built by react components. These templates are also\norganized by <span><a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\">React-Static Route</a><a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\" target=\"_blank\">[+]</a></span></p>",
-    "path": "tech/web/react-static/react-static-intro.mdx",
+    "path": "tech/web/ssg/react-static-intro.mdx",
     "createdAt": "2020-11-15",
     "modifiedAt": "2020-11-20"
   }
