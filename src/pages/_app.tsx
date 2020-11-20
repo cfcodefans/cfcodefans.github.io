@@ -1,6 +1,5 @@
 import { MDXProvider } from "@mdx-js/react"
 import { AppContext, AppInitialProps, AppProps } from "next/app"
-import { NextRouter, useRouter } from "next/dist/client/router"
 import Head from "next/head"
 import React, { ReactNodeArray } from "react"
 import pathToMarkdowns from "../cache/mdMetas.json"

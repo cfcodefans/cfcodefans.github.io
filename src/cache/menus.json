@@ -177,7 +177,7 @@
           }
         ],
         "icon": "finance",
-        "leaveCount": 2,
+        "leaveCount": 1,
         "layer": 1,
         "comparedTo": null
       },
@@ -192,16 +192,7 @@
       }
     ],
     "icon": "study",
-    "leaveCount": 2,
-    "layer": 0,
-    "comparedTo": null
-  },
-  {
-    "label": "resume.mdx",
-    "link": "resume.mdx",
-    "children": [],
-    "icon": "resume.mdx",
-    "leaveCount": 0,
+    "leaveCount": 1,
     "layer": 0,
     "comparedTo": null
   },

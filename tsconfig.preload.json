@@ -8,5 +8,8 @@
     "jsx": "react",
     "noEmit": false
   },
-//   "include": ["server/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
 }

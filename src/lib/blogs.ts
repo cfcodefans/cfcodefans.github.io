@@ -55,19 +55,24 @@ export async function LOAD_PATHS(_path: string): Promise<IPathInfo[]> {
 }
 
 export async function getMDXMeta(path: string, filePath: string): Promise<TMarkdownMetaInfo> {
-    const [fileStats, mdxStr] = await Promise.all([fsp.lstat(filePath), fsp.readFile(filePath, "utf-8")])
-    // const mdxContent: Node = mdxCompiler.parse(mdxStr)
+    try {
+        const [fileStats, mdxStr] = await Promise.all([fsp.lstat(filePath), fsp.readFile(filePath, "utf-8")])
+        // const mdxContent: Node = mdxCompiler.parse(mdxStr)
 
-    // const _matter: matter.GrayMatterFile<string> = matter(mdxStr) // loadMeta(mdxContent)
-    // i("blogs.ts", "mdxStr", mdxStr, "_matter", jsf(_matter.data))
-    const [metaData, excerpt] = await getMetaAndExcerptFromMDX(mdxStr)
+        // const _matter: matter.GrayMatterFile<string> = matter(mdxStr) // loadMeta(mdxContent)
+        // i("blogs.ts", "mdxStr", mdxStr, "_matter", jsf(_matter.data))
+        const [metaData, excerpt] = await getMetaAndExcerptFromMDX(mdxStr)
 
-    return {
-        meta: metaData,
-        excerpt: excerpt,
-        path,
-        createdAt: format(fileStats.birthtime, "yyyy-MM-dd"),
-        modifiedAt: format(fileStats.ctime, "yyyy-MM-dd")//yyyy-MM-dd'T'HH:mm:ss.SSSxxx
+        return {
+            meta: metaData,
+            excerpt: excerpt,
+            path,
+            createdAt: format(fileStats.birthtime, "yyyy-MM-dd"),
+            modifiedAt: format(fileStats.ctime, "yyyy-MM-dd")//yyyy-MM-dd'T'HH:mm:ss.SSSxxx
+        }
+    } catch (e) {
+        i("blogs.ts", "failed to get meta for", filePath)
+        throw e
     }
 }
 
@@ -121,7 +126,7 @@ export function pathToMenu(pi: IPathInfo, basePath: string): IMenuItemModal {
         link: _path,
         children: [],
         icon: baseName,
-        leaveCount: pi.leaves.length,
+        leaveCount: pi.leaves.filter(lp => isMDX(lp)).length,
         layer: _path.split("/").indexOf(baseName.replace("/", "")),
         comparedTo: null
     }
@@ -129,21 +134,24 @@ export function pathToMenu(pi: IPathInfo, basePath: string): IMenuItemModal {
 }
 
 export function pathTreeToMenuTree(rootPaths: IPathInfo[], basePath: string): IMenuItemModal[] {
-    let pathAndMenuItems: Map<string, IMenuItemModal> = new Map
+    let pathAndMenuItems: { [key: string]: IMenuItemModal } = {}
 
     deepTraverse(rootPaths, (pi: IPathInfo) => {
         let menuItem: IMenuItemModal = pathToMenu(pi, basePath)
-        pathAndMenuItems.set(pi.path, menuItem)
+        pathAndMenuItems[pi.path] = menuItem
         return pi.children
     })
 
     deepTraverse(rootPaths, (pi: IPathInfo) => {
-        let menuItem: IMenuItemModal = pathAndMenuItems.get(pi.path)
-        menuItem.children = pi.children.map(childPath => pathAndMenuItems.get(childPath.path))
+        let menuItem: IMenuItemModal = pathAndMenuItems[pi.path]
+        // i("blogs.ts", "pi.path", pi.path, "pi.children", pi.leaves.map(cp => cp.path))
+        menuItem.children = pi.children.map(childPath => pathAndMenuItems[childPath.path])
         return pi.children
     })
 
-    return rootPaths.map(rp => pathAndMenuItems.get(rp.path))
+    // i("blogs.ts", "pathAndMenuItems", Object.values(pathAndMenuItems).map(m => m.link + "  " + m.leaveCount + "  " + m.children.length))
+
+    return rootPaths.map(rp => pathAndMenuItems[rp.path])
 }
 
 export function LOAD_MENUS(rootPaths: IPathInfo[], basePath: string): IMenuItemModal[] {
@@ -233,8 +241,8 @@ export async function _getStaticPaths(context: GetStaticPathsContext): Promise<G
 }
 
 export async function _getStaticProps(context: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
-    i("index.tsx", "context", context)
-    const layoutProps: ILayoutPros = await bootstrap()
-    i("index.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.routeTree.length])
-    return { props: { layoutProps } }
+    // i("index.tsx", "context", context)
+    // const layoutProps: ILayoutPros = await bootstrap()
+    // i("index.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.routeTree.length])
+    return { props: {} }
 }

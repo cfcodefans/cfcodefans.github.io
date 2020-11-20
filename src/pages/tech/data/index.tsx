@@ -1,4 +1,4 @@
-import { _getStaticPaths, _getStaticProps } from "../../../lib/blogs"
+import { _getStaticProps } from "../../../lib/blogs"
 import IndexPage from "../../index"
 
 export default IndexPage

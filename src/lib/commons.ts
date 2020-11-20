@@ -47,6 +47,13 @@ export async function iterateTree_a(roots: ITNode[], visitor: TreeVisitor_a): Pr
     while (nodeStack.length > 0) {
         let currentNode: ITNode = nodeStack.pop()
 
+        for (let parent: ITNode = _.last(ancestors);
+            // parent && _.findIndex(parent.children, currentNode) < 0;
+            parent && parent.children && parent.children.findIndex((c) => c.comparedTo(currentNode) == 0) < 0;
+            parent = _.last(ancestors)) {
+            ancestors.pop()
+        }
+
         currentNode.children = (visitor && await visitor(currentNode, ancestors)) || currentNode.children
 
         if (!_.isEmpty(currentNode.children)) {
@@ -56,7 +63,6 @@ export async function iterateTree_a(roots: ITNode[], visitor: TreeVisitor_a): Pr
                 parent = _.last(ancestors)) {
                 ancestors.pop()
             }
-
             ancestors.push(currentNode)
             nodeStack.push(...currentNode.children)
         }
@@ -75,6 +81,13 @@ export function iterateTree(roots: ITNode[], visitor: TreeVisitor): ITNode[] {
     while (nodeStack.length > 0) {
         let currentNode: ITNode = nodeStack.pop()
 
+        for (let parent: ITNode = _.last(ancestors);
+            // parent && _.findIndex(parent.children, currentNode) < 0;
+            parent && parent.children && parent.children.findIndex((c) => c.comparedTo(currentNode) == 0) < 0;
+            parent = _.last(ancestors)) {
+            ancestors.pop()
+        }
+        
         currentNode.children = (visitor && visitor(currentNode, ancestors)) || currentNode.children
 
         if (!_.isEmpty(currentNode.children)) {
@@ -97,7 +110,7 @@ export function i(filename: string, ...rest: any[]) {
     const stackTrace = (new Error()).stack
     const frames = stackTrace.match(/[^\r\n]+/g)
     const idx = frames.findIndex(frame => frame.includes("at i (")) + 1
-    console.info("\n", filename, frames[idx], "\n\t", ...(rest||[]).map(obj => jsf(obj)), "\n")
+    console.info("\n", filename, frames[idx], "\n\t", ...(rest || []).map(obj => jsf(obj)), "\n")
 }
 
 export function jsf(v: any, indent: string = "  "): string {

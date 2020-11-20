@@ -35,7 +35,7 @@ async function main(): Promise<void> {
         const pathToMarkdowns: Dictionary<TMarkdownMetaInfo> = mdMetas.reduce((dict, md) => (dict["/" + md.path] = md, dict), {})
         i(FILE_NAME, "mdMetas", mdMetas.map(p => p.path))
 
-        const menus: IMenuItemModal[] = pathTreeToMenuTree(pathTree, basePath)
+        const menus: IMenuItemModal[] = pathTreeToMenuTree(pathTree.filter(p => !p.path.endsWith(".mdx")), basePath)
         i(FILE_NAME, "menus", menus.length)
 
         const OVERWRITE_FLAG = { flag: "w+" }
