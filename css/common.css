@@ -1,6 +1,16 @@
 :root {
-    --border-radius: 1rem !important;
+    --border-radius: 0.8rem !important;
+    --corner-radius-small: 0.4rem;
+    --corner-radius-medium: 0.8rem;
+    --corner-radius-large: 3.2rem;
+    --corner-radius-xlarge: 4.8rem;
+    --corner-radius-full: 50%;
+    --warm-gray-20: #f3f2ef;
   }
+
+.root {
+    background-color: var(--warm-gray-20);
+}
 
 .menu-layer-0 {
     margin-bottom: 0.5rem;
@@ -14,7 +24,7 @@
 
 .menu-layer-0 .nav-link {
     padding-top: 0.125rem;
-    padding-bottom: 0.25rem;
+    padding-bottom: 0.125rem;
 }
 
 .menu-layer-1 {
@@ -30,7 +40,7 @@
 
 .menu-layer-1 .nav-link {
     padding-top: 0.125rem;
-    padding-bottom: 0.25rem;
+    padding-bottom: 0.125rem;
 }
 
 .menu-layer-2 {
@@ -45,7 +55,7 @@
 
 .menu-layer-2 .nav-link {
     padding-top: 0.125rem;
-    padding-bottom: 0.25rem;
+    padding-bottom: 0.125rem;
 }
 
 .menu-sidebar {
@@ -54,23 +64,23 @@
 
 
 
-.menu-sidebar .menu_header .nav-title > h5 {
+.menu-sidebar .menu_header .nav-title a {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: darkgray;
+    /* color: darkgray; */
 }
 
-.menu-sidebar .menu_header .nav-title > h5:before, .menu-sidebar .menu_header .nav-title > h5:after {
+.menu-sidebar .menu_header .nav-title  a:before, .menu-sidebar .menu_header .nav-title a:after {
     content: '';
     border-top: 2px solid;
     margin: 0 5px 0 0;
     flex: 1 0 2px;
-    color: darkgray;
+    /* color: darkgray; */
 }
 
-.menu-sidebar .menu_header .nav-title > h5:after {
+.menu-sidebar .menu_header .nav-title  a:after {
     margin: 0 0 0 2px;
 }
 
@@ -162,4 +172,12 @@
     border-bottom-left-radius: 50rem !important;
     border-top-right-radius: 50rem !important;
     border-bottom-right-radius: 50rem !important;
+}
+
+.nav-sidebar {
+    background-color: white;
+}
+
+.blog-item {
+    background-color: white;
 }
