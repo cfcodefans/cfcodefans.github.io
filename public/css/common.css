@@ -24,7 +24,7 @@
 
 .menu-layer-0 .nav-link {
     padding-top: 0.125rem;
-    padding-bottom: 0.25rem;
+    padding-bottom: 0.125rem;
 }
 
 .menu-layer-1 {
@@ -40,7 +40,7 @@
 
 .menu-layer-1 .nav-link {
     padding-top: 0.125rem;
-    padding-bottom: 0.25rem;
+    padding-bottom: 0.125rem;
 }
 
 .menu-layer-2 {
@@ -55,7 +55,7 @@
 
 .menu-layer-2 .nav-link {
     padding-top: 0.125rem;
-    padding-bottom: 0.25rem;
+    padding-bottom: 0.125rem;
 }
 
 .menu-sidebar {
@@ -64,23 +64,23 @@
 
 
 
-.menu-sidebar .menu_header .nav-title > h5 {
+.menu-sidebar .menu_header .nav-title a {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: darkgray;
+    /* color: darkgray; */
 }
 
-.menu-sidebar .menu_header .nav-title > h5:before, .menu-sidebar .menu_header .nav-title > h5:after {
+.menu-sidebar .menu_header .nav-title  a:before, .menu-sidebar .menu_header .nav-title a:after {
     content: '';
     border-top: 2px solid;
     margin: 0 5px 0 0;
     flex: 1 0 2px;
-    color: darkgray;
+    /* color: darkgray; */
 }
 
-.menu-sidebar .menu_header .nav-title > h5:after {
+.menu-sidebar .menu_header .nav-title  a:after {
     margin: 0 0 0 2px;
 }
 

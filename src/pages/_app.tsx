@@ -32,7 +32,7 @@ export default function _App({ Component, pageProps, router }: AppProps): JSX.El
         //For markdown mdx content
         content = <Layout home layoutProps={layoutProps}>
             <MDXProvider components={{ wrapper: MDX_Frame, ...MDX_COMPONENTS }}>
-                <div className="container d-flex flex-column white">
+                <div className="container d-flex flex-column pt-3 white rounded-1">
                     <BlogHeader {...pathToMarkdowns[_path + ".mdx"]} />
                     <Component {...pageProps} />
                 </div>

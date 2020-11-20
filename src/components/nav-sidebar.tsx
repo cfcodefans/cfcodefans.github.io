@@ -4,7 +4,6 @@ import { deepTraverse, i } from "../lib/commons"
 import { IMenuItemModal } from "../types"
 import BreadCrumb from "./breadcrumb"
 import _ from "lodash"
-// import "./nav-sidebar.less"
 import { NextRouter, useRouter } from "next/dist/client/router"
 
 const UL_STYLE: string = "nav default-pills nav-pills nav-fills pt-1"
@@ -24,15 +23,15 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
     const _link: string = `/${modal.link}`
 
     // const [currentPath, setCurrentPath] = useState("")
-    // useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
+    // useEffect(() => setCurrentPath((window && window.location.pathname) || "")) badge badge-pill badge-info justify-content-between
     const router: NextRouter = useRouter()
     // i("nav-sidebar.tsx", "_link", _link)
 
     return (<nav className={`menu-layer-${modal.layer} nav-item w-100`}>
         <Link href={_link}>
-            <a className={`icon-${modal.icon} nav-link ${isClosestMenu(_link, router.asPath) ? "active z-depth-1-half" : ""} hoverable rounded-pill d-flex px-2 justify-content-between`}>
-                <span className="menu-label text-capitalize">{modal.label}</span>
-                <span className="badge badge-pill badge-info align-self-center">{modal.leaveCount}</span>
+            <a className={`icon-${modal.icon} nav-link ${isClosestMenu(_link, router.asPath) ? "active z-depth-1-half font-weight-bolder" : ""} hoverable rounded-pill d-flex px-2 justify-content-between`}>
+                <span className="menu-label text-capitalize">{modal.label}</span>&nbsp;
+                <span className="badge badge-pill badge-light align-self-center">{modal.leaveCount}</span>
             </a>
         </Link>
         {
@@ -78,7 +77,11 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
                 </a>
             </div>
             <div className="nav-title text-center flex-grow-1 w-100">
-                <h5 className="text-gray text-capitalize">cfcodefans</h5>
+                <Link href="/resume">
+                    <a className="text-capitalize font-weight-bold">
+                        cfcodefans
+                    </a>
+                </Link>
             </div>
         </div>
 
@@ -99,7 +102,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
                 </button>
             </nav>
 
-            <div className="navbar-collapse border border-0 z-depth-0 d-lg-block" id="menu_box">
+            <div className="navbar-collapse border border-0 z-depth-0 d-lg-block pr-1" id="menu_box">
                 <nav className={`menu ${UL_STYLE} smooth-scroll w-100 `}>
                     {menus.map(m => linkAndElements.get(m.link))}
                 </nav>
