@@ -5,7 +5,7 @@ import _ from "lodash"
 import { GetStaticPathsContext, GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult } from "next"
 import * as _p from "path"
 import path, { extname } from "path"
-import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "../types"
+import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "types"
 import { compare, deepTraverse, getNameAndExt, i, iterateTree_a, jsf } from "./commons"
 import { getMetaAndExcerptFromMDX } from "./mdx-fn"
 

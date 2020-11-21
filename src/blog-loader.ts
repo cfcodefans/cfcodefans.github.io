@@ -1,9 +1,9 @@
 import { promises as fsp } from "fs"
 import { Dictionary } from "lodash"
 import * as _p from "path"
-import { getMDXMeta, isMDX, LOAD_PATHS, pathTreeToMenuTree, pathTreeToRouteTree } from "./lib/blogs"
-import { deepTraverse, i, jsf } from "./lib/commons"
-import { IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "./types"
+import { getMDXMeta, isMDX, LOAD_PATHS, pathTreeToMenuTree, pathTreeToRouteTree } from "lib/blogs"
+import { deepTraverse, i, jsf } from "lib/commons"
+import { IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "types"
 
 const CWD: string = process.cwd()
 const FILE_NAME: string = "blog-loader.ts"

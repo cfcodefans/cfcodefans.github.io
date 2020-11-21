@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from "next/document"
-import { i } from "../lib/commons"
+import { i } from "lib/commons"
 
 class TemplateDoc extends Document {
     static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {

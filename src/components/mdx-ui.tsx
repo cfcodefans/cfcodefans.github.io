@@ -1,8 +1,9 @@
+import { NextRouter, useRouter } from "next/dist/client/router"
 import Head from "next/head"
 import Link from "next/link"
 import React, { ReactNode } from "react"
-import { compare } from "../lib/commons"
-import { TMarkdownMetaInfo } from "../types"
+import { compare } from "lib/commons"
+import { TMarkdownMetaInfo } from "types"
 
 export function BlogList({ mds }: { mds: TMarkdownMetaInfo[] }): JSX.Element {
     return <div className="w-100 d-flex flex-column">
@@ -36,9 +37,12 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
 export function BlogHeader(props: TMarkdownMetaInfo): JSX.Element {
     const { meta } = props
     const { og } = meta
+    const router: NextRouter = useRouter()
+
     return <header className="text-center">
         <Head>
             <title>cfcodefans: {meta["title"]}</title>
+            <meta property="og:url" content={`https://cfcodefans.github.io${router.asPath}`} key="url" />
             <meta property="og:title" content={meta["title"]} key="title" />
             <meta name="description" content={meta["desc"] || meta["title"]} />
             <meta name="keywords" content={meta["tags"]} />
@@ -61,7 +65,7 @@ export function BlogArticle({ content, metaInfo }: { content: ReactNode, metaInf
 export default function CustomLink({ as, href, children, ...otherProps }: { children: ReactNode, as: string, href: string }): JSX.Element {
     return <Link as={as} href={href}>
         <span>
-            <a {...otherProps} href={href}>{children}</a>
+            <a {...otherProps} href={href}>{children}</a> &nbsp;
             <a {...otherProps} href={href} target="_blank">[+]</a>
         </span>
     </Link>

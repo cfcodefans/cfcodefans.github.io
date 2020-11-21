@@ -1,7 +1,7 @@
 import { NextRouter, useRouter } from "next/dist/client/router"
 import React from "react"
-import { BlogList } from "../components/mdx-ui"
-import { ILayoutPros } from "../types"
+import { BlogList } from "components/mdx-ui"
+import { ILayoutPros } from "types"
 
 export default function IndexPage({ layoutProps }: { layoutProps: ILayoutPros }): JSX.Element {
     const router: NextRouter = useRouter()

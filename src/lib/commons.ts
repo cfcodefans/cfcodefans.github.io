@@ -1,5 +1,5 @@
 import * as _ from "lodash"
-import { IPathInfo, ITNode, TNode, TTraverser } from "../types"
+import { IPathInfo, ITNode, TNode, TTraverser } from "types"
 
 
 export function compare<T>(s1: T, s2: T): number {

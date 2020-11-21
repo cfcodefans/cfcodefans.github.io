@@ -1,6 +1,6 @@
 import * as _ from "lodash"
 import React, { ReactNode, useReducer } from "react"
-import { ILayoutPros, IMenuItemModal, IRouteModal, TMarkdownMetaInfo } from "../types"
+import { ILayoutPros, IMenuItemModal, IRouteModal, TMarkdownMetaInfo } from "types"
 import MiscSideBar from "./misc-sidebar"
 import NavSideBar from "./nav-sidebar"
 import NavTopBar from "./nav-topbar"

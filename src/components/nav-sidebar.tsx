@@ -1,6 +1,6 @@
 import Link from "next/link"
 import React, { ReactElement, ReactNodeArray, useEffect, useState } from "react"
-import { deepTraverse, i } from "../lib/commons"
+import { deepTraverse, i } from "lib/commons"
 import { IMenuItemModal } from "../types"
 import BreadCrumb from "./breadcrumb"
 import _ from "lodash"
