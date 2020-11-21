@@ -79,7 +79,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
             <div className="nav-title text-center flex-grow-1 w-100">
                 <Link href="/resume">
                     <a className="text-capitalize font-weight-bold">
-                        cfcodefans
+                        [cfcodefans]
                     </a>
                 </Link>
             </div>

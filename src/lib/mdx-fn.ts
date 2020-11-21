@@ -3,7 +3,7 @@ import _ from "lodash"
 import * as unified from "unified"
 import { Node, Parent, Literal } from "unist"
 import renderToString from "next-mdx-remote/render-to-string"
-import { MDX_COMPONENTS } from "components/mdx-ui"
+import { MDX_COMPONENTS } from "../components/mdx-ui"
 import { i } from "./commons"
 const _attr = require("remark-attr")
 const remarkMath = require("remark-math")

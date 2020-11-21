@@ -18,8 +18,9 @@ const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
 export default function _App({ Component, pageProps, router }: AppProps): JSX.Element {
     i("_app.tsx", "router", router.asPath, "pageProps", Object.keys(pageProps))
 
-    const { layoutProps } = pageProps
-    const { routes, pathToMarkdowns } = layoutProps
+    // const { layoutProps } = pageProps
+    const layoutProps: ILayoutPros = { menus, routeTree, routes, pathToMarkdowns }
+    // const { routes, pathToMarkdowns } = layoutProps
 
     let content: JSX.Element = null
 
@@ -54,13 +55,9 @@ export default function _App({ Component, pageProps, router }: AppProps): JSX.El
 
 export async function getInitialProps(appContext: AppContext): Promise<AppInitialProps> {
     const { Component, ctx, } = appContext
-    // const { bootstrap, } = await import("../lib/blogs")
-
-    // const menus: IMenuItemModal[] = await LOAD_MENUS(await LOAD_PATHS(ROOT_PATH), BASE_PATH)
-    // const layoutProps: ILayoutPros = await bootstrap()
     const layoutProps: ILayoutPros = { menus, routeTree, routes, pathToMarkdowns }
     i("_app.tsx", "menus", layoutProps.menus.length)
     return { pageProps: { layoutProps } }
 }
 
-_App.getInitialProps = getInitialProps
+// _App.getInitialProps = getInitialProps

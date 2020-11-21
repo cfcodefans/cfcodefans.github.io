@@ -2,8 +2,8 @@ import { NextRouter, useRouter } from "next/dist/client/router"
 import Head from "next/head"
 import Link from "next/link"
 import React, { ReactNode } from "react"
-import { compare } from "lib/commons"
-import { TMarkdownMetaInfo } from "types"
+import { compare } from "../lib/commons"
+import { TMarkdownMetaInfo } from "../types"
 
 export function BlogList({ mds }: { mds: TMarkdownMetaInfo[] }): JSX.Element {
     return <div className="w-100 d-flex flex-column">

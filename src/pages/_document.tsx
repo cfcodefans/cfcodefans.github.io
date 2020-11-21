@@ -40,6 +40,7 @@ class TemplateDoc extends Document {
                 <link href="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/css/mdb.css" rel="stylesheet" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" rel="stylesheet" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.3.2/styles/default.min.css" rel="stylesheet" />
+                <meta property="og:type" content="website" />
             </Head>
             <body className="root" onLoad={this.docOnLoad}>
                 <Main />

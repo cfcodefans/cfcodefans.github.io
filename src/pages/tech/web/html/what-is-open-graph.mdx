@@ -4,7 +4,10 @@ export const meta = {"authors": ["cfcodefans"],
 "og":{"image":"https://ogp.me/logo.png"}
 }
 
-![OGP](https://ogp.me/logo.png)
+<div className="text-center">
+
+![OGP](https://ogp.me/logo.png){height="100"}
+</div>
 
 As I studied so far, [Open-Graph-Protocol](https://ogp.me/){target="_blank"} is the protocol recognized by social network. In detail,
 you could add certain set of meta tags into your web pages, then when the web pages are shared by links in soical networks, such as 
@@ -12,9 +15,32 @@ you could add certain set of meta tags into your web pages, then when the web pa
 and display these info to make the shared links more informative.
 <!--more-->
 
-such as this code snippet 
+such as this code snippet to be placed between head tag of a html page
 
 ```html
+<html>
+<head>
+...
 <meta property="og:title" content="What is Open Graph?">
 <meta property="og:image" content="https://ogp.me/logo.png">
+<meta property="og:url" content="https://cfcodefans.github.io/tech/web/html/what-is-open-graph">
+...
+</head>
 ```
+1. og:title - The title of your object as it should appear within the graph, e.g
+2. og:image - An image URL which should represent your object within the graph.
+3. og:url - The canonical URL of your object that will be used as its permanent ID in the graph
+
+
+with above metadata, when the page is shared in linkedin, linkedin would fetch the metadata from
+the link, and display the image in metadata, title as well. By these info, the post appears more
+informative.
+
+<div className="text-center">
+
+![OGP](/res/html/ogp-sharing-linkedin.png){height="500"}
+</div>
+
+It is implemented differently to achieve same effect while sharing urls on twitter.
+Twitter has it own prefix "twitter:" instead of "og", please refer to [doc of twitter](https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started){target="_blank"}
+
