@@ -93,9 +93,12 @@
         "react",
         "mdx"
       ],
-      "title": "How to embed react into markdown?"
+      "title": "How to embed react into markdown?",
+      "og": {
+        "image": "https://mdx-logo.now.sh/"
+      }
     },
-    "excerpt": "<p><span><a target=\"_blank\" href=\"https://mdxjs.com/\">MDX</a>  <a target=\"_blank\" href=\"https://mdxjs.com/\">[+]</a></span> is interesting extension for <span><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">markdown</a>  <a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">[+]</a></span></p>",
+    "excerpt": "<div class=\"text-center\"><p><img src=\"https://mdx-logo.now.sh/\" alt=\"MDX\" height=\"100\"/></p></div><p><span><a target=\"_blank\" href=\"https://mdxjs.com/\">MDX</a>  <a target=\"_blank\" href=\"https://mdxjs.com/\">[+]</a></span> is interesting extension for <span><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">markdown</a>  <a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">[+]</a></span></p>",
     "path": "tech/web/markdown/mdx-study.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-22"

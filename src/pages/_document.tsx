@@ -60,10 +60,10 @@ class TemplateDoc extends Document {
                     __html: `
                     window.dataLayer = window.dataLayer || []
                     function gtag(){dataLayer.push(arguments)}
-                    gtag('js', new Date());
+                    gtag('js', new Date())
                     gtag('config', 'G-2B0HY5T3JZ', {
                         page_path: window.location.pathname,
-                    });
+                    })
                 `}}
                 />
             </body>
