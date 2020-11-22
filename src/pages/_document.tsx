@@ -41,6 +41,20 @@ class TemplateDoc extends Document {
                 <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" rel="stylesheet" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.3.2/styles/default.min.css" rel="stylesheet" />
                 <meta property="og:type" content="website" />
+
+
+                {/* Global Site Tag (gtag.js) - Google Analytics */}
+                <script async src={`https://www.googletagmanager.com/gtag/js?id=G-2B0HY5T3JZ`} />
+                <script dangerouslySetInnerHTML={{
+                    __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-2B0HY5T3JZ', {
+                        page_path: window.location.pathname,
+                    });
+                `}}
+                />
             </Head>
             <body className="root" onLoad={this.docOnLoad}>
                 <Main />

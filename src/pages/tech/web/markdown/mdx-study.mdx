@@ -1,19 +1,78 @@
-export const meta = {"authors": ["cfcodefans"], "tags":["markdown", "react", "mdx"], "title":"How to embed react into markdown?"}
-
-import VisxTests_BarGraph from "../../../../components/lab/visx-tests"
 import Head from "next/head"
+import { LetterCounts } from "components/lab/vic-tests"
+import { TemperatureConvertor } from "components/lab/react-tests"
+
+export const meta = {"authors": ["cfcodefans"], 
+"tags":["markdown", "react", "mdx"],
+"title":"How to embed react into markdown?",
+"og": {"image":"https://mdx-logo.now.sh/"}}
+
+<div className="text-center">
+
+![MDX](https://mdx-logo.now.sh/){height="100"}
+</div>
+
 
 [MDX](https://mdxjs.com/){target="_blank"} is interesting extension for [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet){target="_blank"}
 <!--more-->
 
-let us try to embed some React component.
+let us try to embed some React component.(Here I test with [victory data visualization lib](https://formidable.com/open-source/victory/docs/))
 
 ```javascript
-import VisxTests_BarGraph from "../components/lab/visx-tests"
-<VisxTests_BarGraph />
-```
-it looks like
-
-<div>
-    <VisxTests_BarGraph />
+import { LetterCounts } from "components/lab/vic-tests"
+<div style={{ height: "600px", width: "800px", background:"#f0f0f0" }} className="">
+    <LetterCounts str="whatever it is, please count the frequency of letters in this sentence" />
 </div>
+```
+it works like this on the markdown page, (please move mouse over bars so you can tell it is not just image)
+
+<div style={{ height: "300px", width: "400px", background:"#f0f0f0" }} className="rounded-1">
+    <LetterCounts str="whatever it is, please count the frequency of letters in this sentence" />
+</div>
+<br/>
+
+This component:LetterCounts will go through a string and count frequency of each letters, just to display
+some simple mock data.
+
+Let us try making a react component in mdx file.
+
+```javascript
+function TemperatureConvertor(): JSX.Element {
+    const inputRef = useRef(null)
+    const [ts, setTS] = useState(0)
+
+    return <>
+        <input type="number" 
+            ref={inputRef} 
+            onChange={ev => setTS(inputRef.current.value)} 
+            value={ts}></input> °C =&gt; 
+        <span>&nbsp;{ts * 9 / 5 + 32} °F</span>
+    </>
+}
+```
+
+<hr/>
+
+function TemperatureConvertor(): JSX.Element {
+    const inputRef = useRef(null)
+    const [ts, setTS] = useState(0)
+
+    return <>
+        <input type="number" 
+            ref={inputRef} 
+            onChange={ev => setTS(inputRef.current.value)} 
+            value={ts}></input> °C =&gt; 
+        <span>&nbsp;{ts * 9 / 5 + 32} °F</span>
+    </>
+}
+
+
+<hr/>
+
+However, **directly coding in mdx file**, doesn't take the componet to live on the page.
+It has to be code somewhere in .jsx or .tsx file, then import into the mdx file.
+The import clause has to be placed on top of the mdx file.
+
+<TemperatureConvertor/>
+
+<br/>

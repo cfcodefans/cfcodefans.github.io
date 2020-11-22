@@ -11,6 +11,9 @@ import { BlogHeader, MDX_COMPONENTS } from "components/mdx-ui"
 import { i } from "lib/commons"
 import { ILayoutPros } from "types"
 
+import * as gtag from "lib/analystic"
+import { useEffect } from "react"
+
 const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
     return <article children={children} />
 }
@@ -26,6 +29,17 @@ export default function _App({ Component, pageProps, router }: AppProps): JSX.El
 
     const _path: string = router.asPath
     const currentRoute = routes.find(r => r._path == _path)
+
+    useEffect(() => {
+        const handleRouteChange = (url: URL) => {
+            i("_app.tsx", "url on routeChangeComplete event", url)
+            gtag.pageview(url)
+        }
+        router.events.on("routeChangeComplete", handleRouteChange)
+        return () => {
+            router.events.off("routeChangeComplete", handleRouteChange)
+        }
+    }, [router.events])
 
     if (_path.includes("404")) {
         content = <Component {...pageProps} />
