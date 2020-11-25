@@ -1,9 +1,32 @@
 import { promises as fsp } from "fs"
+import fs from "fs"
 import { Dictionary } from "lodash"
 import * as _p from "path"
 import { getMDXMeta, isMDX, LOAD_PATHS, pathTreeToMenuTree, pathTreeToRouteTree } from "./lib/blogs"
 import { deepTraverse, i, jsf } from "./lib/commons"
 import { IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "./types"
+
+import * as x2j from "xml2js"
+
+
+// const sitemap = require("nextjs-sitemap-generator")
+
+// async function genSitemap(): Promise<void> {
+//     const BUILD_ID: string = fs.readFileSync(".next/BUILD_ID").toString()
+//     sitemap({
+//         baseUrl: "https://cfcodefans.github.io",
+//         pagesDirectory: _p.resolve(`${CWD}/.next/server/pages`),
+//         targetDirectory: "public/",
+//         ignoredExtensions: ["js", "map"],
+//         ignoredPaths: ["[fallback]"]
+//     })
+// }
+
+
+
+async function genSitemap(routes: IRouteModal[]): Promise<void> {
+
+}
 
 const CWD: string = process.cwd()
 const FILE_NAME: string = "blog-loader.ts"
@@ -44,7 +67,9 @@ async function main(): Promise<void> {
             fsp.writeFile(_p.resolve(CACHE_PATH + "/route-tree.json"), jsf(routeTree), OVERWRITE_FLAG),
             fsp.writeFile(_p.resolve(CACHE_PATH + "/routes.json"), jsf(routes), OVERWRITE_FLAG),
             fsp.writeFile(_p.resolve(CACHE_PATH + "/mdMetas.json"), jsf(pathToMarkdowns), OVERWRITE_FLAG),
-            fsp.writeFile(_p.resolve(CACHE_PATH + "/menus.json"), jsf(menus), OVERWRITE_FLAG)])
+            fsp.writeFile(_p.resolve(CACHE_PATH + "/menus.json"), jsf(menus), OVERWRITE_FLAG),
+            genSitemap(routes)
+        ])
 
     } catch (e) {
         throw e

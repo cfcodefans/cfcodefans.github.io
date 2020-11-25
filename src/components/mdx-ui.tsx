@@ -44,12 +44,16 @@ export function BlogHeader(props: TMarkdownMetaInfo): JSX.Element {
             <title>cfcodefans: {meta["title"]}</title>
             <meta property="og:url" content={`https://cfcodefans.github.io${router.asPath}`} key="url" />
             <meta property="og:title" content={meta["title"]} key="title" />
-            <meta name="description" content={meta["desc"] || meta["title"]} />
+            <meta name="description" content={meta["desc"] || meta["title"]} key="description" />
             <meta name="keywords" content={meta["tags"]} />
             {og && Object.keys(og).map(k => <meta property={`og:${k}`} content={og[k]} key={k} />)}
         </Head>
         <h3>{meta["title"]}</h3>
-        <div>Created at: <time dateTime={props.createdAt}>{props.createdAt}</time> | By: {meta && meta["authors"]}</div>
+        <div>
+            Created at: <time dateTime={props.createdAt}>{props.createdAt}</time>
+            &nbsp;|&nbsp;By: {meta && meta["authors"]}
+            &nbsp;|&nbsp;At: <a href={`https://github.com/cfcodefans/cfcodefans.github.io/blob/with-nextjs/src/pages${router.asPath}.mdx`}>Source</a>
+        </div>
     </header>
 }
 

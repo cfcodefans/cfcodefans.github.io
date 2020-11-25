@@ -18,7 +18,7 @@ function mock_letter_count(str: string): TData2d[] {
 
 export function LetterCounts({ str }: { str: string }): JSX.Element {
     const data = mock_letter_count(str)
-    i("workshop.ts", "data", data)
+    // i("workshop.ts", "data", data)
     return <vic.VictoryChart theme={vic.VictoryTheme.grayscale} domainPadding={20}>
         <vic.VictoryBar labelComponent={<vic.VictoryTooltip />}
             data={data}

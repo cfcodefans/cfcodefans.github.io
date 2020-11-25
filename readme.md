@@ -31,3 +31,7 @@ yarn preload
 ```cmd
 yarn export && copy _git out\.git && copy _nojekyll out\.nojekyll
 ```
+
+```cmd
+yarn preload && copy _git out\.git && copy _nojekyll out\.nojekyll
+```
