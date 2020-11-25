@@ -19,7 +19,6 @@
 .menu-layer-0 .menu-label {
     font-size: x-large;
     font-weight: bolder;
-    line-height: 1.25;
 }
 
 .menu-layer-0 .nav-link {
@@ -35,7 +34,6 @@
 .menu-layer-1 .menu-label {
     font-size: large;
     font-weight: bolder;
-    line-height: 1.25;
 }
 
 .menu-layer-1 .nav-link {
@@ -49,8 +47,6 @@
 
 .menu-layer-2 .menu-label {
     font-size: medium;
-    font-weight: normal;
-    line-height: 1.25;
 }
 
 .menu-layer-2 .nav-link {
@@ -58,11 +54,18 @@
     padding-bottom: 0.125rem;
 }
 
-.menu-sidebar {
-    position: fixed;
+.menu-label {
+    
+}
+
+.active .menu-label {
+    font-weight: bold;
 }
 
 
+.menu-sidebar {
+    position: fixed;
+}
 
 .menu-sidebar .menu_header .nav-title a {
     display: flex;
@@ -180,4 +183,19 @@
 
 .blog-item {
     background-color: white;
+}
+
+.share-pane {
+}
+
+.share-pane button svg {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+code {
+    border-top-left-radius: var(--border-radius) !important;
+    border-bottom-left-radius: var(--border-radius) !important;
+    border-top-right-radius: var(--border-radius) !important;
+    border-bottom-right-radius: var(--border-radius) !important;
 }
