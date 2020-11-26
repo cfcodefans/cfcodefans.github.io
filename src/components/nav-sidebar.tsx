@@ -29,11 +29,13 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
     // i("nav-sidebar.tsx", "_link", _link)
     //z-depth-1-half
 
+    const isSelected: boolean = isClosestMenu(_link, router.asPath)
+
     return (<nav className={`menu-layer-${modal.layer} nav-item w-100 mt-1`}>
         <Link href={_link}>
-            <a className={`icon-${modal.icon} nav-link ${isClosestMenu(_link, router.asPath) ? "active ml-n1 grey lighten-3" : ""} rounded-pill hoverable d-flex px-2 justify-content-between`}>
+            <a className={`icon-${modal.icon} nav-link ${isSelected ? "active ml-n1 grey lighten-3" : ""} rounded-pill hoverable d-flex px-2 justify-content-between`}>
                 <span className="menu-label text-capitalize">{modal.label}</span>&nbsp;
-                <span className="badge badge-pill badge-light align-self-center">{modal.leaveCount}</span>
+                <span className={`${isSelected ? "" : "badge badge-light"} badge-pill align-self-center`}>{modal.leaveCount}</span>
             </a>
         </Link>
         {
