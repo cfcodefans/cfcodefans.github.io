@@ -33,9 +33,9 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
 
     return (<nav className={`menu-layer-${modal.layer} nav-item w-100 mt-1`}>
         <Link href={_link}>
-            <a className={`icon-${modal.icon} nav-link ${isSelected ? "active ml-n1 grey lighten-3" : ""} rounded-pill hoverable d-flex px-2 justify-content-between`}>
+            <a className={`icon-${modal.icon} nav-link ${isSelected ? "active ml-n1 grey lighten-3" : ""} rounded-pill hoverable d-flex pl-2 pr-1 justify-content-between`}>
                 <span className="menu-label text-capitalize">{modal.label}</span>&nbsp;
-                <span className={`${isSelected ? "" : "badge badge-light"} badge-pill align-self-center`}>{modal.leaveCount}</span>
+                <span className={`${isSelected ? "" : "x-ball grey lighten-3 "} px-2 align-self-center`}>{modal.leaveCount}</span>
             </a>
         </Link>
         {
@@ -75,7 +75,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
 
     return (<nav className="nav-sidebar menu-sidebar d-flex flex-column mr-lg-1 shadow">
         <div className="menu_header flex-lg-column align-items-center">
-            <div className="logo text-center d-flex align-items-center m-lg-4">
+            <div className="logo text-center d-flex align-items-center m-2">
                 <a href="/">
                     <img className="rounded-circle w-100 h-100 hoverable" src="/images/cfcodefans.jpg" />
                 </a>

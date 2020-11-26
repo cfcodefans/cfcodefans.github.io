@@ -15,12 +15,9 @@ export default function IndexPage({ layoutProps }: { layoutProps: ILayoutPros })
     if (currentRoute) {
         pageContent = <BlogList mds={currentRoute.offsprings?.map(mdPath => pathToMarkdowns[mdPath])} />
     } else {
-        pageContent = <BlogList mds={Object.values(pathToMarkdowns)} />
+        pageContent = <BlogList mds={Object.values(pathToMarkdowns).filter(md => !md.path.includes("resume.mdx"))} />
     }
 
-    // return (<Layout home layoutProps={layoutProps}>
-    //     {pageContent}
-    // </Layout>)
     return pageContent
 }
 

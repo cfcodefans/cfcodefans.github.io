@@ -8,12 +8,12 @@
         "link": "tech/data",
         "children": [
           {
-            "label": "h2db",
-            "link": "tech/data/h2db",
+            "label": "database",
+            "link": "tech/data/database",
             "children": [
               {
                 "label": "h2db-source.mdx",
-                "link": "tech/data/h2db/h2db-source.mdx",
+                "link": "tech/data/database/h2db-source.mdx",
                 "children": [],
                 "icon": "h2db-source.mdx",
                 "leaveCount": 0,
@@ -22,16 +22,25 @@
               },
               {
                 "label": "index.tsx",
-                "link": "tech/data/h2db/index.tsx",
+                "link": "tech/data/database/index.tsx",
                 "children": [],
                 "icon": "index.tsx",
                 "leaveCount": 0,
                 "layer": 3,
                 "comparedTo": null
+              },
+              {
+                "label": "mysql-spartial-study-1.mdx",
+                "link": "tech/data/database/mysql-spartial-study-1.mdx",
+                "children": [],
+                "icon": "mysql-spartial-study-1.mdx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
               }
             ],
-            "icon": "h2db",
-            "leaveCount": 1,
+            "icon": "database",
+            "leaveCount": 2,
             "layer": 2,
             "comparedTo": null
           },
@@ -46,7 +55,7 @@
           }
         ],
         "icon": "data",
-        "leaveCount": 1,
+        "leaveCount": 2,
         "layer": 1,
         "comparedTo": null
       },
@@ -173,7 +182,7 @@
       }
     ],
     "icon": "tech",
-    "leaveCount": 5,
+    "leaveCount": 6,
     "layer": 0,
     "comparedTo": null
   },

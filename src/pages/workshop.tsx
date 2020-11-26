@@ -1,21 +1,18 @@
-import { LetterCounts } from "components/lab/vic-tests"
-import React, { useRef, useState } from "react"
-
-function TemperatureConvertor(): JSX.Element {
-    const inputRef = useRef(null)
-    const [ts, setTS] = useState(0)
-
-    return <>
-        <input type="number" ref={inputRef} onChange={ev => setTS(inputRef.current.value)} value={ts}></input> °C =&gt; 
-        <span>&nbsp;{ts * 9 / 5 + 32} °F</span>
-    </>
-}
+import { SimpleInsp } from "components/gadgets"
+import { jsf } from "lib/commons"
+import React from "react"
+import GEO_JSONS from "../../public/res/data/geo-country-low-resolution.geo.json"
 
 export default function Workshop(): JSX.Element {
-    return <div style={{ height: "600px", width: "800px" }}>
-        <LetterCounts str="whatever it is, please count the frequency of letters in this sentence" />
-
-        <TemperatureConvertor />
-    </div>
+    const { features } = GEO_JSONS
+    const [first] = features
+    const { properties, geometry } = first
+    return <>
+        {features.length}
+        <br />
+        <SimpleInsp obj={properties} />
+        <br />
+        {jsf(geometry)}
+    </>
 }
 

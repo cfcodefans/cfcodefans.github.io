@@ -207,12 +207,20 @@
             "comparedTo": null
           },
           {
-            "path": "/h2db",
-            "_path": "/tech/data/h2db",
+            "path": "/database",
+            "_path": "/tech/data/database",
             "children": [
               {
+                "path": "/mysql-spartial-study-1.mdx",
+                "_path": "/tech/data/database/mysql-spartial-study-1.mdx",
+                "children": [],
+                "offsprings": [],
+                "childrenCount": 0,
+                "comparedTo": null
+              },
+              {
                 "path": "/index.tsx",
-                "_path": "/tech/data/h2db/index.tsx",
+                "_path": "/tech/data/database/index.tsx",
                 "children": [],
                 "offsprings": [],
                 "childrenCount": 0,
@@ -220,7 +228,7 @@
               },
               {
                 "path": "/h2db-source.mdx",
-                "_path": "/tech/data/h2db/h2db-source.mdx",
+                "_path": "/tech/data/database/h2db-source.mdx",
                 "children": [],
                 "offsprings": [],
                 "childrenCount": 0,
@@ -228,16 +236,18 @@
               }
             ],
             "offsprings": [
-              "/tech/data/h2db/h2db-source.mdx"
+              "/tech/data/database/mysql-spartial-study-1.mdx",
+              "/tech/data/database/h2db-source.mdx"
             ],
-            "childrenCount": 1,
+            "childrenCount": 2,
             "comparedTo": null
           }
         ],
         "offsprings": [
-          "/tech/data/h2db/h2db-source.mdx"
+          "/tech/data/database/mysql-spartial-study-1.mdx",
+          "/tech/data/database/h2db-source.mdx"
         ],
-        "childrenCount": 1,
+        "childrenCount": 2,
         "comparedTo": null
       }
     ],
@@ -246,9 +256,10 @@
       "/tech/web/markdown/mdx-study.mdx",
       "/tech/web/markdown/markdown-sample.mdx",
       "/tech/web/html/what-is-open-graph.mdx",
-      "/tech/data/h2db/h2db-source.mdx"
+      "/tech/data/database/mysql-spartial-study-1.mdx",
+      "/tech/data/database/h2db-source.mdx"
     ],
-    "childrenCount": 5,
+    "childrenCount": 6,
     "comparedTo": null
   }
 ]

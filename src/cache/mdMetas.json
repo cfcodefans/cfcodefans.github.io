@@ -31,7 +31,7 @@
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-24"
   },
-  "/tech/data/h2db/h2db-source.mdx": {
+  "/tech/data/database/h2db-source.mdx": {
     "meta": {
       "authors": [
         "cfcodefans"
@@ -44,9 +44,30 @@
       "title": "Study of H2 the Java SQL database"
     },
     "excerpt": "<p><img src=\"https://www.h2database.com/html/images/h2-logo-2.png\" alt=\"OGP\"/></p><p>I want to study more about database, not just how to query and store data.\nI wish to know how a database is built, what concerns are to be addressed.\nI figure <span><a href=\"https://h2database.com\">h2databasae</a>  <a href=\"https://h2database.com\" target=\"_blank\">[+]</a></span> could be a good starting point</p>",
-    "path": "tech/data/h2db/h2db-source.mdx",
+    "path": "tech/data/database/h2db-source.mdx",
     "createdAt": "2020-11-16",
     "modifiedAt": "2020-11-22"
+  },
+  "/tech/data/database/mysql-spartial-study-1.mdx": {
+    "meta": {
+      "authors": [
+        "cfcodefans"
+      ],
+      "tags": [
+        "mysql",
+        "database",
+        "spatial",
+        "geo"
+      ],
+      "title": "Study of MYSQL spatial feature",
+      "og": {
+        "image": "https://cfcodefans.github.io/res/mdx/mysql-logo.png"
+      }
+    },
+    "excerpt": "<div class=\"text-center\"><p><img src=\"https://cfcodefans.github.io/res/mdx/mysql-logo.png\" alt=\"MYSQL\" height=\"100\"/></p></div><p>The infamous slogan of internet startup, quoted from silicon valley, &quot;social, mobile, local&quot;.\nWhen it comes to &quot;mobile&quot; &amp; &quot;local&quot;, we need to store, query geo location data. So let us study\n<span><a target=\"_blank\" href=\"https://dev.mysql.com/doc/refman/8.0/en/spatial-types.html\">mysql spatial feature</a>  <a target=\"_blank\" href=\"https://dev.mysql.com/doc/refman/8.0/en/spatial-types.html\">[+]</a></span>. </p>",
+    "path": "tech/data/database/mysql-spartial-study-1.mdx",
+    "createdAt": "2020-11-26",
+    "modifiedAt": "2020-11-26"
   },
   "/tech/web/html/what-is-open-graph.mdx": {
     "meta": {

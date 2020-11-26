@@ -13,11 +13,11 @@
 }
 
 .menu-layer-0 {
-    margin-bottom: 0.5rem;
+    /* margin-bottom: 0.5rem; */
 }
 
 .menu-layer-0 .menu-label {
-    font-size: x-large;
+    font-size: larger;
     font-weight: bolder;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .menu-sidebar .menu_header .nav-title  a:after {
-    margin: 0 0 0 2px;
+    margin: 0 0 0 5px;
 }
 
 .menu-sidebar .menu_header .logo a > img {
