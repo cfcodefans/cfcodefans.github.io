@@ -25,6 +25,10 @@ import * as x2j from "xml2js"
 
 
 async function genSitemap(routes: IRouteModal[]): Promise<void> {
+    // const SITEMAP_NS_URL: string = "http://www.sitemaps.org/schemas/sitemap/0.9"
+    // const xmlDoc: Document = new Document()
+    // const _urlset: Element = xmlDoc.createElementNS(SITEMAP_NS_URL, "urlset")
+    // _urlset.attributes.setNamedItemNS
 
 }
 
