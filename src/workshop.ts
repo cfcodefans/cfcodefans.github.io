@@ -1,6 +1,6 @@
 import { IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "./types"
-import * as routes from "cache/routes.json"
-import { i } from "lib/commons"
+// import * as routes from "./cache/routes.json"
+import { i } from "./lib/commons"
 
 
 const CWD: string = process.cwd()
@@ -16,7 +16,7 @@ async function genSitemap(routes: IRouteModal[]): Promise<void> {
 }
 
 async function main(): Promise<void> {
-    await genSitemap(routes)
+    await genSitemap([])
 }
 
 main().then(() => i(FILE_NAME, "finished"))

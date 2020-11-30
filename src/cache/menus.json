@@ -30,6 +30,15 @@
                 "comparedTo": null
               },
               {
+                "label": "mysql-etl-study-1.mdx",
+                "link": "tech/data/database/mysql-etl-study-1.mdx",
+                "children": [],
+                "icon": "mysql-etl-study-1.mdx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              },
+              {
                 "label": "mysql-spartial-study-1.mdx",
                 "link": "tech/data/database/mysql-spartial-study-1.mdx",
                 "children": [],
@@ -40,7 +49,7 @@
               }
             ],
             "icon": "database",
-            "leaveCount": 2,
+            "leaveCount": 3,
             "layer": 2,
             "comparedTo": null
           },
@@ -55,7 +64,7 @@
           }
         ],
         "icon": "data",
-        "leaveCount": 2,
+        "leaveCount": 3,
         "layer": 1,
         "comparedTo": null
       },
@@ -182,7 +191,7 @@
       }
     ],
     "icon": "tech",
-    "leaveCount": 6,
+    "leaveCount": 7,
     "layer": 0,
     "comparedTo": null
   },

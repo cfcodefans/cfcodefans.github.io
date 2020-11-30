@@ -199,3 +199,7 @@ code {
     border-top-right-radius: var(--border-radius) !important;
     border-bottom-right-radius: var(--border-radius) !important;
 }
+
+.main-pane article table {
+    border: solid 1px gray;
+}
