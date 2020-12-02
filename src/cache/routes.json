@@ -148,6 +148,14 @@
                 "comparedTo": null
               },
               {
+                "path": "/mysql-etl-study-1.mdx",
+                "_path": "/tech/data/database/mysql-etl-study-1.mdx",
+                "children": [],
+                "offsprings": [],
+                "childrenCount": 0,
+                "comparedTo": null
+              },
+              {
                 "path": "/index.tsx",
                 "_path": "/tech/data/database/index.tsx",
                 "children": [],
@@ -166,17 +174,19 @@
             ],
             "offsprings": [
               "/tech/data/database/mysql-spartial-study-1.mdx",
+              "/tech/data/database/mysql-etl-study-1.mdx",
               "/tech/data/database/h2db-source.mdx"
             ],
-            "childrenCount": 2,
+            "childrenCount": 3,
             "comparedTo": null
           }
         ],
         "offsprings": [
           "/tech/data/database/mysql-spartial-study-1.mdx",
+          "/tech/data/database/mysql-etl-study-1.mdx",
           "/tech/data/database/h2db-source.mdx"
         ],
-        "childrenCount": 2,
+        "childrenCount": 3,
         "comparedTo": null
       }
     ],
@@ -186,9 +196,10 @@
       "/tech/web/markdown/markdown-sample.mdx",
       "/tech/web/html/what-is-open-graph.mdx",
       "/tech/data/database/mysql-spartial-study-1.mdx",
+      "/tech/data/database/mysql-etl-study-1.mdx",
       "/tech/data/database/h2db-source.mdx"
     ],
-    "childrenCount": 6,
+    "childrenCount": 7,
     "comparedTo": null
   },
   {
@@ -216,6 +227,14 @@
             "comparedTo": null
           },
           {
+            "path": "/mysql-etl-study-1.mdx",
+            "_path": "/tech/data/database/mysql-etl-study-1.mdx",
+            "children": [],
+            "offsprings": [],
+            "childrenCount": 0,
+            "comparedTo": null
+          },
+          {
             "path": "/index.tsx",
             "_path": "/tech/data/database/index.tsx",
             "children": [],
@@ -234,17 +253,19 @@
         ],
         "offsprings": [
           "/tech/data/database/mysql-spartial-study-1.mdx",
+          "/tech/data/database/mysql-etl-study-1.mdx",
           "/tech/data/database/h2db-source.mdx"
         ],
-        "childrenCount": 2,
+        "childrenCount": 3,
         "comparedTo": null
       }
     ],
     "offsprings": [
       "/tech/data/database/mysql-spartial-study-1.mdx",
+      "/tech/data/database/mysql-etl-study-1.mdx",
       "/tech/data/database/h2db-source.mdx"
     ],
-    "childrenCount": 2,
+    "childrenCount": 3,
     "comparedTo": null
   },
   {
@@ -254,6 +275,14 @@
       {
         "path": "/mysql-spartial-study-1.mdx",
         "_path": "/tech/data/database/mysql-spartial-study-1.mdx",
+        "children": [],
+        "offsprings": [],
+        "childrenCount": 0,
+        "comparedTo": null
+      },
+      {
+        "path": "/mysql-etl-study-1.mdx",
+        "_path": "/tech/data/database/mysql-etl-study-1.mdx",
         "children": [],
         "offsprings": [],
         "childrenCount": 0,
@@ -278,9 +307,10 @@
     ],
     "offsprings": [
       "/tech/data/database/mysql-spartial-study-1.mdx",
+      "/tech/data/database/mysql-etl-study-1.mdx",
       "/tech/data/database/h2db-source.mdx"
     ],
-    "childrenCount": 2,
+    "childrenCount": 3,
     "comparedTo": null
   },
   {
@@ -294,6 +324,14 @@
   {
     "path": "/index.tsx",
     "_path": "/tech/data/database/index.tsx",
+    "children": [],
+    "offsprings": [],
+    "childrenCount": 0,
+    "comparedTo": null
+  },
+  {
+    "path": "/mysql-etl-study-1.mdx",
+    "_path": "/tech/data/database/mysql-etl-study-1.mdx",
     "children": [],
     "offsprings": [],
     "childrenCount": 0,
