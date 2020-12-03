@@ -1,5 +1,5 @@
 import * as _ from "lodash"
-import { IPathInfo, ITNode, TNode, TTraverser } from "types"
+import { ITNode, TNode, TTraverser } from "types"
 
 
 export function compare<T>(s1: T, s2: T): number {
@@ -111,6 +111,13 @@ export function i(filename: string, ...rest: any[]) {
     const frames = stackTrace.match(/[^\r\n]+/g)
     const idx = frames.findIndex(frame => frame.includes("at i (")) + 1
     console.info("\n", filename, frames[idx], "\n\t", ...(rest || []).map(obj => jsf(obj)), "\n")
+}
+
+export function e(filename: string, ...rest: any[]) {
+    const stackTrace = (new Error()).stack
+    const frames = stackTrace.match(/[^\r\n]+/g)
+    const idx = frames.findIndex(frame => frame.includes("at i (")) + 1
+    console.error("\n", filename, frames[idx], "\n\t", ...(rest || []).map(obj => jsf(obj)), "\n")
 }
 
 export function jsf(v: any, indent: string = "  "): string {

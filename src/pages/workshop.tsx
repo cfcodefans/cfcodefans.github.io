@@ -1,4 +1,5 @@
 import { SimpleInsp } from "components/gadgets"
+import { _iframe, _jsonp } from "components/utils"
 import { i, jsf } from "lib/commons"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { Spinner } from "react-bootstrap"
@@ -8,7 +9,9 @@ const FILE_NAME: string = "workshop.tsx"
 
 
 export default function Workshop(): JSX.Element {
-    const url:string = "http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sh601006&scale=60&ma=no&datalen=10"
+    // const url: string = "http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sh601006&scale=60&ma=no&datalen=10"
+    const url: string = "https://q.stock.sohu.com/hisHq?code=cn_600104&start=20190716&end=20191113&stat=1&order=D&period=d&callback=historySearchHandler&rt=jsonp"
+    window["historySearchHandler"] = (resp) => i(FILE_NAME, "historySearchHandler", resp)
     return <div>
         <p>{url}</p>
         <UrlDataLoader url={url}
@@ -16,8 +19,6 @@ export default function Workshop(): JSX.Element {
             fallbackCmp={() => <Spinner animation="grow" />} />
     </div>
 }
-
-
 
 function DataLoaderTempl<P, T>({ params, loader, renderCmp, fallbackCmp }: { params: P, loader: (P) => Promise<T>, renderCmp: React.FC<T>, fallbackCmp: React.FC }): JSX.Element {
     const [paramState, setParamState] = useState(null)
@@ -56,6 +57,7 @@ function UrlDataLoader({ url, renderCmp, fallbackCmp }: { url: string, renderCmp
     const loader = (p: string) => {
         i(FILE_NAME, "loader", p)
         return fetch(url, { method: "GET" }).then(resp => resp.json)
+        // return _jsonp(url, "jsonp1")
     }
 
     return <DataLoaderTempl params={url}
@@ -64,16 +66,7 @@ function UrlDataLoader({ url, renderCmp, fallbackCmp }: { url: string, renderCmp
         fallbackCmp={fallbackCmp} />
 }
 
-function TestGeoData(): JSX.Element {
-    const { features } = GEO_JSONS
-    const [first] = features
-    const { properties, geometry } = first
-    return <>
-        {features.length}
-        <br />
-        <SimpleInsp obj={properties} />
-        <br />
-        {jsf(geometry)}
-    </>
+function JsonpDataLoader({ url, renderCmp, fallbackCmp }: { url: string, callbackFn: Function, renderCmp: React.FC<any>, fallbackCmp: React.FC }): JSX.Element {
+    i(FILE_NAME, "JsonpDataLoader", url)
+    
 }
-
