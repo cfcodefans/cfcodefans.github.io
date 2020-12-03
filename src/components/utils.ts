@@ -62,12 +62,14 @@ export async function _jsonp(_url: string, id: string, callbackFn: Function, tim
             }
             reject(new Error(`JSONP request to ${url} timed out`))
             removeScript(id)
+            clearFunction(callbackFn.name)
         }, timeout)
 
         window[callbackFn.name] = (resp) => {
             resolveFn(resp)
             if (timeoutId) clearTimeout(timeoutId)
             removeScript(id)
+            clearFunction(callbackFn.name)
         }
 
         // jsonScriptEl.onload = (ev: Event) => {
@@ -82,6 +84,7 @@ export async function _jsonp(_url: string, id: string, callbackFn: Function, tim
             rejectFn(error)
             if (timeoutId) clearTimeout(timeoutId)
             removeScript(id)
+            clearFunction(callbackFn.name)
         }
     })
 }
