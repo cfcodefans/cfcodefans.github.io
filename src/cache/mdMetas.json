@@ -11,8 +11,8 @@
     },
     "excerpt": "<hr/><ul><li><span><a href=\"#objectives\">1. Objectives</a>  <a href=\"#objectives\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#contact\">2. Contact</a>  <a href=\"#contact\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#education\">3. Education</a>  <a href=\"#education\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#certificate\">4. Certificate</a>  <a href=\"#certificate\" target=\"_blank\">[+]</a></span></li><li><span><a href=\"#experience\">5. Experience</a>  <a href=\"#experience\" target=\"_blank\">[+]</a></span></li></ul><p> </p><h2 id=\"objectives\">1. Objectives</h2>Hi, I am Chen Fan.<pre><code>I have been working as a java coder and enthusiastic about coding (so much to learn).  \n</code></pre><p>I aspire to further my programming knowledge, skills and vision of the evolving internet. </p><pre><code>I firmly believe that internet driven services will flourish through innovations and \n</code></pre><p>connection to other industries thus I wish to participate this exploratory process. I\nbelieve\nI could contribute to business success with combination of my experience, creativity,\nteam spirit, most importantly learning ability.</p><p>Thanks and best regards. </p>",
     "path": "resume.mdx",
-    "createdAt": "2020-11-20",
-    "modifiedAt": "2020-11-20"
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-22"
   },
   "/study/finance/tushare-setup.mdx": {
     "meta": {
@@ -28,8 +28,8 @@
     },
     "excerpt": "<p><span><a target=\"_blank\" href=\"http://tushare.org/\">Tushare</a>  <a target=\"_blank\" href=\"http://tushare.org/\">[+]</a></span></p><p><em>Tushare is a free, open sourced python financial data interface library</em>.\nIts primary features include collecting data of financial, such as stock; cleaning data and storing data,\nwhich provides financial analysts with quick, neat, and diversy data for analysis, reduces difficulty on\ndata collection for them, allows them to focus more on realization of strategy and modeling....</p>",
     "path": "study/finance/tushare-setup.mdx",
-    "createdAt": "2020-11-15",
-    "modifiedAt": "2020-11-23"
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-24"
   },
   "/tech/data/database/h2db-source.mdx": {
     "meta": {
@@ -45,8 +45,8 @@
     },
     "excerpt": "<p><img src=\"https://www.h2database.com/html/images/h2-logo-2.png\" alt=\"OGP\"/></p><p>I want to study more about database, not just how to query and store data.\nI wish to know how a database is built, what concerns are to be addressed.\nI figure <span><a href=\"https://h2database.com\">h2databasae</a>  <a href=\"https://h2database.com\" target=\"_blank\">[+]</a></span> could be a good starting point</p>",
     "path": "tech/data/database/h2db-source.mdx",
-    "createdAt": "2020-11-26",
-    "modifiedAt": "2020-11-26"
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-22"
   },
   "/tech/data/database/mysql-etl-study-1.mdx": {
     "meta": {
@@ -66,8 +66,8 @@
     },
     "excerpt": "<div class=\"text-center\"><p><img src=\"/res/mdx/mysql-logo.png\" alt=\"MYSQL\" height=\"100\"/></p></div><p>In the preparation of another blog talking about spatial feature of MYSQL, I started with data collection,\nthen I wondered how capable MYSQL could be on <span><a href=\"https://en.wikipedia.org/wiki/Extract,_transform,_load\">ETL(Extraction/Transform/Loading)</a>  <a href=\"https://en.wikipedia.org/wiki/Extract,_transform,_load\" target=\"_blank\">[+]</a></span>.</p><p>Firstly I found some geo data from <span><a href=\"https://geojson-maps.ash.ms/d9f6df37-7191-4b49-8b5c-1c875e4fc951\">AshKyd</a>  <a href=\"https://geojson-maps.ash.ms/d9f6df37-7191-4b49-8b5c-1c875e4fc951\" target=\"_blank\">[+]</a></span></p>",
     "path": "tech/data/database/mysql-etl-study-1.mdx",
-    "createdAt": "2020-11-30",
-    "modifiedAt": "2020-11-30"
+    "createdAt": "2020-12-02",
+    "modifiedAt": "2020-12-02"
   },
   "/tech/data/database/mysql-spartial-study-1.mdx": {
     "meta": {
@@ -107,8 +107,8 @@
     },
     "excerpt": "<div class=\"text-center\"><p><img src=\"https://ogp.me/logo.png\" alt=\"OGP\" height=\"100\"/></p></div><p>As I studied so far, <span><a target=\"_blank\" href=\"https://ogp.me/\">Open-Graph-Protocol</a>  <a target=\"_blank\" href=\"https://ogp.me/\">[+]</a></span> is the protocol recognized by social network. In detail,\nyou could add certain set of meta tags into your web pages, then when the web pages are shared by links in soical networks, such as\n<span><a href=\"https://linkedin.com/\">linkedin</a>  <a href=\"https://linkedin.com/\" target=\"_blank\">[+]</a></span>, the social network could extract the info from the meta tags according to Open Graph Protocol\nand display these info to make the shared links more informative.</p>",
     "path": "tech/web/html/what-is-open-graph.mdx",
-    "createdAt": "2020-11-20",
-    "modifiedAt": "2020-11-21"
+    "createdAt": "2020-11-22",
+    "modifiedAt": "2020-11-22"
   },
   "/tech/web/markdown/markdown-sample.mdx": {
     "meta": {
@@ -122,8 +122,8 @@
     },
     "excerpt": "<p>Hi! I&#x27;m your first Markdown file in <strong>StackEdit</strong>. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the <strong>file explorer</strong> on the left corner of the navigation bar.</p>",
     "path": "tech/web/markdown/markdown-sample.mdx",
-    "createdAt": "2020-11-15",
-    "modifiedAt": "2020-11-20"
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-22"
   },
   "/tech/web/markdown/mdx-study.mdx": {
     "meta": {
@@ -142,8 +142,8 @@
     },
     "excerpt": "<div class=\"text-center\"><p><img src=\"https://mdx-logo.now.sh/\" alt=\"MDX\" height=\"100\"/></p></div><p><span><a target=\"_blank\" href=\"https://mdxjs.com/\">MDX</a>  <a target=\"_blank\" href=\"https://mdxjs.com/\">[+]</a></span> is interesting extension for <span><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">markdown</a>  <a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">[+]</a></span></p>",
     "path": "tech/web/markdown/mdx-study.mdx",
-    "createdAt": "2020-11-23",
-    "modifiedAt": "2020-11-23"
+    "createdAt": "2020-11-16",
+    "modifiedAt": "2020-11-22"
   },
   "/tech/web/ssg/react-static-intro.mdx": {
     "meta": {
@@ -159,7 +159,7 @@
     },
     "excerpt": "<p><span><a href=\"https://react-static.js.org/\">react-static</a>  <a href=\"https://react-static.js.org/\" target=\"_blank\">[+]</a></span> is a static web page generator.\nWe can define some functions in static.config.js to load data, and render\nthese data with templates built by react components. These templates are also\norganized by <span><a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\">React-Static Route</a>  <a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\" target=\"_blank\">[+]</a></span></p>",
     "path": "tech/web/ssg/react-static-intro.mdx",
-    "createdAt": "2020-11-15",
-    "modifiedAt": "2020-11-20"
+    "createdAt": "2020-11-22",
+    "modifiedAt": "2020-11-22"
   }
 }

@@ -1,16 +1,22 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "module": "commonjs",
-    "outDir": "dist",
-    "target": "es2017",
-    "isolatedModules": false,
-    "jsx": "react",
-    "noEmit": false
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext",
+            "ESNext"
+        ],
+        "baseUrl": "./src",
+        "module": "commonjs",
+        "outDir": "dist",
+        "target": "es2017",
+        "isolatedModules": false,
+        "jsx": "react",
+        "noEmit": false
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.tsx"
+    ]
 }
