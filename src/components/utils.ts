@@ -40,6 +40,12 @@ function clearFunction(functionName: string) {
     }
 }
 
+// const HANDLERS: { [key: string]: Function } = {}
+
+// export function JSONP_HANDLER(resp: any) {
+
+// }
+
 export async function _jsonp(_url: string, id: string, callbackFn: Function, timeout: number = 5000): Promise<string> {
     const url = _url
 

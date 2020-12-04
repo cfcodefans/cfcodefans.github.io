@@ -3,6 +3,8 @@ import { _iframe, _jsonp } from "components/utils"
 import { i, jsf } from "lib/commons"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { Spinner } from "react-bootstrap"
+import { STOCK } from "components/lab/stocks"
+import { STOCK_CMP } from "components/lab/stock-data-vis"
 import GEO_JSONS from "../../public/res/data/geo-country-low-resolution.geo.json"
 
 const FILE_NAME: string = "workshop.tsx"
@@ -10,12 +12,24 @@ const FILE_NAME: string = "workshop.tsx"
 
 export default function Workshop(): JSX.Element {
     // const url: string = "http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sh601006&scale=60&ma=no&datalen=10"
-    const url: string = "https://q.stock.sohu.com/hisHq?code=cn_600104&start=20190716&end=20191113&stat=1&order=D&period=d&callback=historySearchHandler&rt=jsonp"
-    window["historySearchHandler"] = (resp) => i(FILE_NAME, "historySearchHandler", resp)
+    const url: string = "https://q.stock.sohu.com/hisHq?code=cn_600104&start=20191110&end=20191111&stat=1&order=D&period=d&callback=historySearchHandler&rt=jsonp"
+    // window["historySearchHandler"] = (resp) => i(FILE_NAME, "historySearchHandler", resp)
+
+    async function historySearchHandler(resp: any): Promise<STOCK.SOHU_STOCK.RawResp[]> {
+        i(FILE_NAME, "JsonpDataLoader.historySearchHandler", resp)
+        return Promise.resolve(resp as STOCK.SOHU_STOCK.RawResp[])
+    }
+
     return <div>
         <p>{url}</p>
-        <UrlDataLoader url={url}
-            renderCmp={(d: any) => <SimpleInsp obj={d} />}
+        <JsonpDataLoader url={url}
+            callbackFn={historySearchHandler}
+            renderCmp={(raws: STOCK.SOHU_STOCK.RawResp[]) => {
+                const [raw] = raws
+                return <pre>
+                    {jsf(raw.hq.map(d => STOCK.SOHU_STOCK.StockData.make(d)))}
+                </pre>
+            }}
             fallbackCmp={() => <Spinner animation="grow" />} />
     </div>
 }
@@ -66,7 +80,16 @@ function UrlDataLoader({ url, renderCmp, fallbackCmp }: { url: string, renderCmp
         fallbackCmp={fallbackCmp} />
 }
 
-function JsonpDataLoader({ url, renderCmp, fallbackCmp }: { url: string, callbackFn: Function, renderCmp: React.FC<any>, fallbackCmp: React.FC }): JSX.Element {
+function JsonpDataLoader({ url, callbackFn, renderCmp, fallbackCmp }: { url: string, callbackFn: Function, renderCmp: React.FC<any>, fallbackCmp: React.FC }): JSX.Element {
     i(FILE_NAME, "JsonpDataLoader", url)
-    
-}
+
+    const jsonpLoader = (p: string) => {
+        i(FILE_NAME, "loader", p)
+        return _jsonp(url, "jsonp1", callbackFn)
+    }
+
+    return <DataLoaderTempl params={url}
+        loader={jsonpLoader}
+        renderCmp={renderCmp}
+        fallbackCmp={fallbackCmp} />
+}   
