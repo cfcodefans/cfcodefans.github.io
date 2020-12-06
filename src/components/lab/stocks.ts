@@ -1,7 +1,38 @@
+import { i } from "lib/commons"
 
 
 export namespace STOCK {
     export namespace SOHU_STOCK {
+        export type TStockData = {
+            date: Date
+            open: number
+            close: number
+            gain: number
+            gainPercent: number
+            low: number
+            high: number
+            volume: number
+            turnover: number
+            trade: number
+        }
+
+        export function toTStockData(raw: string[]): TStockData {
+            const [_date, _open, _close, _gain, _gainPercent, _low, _high, _volume, _turnover, _trade] = raw
+            return {
+                date: new Date(_date),
+                open: parseFloat(_open),
+                close: parseFloat(_close),
+                gain: parseFloat(_gain),
+                gainPercent: parseFloat(_gainPercent),
+                low: parseFloat(_low),
+                high: parseFloat(_high),
+                volume: parseFloat(_volume),
+                turnover: parseFloat(_turnover),
+                trade: parseFloat(_trade)
+            }
+        }
+
+
         export class StockData {
             constructor(public date: Date,
                 public open: number,
@@ -12,7 +43,9 @@ export namespace STOCK {
                 public high: number,
                 public volume: number,
                 public turnover: number,
-                public trade: number) { }
+                public trade: number) {
+                i("stock.ts", "StockData", this)
+            }
 
             static make(raw: string[]): StockData {
                 const [_date, _open, _close, _gain, _gainPercent, _low, _high, _volume, _turnover, _trade] = raw
