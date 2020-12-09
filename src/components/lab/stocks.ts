@@ -1,4 +1,5 @@
 import { i } from "lib/commons"
+import { format } from "date-fns"
 
 
 export namespace STOCK {
@@ -97,7 +98,7 @@ export namespace STOCK {
         export type PERIOD = "d" | "m" | "w"
 
         function dateToParam(d: Date): string {
-            return `${d.getFullYear()}${d.getMonth()}${d.getDate()}`
+            return format(d, "yyyyMMdd")
         }
 
         export function mkJsonpUrlReq(

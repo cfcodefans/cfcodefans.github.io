@@ -1,7 +1,18 @@
 import { format } from "date-fns"
 import React, { useMemo } from "react"
 import * as vic from "victory"
+import { CallbackArgs } from "victory-core"
 import { STOCK } from "./stocks"
+
+type TStockDataVO = {
+    x: string
+    y?: number
+    open: number
+    close: number
+    low: number
+    high: number
+    color: string
+}
 
 export namespace STOCK_CMP {
     function tooltip({ datum }: { datum: STOCK.SOHU_STOCK.TStockData }): string[] {
@@ -10,13 +21,14 @@ export namespace STOCK_CMP {
 
     export function StockCandleChart({ sds }: { sds: STOCK.SOHU_STOCK.TStockData[] }): JSX.Element {
 
-        const data = useMemo(() => {
+        const data: TStockDataVO[] = useMemo(() => {
             return sds.map(sd => ({
                 x: format(sd.date, "MM-dd"),
                 open: sd.open,
                 close: sd.close,
                 high: sd.high,
                 low: sd.low,
+                color: sd.close > sd.open ? "red" : "green"
             }))
         }, [sds])
 
@@ -27,12 +39,14 @@ export namespace STOCK_CMP {
             width={800}
             domainPadding={20}>
 
-            <vic.VictoryCandlestick
-                data={data}
-                labelComponent={<vic.VictoryTooltip />}
-                labels={tooltip}
-                candleColors={{ positive: "red", negative: "green" }}
-            />
+            <vic.VictoryGroup colorScale={["green", "red"]}>
+                <vic.VictoryCandlestick
+                    data={data}
+                    labelComponent={<vic.VictoryTooltip />}
+                    labels={tooltip}
+                    style={{ data: { fill: (args: CallbackArgs) => args.datum.color } }}
+                />
+            </vic.VictoryGroup>
 
             <vic.VictoryAxis gridComponent={<vic.LineSegment />}
                 fixLabelOverlap={true}
