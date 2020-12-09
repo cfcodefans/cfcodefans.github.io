@@ -29,6 +29,7 @@ const externals = {
     "react-dom": "ReactDOM",
     "lodash": "_",
     "react": "React",
+    "victory": "Victory",
     "highlight.js": "hljs"
 }
 
@@ -49,7 +50,10 @@ module.exports = withMDX({
         // console.info("webpack", JSON.stringify(webpack))
         // console.info("config.externals", JSON.stringify(config["externals"]))
 
-        config["externals"] = [...config["externals"], externals]
+        if (!isServer) {
+            config["externals"] = [...config["externals"], externals]
+            console.info("webpack.externals", config["externals"])
+        }
 
         if (!isServer) {
             config["node"] = { global: true, fs: "empty" }

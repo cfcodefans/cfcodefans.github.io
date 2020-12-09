@@ -1,11 +1,7 @@
 import { format } from "date-fns"
-import { compare } from "lib/commons"
 import React, { useMemo } from "react"
 import * as vic from "victory"
-import { CallbackArgs, CoordinatesPropType } from "victory-core"
 import { STOCK } from "./stocks"
-
-
 
 export namespace STOCK_CMP {
     function tooltip({ datum }: { datum: STOCK.SOHU_STOCK.TStockData }): string[] {
@@ -21,7 +17,7 @@ export namespace STOCK_CMP {
                 close: sd.close,
                 high: sd.high,
                 low: sd.low,
-            })).sort((d1, d2) => compare(d1.x, d2.x))
+            }))
         }, [sds])
 
         return <vic.VictoryChart theme={vic.VictoryTheme.material}
@@ -29,8 +25,6 @@ export namespace STOCK_CMP {
             style={{ background: { fill: "white" } }}
             height={600}
             width={800}
-            containerComponent={<vic.VictoryCursorContainer
-                cursorLabel={(p: CoordinatesPropType, args: CallbackArgs) => `x: ${p}, args: ${args}`} />}
             domainPadding={20}>
 
             <vic.VictoryCandlestick

@@ -12,7 +12,7 @@ const FILE_NAME: string = "workshop.tsx"
 
 export default function Workshop(): JSX.Element {
     // const url: string = "http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sh601006&scale=60&ma=no&datalen=10"
-    const url: string = "https://q.stock.sohu.com/hisHq?code=cn_600104&start=20191010&end=20191111&stat=1&order=D&period=d&callback=historySearchHandler&rt=jsonp"
+    const url: string = "https://q.stock.sohu.com/hisHq?code=cn_600104&start=20191010&end=20191111&stat=1&order=A&period=d&callback=historySearchHandler&rt=jsonp"
     // window["historySearchHandler"] = (resp) => i(FILE_NAME, "historySearchHandler", resp)
 
     async function historySearchHandler(resp: any): Promise<STOCK.SOHU_STOCK.RawResp[]> {
