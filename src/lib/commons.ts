@@ -1,6 +1,19 @@
+import { addDays } from "date-fns"
 import * as _ from "lodash"
 import { ITNode, TNode, TTraverser } from "types"
 
+export function sliceMean(arr: number[], start: number = 0, end: number): number {
+    if (_.isEmpty(arr) || start >= arr.length || start > end) return NaN
+
+    start = Math.max(0, start)
+    end = Math.min(arr.length, end)
+
+    if (start == end) return arr[start]
+
+    let sum: number = 0
+    for (let i = start; i < end; i++) sum += arr[i]
+    return sum / (end - start)
+}
 
 export function compare<T>(s1: T, s2: T): number {
     return (s1 == s2) ? 0 : (s1 > s2 ? 1 : -1)
@@ -87,7 +100,7 @@ export function iterateTree(roots: ITNode[], visitor: TreeVisitor): ITNode[] {
             parent = _.last(ancestors)) {
             ancestors.pop()
         }
-        
+
         currentNode.children = (visitor && visitor(currentNode, ancestors)) || currentNode.children
 
         if (!_.isEmpty(currentNode.children)) {
@@ -148,6 +161,10 @@ export function prependIfMissing(str: string, prefix: string, ...prefixes: strin
 
 export type Duration = "day" | "month" | "year"
 export type DateUnit = "year" | "month" | "day"
+
+export function yesterday():Date {
+    return addDays(new Date(), -1)
+}
 
 export function diffMonth(start: Date, end: Date = new Date()): number {
     let sign: number = Math.sign(end.getTime() - start.getTime())
@@ -223,7 +240,7 @@ export function diffDate(d1: Date, d2: Date, unit: DateUnit = "month"): number {
 export function addDate(_d: Date, delta: number, unit: DateUnit = "day"): Date {
     if (!_d) return _d
     _d = (_.isString(_d)) ? new Date(_d) : _d as Date
-    
+
     let [y, M, d, h, m, s] = [_d.getFullYear(), _d.getMonth(), _d.getDate(), _d.getHours(), _d.getMinutes(), _d.getSeconds()]
     switch (unit) {
         case "year": {
@@ -264,3 +281,4 @@ export function floorDate(d: Date, unit: DateUnit = "day"): Date {
             return d
     }
 }
+

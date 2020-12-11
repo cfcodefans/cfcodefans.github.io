@@ -46,7 +46,7 @@ function clearFunction(functionName: string) {
 
 // }
 
-export async function _jsonp(_url: string, id: string, callbackFn: Function, timeout: number = 5000): Promise<string> {
+export async function _jsonp(_url: string, id: string, callbackFnName: string, callbackFn: Function, timeout: number = 5000): Promise<string> {
     const url = _url
 
     i(FILE_NAME, "url", url)
@@ -71,20 +71,12 @@ export async function _jsonp(_url: string, id: string, callbackFn: Function, tim
             clearFunction(callbackFn.name)
         }, timeout)
 
-        window[callbackFn.name] = (resp) => {
+        window[callbackFnName] = (resp) => {
             resolveFn(resp)
             if (timeoutId) clearTimeout(timeoutId)
             removeScript(id)
             clearFunction(callbackFn.name)
         }
-
-        // jsonScriptEl.onload = (ev: Event) => {
-        //     result = jsonScriptEl.text
-        //     i(FILE_NAME, "_jsonp.onload", result, result.length)
-        //     resolveFn(result)
-        //     if (timeoutId) clearTimeout(timeoutId)
-        //     removeScript(id)
-        // }
 
         jsonScriptEl.onerror = (event: string | Event, source?: string, lineno?: number, colno?: number, error?: Error) => {
             rejectFn(error)
@@ -133,3 +125,4 @@ export async function _iframe(_url: string, id: string, timeout: number = 5000):
         }
     })
 }
+

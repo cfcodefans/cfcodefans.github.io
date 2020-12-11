@@ -1,8 +1,25 @@
-import { i } from "lib/commons"
+import { i, sliceMean } from "lib/commons"
 import { format } from "date-fns"
+import _ from "lodash"
 
 
 export namespace STOCK {
+    export type DailySeq<T> = {
+        date: Date
+        x: string
+        y: T
+    }
+
+    export function movingAverage(dailyPrices: number[], span: number = 5): number[] {
+        if (dailyPrices.length < 5) return dailyPrices
+
+        const averagePrices: number[] = new Array(dailyPrices.length)
+        for (let i: number = 0, j = dailyPrices.length; i < j; i++) {
+            averagePrices[i] = sliceMean(dailyPrices, i - span, i)
+        }
+        return averagePrices
+    }
+
     export namespace SOHU_STOCK {
         export type TStockData = {
             date: Date
