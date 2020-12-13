@@ -33,21 +33,21 @@ type TStockPriceVO = {
     ma60?: number
 
     volume: number
-    turnover: number
+    // turnover: number
     trade: number
 }
 
 export namespace STOCK_CMP {
-    function priceTooltip({ datum }: { datum: STOCK.SOHU_STOCK.TStockData }): string[] {
+    function priceTooltip({ datum }: { datum: STOCK.TStockData }): string[] {
         return [`open: ${datum.open}`, `high: ${datum.high}`, `low: ${datum.low}`, `close: ${datum.close}`]
     }
-    function turnoverTooltip({ datum }: { datum: STOCK.SOHU_STOCK.TStockData }): string[] {
+    function turnoverTooltip({ datum }: { datum: STOCK.TStockData }): string[] {
         return [`volume: ${datum.volume}`, `turnover: ${datum.turnover}`, `trade: ${datum.trade}`]
     }
 
     export function StockInfoPanel({ _code, _start, _end }: { _code: string, _start: Date, _end: Date }): JSX.Element {
-        return <div className="d-flex flex-column bg-white rounded-1">
-            <div className="row">
+        return <div className="d-flex flex-column bg-white rounded-1 p-2">
+            <div className="d-flex">
                 <div>
                     <input type="number" />
                 </div>
@@ -61,7 +61,7 @@ export namespace STOCK_CMP {
         </div>
     }
 
-    export function StockCandleChart({ sds }: { sds: STOCK.SOHU_STOCK.TStockData[] }): JSX.Element {
+    export function StockCandleChart({ sds }: { sds: STOCK.TStockData[] }): JSX.Element {
         const data: TStockDataVO = useMemo(() => {
             const dailyPrices: TStockPriceVO[] = sds.map(sd => ({
                 x: format(sd.date, "MM-dd"),
@@ -106,8 +106,7 @@ export namespace STOCK_CMP {
                 <vic.VictoryGroup>
                     <vic.VictoryLine colorScale={["lightblue"]} standalone={true}
                         containerComponent={
-                            <vic.VictoryCursorContainer
-                                cursorLabel={(datum) => `${round(datum.x, 2)}, ${round(datum.y, 2)}`} />
+                            <vic.VictoryCursorContainer cursorLabel={(datum) => `${round(datum.x, 2)}, ${round(datum.y, 2)}`} />
                         }
                         data={data.dailyPrices}
                         y={(datum: TStockPriceVO) => datum.close} />

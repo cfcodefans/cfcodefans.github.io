@@ -166,20 +166,6 @@ export function yesterday():Date {
     return addDays(new Date(), -1)
 }
 
-export function diffMonth(start: Date, end: Date = new Date()): number {
-    let sign: number = Math.sign(end.getTime() - start.getTime())
-    return sign * (12 * Math.abs(end.getUTCFullYear() - start.getUTCFullYear()) +
-        sign * (end.getUTCMonth() - start.getUTCMonth()))
-}
-
-export function diffYear(d1: Date, d2: Date): number {
-    return Math.abs(d1.getFullYear() - d2.getFullYear())
-}
-
-export function diffDays(d1: Date, d2: Date): number {
-    return Math.ceil(Math.abs(d1.getTime() - d2.getTime()) / 86400000.0)
-}
-
 export function maxDate(...ds: Date[]): Date {
     return new Date(Math.max(...ds.map(d => d.getTime())))
 }
