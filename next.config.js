@@ -53,9 +53,6 @@ module.exports = withMDX({
         if (!isServer) {
             config["externals"] = [...config["externals"], externals]
             console.info("webpack.externals", config["externals"])
-        }
-
-        if (!isServer) {
             config["node"] = { global: true, fs: "empty" }
         }
 
