@@ -1,7 +1,7 @@
-import { format } from "date-fns"
-import { i } from "lib/commons"
+import { addDays, format } from "date-fns"
+import { addDate, i, yesterday } from "lib/commons"
 import _, { round } from "lodash"
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import * as vic from "victory"
 import { CallbackArgs } from "victory-core"
 import { STOCK } from "./stocks"
@@ -45,19 +45,42 @@ export namespace STOCK_CMP {
         return [`volume: ${datum.volume}`, `turnover: ${datum.turnover}`, `trade: ${datum.trade}`]
     }
 
+    type TSimpleStockSearchConds = { code: string, start: Date, end: Date }
+
     export function StockInfoPanel({ _code, _start, _end }: { _code: string, _start: Date, _end: Date }): JSX.Element {
+        const [conds, setConds] = useState({
+            code: _code,
+            start: _start || addDays(yesterday(), -60),
+            end: _end || yesterday()
+        })
+
+        let sds: STOCK.TStockData[] = []
+        useEffect(async () => {
+            const { code, start, end } = conds
+            if (_.isEmpty(code) || start == null || end == null || start >= end) return []
+
+            sds = null
+
+            const url: string = STOCK.SOHU_STOCK.mkJsonpUrlReq(`cn_${code}`, "cn", parseInt(code), conds.end, conds.start)
+
+        }, [conds])
+
         return <div className="d-flex flex-column bg-white rounded-1 p-2">
-            <div className="d-flex">
-                <div>
-                    <input type="number" />
+            <form className="form-inline">
+                <div className="md-form">
+                    <input id="stock_code" type="text" />
+                    <label className="sr-only" htmlFor="stock_code">Stock Code</label>
                 </div>
-                <div>
-                    <input type="date" id="startDateInput" />
+                <div className="md-form">
+                    <input type="date" id="startDateInput" value={conds.start.toISOString()} />
+                    <label className="sr-only" htmlFor="startDateInput">Start</label>
                 </div>
-                <div>
-                    <input type="date" id="endDateInput" />
+                <div className="md-form">
+                    <input type="date" id="endDateInput" value={conds.end.toISOString()} />
+                    <label className="sr-only" htmlFor="endDateInput">End</label>
                 </div>
-            </div>
+                <div></div>
+            </form>
         </div>
     }
 
