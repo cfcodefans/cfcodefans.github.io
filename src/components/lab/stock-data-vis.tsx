@@ -1,7 +1,8 @@
+import { DateRangeSlide } from "components/gadgets"
 import { addDays, format } from "date-fns"
-import { addDate, i, yesterday } from "lib/commons"
+import { addDate, i, jsf, yesterday } from "lib/commons"
 import _, { round } from "lodash"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import * as vic from "victory"
 import { CallbackArgs } from "victory-core"
 import { STOCK } from "./stocks"
@@ -48,39 +49,27 @@ export namespace STOCK_CMP {
     type TSimpleStockSearchConds = { code: string, start: Date, end: Date }
 
     export function StockInfoPanel({ _code, _start, _end }: { _code: string, _start: Date, _end: Date }): JSX.Element {
-        const [conds, setConds] = useState({
-            code: _code,
-            start: _start || addDays(yesterday(), -60),
-            end: _end || yesterday()
+        const rangeRef = useRef({
+            _1: _start,
+            _2: _end
         })
-
-        let sds: STOCK.TStockData[] = []
-        useEffect(async () => {
-            const { code, start, end } = conds
-            if (_.isEmpty(code) || start == null || end == null || start >= end) return []
-
-            sds = null
-
-            const url: string = STOCK.SOHU_STOCK.mkJsonpUrlReq(`cn_${code}`, "cn", parseInt(code), conds.end, conds.start)
-
-        }, [conds])
 
         return <div className="d-flex flex-column bg-white rounded-1 p-2">
             <form className="form-inline">
-                <div className="md-form">
-                    <input id="stock_code" type="text" />
+                <div className="form-group mr-2">
+                    <input id="stock_code" type="text" defaultValue={_code} />
                     <label className="sr-only" htmlFor="stock_code">Stock Code</label>
                 </div>
-                <div className="md-form">
-                    <input type="date" id="startDateInput" value={conds.start.toISOString()} />
-                    <label className="sr-only" htmlFor="startDateInput">Start</label>
+                <div className="form-group mr-2 flex-grow-1">
+                    <DateRangeSlide ref_v={rangeRef} start={_start} end={_end} stepDay={1} />
                 </div>
-                <div className="md-form">
-                    <input type="date" id="endDateInput" value={conds.end.toISOString()} />
-                    <label className="sr-only" htmlFor="endDateInput">End</label>
+                <div>
+                    <button className="btn btn-sm btn-primary" title="Search">Search</button>
                 </div>
-                <div></div>
             </form>
+            <div>
+                {jsf(rangeRef)}
+            </div>
         </div>
     }
 

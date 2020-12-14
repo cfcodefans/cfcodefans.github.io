@@ -159,19 +159,20 @@ export function prependIfMissing(str: string, prefix: string, ...prefixes: strin
     return prefix + str
 }
 
+export const ISO_DATE_FMT: string = "yyyy-MM-dd"
 export type Duration = "day" | "month" | "year"
 export type DateUnit = "year" | "month" | "day"
 
-export function yesterday():Date {
+export function yesterday(): Date {
     return addDays(new Date(), -1)
 }
 
 export function maxDate(...ds: Date[]): Date {
-    return new Date(Math.max(...ds.map(d => d.getTime())))
+    return _.maxBy(ds, d => d.getTime())
 }
 
 export function minDate(...ds: Date[]): Date {
-    return new Date(Math.min(...ds.map(d => d.getTime())))
+    return _.minBy(ds, d => d.getTime())
 }
 
 export function period(d: Date, len: number, unit: Duration): Date[] {
@@ -186,7 +187,7 @@ export function span(d1: Date, d2: Date, unit: Duration): Date[] {
     start = minDate(start, end)
     end = maxDate(start, end)
 
-    return _.range(0, diffDate(start, end, unit)).map(delta => addDate(start, delta, unit))
+    return _.range(0, Math.abs(diffDate(start, end, unit))).map(delta => addDate(start, delta, unit))
 }
 
 export function combine<T>(accs: T[], acc: T, keyName: _.PropertyPath): T[] {
@@ -268,3 +269,4 @@ export function floorDate(d: Date, unit: DateUnit = "day"): Date {
     }
 }
 
+export type Range<T> = { _1: T, _2: T }

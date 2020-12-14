@@ -6,7 +6,7 @@ import { GetStaticPathsContext, GetStaticPathsResult, GetStaticPropsContext, Get
 import * as _p from "path"
 import path, { extname } from "path"
 import { ILayoutPros, IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "../types"
-import { compare, deepTraverse, getNameAndExt, i, iterateTree_a, jsf } from "./commons"
+import { compare, deepTraverse, getNameAndExt, i, ISO_DATE_FMT, iterateTree_a, jsf } from "./commons"
 import { getMetaAndExcerptFromMDX } from "./mdx-fn"
 
 
@@ -67,8 +67,8 @@ export async function getMDXMeta(path: string, filePath: string): Promise<TMarkd
             meta: metaData,
             excerpt: excerpt,
             path,
-            createdAt: format(fileStats.birthtime, "yyyy-MM-dd"),
-            modifiedAt: format(fileStats.ctime, "yyyy-MM-dd")//yyyy-MM-dd'T'HH:mm:ss.SSSxxx
+            createdAt: format(fileStats.birthtime, ISO_DATE_FMT),
+            modifiedAt: format(fileStats.ctime, ISO_DATE_FMT)//yyyy-MM-dd'T'HH:mm:ss.SSSxxx
         }
     } catch (e) {
         i("blogs.ts", "failed to get meta for", filePath)

@@ -1,4 +1,6 @@
-import { compare, i, jsf } from "lib/commons"
+import { addMonths, differenceInMonths, startOfDay, startOfMonth, startOfYear } from "date-fns"
+import { addDays, format } from "date-fns"
+import { addDate, compare, DateUnit, diffDate, i, ISO_DATE_FMT, jsf, Range, span, yesterday } from "lib/commons"
 import _ from "lodash"
 import React, { useEffect, useState } from "react"
 import { _jsonp } from "./utils"
@@ -75,4 +77,101 @@ export function JsonpDataLoader({ url, callbackFnName, callbackFn, renderCmp, fa
         loader={jsonpLoader}
         renderCmp={renderCmp}
         fallbackCmp={fallbackCmp} />
+}
+
+export function DateRangeSlide({ start, end, stepDay, ref_v }: {
+    ref_v: React.MutableRefObject<Range<Date>>
+    start: Date
+    end: Date
+    stepDay: number
+}): JSX.Element {
+    const now: Date = new Date
+
+    const maxDate: Date = (_.maxBy([start, end], (d: Date) => d.getTime()) || yesterday())
+    const max: number = startOfDay(maxDate).getTime()
+    const minDate: Date = _.minBy([start, end], (d: Date) => d.getTime()) || startOfMonth(now)
+    const min: number = startOfDay(minDate).getTime()
+
+    const step: number = stepDay * 86400000
+    const width: number = max - min
+
+    const [range, setRange] = useState({ _1: minDate, _2: maxDate })
+
+    useEffect(() => {
+        ref_v.current = { _1: _.max([range._1, range._2]), _2: _.min([range._1, range._2]) }
+    }, [range, ref_v])
+
+    return (<div className="w-100 d-flex flex-column">
+        <div className="w-100 bg-light position-relative" style={{ height: "2rem" }}>
+            <div className="position-absolute bg-info"
+                style={{ zIndex: 1, left: `${(range._1.getTime() - min) / width * 100}%` }}>
+                <i>{format(range._1, ISO_DATE_FMT)}</i>
+            </div>
+            <div className="position-absolute bg-info"
+                style={{ zIndex: 1, left: `${(range._2.getTime() - min) / width * 100}%` }}>
+                <i>{format(range._2, ISO_DATE_FMT)}</i>
+            </div>
+        </div>
+        <div className="w-100 position-relative multi-range">
+            <input className="w-100 position-absolute"
+                type="range"
+                min={min}
+                max={max}
+                step={step}
+                value={range._1.getTime()}
+                onChange={e => {
+                    const newValue = parseInt(e.currentTarget.value)
+                    if (newValue + step <= range._2.getTime()) {
+                        setRange({ ...range, _1: new Date(newValue) })
+                    }
+                }}
+            />
+            <input className="w-100 position-absolute"
+                type="range"
+                min={min}
+                max={max}
+                step={step}
+                value={range._2.getTime()}
+                onChange={e => {
+                    const newValue = parseInt(e.currentTarget.value)
+                    if (newValue - step >= range._1.getTime()) {
+                        setRange({ ...range, _2: new Date(newValue) })
+                    }
+                }}
+            />
+        </div>
+        <Gauge marks={genDateMarks(start, end, "month")} />
+        <div className="d-flex justify-content-between">
+            <input type="hidden" name="start_date" value={format(range._1, ISO_DATE_FMT)} />
+            <input type="hidden" name="end_date" value={format(range._2, ISO_DATE_FMT)} />
+        </div>
+    </div>)
+}
+
+export type Mark = { h: number, label?: string }
+
+export function genDateMarks(start: Date, end: Date, step: DateUnit = "month"): Mark[] {
+    const diff: number = diffDate(start, end, step)
+    return span(start, end, step).map((d, i, arr) => {
+        let month: number = d.getUTCMonth()
+        let label: string = `${step}`
+
+        if (step === "year") {
+            if (month !== 1 && month !== 6) return null
+            label = format(d, ISO_DATE_FMT)
+        } else if (step === "month") {
+            // if (month !== 1 && month !== 3 && month !== 6 && month !== 9) return null
+            if (i == 0) label = format(d, ISO_DATE_FMT)
+            else if (i == arr.length - 1) label = format(d, ISO_DATE_FMT)
+            else label = format(d, "MM-dd")
+        }
+
+        return { h: i, label }
+    }).filter(m => m)
+}
+
+export function Gauge({ marks }: { marks: Mark[] }): JSX.Element {
+    return (<div className="w-100 d-flex  justify-content-between">
+        {marks.map((m, i) => <i key={i}>{m.label || "_"}</i>)}
+    </div>)
 }

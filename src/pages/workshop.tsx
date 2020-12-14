@@ -20,7 +20,7 @@ export default function Workshop(): JSX.Element {
 
     return <div className="w-75">
         <STOCK_CMP.StockInfoPanel _code="cn_600104" _start={addDate(yesterday(), -90)} _end={yesterday()} />
-        <p>{url}</p>
+        {/* <p>{url}</p>
         <JsonpDataLoader url={url}
             callbackFnName={"cn_600104"}
             callbackFn={historySearchHandler}
@@ -28,6 +28,6 @@ export default function Workshop(): JSX.Element {
                 const [raw] = raws
                 return <STOCK_CMP.StockCandleChart sds={raw.hq.map(d => STOCK.SOHU_STOCK.toTStockData(d))} />
             }}
-            fallbackCmp={() => <Spinner animation="grow" />} />
+            fallbackCmp={() => <Spinner animation="grow" />} /> */}
     </div>
 }
