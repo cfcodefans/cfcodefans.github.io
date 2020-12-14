@@ -270,3 +270,11 @@ export function floorDate(d: Date, unit: DateUnit = "day"): Date {
 }
 
 export type Range<T> = { _1: T, _2: T }
+
+export function n_calcPercent(r: Range<number>, v: number): number {
+    return (v - r._1) / (r._2 - r._1) * 100
+}
+
+export function d_calcPercent(r: Range<Date>, v: Date): number {
+    return n_calcPercent({ _1: r._1.getTime(), _2: r._2.getTime() }, v.getTime())
+}

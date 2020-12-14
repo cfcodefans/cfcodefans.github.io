@@ -1,8 +1,8 @@
 import { addMonths, differenceInMonths, startOfDay, startOfMonth, startOfYear } from "date-fns"
 import { addDays, format } from "date-fns"
-import { addDate, compare, DateUnit, diffDate, i, ISO_DATE_FMT, jsf, Range, span, yesterday } from "lib/commons"
+import { addDate, compare, DateUnit, diffDate, d_calcPercent, i, ISO_DATE_FMT, jsf, Range, span, yesterday } from "lib/commons"
 import _ from "lodash"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { _jsonp } from "./utils"
 
 const FILE_NAME: string = "gadgets.tsx"
@@ -79,6 +79,10 @@ export function JsonpDataLoader({ url, callbackFnName, callbackFn, renderCmp, fa
         fallbackCmp={fallbackCmp} />
 }
 
+function xByPercent(el: HTMLElement, percent: number): number {
+    return el ? Math.round(el.clientWidth * percent / 100) : 0
+}
+
 export function DateRangeSlide({ start, end, stepDay, ref_v }: {
     ref_v: React.MutableRefObject<Range<Date>>
     start: Date
@@ -95,23 +99,31 @@ export function DateRangeSlide({ start, end, stepDay, ref_v }: {
     const step: number = stepDay * 86400000
     const width: number = max - min
 
-    const [range, setRange] = useState({ _1: minDate, _2: maxDate })
+    const baseRange = { _1: minDate, _2: maxDate }
+    const [range, setRange] = useState({ _1: minDate, _2: maxDate } as Range<Date>)
 
     useEffect(() => {
         ref_v.current = { _1: _.max([range._1, range._2]), _2: _.min([range._1, range._2]) }
     }, [range, ref_v])
 
+    const infoPaneRef = useRef<HTMLDivElement>(null)
+
     return (<div className="w-100 d-flex flex-column">
-        <div className="w-100 bg-light position-relative" style={{ height: "2rem" }}>
+
+        <div id="infoPane" ref={infoPaneRef} className="w-100 bg-light position-relative" style={{ height: "2rem" }}>
             <div className="position-absolute bg-info"
-                style={{ zIndex: 1, left: `${(range._1.getTime() - min) / width * 100}%` }}>
-                <i>{format(range._1, ISO_DATE_FMT)}</i>
+                style={{ zIndex: 1, left: `${xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._1))}px` }}>
+                <i style={{ marginLeft: "-50%" }}>{format(range._1, ISO_DATE_FMT)}</i>
             </div>
             <div className="position-absolute bg-info"
-                style={{ zIndex: 1, left: `${(range._2.getTime() - min) / width * 100}%` }}>
+                style={{ zIndex: 1, left: `${Math.floor((range._2.getTime() - min) / width * 100)}%` }}>
                 <i>{format(range._2, ISO_DATE_FMT)}</i>
             </div>
         </div>
+        {infoPaneRef.current?.clientWidth}
+        - {d_calcPercent(baseRange, range._1)}
+        - {xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._1))}
+
         <div className="w-100 position-relative multi-range">
             <input className="w-100 position-absolute"
                 type="range"
