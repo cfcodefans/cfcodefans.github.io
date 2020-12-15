@@ -200,12 +200,12 @@
     "link": "study",
     "children": [
       {
-        "label": "finance",
-        "link": "study/finance",
+        "label": "business",
+        "link": "study/business",
         "children": [
           {
             "label": "index.tsx",
-            "link": "study/finance/index.tsx",
+            "link": "study/business/index.tsx",
             "children": [],
             "icon": "index.tsx",
             "leaveCount": 0,
@@ -214,16 +214,25 @@
           },
           {
             "label": "tushare-setup.mdx",
-            "link": "study/finance/tushare-setup.mdx",
+            "link": "study/business/tushare-setup.mdx",
             "children": [],
             "icon": "tushare-setup.mdx",
             "leaveCount": 0,
             "layer": 2,
             "comparedTo": null
+          },
+          {
+            "label": "what-about-disclaimer.mdx",
+            "link": "study/business/what-about-disclaimer.mdx",
+            "children": [],
+            "icon": "what-about-disclaimer.mdx",
+            "leaveCount": 0,
+            "layer": 2,
+            "comparedTo": null
           }
         ],
-        "icon": "finance",
-        "leaveCount": 1,
+        "icon": "business",
+        "leaveCount": 2,
         "layer": 1,
         "comparedTo": null
       },
@@ -238,7 +247,7 @@
       }
     ],
     "icon": "study",
-    "leaveCount": 1,
+    "leaveCount": 2,
     "layer": 0,
     "comparedTo": null
   },

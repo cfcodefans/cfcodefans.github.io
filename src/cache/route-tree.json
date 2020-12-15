@@ -37,12 +37,20 @@
         "comparedTo": null
       },
       {
-        "path": "/finance",
-        "_path": "/study/finance",
+        "path": "/business",
+        "_path": "/study/business",
         "children": [
           {
+            "path": "/what-about-disclaimer.mdx",
+            "_path": "/study/business/what-about-disclaimer.mdx",
+            "children": [],
+            "offsprings": [],
+            "childrenCount": 0,
+            "comparedTo": null
+          },
+          {
             "path": "/tushare-setup.mdx",
-            "_path": "/study/finance/tushare-setup.mdx",
+            "_path": "/study/business/tushare-setup.mdx",
             "children": [],
             "offsprings": [],
             "childrenCount": 0,
@@ -50,7 +58,7 @@
           },
           {
             "path": "/index.tsx",
-            "_path": "/study/finance/index.tsx",
+            "_path": "/study/business/index.tsx",
             "children": [],
             "offsprings": [],
             "childrenCount": 0,
@@ -58,16 +66,18 @@
           }
         ],
         "offsprings": [
-          "/study/finance/tushare-setup.mdx"
+          "/study/business/what-about-disclaimer.mdx",
+          "/study/business/tushare-setup.mdx"
         ],
-        "childrenCount": 1,
+        "childrenCount": 2,
         "comparedTo": null
       }
     ],
     "offsprings": [
-      "/study/finance/tushare-setup.mdx"
+      "/study/business/what-about-disclaimer.mdx",
+      "/study/business/tushare-setup.mdx"
     ],
-    "childrenCount": 1,
+    "childrenCount": 2,
     "comparedTo": null
   },
   {

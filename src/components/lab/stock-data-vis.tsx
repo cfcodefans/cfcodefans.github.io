@@ -57,8 +57,8 @@ export namespace STOCK_CMP {
         return <div className="d-flex flex-column bg-white rounded-1 p-2">
             <form className="form-inline">
                 <div className="form-group mr-2">
+                    <label className="mr-2" htmlFor="stock_code">Stock Code:</label>
                     <input id="stock_code" type="text" defaultValue={_code} />
-                    <label className="sr-only" htmlFor="stock_code">Stock Code</label>
                 </div>
                 <div className="form-group mr-2 flex-grow-1">
                     <DateRangeSlide ref_v={rangeRef} start={_start} end={_end} stepDay={1} />

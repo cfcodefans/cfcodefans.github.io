@@ -79,8 +79,8 @@ export function JsonpDataLoader({ url, callbackFnName, callbackFn, renderCmp, fa
         fallbackCmp={fallbackCmp} />
 }
 
-function xByPercent(el: HTMLElement, percent: number): number {
-    return el ? Math.round(el.clientWidth * percent / 100) : 0
+function xByPercent(el: HTMLElement, percent: number): string {
+    return el ? Math.round(el.clientWidth * percent / 100) + "px" : percent + "%"
 }
 
 export function DateRangeSlide({ start, end, stepDay, ref_v }: {
@@ -97,8 +97,6 @@ export function DateRangeSlide({ start, end, stepDay, ref_v }: {
     const min: number = startOfDay(minDate).getTime()
 
     const step: number = stepDay * 86400000
-    const width: number = max - min
-
     const baseRange = { _1: minDate, _2: maxDate }
     const [range, setRange] = useState({ _1: minDate, _2: maxDate } as Range<Date>)
 
@@ -110,19 +108,16 @@ export function DateRangeSlide({ start, end, stepDay, ref_v }: {
 
     return (<div className="w-100 d-flex flex-column">
 
-        <div id="infoPane" ref={infoPaneRef} className="w-100 bg-light position-relative" style={{ height: "2rem" }}>
-            <div className="position-absolute bg-info"
-                style={{ zIndex: 1, left: `${xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._1))}px` }}>
-                <i style={{ marginLeft: "-50%" }}>{format(range._1, ISO_DATE_FMT)}</i>
+        <div id="infoPane" ref={infoPaneRef} className="w-100 position-relative" style={{ height: "2rem" }}>
+            <div className="position-absolute"
+                style={{ zIndex: 1, left: `${xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._1))}` }}>
+                <i className="text-nowrap" style={{ marginLeft: "-40px" }}>{format(range._1, ISO_DATE_FMT)}</i>
             </div>
-            <div className="position-absolute bg-info"
-                style={{ zIndex: 1, left: `${Math.floor((range._2.getTime() - min) / width * 100)}%` }}>
-                <i>{format(range._2, ISO_DATE_FMT)}</i>
+            <div className="position-absolute"
+                style={{ zIndex: 1, left: `${xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._2))}` }}>
+                <i className="text-nowrap" style={{ marginLeft: "-40px" }}>{format(range._2, ISO_DATE_FMT)}</i>
             </div>
         </div>
-        {infoPaneRef.current?.clientWidth}
-        - {d_calcPercent(baseRange, range._1)}
-        - {xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._1))}
 
         <div className="w-100 position-relative multi-range">
             <input className="w-100 position-absolute"
