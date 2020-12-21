@@ -1,11 +1,13 @@
 import { DateRangeSlide } from "components/gadgets"
-import { addDays, format } from "date-fns"
-import { addDate, i, jsf, yesterday } from "lib/commons"
+import { format } from "date-fns"
+import { i, jsf } from "lib/commons"
 import _, { round } from "lodash"
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { useMemo, useRef } from "react"
 import * as vic from "victory"
 import { CallbackArgs } from "victory-core"
 import { STOCK } from "./stocks"
+
+// import { CircularProgress } from "@material-ui/core/CircularProgress"
 
 const FILENAME = "stock-data-vis.tsx"
 

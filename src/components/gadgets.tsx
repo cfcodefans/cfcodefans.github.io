@@ -5,6 +5,8 @@ import _ from "lodash"
 import React, { useEffect, useRef, useState } from "react"
 import { _jsonp } from "./utils"
 
+import { Slider } from "@material-ui/core"
+
 const FILE_NAME: string = "gadgets.tsx"
 
 export function SimpleInsp({ obj }: { obj: any }): JSX.Element {
@@ -97,65 +99,81 @@ export function DateRangeSlide({ start, end, stepDay, ref_v }: {
     const min: number = startOfDay(minDate).getTime()
 
     const step: number = stepDay * 86400000
-    const baseRange = { _1: minDate, _2: maxDate }
-    const [range, setRange] = useState({ _1: minDate, _2: maxDate } as Range<Date>)
+    // const baseRange = { _1: minDate, _2: maxDate }
+    const [range, setRange] = useState([min, max])
 
     useEffect(() => {
-        ref_v.current = { _1: _.max([range._1, range._2]), _2: _.min([range._1, range._2]) }
+        ref_v.current = { _1: new Date(range[0]), _2: new Date(range[1]) }
     }, [range, ref_v])
 
-    const infoPaneRef = useRef<HTMLDivElement>(null)
+    // const infoPaneRef = useRef<HTMLDivElement>(null)
 
-    return (<div className="w-100 d-flex flex-column">
+    const marks: Mark[] = span(start, end, "month").map((d) => ({ value: d.getTime(), label: format(d, ISO_DATE_FMT) }))
 
-        <div id="infoPane" ref={infoPaneRef} className="w-100 position-relative" style={{ height: "2rem" }}>
-            <div className="position-absolute"
-                style={{ zIndex: 1, left: `${xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._1))}` }}>
-                <i className="text-nowrap" style={{ marginLeft: "-40px" }}>{format(range._1, ISO_DATE_FMT)}</i>
-            </div>
-            <div className="position-absolute"
-                style={{ zIndex: 1, left: `${xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._2))}` }}>
-                <i className="text-nowrap" style={{ marginLeft: "-40px" }}>{format(range._2, ISO_DATE_FMT)}</i>
-            </div>
-        </div>
+    return <div className="w-100">
+        <Slider defaultValue={[min, max]}
+            onChange={(ev, newRange: number[]) => setRange(newRange)}
 
-        <div className="w-100 position-relative multi-range">
-            <input className="w-100 position-absolute"
-                type="range"
-                min={min}
-                max={max}
-                step={step}
-                value={range._1.getTime()}
-                onChange={e => {
-                    const newValue = parseInt(e.currentTarget.value)
-                    if (newValue + step <= range._2.getTime()) {
-                        setRange({ ...range, _1: new Date(newValue) })
-                    }
-                }}
-            />
-            <input className="w-100 position-absolute"
-                type="range"
-                min={min}
-                max={max}
-                step={step}
-                value={range._2.getTime()}
-                onChange={e => {
-                    const newValue = parseInt(e.currentTarget.value)
-                    if (newValue - step >= range._1.getTime()) {
-                        setRange({ ...range, _2: new Date(newValue) })
-                    }
-                }}
-            />
-        </div>
-        <Gauge marks={genDateMarks(start, end, "month")} />
-        <div className="d-flex justify-content-between">
-            <input type="hidden" name="start_date" value={format(range._1, ISO_DATE_FMT)} />
-            <input type="hidden" name="end_date" value={format(range._2, ISO_DATE_FMT)} />
-        </div>
-    </div>)
+            valueLabelFormat={(value, index) => format(new Date(value), "MM-dd")}
+
+            value={range}
+            min={min}
+            max={max}
+            step={step}
+            marks={marks}
+            valueLabelDisplay="on" />
+    </div>
+
+    // return (<div className="w-100 d-flex flex-column">
+
+    //     <div id="infoPane" ref={infoPaneRef} className="w-100 position-relative" style={{ height: "2rem" }}>
+    //         <div className="position-absolute"
+    //             style={{ zIndex: 1, left: `${xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._1))}` }}>
+    //             <i className="text-nowrap" style={{ marginLeft: "-40px" }}>{format(range._1, ISO_DATE_FMT)}</i>
+    //         </div>
+    //         <div className="position-absolute"
+    //             style={{ zIndex: 1, left: `${xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._2))}` }}>
+    //             <i className="text-nowrap" style={{ marginLeft: "-40px" }}>{format(range._2, ISO_DATE_FMT)}</i>
+    //         </div>
+    //     </div>
+
+    //     <div className="w-100 position-relative multi-range">
+    //         <input className="w-100 position-absolute"
+    //             type="range"
+    //             min={min}
+    //             max={max}
+    //             step={step}
+    //             value={range._1.getTime()}
+    //             onChange={e => {
+    //                 const newValue = parseInt(e.currentTarget.value)
+    //                 if (newValue + step <= range._2.getTime()) {
+    //                     setRange({ ...range, _1: new Date(newValue) })
+    //                 }
+    //             }}
+    //         />
+    //         <input className="w-100 position-absolute"
+    //             type="range"
+    //             min={min}
+    //             max={max}
+    //             step={step}
+    //             value={range._2.getTime()}
+    //             onChange={e => {
+    //                 const newValue = parseInt(e.currentTarget.value)
+    //                 if (newValue - step >= range._1.getTime()) {
+    //                     setRange({ ...range, _2: new Date(newValue) })
+    //                 }
+    //             }}
+    //         />
+    //     </div>
+    //     <Gauge marks={genDateMarks(start, end, "month")} />
+    //     <div className="d-flex justify-content-between">
+    //         <input type="hidden" name="start_date" value={format(range._1, ISO_DATE_FMT)} />
+    //         <input type="hidden" name="end_date" value={format(range._2, ISO_DATE_FMT)} />
+    //     </div>
+    // </div>)
 }
 
-export type Mark = { h: number, label?: string }
+export type Mark = { value: number, label?: string }
 
 export function genDateMarks(start: Date, end: Date, step: DateUnit = "month"): Mark[] {
     const diff: number = diffDate(start, end, step)
@@ -173,7 +191,7 @@ export function genDateMarks(start: Date, end: Date, step: DateUnit = "month"): 
             else label = format(d, "MM-dd")
         }
 
-        return { h: i, label }
+        return { value: i, label }
     }).filter(m => m)
 }
 

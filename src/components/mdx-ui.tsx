@@ -19,11 +19,17 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
     _link = _link.substring(0, _link.lastIndexOf(".mdx"))
 
     // const display = hydrate(excerpt, MDX_COMPONENTS)
+    //https://github.com/cfcodefans/cfcodefans.github.io/blob/with-nextjs/src/pages/study/business/tushare-setup.mdx
+    //https://github.com/cfcodefans/cfcodefans.github.io/blob/with-nextjs/src/pages/study/business/tushare-setup
 
     return (<article className="blog-item d-flex flex-column align-items-center rounded-1 shadow container pt-3 mt-3 mb-3">
         <header className="text-center">
             <h1>{meta["title"]}</h1>
-            <div>Created at: <time dateTime={props.createdAt}>{props.createdAt}</time> | By: {meta && meta["authors"]}</div>
+            <div>
+                Created at: <time dateTime={props.createdAt}>{props.createdAt}</time>
+            &nbsp;|&nbsp;By: {meta && meta["authors"]}
+            &nbsp;|&nbsp;At: <a href={`https://github.com/cfcodefans/cfcodefans.github.io/blob/with-nextjs/src/pages/${_link}.mdx`}>Source</a>
+            </div>
         </header>
         <hr />
         {/* <div>{display}</div> */}
