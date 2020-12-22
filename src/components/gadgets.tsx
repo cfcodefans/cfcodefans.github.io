@@ -2,7 +2,7 @@ import { addMonths, differenceInMonths, startOfDay, startOfMonth, startOfYear } 
 import { addDays, format } from "date-fns"
 import { addDate, compare, DateUnit, diffDate, d_calcPercent, i, ISO_DATE_FMT, jsf, Range, span, yesterday } from "lib/commons"
 import _ from "lodash"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import { _jsonp } from "./utils"
 
 import { Slider } from "@material-ui/core"
@@ -35,10 +35,10 @@ export function DataLoaderTempl<P, T>({ params, loader, renderCmp, fallbackCmp }
             i(FILE_NAME, "DataLoaderTempl.useEffect", params)
             loader(params)
                 .then(resp => {
-                    i(FILE_NAME, "useEffect", "resp", resp)
+                    // i(FILE_NAME, "useEffect", "resp", resp)
                     return setRespState({ state: "done", resp })
                 }).catch(reason => {
-                    i(FILE_NAME, "useEffect", "reason", reason)
+                    // i(FILE_NAME, "useEffect", "reason", reason)
                     return setRespState({ state: "failed", resp: reason })
                 })
         },
@@ -85,34 +85,39 @@ function xByPercent(el: HTMLElement, percent: number): string {
     return el ? Math.round(el.clientWidth * percent / 100) + "px" : percent + "%"
 }
 
-export function DateRangeSlide({ start, end, stepDay, ref_v }: {
-    ref_v: React.MutableRefObject<Range<Date>>
+export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
+    // ref_v: React.MutableRefObject<Range<Date>>
+    onRangeChange: (d1: Date, d2: Date) => void
     start: Date
     end: Date
     stepDay: number
 }): JSX.Element {
     const now: Date = new Date
 
-    const maxDate: Date = (_.maxBy([start, end], (d: Date) => d.getTime()) || yesterday())
+    const maxDate: Date = _.maxBy([start, end], (d: Date) => d.getTime()) || yesterday()
     const max: number = startOfDay(maxDate).getTime()
     const minDate: Date = _.minBy([start, end], (d: Date) => d.getTime()) || startOfMonth(now)
     const min: number = startOfDay(minDate).getTime()
 
-    const step: number = stepDay * 86400000
+    const step: number = stepDay * 86400 * 1000
     // const baseRange = { _1: minDate, _2: maxDate }
     const [range, setRange] = useState([min, max])
 
-    useEffect(() => {
-        ref_v.current = { _1: new Date(range[0]), _2: new Date(range[1]) }
-    }, [range, ref_v])
+    let marks: Mark[] = useMemo(() => span(start, end, "month").map((d) => ({ value: d.getTime(), label: format(d, ISO_DATE_FMT) })), [[start, end]])
 
-    // const infoPaneRef = useRef<HTMLDivElement>(null)
+    // useEffect(() => {
+    //     ref_v.current = { _1: new Date(range[0]), _2: new Date(range[1]) }
+    //     i(FILE_NAME, "DateRangeSlide.useEffect", "range", range)
+    // }, [range])
 
-    const marks: Mark[] = span(start, end, "month").map((d) => ({ value: d.getTime(), label: format(d, ISO_DATE_FMT) }))
+    i(FILE_NAME, "DateRangeSlide.render", "range", range)
 
-    return <div className="w-100">
+    return <div className="w-100 pt-4 px-4 ">
         <Slider defaultValue={[min, max]}
-            onChange={(ev, newRange: number[]) => setRange(newRange)}
+            onChangeCommitted={(ev, newRange: number[]) => {
+                setRange(newRange)
+                onRangeChange && onRangeChange(new Date(newRange[0]), new Date(newRange[1]))
+            }}
 
             valueLabelFormat={(value, index) => format(new Date(value), "MM-dd")}
 

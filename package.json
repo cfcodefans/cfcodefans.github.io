@@ -2,6 +2,7 @@
     "name": "learn-starter",
     "version": "0.1.0",
     "private": true,
+    "exports": "modern.js",
     "scripts": {
         "serve": "serve out -p 3000",
         "dev:watch": "next-remote-watch ./blogs",

@@ -1,8 +1,9 @@
-import { DateRangeSlide } from "components/gadgets"
+import { CircularProgress } from "@material-ui/core"
+import { DateRangeSlide, JsonpDataLoader } from "components/gadgets"
 import { format } from "date-fns"
-import { i, jsf } from "lib/commons"
+import { addDate, i, jsf, Range, yesterday } from "lib/commons"
 import _, { round } from "lodash"
-import React, { useMemo, useRef } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import * as vic from "victory"
 import { CallbackArgs } from "victory-core"
 import { STOCK } from "./stocks"
@@ -51,26 +52,43 @@ export namespace STOCK_CMP {
     type TSimpleStockSearchConds = { code: string, start: Date, end: Date }
 
     export function StockInfoPanel({ _code, _start, _end }: { _code: string, _start: Date, _end: Date }): JSX.Element {
-        const rangeRef = useRef({
-            _1: _start,
-            _2: _end
-        })
+
+        function mkUrl({ code, start, end }: TSimpleStockSearchConds): string {
+            return STOCK.SOHU_STOCK.mkJsonpUrlReq("cn_" + code, "cn", parseInt(code), start || addDate(yesterday(), -90), end || yesterday())
+        }
+
+        const codeInputRef: React.RefObject<HTMLInputElement> = useRef()
+        const rangeRef: React.MutableRefObject<Range<Date>> = useRef({ _1: _start, _2: _end })
+        const [url, setUrl] = useState(mkUrl({ code: _code, start: _start, end: _end }))
+
+        i(FILENAME, "StockInfoPanel.render", url)
 
         return <div className="d-flex flex-column bg-white rounded-1 p-2">
-            <form className="form-inline">
-                <div className="form-group mr-2">
-                    <label className="mr-2" htmlFor="stock_code">Stock Code:</label>
-                    <input id="stock_code" type="text" defaultValue={_code} />
-                </div>
-                <div className="form-group mr-2 flex-grow-1">
-                    <DateRangeSlide ref_v={rangeRef} start={_start} end={_end} stepDay={1} />
-                </div>
+            <div className="row">
                 <div>
-                    <button className="btn btn-sm btn-primary" title="Search">Search</button>
+                    <label className="mr-2" htmlFor="stock_code">Stock Code:</label>
+                    <input id="stock_code" type="text" defaultValue={_code} ref={codeInputRef} />
                 </div>
-            </form>
+                <button className="btn btn-sm btn-primary" title="Search" onClick={(ev) => {
+                    const code = codeInputRef.current.value
+                    const { _1: start, _2: end } = rangeRef.current
+                    setUrl(mkUrl({ code, start, end }))
+                }}>Search</button>
+            </div>
+            <div className="row pt-4 px-5">
+                <DateRangeSlide onRangeChange={(d1, d2) => rangeRef.current = { _1: d1, _2: d2 }}
+                    start={_start} end={_end} stepDay={1} />
+            </div>
             <div>
-                {jsf(rangeRef)}
+                {jsf(url)}
+                <JsonpDataLoader url={url}
+                    callbackFnName={"cn_" + (codeInputRef.current?.value || _code)}
+                    callbackFn={(resp) => Promise.resolve(resp as STOCK.SOHU_STOCK.RawResp[])}
+                    renderCmp={(raws: STOCK.SOHU_STOCK.RawResp[]) => {
+                        const [raw] = raws
+                        return <STOCK_CMP.StockCandleChart sds={raw.hq.map(d => STOCK.SOHU_STOCK.toTStockData(d))} />
+                    }}
+                    fallbackCmp={() => <CircularProgress />} />
             </div>
         </div>
     }

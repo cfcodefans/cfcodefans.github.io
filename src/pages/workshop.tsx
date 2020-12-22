@@ -18,7 +18,7 @@ export default function Workshop(): JSX.Element {
     const url: string = STOCK.SOHU_STOCK.mkJsonpUrlReq("cn_600104", "cn", 600104, addDate(yesterday(), -90), yesterday())
 
     return <div className="w-100">
-        <STOCK_CMP.StockInfoPanel _code="cn_600104" _start={addDate(startOfDay(yesterday()), -90)} _end={yesterday()} />
+        <STOCK_CMP.StockInfoPanel _code="600104" _start={addDate(startOfDay(yesterday()), -90)} _end={yesterday()} />
         {/* <p>{url}</p>
         <JsonpDataLoader url={url}
             callbackFnName={"cn_600104"}
