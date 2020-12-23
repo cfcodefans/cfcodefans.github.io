@@ -1,11 +1,10 @@
-import { addMonths, differenceInMonths, startOfDay, startOfMonth, startOfYear } from "date-fns"
-import { addDays, format } from "date-fns"
-import { addDate, compare, DateUnit, diffDate, d_calcPercent, i, ISO_DATE_FMT, jsf, Range, span, yesterday } from "lib/commons"
+import { Slider } from "@material-ui/core"
+import { format, startOfDay, startOfMonth } from "date-fns"
+import { compare, DateUnit, diffDate, i, ISO_DATE_FMT, jsf, span, yesterday } from "lib/commons"
 import _ from "lodash"
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { _jsonp } from "./utils"
 
-import { Slider } from "@material-ui/core"
 
 const FILE_NAME: string = "gadgets.tsx"
 

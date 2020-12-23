@@ -93,37 +93,39 @@ export namespace STOCK_CMP {
         </div>
     }
 
+    function mkStockDataVO(sds: STOCK.TStockData[]): TStockDataVO {
+        const dailyPrices: TStockPriceVO[] = sds.map(sd => ({
+            x: format(sd.date, "MM-dd"),
+            open: sd.open,
+            close: sd.close,
+            high: sd.high,
+            low: sd.low,
+
+            volume: sd.volume,
+            turnover: sd.turnover,
+            trade: sd.trade,
+
+            color: sd.close > sd.open ? "red" : "green",
+            ma5: NaN, ma20: NaN,
+        }))
+        const closePrices = dailyPrices.map(dp => dp.close)
+        const ma5 = STOCK.movingAverage(closePrices, 5)
+        ma5.forEach((v, i) => dailyPrices[i].ma5 = v)
+        const ma20 = STOCK.movingAverage(closePrices, 20)
+        ma20.forEach((v, i) => dailyPrices[i].ma20 = v)
+        return {
+            dailyPrices,
+            highest: _.maxBy(dailyPrices, "high").high,
+            lowest: _.maxBy(dailyPrices, "low").low,
+            ma20,
+            ma5,
+            start: sds[0].date,
+            end: _.last(sds).date
+        }
+    }
+
     export function StockCandleChart({ sds }: { sds: STOCK.TStockData[] }): JSX.Element {
-        const data: TStockDataVO = useMemo(() => {
-            const dailyPrices: TStockPriceVO[] = sds.map(sd => ({
-                x: format(sd.date, "MM-dd"),
-                open: sd.open,
-                close: sd.close,
-                high: sd.high,
-                low: sd.low,
-
-                volume: sd.volume,
-                turnover: sd.turnover,
-                trade: sd.trade,
-
-                color: sd.close > sd.open ? "red" : "green",
-                ma5: NaN, ma20: NaN,
-            }))
-            const closePrices = dailyPrices.map(dp => dp.close)
-            const ma5 = STOCK.movingAverage(closePrices, 5)
-            ma5.forEach((v, i) => dailyPrices[i].ma5 = v)
-            const ma20 = STOCK.movingAverage(closePrices, 20)
-            ma20.forEach((v, i) => dailyPrices[i].ma20 = v)
-            return {
-                dailyPrices,
-                highest: _.maxBy(dailyPrices, "high").high,
-                lowest: _.maxBy(dailyPrices, "low").low,
-                ma20,
-                ma5,
-                start: sds[0].date,
-                end: _.last(sds).date
-            }
-        }, [sds])
+        const data: TStockDataVO = useMemo(() => mkStockDataVO(sds), [sds])
 
         i(FILENAME, "StockCandleChart.render")
 
