@@ -102,7 +102,7 @@ export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
     // const baseRange = { _1: minDate, _2: maxDate }
     const [range, setRange] = useState([min, max])
 
-    let marks: Mark[] = useMemo(() => span(start, end, "month").map((d) => ({ value: d.getTime(), label: format(d, ISO_DATE_FMT) })), [[start, end]])
+    let marks: Mark[] = useMemo(() => span(start, end, "month").map((d, i, arr) => ({ value: d.getTime(), label: format(d, (i == 0 || i == arr.length - 1) ? ISO_DATE_FMT : "MM-dd") })), [[start, end]])
 
     // useEffect(() => {
     //     ref_v.current = { _1: new Date(range[0]), _2: new Date(range[1]) }

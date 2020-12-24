@@ -54,7 +54,7 @@ export namespace STOCK_CMP {
     export function StockInfoPanel({ _code, _start, _end }: { _code: string, _start: Date, _end: Date }): JSX.Element {
 
         function mkUrl({ code, start, end }: TSimpleStockSearchConds): string {
-            return STOCK.SOHU_STOCK.mkJsonpUrlReq("cn_" + code, "cn", parseInt(code), start || addDate(yesterday(), -90), end || yesterday())
+            return STOCK.SOHU_STOCK.mkJsonpUrlReq("cn_" + code, "cn", parseInt(code), start || addDate(yesterday(), -180), end || yesterday())
         }
 
         const codeInputRef: React.RefObject<HTMLInputElement> = useRef()

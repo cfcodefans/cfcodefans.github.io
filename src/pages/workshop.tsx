@@ -6,7 +6,6 @@ import React from "react"
 
 const FILE_NAME: string = "workshop.tsx"
 
-
 export default function Workshop(): JSX.Element {
 
     const foo: Function = new Function()
@@ -15,10 +14,8 @@ export default function Workshop(): JSX.Element {
         i(FILE_NAME, "JsonpDataLoader.historySearchHandler", resp)
         return Promise.resolve(resp as STOCK.SOHU_STOCK.RawResp[])
     }
-    const url: string = STOCK.SOHU_STOCK.mkJsonpUrlReq("cn_600104", "cn", 600104, addDate(yesterday(), -90), yesterday())
-
     return <div className="w-100">
-        <STOCK_CMP.StockInfoPanel _code="600104" _start={addDate(startOfDay(yesterday()), -90)} _end={yesterday()} />
+        <STOCK_CMP.StockInfoPanel _code="600104" _start={addDate(startOfDay(yesterday()), -180)} _end={yesterday()} />
         {/* <p>{url}</p>
         <JsonpDataLoader url={url}
             callbackFnName={"cn_600104"}
