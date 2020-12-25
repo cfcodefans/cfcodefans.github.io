@@ -1,7 +1,7 @@
 import { STOCK_CMP } from "components/lab/stock-data-vis"
 import { STOCK } from "components/lab/stocks"
-import { startOfDay } from "date-fns"
-import { addDate, i, yesterday } from "lib/commons"
+import { startOfDay, startOfYesterday } from "date-fns"
+import { addDate, i } from "lib/commons"
 import React from "react"
 
 const FILE_NAME: string = "workshop.tsx"
@@ -15,7 +15,7 @@ export default function Workshop(): JSX.Element {
         return Promise.resolve(resp as STOCK.SOHU_STOCK.RawResp[])
     }
     return <div className="w-100">
-        <STOCK_CMP.StockInfoPanel _code="600104" _start={addDate(startOfDay(yesterday()), -180)} _end={yesterday()} />
+        <STOCK_CMP.StockInfoPanel _code="600104" _start={addDate(startOfDay(startOfYesterday()), -180)} _end={startOfYesterday()} />
         {/* <p>{url}</p>
         <JsonpDataLoader url={url}
             callbackFnName={"cn_600104"}

@@ -22,28 +22,24 @@ export function SimpleInsp({ obj }: { obj: any }): JSX.Element {
 }
 
 export function DataLoaderTempl<P, T>({ params, loader, renderCmp, fallbackCmp }: { params: P, loader: (P) => Promise<T>, renderCmp: React.FC<T>, fallbackCmp: React.FC }): JSX.Element {
-    const [paramState, setParamState] = useState(null)
+    const [paramState, setParamState] = useState(params)
     const [respState, setRespState] = useState({ state: "loading", resp: null })
 
-    i(FILE_NAME, "DataLoaderTempl", respState, paramState)
+    i(FILE_NAME, "DataLoaderTempl", paramState)
 
     // useEffect(() => setParamState({ params }), [params])
 
     useEffect(
         () => {
-            i(FILE_NAME, "DataLoaderTempl.useEffect", params)
-            loader(params)
+            i(FILE_NAME, "DataLoaderTempl.useEffect", paramState)
+            loader(paramState)
                 .then(resp => {
-                    // i(FILE_NAME, "useEffect", "resp", resp)
                     return setRespState({ state: "done", resp })
                 }).catch(reason => {
-                    // i(FILE_NAME, "useEffect", "reason", reason)
                     return setRespState({ state: "failed", resp: reason })
                 })
         },
-        [])
-    // memorizedData.then(resp => setRespState({ state: "done", resp }))
-    //     .catch(reason => setRespState({ state: "failed", resp: reason }))
+        [params])
 
     if (respState.state == "loading") return fallbackCmp({})
     if (respState.state == "failed")
@@ -102,7 +98,8 @@ export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
     // const baseRange = { _1: minDate, _2: maxDate }
     const [range, setRange] = useState([min, max])
 
-    let marks: Mark[] = useMemo(() => span(start, end, "month").map((d, i, arr) => ({ value: d.getTime(), label: format(d, (i == 0 || i == arr.length - 1) ? ISO_DATE_FMT : "MM-dd") })), [[start, end]])
+    let marks: Mark[] = useMemo(() => span(start, end, "month").map((d, i, arr) => ({ value: d.getTime(), label: format(d,  "MM-dd") })), //(i == 0 || i == arr.length - 1) ? ISO_DATE_FMT :
+        [[start, end]])
 
     // useEffect(() => {
     //     ref_v.current = { _1: new Date(range[0]), _2: new Date(range[1]) }

@@ -187,7 +187,9 @@ export function span(d1: Date, d2: Date, unit: Duration): Date[] {
     start = minDate(start, end)
     end = maxDate(start, end)
 
-    return _.range(0, Math.abs(diffDate(start, end, unit))).map(delta => addDate(start, delta, unit))
+    let re = _.range(0, Math.abs(diffDate(start, end, unit)) - 1).map(delta => addDate(start, delta, unit))
+    re.push(end)
+    return re
 }
 
 export function combine<T>(accs: T[], acc: T, keyName: _.PropertyPath): T[] {

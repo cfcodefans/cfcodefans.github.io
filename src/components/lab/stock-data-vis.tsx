@@ -125,9 +125,9 @@ export namespace STOCK_CMP {
     }
 
     export function StockCandleChart({ sds }: { sds: STOCK.TStockData[] }): JSX.Element {
-        const data: TStockDataVO = useMemo(() => mkStockDataVO(sds), [sds])
+        const data: TStockDataVO = mkStockDataVO(sds) //useMemo(() => mkStockDataVO(sds), [sds])
 
-        i(FILENAME, "StockCandleChart.render")
+        i(FILENAME, "StockCandleChart.render", data.start, data.end)
 
         return <div>
             <vic.VictoryChart theme={vic.VictoryTheme.material}
