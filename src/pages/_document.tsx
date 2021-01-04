@@ -54,7 +54,8 @@ class TemplateDoc extends Document {
                 <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.1/umd/react-dom.development.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.3.2/highlight.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/material-ui/5.0.0-alpha.19/umd/material-ui.production.min.js"></script>
+                {/* <script src="https://cdn.bootcdn.net/ajax/libs/material-ui/5.0.0-alpha.19/umd/material-ui.production.min.js"></script> */}
+                <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js" ></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/d3/6.2.0/d3.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/victory/35.3.2/victory.js"></script>
 

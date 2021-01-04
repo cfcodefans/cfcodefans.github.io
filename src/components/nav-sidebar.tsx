@@ -2,9 +2,9 @@ import Link from "next/link"
 import React, { ReactElement, ReactNodeArray, useEffect, useState } from "react"
 import { deepTraverse, i } from "lib/commons"
 import { IMenuItemModal } from "../types"
-import BreadCrumb from "./breadcrumb"
 import _ from "lodash"
 import { NextRouter, useRouter } from "next/dist/client/router"
+import NavBreadCrumbs from "./gadgets"
 
 const UL_STYLE: string = "nav "
 
@@ -91,7 +91,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
 
         <div id="menu_nav" className="d-flex align-items-center navbar pl-1 pr-1 border border-0 z-depth-0 ">
             <nav aria-label="breadcrumb" className="d-flex d-lg-none justify-content-between w-100 mb-2 primary-color font-up-bold">
-                <BreadCrumb _path={currentPath} />
+                <NavBreadCrumbs _path={currentPath} />
 
                 <button className="navbar-toggler"
                     type="button"

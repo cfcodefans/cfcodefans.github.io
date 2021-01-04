@@ -15,7 +15,7 @@ export default function Workshop(): JSX.Element {
         return Promise.resolve(resp as STOCK.SOHU_STOCK.RawResp[])
     }
     return <div className="w-100">
-        <STOCK_CMP.StockInfoPanel _code="600104" _start={addDate(startOfDay(startOfYesterday()), -180)} _end={startOfYesterday()} />
+        <STOCK_CMP.StockInfoPanel _code="600104" _start={addDate(startOfDay(startOfYesterday()), -120)} _end={startOfYesterday()} />
         {/* <p>{url}</p>
         <JsonpDataLoader url={url}
             callbackFnName={"cn_600104"}

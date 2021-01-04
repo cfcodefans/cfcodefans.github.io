@@ -1,27 +1,36 @@
-import { Slider } from "@material-ui/core"
+import { Breadcrumbs, Slider } from "@material-ui/core"
 import { format, startOfDay, startOfMonth } from "date-fns"
 import { compare, DateUnit, diffDate, i, ISO_DATE_FMT, jsf, span, yesterday } from "lib/commons"
 import _ from "lodash"
+import Link from "next/link"
 import React, { useEffect, useMemo, useState } from "react"
 import { _jsonp } from "./utils"
 
+export default function NavBreadCrumbs({ _path }: { _path: string }): JSX.Element {
+    return <Breadcrumbs aria-label="breadcrumb">{
+        _path.split("/")
+            .filter(part => part.length > 0)
+            .map((part: string, i: number, parts: string[]) => (<Link href={"/" + parts.slice(0, i + 1).join("/")}>{part}</Link>))
+    }</Breadcrumbs>
+}
 
 const FILE_NAME: string = "gadgets.tsx"
 
 export function SimpleInsp({ obj }: { obj: any }): JSX.Element {
     if (!obj) return <>null</>
 
-    return <dl className="container row row-cols-2">
-        {_.toPairs(obj)
+    return <dl className="container row row-cols-2">{
+        _.toPairs(obj)
             .sort((p1: [string, unknown], p2: [string, unknown]) => compare(p1[0], p2[0]))
             .map((pair: [string, unknown], i: number) => <>
                 <dt key={pair[0]} className="col">{pair[0]}</dt>
                 <dd key={pair[0] + "-" + i} className="col">{pair[1]}</dd>
-            </>)}
-    </dl>
+            </>)
+    }</dl>
 }
 
-export function DataLoaderTempl<P, T>({ params, loader, renderCmp, fallbackCmp }: { params: P, loader: (P) => Promise<T>, renderCmp: React.FC<T>, fallbackCmp: React.FC }): JSX.Element {
+export type DataLoaderProps<P, T> = { params: P, loader: (P) => Promise<T>, renderCmp: React.FC<T>, fallbackCmp: React.FC }
+export function DataLoaderTempl<P, T>({ params, loader, renderCmp, fallbackCmp }: DataLoaderProps<P, T>): JSX.Element {
     const [paramState, setParamState] = useState(params)
     const [respState, setRespState] = useState({ state: "loading", resp: null })
 
@@ -29,17 +38,15 @@ export function DataLoaderTempl<P, T>({ params, loader, renderCmp, fallbackCmp }
 
     // useEffect(() => setParamState({ params }), [params])
 
-    useEffect(
-        () => {
-            i(FILE_NAME, "DataLoaderTempl.useEffect", paramState)
-            loader(paramState)
-                .then(resp => {
-                    return setRespState({ state: "done", resp })
-                }).catch(reason => {
-                    return setRespState({ state: "failed", resp: reason })
-                })
-        },
-        [params])
+    useEffect(() => {
+        i(FILE_NAME, "DataLoaderTempl.useEffect", paramState)
+        loader(paramState)
+            .then(resp => {
+                return setRespState({ state: "done", resp })
+            }).catch(reason => {
+                return setRespState({ state: "failed", resp: reason })
+            })
+    }, [params])
 
     if (respState.state == "loading") return fallbackCmp({})
     if (respState.state == "failed")
@@ -98,7 +105,9 @@ export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
     // const baseRange = { _1: minDate, _2: maxDate }
     const [range, setRange] = useState([min, max])
 
-    let marks: Mark[] = useMemo(() => span(start, end, "month").map((d, i, arr) => ({ value: d.getTime(), label: format(d,  "MM-dd") })), //(i == 0 || i == arr.length - 1) ? ISO_DATE_FMT :
+    let marks: Mark[] = useMemo(
+        () => genDateMarks(start, end),
+        // () => span(start, end, "month").map((d, i, arr) => ({ value: d.getTime(), label: format(d, "MM-dd") })), //(i == 0 || i == arr.length - 1) ? ISO_DATE_FMT :
         [[start, end]])
 
     // useEffect(() => {
@@ -174,30 +183,29 @@ export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
     // </div>)
 }
 
-export type Mark = { value: number, label?: string }
+export type Mark = { value: number, label?: React.ReactNode }
 
 export function genDateMarks(start: Date, end: Date, step: DateUnit = "month"): Mark[] {
     const diff: number = diffDate(start, end, step)
     return span(start, end, step).map((d, i, arr) => {
-        let month: number = d.getUTCMonth()
         let label: string = `${step}`
+        let fmt: string = "MM-dd"
 
         if (step === "year") {
+            let month: number = d.getUTCMonth()
             if (month !== 1 && month !== 6) return null
-            label = format(d, ISO_DATE_FMT)
+            fmt = ISO_DATE_FMT
         } else if (step === "month") {
-            // if (month !== 1 && month !== 3 && month !== 6 && month !== 9) return null
-            if (i == 0) label = format(d, ISO_DATE_FMT)
-            else if (i == arr.length - 1) label = format(d, ISO_DATE_FMT)
-            else label = format(d, "MM-dd")
+            if (i == 0 || i == arr.length - 1) fmt = ISO_DATE_FMT
+            else fmt = "MM-dd"
         }
 
-        return { value: i, label }
+        return { value: d.getTime(), label: <i>{format(d, fmt)}</i> }
     }).filter(m => m)
 }
 
 export function Gauge({ marks }: { marks: Mark[] }): JSX.Element {
-    return (<div className="w-100 d-flex  justify-content-between">
-        {marks.map((m, i) => <i key={i}>{m.label || "_"}</i>)}
-    </div>)
+    return (<div className="w-100 d-flex  justify-content-between">{
+        marks.map((m, i) => <i key={i}>{m.label || "_"}</i>)
+    }</div>)
 }

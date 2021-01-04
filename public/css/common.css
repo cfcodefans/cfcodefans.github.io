@@ -7,10 +7,11 @@
     --corner-radius-full: 50%;
     --warm-gray-20: #f3f2ef;
     --blue-gray:#f8f9fc;
+    --cool-gray-20: rgb(238, 243, 248);
   }
 
 .root {
-    background-color: var(--warm-gray-20);
+    background-color: var(--cool-gray-20);
 }
 
 .menu-layer-0 {
