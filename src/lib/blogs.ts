@@ -207,8 +207,8 @@ export async function bootstrap(): Promise<ILayoutPros> {
 
         await fsp.writeFile(CACHE_PATH, jsf(layoutPros))
     } catch (e: any) {
-        throw e
         i("blogs.bootstrap", "e", e)
+        throw e
     }
     return layoutPros
 }

@@ -1,0 +1,64 @@
+export const meta = {"authors": ["cfcodefans"], 
+"tags":["nginx", "backend", "web"], 
+"title":"setting up nginx",
+"og":{"image":"https://cfcodefans.github.io/res/backend/nginx.png"}
+}
+
+<div className="text-center">
+
+![NGINX](https://cfcodefans.github.io/res/backend/nginx.png){height="100"}
+</div>
+
+A note from my study about how to setup and use nginx. 
+
+<!--more-->
+
+# Installation
+
+Here I use centos system, so according to [nginx offical document](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)
+Firstly it needs to add nginx yum repo by creation of file at **/etc/yum.repos.d/nginx.repo**
+
+```bash
+# cat /etc/yum.repos.d/nginx.repo
+[nginx]
+name=nginx repo
+baseurl=https://nginx.org/packages/centos/8/x86_64/
+gpgcheck=0
+enabled=1
+```
+
+I was not sure about the version of the server, then found a command that could show some system info
+
+```bash
+# hostnamectl
+.....
+  Operating System: CentOS Linux 8
+       CPE OS Name: cpe:/o:centos:centos:8
+            Kernel: Linux 4.18.0-240.1.1.el8_3.x86_64
+      Architecture: x86-64
+```
+Therefore, the repo path should be "nginx.org/packages/centos/**8/x86_64**/"
+
+continue with "yum install nginx"
+
+After installation finished, we could check if [systemd](https://wiki.archlinux.org/index.php/systemd#Basic_systemctl_usage) is setup
+
+```bash
+# systemctl status nginx
+● nginx.service - The nginx HTTP and reverse proxy server
+   Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+
+.... nginx.service: Unit cannot be reloaded because it is inactive.
+```
+
+
+# Configuration
+
+Nginx Configuration, it should be called "nginx programming", since nginx can do a lot, especially with [lua](http://www.lua.org/docs.html)
+I started with a simple one
+
+
+
+# HTTPS 
+

@@ -82,6 +82,34 @@
         "link": "tech/web",
         "children": [
           {
+            "label": "backend",
+            "link": "tech/web/backend",
+            "children": [
+              {
+                "label": "index.tsx",
+                "link": "tech/web/backend/index.tsx",
+                "children": [],
+                "icon": "index.tsx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              },
+              {
+                "label": "nginx-setup.mdx",
+                "link": "tech/web/backend/nginx-setup.mdx",
+                "children": [],
+                "icon": "nginx-setup.mdx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              }
+            ],
+            "icon": "backend",
+            "leaveCount": 1,
+            "layer": 2,
+            "comparedTo": null
+          },
+          {
             "label": "html",
             "link": "tech/web/html",
             "children": [
@@ -185,13 +213,13 @@
           }
         ],
         "icon": "web",
-        "leaveCount": 4,
+        "leaveCount": 5,
         "layer": 1,
         "comparedTo": null
       }
     ],
     "icon": "tech",
-    "leaveCount": 7,
+    "leaveCount": 8,
     "layer": 0,
     "comparedTo": null
   },
