@@ -8,16 +8,22 @@ import NavBreadCrumbs from "./gadgets"
 
 const UL_STYLE: string = "nav "
 
-function isClosestMenu(mp: string, rp: string): boolean {
+function isClosestMenu(modal: IMenuItemModal, rp: string): boolean {
+    const mp: string = `/${modal.link}`
+    console.info(mp, rp, rp.substring(0, rp.lastIndexOf("/")))
+
     if (_.isEmpty(mp) || _.isEmpty(rp)) return false
+
+    if (modal.children.map(c => `/${c.link}`).find(cp => cp === rp)) return false
 
     if (mp == rp) return true
 
-    const rps: string[] = rp.split("/")
-    if (rps.length >= 5) {
-        return mp == rps.slice(0, 4).join("/")
-    }
-    return false
+    return mp === rp.substring(0, rp.lastIndexOf("/"))
+    // const rps: string[] = rp.split("/")
+    // if (rps.length >= 5) {
+    //     return mp == rps.slice(0, 4).join("/")
+    // }
+    // return false
 }
 
 function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuItemModal }): JSX.Element {
@@ -29,7 +35,7 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
     // i("nav-sidebar.tsx", "_link", _link)
     //z-depth-1-half
 
-    const isSelected: boolean = isClosestMenu(_link, router.asPath)
+    const isSelected: boolean = isClosestMenu(modal, router.asPath)
 
     return (<nav className={`menu-layer-${modal.layer} nav-item w-100 mt-1`}>
         <Link href={_link}>
@@ -73,7 +79,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
 
-    return (<nav className="nav-sidebar menu-sidebar d-flex flex-column mr-lg-1 shadow">
+    return (<nav className="nav-sidebar menu-sidebar d-flex flex-column mr-lg-1">
         <div className="menu_header flex-lg-column align-items-center">
             <div className="logo text-center d-flex align-items-center m-2">
                 <a href="/">

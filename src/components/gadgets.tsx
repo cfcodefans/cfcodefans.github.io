@@ -10,7 +10,7 @@ export default function NavBreadCrumbs({ _path }: { _path: string }): JSX.Elemen
     return <Breadcrumbs aria-label="breadcrumb">{
         _path.split("/")
             .filter(part => part.length > 0)
-            .map((part: string, i: number, parts: string[]) => (<Link href={"/" + parts.slice(0, i + 1).join("/")}>{part}</Link>))
+            .map((part: string, i: number, parts: string[]) => (<Link key={i} href={"/" + parts.slice(0, i + 1).join("/")}>{part}</Link>))
     }</Breadcrumbs>
 }
 

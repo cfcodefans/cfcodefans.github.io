@@ -40,6 +40,7 @@
     top: 0px;
     right: var(--misc-sidebar-width);
     height: var(--top-navbar-height);
+    background-color: var(--cool-gray-20);
 }
 
 .misc-sidebar {

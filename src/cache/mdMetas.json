@@ -14,6 +14,24 @@
     "createdAt": "2020-11-20",
     "modifiedAt": "2020-11-20"
   },
+  "/study/business/stock-data-1.mdx": {
+    "meta": {
+      "title": "Loading stock data from yahoo",
+      "authors": [
+        "cfcodefans"
+      ],
+      "tags": [
+        "financial",
+        "stock",
+        "yahoo",
+        "data"
+      ]
+    },
+    "excerpt": "<p><em>How to get stock data from yahoo</em></p>",
+    "path": "study/business/stock-data-1.mdx",
+    "createdAt": "2021-02-08",
+    "modifiedAt": "2021-02-08"
+  },
   "/study/business/tushare-setup.mdx": {
     "meta": {
       "title": "Tushare, Financial data python library",

@@ -760,6 +760,14 @@
             "comparedTo": null
           },
           {
+            "path": "/stock-data-1.mdx",
+            "_path": "/study/business/stock-data-1.mdx",
+            "children": [],
+            "offsprings": [],
+            "childrenCount": 0,
+            "comparedTo": null
+          },
+          {
             "path": "/index.tsx",
             "_path": "/study/business/index.tsx",
             "children": [],
@@ -770,17 +778,19 @@
         ],
         "offsprings": [
           "/study/business/what-about-disclaimer.mdx",
-          "/study/business/tushare-setup.mdx"
+          "/study/business/tushare-setup.mdx",
+          "/study/business/stock-data-1.mdx"
         ],
-        "childrenCount": 2,
+        "childrenCount": 3,
         "comparedTo": null
       }
     ],
     "offsprings": [
       "/study/business/what-about-disclaimer.mdx",
-      "/study/business/tushare-setup.mdx"
+      "/study/business/tushare-setup.mdx",
+      "/study/business/stock-data-1.mdx"
     ],
-    "childrenCount": 2,
+    "childrenCount": 3,
     "comparedTo": null
   },
   {
@@ -804,6 +814,14 @@
         "comparedTo": null
       },
       {
+        "path": "/stock-data-1.mdx",
+        "_path": "/study/business/stock-data-1.mdx",
+        "children": [],
+        "offsprings": [],
+        "childrenCount": 0,
+        "comparedTo": null
+      },
+      {
         "path": "/index.tsx",
         "_path": "/study/business/index.tsx",
         "children": [],
@@ -814,14 +832,23 @@
     ],
     "offsprings": [
       "/study/business/what-about-disclaimer.mdx",
-      "/study/business/tushare-setup.mdx"
+      "/study/business/tushare-setup.mdx",
+      "/study/business/stock-data-1.mdx"
     ],
-    "childrenCount": 2,
+    "childrenCount": 3,
     "comparedTo": null
   },
   {
     "path": "/index.tsx",
     "_path": "/study/business/index.tsx",
+    "children": [],
+    "offsprings": [],
+    "childrenCount": 0,
+    "comparedTo": null
+  },
+  {
+    "path": "/stock-data-1.mdx",
+    "_path": "/study/business/stock-data-1.mdx",
     "children": [],
     "offsprings": [],
     "childrenCount": 0,
