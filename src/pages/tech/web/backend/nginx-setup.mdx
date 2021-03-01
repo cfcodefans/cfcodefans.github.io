@@ -9,7 +9,8 @@ export const meta = {"authors": ["cfcodefans"],
 ![NGINX](https://cfcodefans.github.io/res/backend/nginx.png){height="100"}
 </div>
 
-A note from my study about how to setup and use nginx. 
+A note from my study about how to setup and use nginx to work as proxy,  so that we could 
+bypass [cors](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) limitation to fetch data (disclaimer!).
 
 <!--more-->
 
@@ -54,9 +55,11 @@ After installation finished, we could check if [systemd](https://wiki.archlinux.
 
 
 # Configuration
-
-Nginx Configuration, it should be called "nginx programming", since nginx can do a lot, especially with [lua](http://www.lua.org/docs.html)
-I started with a simple one
+somewhere in /etc/nginx/nginx.conf, is a directive that includes "sites-enabled"
+```
+include /etc/nginx/sites-enabled/*;
+```
+Therefore I could just place my nginx configs in site-enabled folder
 
 
 
