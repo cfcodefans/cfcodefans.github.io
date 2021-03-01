@@ -52,13 +52,18 @@ After installation finished, we could check if [systemd](https://wiki.archlinux.
 .... nginx.service: Unit cannot be reloaded because it is inactive.
 ```
 
-
 # Configuration
 
 Nginx Configuration, it should be called "nginx programming", since nginx can do a lot, especially with [lua](http://www.lua.org/docs.html)
 I started with a simple one
 
-
+### gzip
+```
+gzip off;
+gzip_http_version 1.1;
+gzip_comp_level 2;
+gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+```
 
 # HTTPS 
 
