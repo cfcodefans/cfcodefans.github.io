@@ -68,10 +68,6 @@ gzip_comp_level 2;
 gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript;
 ```
 
-# HTTPS 
-```
-```
-
 # Install [ngx_http_proxy_connect_module](https://github.com/chobits/ngx_http_proxy_connect_module#install) for forward http proxy
 
 Firstly, I have to install some dependencies used by nginx compilation
@@ -88,5 +84,27 @@ apt-get install openssl libssl-dev
 # Check NGINX installed modules
 
 ```bash
-nginx -V 2>&1 | tr ' ' '\n'
+# List the modules loaded in nginx
+nginx -V 2>&1 | tr ' ' '\n' | grep with
+
+--with-cc-opt='-g
+--with-ld-opt='-Wl,-Bsymbolic-functions
+--with-compat
+--with-debug
+--with-pcre-jit
+--with-http_ssl_module
+--with-http_stub_status_module
+--with-http_realip_module
+--with-http_auth_request_module
+--with-http_v2_module
+--with-http_dav_module
+--with-http_slice_module
+--with-threads
+--with-http_addition_module
+--with-http_gunzip_module
+--with-http_gzip_static_module
+--with-http_sub_module
+
 ```
+
+https://www.cnblogs.com/woshimrf/p/nginx-proxy-rewrite-url.html

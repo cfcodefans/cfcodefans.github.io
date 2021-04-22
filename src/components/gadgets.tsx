@@ -1,4 +1,4 @@
-import { Breadcrumbs, Slider } from "@material-ui/core"
+import { Breadcrumbs, makeStyles, Slider } from "@material-ui/core"
 import { format, startOfDay, startOfMonth } from "date-fns"
 import { compare, DateUnit, diffDate, i, ISO_DATE_FMT, jsf, span, yesterday } from "lib/commons"
 import _ from "lodash"
@@ -52,7 +52,7 @@ export function DataLoaderTempl<P, T>({ params, loader, renderCmp, fallbackCmp }
     if (respState.state == "failed")
         return <pre>failed to load data with &nbsp;
             {jsf(params)} &nbsp;
-        for {jsf(respState.resp)}</pre>
+            for {jsf(respState.resp)}</pre>
     return renderCmp(respState.resp)
 }
 
@@ -87,12 +87,13 @@ function xByPercent(el: HTMLElement, percent: number): string {
     return el ? Math.round(el.clientWidth * percent / 100) + "px" : percent + "%"
 }
 
+// ref_v: React.MutableRefObject<Range<Date>>
+const useStyles = makeStyles({ root: { width: "100%", }, })
 export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
-    // ref_v: React.MutableRefObject<Range<Date>>
-    onRangeChange: (d1: Date, d2: Date) => void
     start: Date
     end: Date
     stepDay: number
+    onRangeChange?: (d1: Date, d2: Date) => void
 }): JSX.Element {
     const now: Date = new Date
 
@@ -101,86 +102,34 @@ export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
     const minDate: Date = _.minBy([start, end], (d: Date) => d.getTime()) || startOfMonth(now)
     const min: number = startOfDay(minDate).getTime()
 
+    const classes = useStyles()
+    const [value, setValue] = useState([min, max])
     const step: number = stepDay * 86400 * 1000
-    // const baseRange = { _1: minDate, _2: maxDate }
-    const [range, setRange] = useState([min, max])
 
     let marks: Mark[] = useMemo(
         () => genDateMarks(start, end),
-        // () => span(start, end, "month").map((d, i, arr) => ({ value: d.getTime(), label: format(d, "MM-dd") })), //(i == 0 || i == arr.length - 1) ? ISO_DATE_FMT :
         [[start, end]])
 
-    // useEffect(() => {
-    //     ref_v.current = { _1: new Date(range[0]), _2: new Date(range[1]) }
-    //     i(FILE_NAME, "DateRangeSlide.useEffect", "range", range)
-    // }, [range])
-
-    i(FILE_NAME, "DateRangeSlide.render", "range", range)
-
-    return <div className="w-100 pt-4 px-4 ">
-        <Slider defaultValue={[min, max]}
-            onChangeCommitted={(ev, newRange: number[]) => {
-                setRange(newRange)
-                onRangeChange && onRangeChange(new Date(newRange[0]), new Date(newRange[1]))
-            }}
-
-            valueLabelFormat={(value, index) => format(new Date(value), "MM-dd")}
-
-            value={range}
-            min={min}
-            max={max}
-            step={step}
-            marks={marks}
-            valueLabelDisplay="on" />
-    </div>
-
-    // return (<div className="w-100 d-flex flex-column">
-
-    //     <div id="infoPane" ref={infoPaneRef} className="w-100 position-relative" style={{ height: "2rem" }}>
-    //         <div className="position-absolute"
-    //             style={{ zIndex: 1, left: `${xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._1))}` }}>
-    //             <i className="text-nowrap" style={{ marginLeft: "-40px" }}>{format(range._1, ISO_DATE_FMT)}</i>
-    //         </div>
-    //         <div className="position-absolute"
-    //             style={{ zIndex: 1, left: `${xByPercent(infoPaneRef.current, d_calcPercent(baseRange, range._2))}` }}>
-    //             <i className="text-nowrap" style={{ marginLeft: "-40px" }}>{format(range._2, ISO_DATE_FMT)}</i>
-    //         </div>
-    //     </div>
-
-    //     <div className="w-100 position-relative multi-range">
-    //         <input className="w-100 position-absolute"
-    //             type="range"
-    //             min={min}
-    //             max={max}
-    //             step={step}
-    //             value={range._1.getTime()}
-    //             onChange={e => {
-    //                 const newValue = parseInt(e.currentTarget.value)
-    //                 if (newValue + step <= range._2.getTime()) {
-    //                     setRange({ ...range, _1: new Date(newValue) })
-    //                 }
-    //             }}
-    //         />
-    //         <input className="w-100 position-absolute"
-    //             type="range"
-    //             min={min}
-    //             max={max}
-    //             step={step}
-    //             value={range._2.getTime()}
-    //             onChange={e => {
-    //                 const newValue = parseInt(e.currentTarget.value)
-    //                 if (newValue - step >= range._1.getTime()) {
-    //                     setRange({ ...range, _2: new Date(newValue) })
-    //                 }
-    //             }}
-    //         />
-    //     </div>
-    //     <Gauge marks={genDateMarks(start, end, "month")} />
-    //     <div className="d-flex justify-content-between">
-    //         <input type="hidden" name="start_date" value={format(range._1, ISO_DATE_FMT)} />
-    //         <input type="hidden" name="end_date" value={format(range._2, ISO_DATE_FMT)} />
-    //     </div>
-    // </div>)
+    const handleChange = (event: any, newValue: number | number[]) => {
+        const values: number[] = newValue as number[]
+        const [v1, v2] = values
+        if (v1 < v2) setValue(values)
+    }
+    //aria-labelledby="range-slider"
+    // getAriaValueText={valuetext}
+    return (<Slider
+        onChangeCommitted={(ev, newRange: number[]) => {
+            onRangeChange && onRangeChange(new Date(newRange[0]), new Date(newRange[1]))
+        }}
+        defaultValue={[min, max]}
+        step={step} marks={marks}
+        min={min}
+        max={max}
+        value={value}
+        onChange={handleChange}
+        valueLabelDisplay="on"
+        valueLabelFormat={(value, index) => format(new Date(value), "MM-dd")}
+    />)
 }
 
 export type Mark = { value: number, label?: React.ReactNode }

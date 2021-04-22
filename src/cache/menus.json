@@ -95,10 +95,10 @@
                 "comparedTo": null
               },
               {
-                "label": "nginx-setup.mdx",
-                "link": "tech/web/backend/nginx-setup.mdx",
+                "label": "nginx-portal-setup.mdx",
+                "link": "tech/web/backend/nginx-portal-setup.mdx",
                 "children": [],
-                "icon": "nginx-setup.mdx",
+                "icon": "nginx-portal-setup.mdx",
                 "leaveCount": 0,
                 "layer": 3,
                 "comparedTo": null

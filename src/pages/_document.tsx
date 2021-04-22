@@ -1,10 +1,47 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from "next/document"
 import { i } from "lib/commons"
+import { ServerStyleSheets } from "@material-ui/core/styles"
+import { RenderPage } from "next/dist/next-server/lib/utils"
+import React from "react"
 
 class TemplateDoc extends Document {
     static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+        //https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js
+        // Resolution order
+        //
+        // On the server:
+        // 1. app.getInitialProps
+        // 2. page.getInitialProps
+        // 3. document.getInitialProps
+        // 4. app.render
+        // 5. page.render
+        // 6. document.render
+        //
+        // On the server with error:
+        // 1. document.getInitialProps
+        // 2. app.render
+        // 3. page.render
+        // 4. document.render
+        //
+        // On the client
+        // 1. app.getInitialProps
+        // 2. page.getInitialProps
+        // 3. app.render
+        // 4. page.render
+
+        // Render app and page and get the context of the page with collected side effects.
+        const serverSideCss: ServerStyleSheets = new ServerStyleSheets()
+        const originalRenderPage: RenderPage = ctx.renderPage
+        ctx.renderPage = () => originalRenderPage({
+            enhanceApp: (App) => (props) => serverSideCss.collect(<App {...props} />)
+        })
+
         const initialProps: DocumentInitialProps = await Document.getInitialProps(ctx)
-        return { ...initialProps }
+        return {
+            ...initialProps,
+            // Styles fragment is rendered after the app and page rendering finish.
+            styles: [...React.Children.toArray(initialProps.styles), serverSideCss.getStyleElement()],
+        }
     }
 
     docOnLoad() {
@@ -46,7 +83,6 @@ class TemplateDoc extends Document {
             <body className="root" onLoad={this.docOnLoad}>
                 <Main />
                 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
-                {/* <script src="https://cdn.bootcdn.net/ajax/libs/popper.js/2.5.3/cjs/popper.js"></script> */}
                 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.js"></script>
 
@@ -54,8 +90,7 @@ class TemplateDoc extends Document {
                 <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.1/umd/react-dom.development.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-                {/* <script src="https://cdn.bootcdn.net/ajax/libs/material-ui/5.0.0-alpha.19/umd/material-ui.production.min.js"></script> */}
-                <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js" ></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/material-ui/4.11.3/umd/material-ui.production.min.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/d3/6.2.0/d3.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/victory/35.5.1/victory.js"></script>
 

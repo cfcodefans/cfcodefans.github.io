@@ -5,6 +5,7 @@ import MiscSideBar from "./misc-sidebar"
 import NavSideBar from "./nav-sidebar"
 import NavTopBar from "./nav-topbar"
 
+// const useStyles = makeStyles({ root: { width: "100%", }, })
 
 export class LayoutCtx implements ILayoutPros {
     menus: IMenuItemModal[]
@@ -37,7 +38,8 @@ export const CtxProvider: React.FC = ({ children }: { children: ReactNode }) => 
 export default function Layout({ children, home, layoutProps }: { children: ReactNode, home: boolean, layoutProps: ILayoutPros }): JSX.Element {
     const { menus } = layoutProps
 
-    return (<div style={{ "maxWidth": "1920px", "position": "relative" }} >
+    // const classes = useStyles()
+    return (<div style={{ "maxWidth": "1920px", "position": "relative" }}  >
         <CtxProvider>
             <NavSideBar menus={menus} />
             <NavTopBar />

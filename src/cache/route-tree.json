@@ -201,8 +201,8 @@
             "_path": "/tech/web/backend",
             "children": [
               {
-                "path": "/nginx-setup.mdx",
-                "_path": "/tech/web/backend/nginx-setup.mdx",
+                "path": "/nginx-portal-setup.mdx",
+                "_path": "/tech/web/backend/nginx-portal-setup.mdx",
                 "children": [],
                 "offsprings": [],
                 "childrenCount": 0,
@@ -218,7 +218,7 @@
               }
             ],
             "offsprings": [
-              "/tech/web/backend/nginx-setup.mdx"
+              "/tech/web/backend/nginx-portal-setup.mdx"
             ],
             "childrenCount": 1,
             "comparedTo": null
@@ -229,7 +229,7 @@
           "/tech/web/markdown/mdx-study.mdx",
           "/tech/web/markdown/markdown-sample.mdx",
           "/tech/web/html/what-is-open-graph.mdx",
-          "/tech/web/backend/nginx-setup.mdx"
+          "/tech/web/backend/nginx-portal-setup.mdx"
         ],
         "childrenCount": 5,
         "comparedTo": null
@@ -314,7 +314,7 @@
       "/tech/web/markdown/mdx-study.mdx",
       "/tech/web/markdown/markdown-sample.mdx",
       "/tech/web/html/what-is-open-graph.mdx",
-      "/tech/web/backend/nginx-setup.mdx",
+      "/tech/web/backend/nginx-portal-setup.mdx",
       "/tech/data/database/mysql-spartial-study-1.mdx",
       "/tech/data/database/mysql-etl-study-1.mdx",
       "/tech/data/database/h2db-source.mdx"

@@ -15,6 +15,11 @@ import * as gtag from "lib/analystic"
 import { useEffect } from "react"
 import SharePane from "components/share-pane"
 
+import CssBaseline from "@material-ui/core/CssBaseline"
+import { ThemeProvider } from "@material-ui/core/styles"
+import { MUI_THEME } from "styles"
+
+
 const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
     return <article children={children} />
 }
@@ -30,6 +35,15 @@ export default function _App({ Component, pageProps, router }: AppProps): JSX.El
 
     const _path: string = router.asPath
     const currentRoute = routes.find(r => r._path == _path)
+
+    //https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_app.js
+    useEffect(() => {
+        // Remove the server-side injected CSS.
+        const jssStyles = document.querySelector('#jss-server-side')
+        if (jssStyles) {
+            jssStyles.parentElement.removeChild(jssStyles)
+        }
+    }, [])
 
     useEffect(() => {
         const handleRouteChange = (url: URL) => {
@@ -70,7 +84,10 @@ export default function _App({ Component, pageProps, router }: AppProps): JSX.El
             <meta name="format-detection" content="telephone=no" />
             <meta name="X-FRAME-OPTIONS" content="deny" />
         </Head>
-        {content}
+        <ThemeProvider theme={MUI_THEME}>
+            <CssBaseline />
+            {content}
+        </ThemeProvider>
     </>)
 }
 

@@ -129,7 +129,7 @@
     "createdAt": "2020-11-26",
     "modifiedAt": "2020-11-26"
   },
-  "/tech/web/backend/nginx-setup.mdx": {
+  "/tech/web/backend/nginx-portal-setup.mdx": {
     "meta": {
       "authors": [
         "cfcodefans"
@@ -145,9 +145,9 @@
       }
     },
     "excerpt": "<div class=\"text-center\"><p><img src=\"https://cfcodefans.github.io/res/backend/nginx.png\" alt=\"NGINX\" height=\"100\"/></p></div><p>A note from my study about how to setup and use nginx to work as proxy,  so that we could\nbypass <span><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS\">cors</a>  <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS\" target=\"_blank\">[+]</a></span> limitation to fetch data (disclaimer!).</p>",
-    "path": "tech/web/backend/nginx-setup.mdx",
+    "path": "tech/web/backend/nginx-portal-setup.mdx",
     "createdAt": "2021-02-08",
-    "modifiedAt": "2021-04-19"
+    "modifiedAt": "2021-04-21"
   },
   "/tech/web/html/what-is-open-graph.mdx": {
     "meta": {
