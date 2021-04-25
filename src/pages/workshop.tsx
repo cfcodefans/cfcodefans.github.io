@@ -4,9 +4,6 @@ import { format, startOfDay, startOfMonth, startOfYesterday } from "date-fns"
 import { addDate, i, yesterday } from "lib/commons"
 import React, { useMemo, useState } from "react"
 
-import Typography from "@material-ui/core/Typography"
-import Slider, { Mark } from "@material-ui/core/Slider"
-import { makeStyles } from "@material-ui/core/styles"
 import { DateRangeSlide, genDateMarks } from "components/gadgets"
 import _ from "lodash"
 

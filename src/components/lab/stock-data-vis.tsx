@@ -1,9 +1,9 @@
-import { CircularProgress } from "@material-ui/core"
-import { DateRangeSlide, JsonpDataLoader } from "components/gadgets"
+// import { CircularProgress } from "@material-ui/core"
+import { DateRangeSlide, JsonpDataLoader, Spinner } from "components/gadgets"
 import { format } from "date-fns"
 import { addDate, i, jsf, Range, yesterday } from "lib/commons"
 import _, { round } from "lodash"
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 import * as vic from "victory"
 import { CallbackArgs } from "victory-core"
 import { STOCK } from "./stocks"
@@ -88,7 +88,7 @@ export namespace STOCK_CMP {
                         const [raw] = raws
                         return <STOCK_CMP.StockCandleChart sds={raw.hq.map(d => STOCK.SOHU_STOCK.toTStockData(d))} />
                     }}
-                    fallbackCmp={() => <CircularProgress />} />
+                    fallbackCmp={() => <Spinner />} />
             </div>
         </div>
     }

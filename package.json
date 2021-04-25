@@ -17,7 +17,6 @@
         "export": "next build & next export"
     },
     "dependencies": {
-        "@material-ui/core": "^4.11.2",
         "@mdx-js/loader": "^1.6.19",
         "@mdx-js/runtime": "^1.6.19",
         "@next/mdx": "^10.0.0",
@@ -31,6 +30,7 @@
         "next-mdx-remote": "^1.0.0",
         "react": "^17.0.0",
         "react-dom": "^17.0.0",
+        "react-rnd": "^10.2.4",
         "react-share": "^4.3.1",
         "react-three-fiber": "^5.2.1",
         "rehype-katex": "^4.0.0",

@@ -1,17 +1,18 @@
-import { Breadcrumbs, makeStyles, Slider } from "@material-ui/core"
+// import { Breadcrumbs, makeStyles, Slider } from "@material-ui/core"
 import { format, startOfDay, startOfMonth } from "date-fns"
 import { compare, DateUnit, diffDate, i, ISO_DATE_FMT, jsf, span, yesterday } from "lib/commons"
 import _ from "lodash"
 import Link from "next/link"
 import React, { useEffect, useMemo, useState } from "react"
+import { ResizeEnable, Rnd } from "react-rnd"
 import { _jsonp } from "./utils"
 
 export default function NavBreadCrumbs({ _path }: { _path: string }): JSX.Element {
-    return <Breadcrumbs aria-label="breadcrumb">{
+    return <div className="d-flex">{
         _path.split("/")
             .filter(part => part.length > 0)
             .map((part: string, i: number, parts: string[]) => (<Link key={i} href={"/" + parts.slice(0, i + 1).join("/")}>{part}</Link>))
-    }</Breadcrumbs>
+    }</div>
 }
 
 const FILE_NAME: string = "gadgets.tsx"
@@ -87,8 +88,59 @@ function xByPercent(el: HTMLElement, percent: number): string {
     return el ? Math.round(el.clientWidth * percent / 100) + "px" : percent + "%"
 }
 
+export function RangeSelect({ start, end, orientation, marks = [], onRangeChange, ...rest }: {
+    start: number,
+    end: number,
+    orientation: "vertical" | "horizontal",
+    onRangeChange: (start: number, end: number) => void,
+    marks: Mark[],
+}): JSX.Element {
+
+    const [range, setRange] = useState({ start, length: end - start })
+    const isVertical: boolean = orientation === "vertical"
+
+    const enabledSides: ResizeEnable = useMemo((): ResizeEnable => {
+        return {
+            top: isVertical,
+            bottom: isVertical,
+            right: !isVertical,
+            left: isVertical,
+            topRight: false,
+            bottomRight: false,
+            bottomLeft: false,
+            topLeft: false,
+        }
+    }, [orientation])
+
+    return <Rnd
+        style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderLeft: "solid 5px #ddd",
+            borderRight: "solid 5px #ddd",
+            borderTop: "solid 1px #ddd",
+            borderBottom: "solid 1px #ddd",
+            background: "#f0f0f0",
+            height: "100%",
+        }}
+        onDragStop={(e, d) => {
+            const start: number = isVertical ? d.x : d.y
+            setRange({ start, length: range.length })
+            _.isFunction(onRangeChange) && onRangeChange(start, start + range.length)
+        }}
+        onResizeStop={(e, direction, ref, delta, position) => {
+            const start: number = isVertical ? position.x : position.y
+            const length: number = isVertical ? ref.clientHeight : ref.clientWidth
+            setRange({ start, length })
+            _.isFunction(onRangeChange) && onRangeChange(start, start + range.length)
+        }}
+        enableResizing={enabledSides} >
+
+    </Rnd>
+}
+
 // ref_v: React.MutableRefObject<Range<Date>>
-const useStyles = makeStyles({ root: { width: "100%", }, })
 export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
     start: Date
     end: Date
@@ -102,7 +154,6 @@ export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
     const minDate: Date = _.minBy([start, end], (d: Date) => d.getTime()) || startOfMonth(now)
     const min: number = startOfDay(minDate).getTime()
 
-    const classes = useStyles()
     const [value, setValue] = useState([min, max])
     const step: number = stepDay * 86400 * 1000
 
@@ -115,21 +166,26 @@ export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
         const [v1, v2] = values
         if (v1 < v2) setValue(values)
     }
+
+    return <div className="w-100 bg-info d-flex justify-content-between" style={{ height: "2rem" }}>
+        {!_.isEmpty(marks) && marks.map(mark => mark.label)}
+
+    </div>
     //aria-labelledby="range-slider"
     // getAriaValueText={valuetext}
-    return (<Slider
-        onChangeCommitted={(ev, newRange: number[]) => {
-            onRangeChange && onRangeChange(new Date(newRange[0]), new Date(newRange[1]))
-        }}
-        defaultValue={[min, max]}
-        step={step} marks={marks}
-        min={min}
-        max={max}
-        value={value}
-        onChange={handleChange}
-        valueLabelDisplay="on"
-        valueLabelFormat={(value, index) => format(new Date(value), "MM-dd")}
-    />)
+    // return (<Slider
+    //     onChangeCommitted={(ev, newRange: number[]) => {
+    //         onRangeChange && onRangeChange(new Date(newRange[0]), new Date(newRange[1]))
+    //     }}
+    //     defaultValue={[min, max]}
+    //     step={step} marks={marks}
+    //     min={min}
+    //     max={max}
+    //     value={value}
+    //     onChange={handleChange}
+    //     valueLabelDisplay="on"
+    //     valueLabelFormat={(value, index) => format(new Date(value), "MM-dd")}
+    // />)
 }
 
 export type Mark = { value: number, label?: React.ReactNode }
@@ -154,7 +210,13 @@ export function genDateMarks(start: Date, end: Date, step: DateUnit = "month"): 
 }
 
 export function Gauge({ marks }: { marks: Mark[] }): JSX.Element {
-    return (<div className="w-100 d-flex  justify-content-between">{
+    return (<div className="w-100 d-flex justify-content-between">{
         marks.map((m, i) => <i key={i}>{m.label || "_"}</i>)
     }</div>)
+}
+
+export function Spinner({ type = "grow", size = "md", caption = "loading..." }: { caption?: string, size?: string, type?: "grow" | "border" }): JSX.Element {
+    return <div className={`spinner-${type} spinner-${type}-${size}`} role="status">
+        <span className="visually-hidden">{caption}</span>
+    </div>
 }

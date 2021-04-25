@@ -30,7 +30,7 @@ const externals = {
     "lodash": "_",
     "react": "React",
     "victory": "Victory",
-    "@material-ui/core": "MaterialUI",// /^@material-ui\/(core|icons)[\/a-zA-Z]*/, //https://stackoverflow.com/questions/51310723/how-does-one-specify-material-ui-core-as-an-external-in-webpack
+    // "@material-ui/core": "MaterialUI",// /^@material-ui\/(core|icons)[\/a-zA-Z]*/, //https://stackoverflow.com/questions/51310723/how-does-one-specify-material-ui-core-as-an-external-in-webpack
     "highlight.js": "hljs"
 }
 

@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from "next/document"
 import { i } from "lib/commons"
-import { ServerStyleSheets } from "@material-ui/core/styles"
 import { RenderPage } from "next/dist/next-server/lib/utils"
 import React from "react"
 
@@ -30,18 +29,8 @@ class TemplateDoc extends Document {
         // 4. page.render
 
         // Render app and page and get the context of the page with collected side effects.
-        const serverSideCss: ServerStyleSheets = new ServerStyleSheets()
-        const originalRenderPage: RenderPage = ctx.renderPage
-        ctx.renderPage = () => originalRenderPage({
-            enhanceApp: (App) => (props) => serverSideCss.collect(<App {...props} />)
-        })
-
         const initialProps: DocumentInitialProps = await Document.getInitialProps(ctx)
-        return {
-            ...initialProps,
-            // Styles fragment is rendered after the app and page rendering finish.
-            styles: [...React.Children.toArray(initialProps.styles), serverSideCss.getStyleElement()],
-        }
+        return { ...initialProps }
     }
 
     docOnLoad() {
@@ -85,12 +74,10 @@ class TemplateDoc extends Document {
                 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.js"></script>
-
                 <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.1/umd/react.development.min.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.1/umd/react-dom.development.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/material-ui/4.11.3/umd/material-ui.production.min.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/d3/6.2.0/d3.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/victory/35.5.1/victory.js"></script>
 
