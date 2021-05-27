@@ -33,5 +33,5 @@ yarn export && copy _git out\.git && copy _nojekyll out\.nojekyll
 ```
 
 ```cmd
-yarn preload && yarn export && copy _git out\.git && copy _nojekyll out\.nojekyll
+yarn preload && yarn export && copy settings\_git out\.git && copy settings\_nojekyll out\.nojekyll
 ```

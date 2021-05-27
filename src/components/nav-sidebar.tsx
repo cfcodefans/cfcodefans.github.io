@@ -1,9 +1,9 @@
-import Link from "next/link"
-import React, { ReactElement, ReactNodeArray, useEffect, useState } from "react"
-import { deepTraverse, i } from "lib/commons"
-import { IMenuItemModal } from "../types"
+import { deepTraverse } from "lib/commons"
 import _ from "lodash"
 import { NextRouter, useRouter } from "next/dist/client/router"
+import Link from "next/link"
+import React, { ReactElement, ReactNodeArray, useEffect, useState } from "react"
+import { IMenuItemModal } from "../types"
 import NavBreadCrumbs from "./gadgets"
 
 const UL_STYLE: string = "nav "
@@ -13,26 +13,14 @@ function isClosestMenu(modal: IMenuItemModal, rp: string): boolean {
     console.info(mp, rp, rp.substring(0, rp.lastIndexOf("/")))
 
     if (_.isEmpty(mp) || _.isEmpty(rp)) return false
-
     if (modal.children.map(c => `/${c.link}`).find(cp => cp === rp)) return false
-
     if (mp == rp) return true
-
     return mp === rp.substring(0, rp.lastIndexOf("/"))
-    // const rps: string[] = rp.split("/")
-    // if (rps.length >= 5) {
-    //     return mp == rps.slice(0, 4).join("/")
-    // }
-    // return false
 }
 
 function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuItemModal }): JSX.Element {
     const _link: string = `/${modal.link}`
-
-    // const [currentPath, setCurrentPath] = useState("")
-    // useEffect(() => setCurrentPath((window && window.location.pathname) || "")) badge badge-pill badge-info justify-content-between
     const router: NextRouter = useRouter()
-    // i("nav-sidebar.tsx", "_link", _link)
     //z-depth-1-half
 
     const isSelected: boolean = isClosestMenu(modal, router.asPath)

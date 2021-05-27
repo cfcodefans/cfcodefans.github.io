@@ -1,6 +1,6 @@
 import { addDays } from "date-fns"
 import * as _ from "lodash"
-import { ITNode, TNode, TTraverser } from "types"
+import { ITNode, TNode, TTraverser } from "../types"
 
 export function sliceMean(arr: number[], start: number = 0, end: number): number {
     if (_.isEmpty(arr) || start >= arr.length || start > end) return NaN

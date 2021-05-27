@@ -63,16 +63,16 @@ class TemplateDoc extends Document {
                 <link href="/css/component.css" rel="stylesheet" />
                 <link href="/css/mainframe-protrait.css" rel="stylesheet" media="(orientation: portrait)" />
                 <link href="/css/mainframe-landscape.css" rel="stylesheet" media="(orientation: landscape)" />
-                <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.css" rel="stylesheet" />
+                <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.css" rel="stylesheet" />
+                <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css" rel="stylesheet" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/css/mdb.css" rel="stylesheet" />
-                <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" rel="stylesheet" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.3.2/styles/default.min.css" rel="stylesheet" />
                 <meta property="og:type" content="website" />
             </Head>
             <body className="root" onLoad={this.docOnLoad}>
                 <Main />
                 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.1/umd/react.development.min.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.1/umd/react-dom.development.js"></script>

@@ -12,7 +12,7 @@
         "opd": "node --v8-pool-size=32 --max_old_space_size=512 ./node_modules/next/dist/bin/next dev",
         "opb": "node --v8-pool-size=32 --max_old_space_size=512 ./node_modules/next/dist/bin/next build",
         "ope": "node --v8-pool-size=32 --max_old_space_size=512 ./node_modules/next/dist/bin/next export",
-        "preload": "ts-node -P tsconfig.preload.json src/blog-loader.ts",
+        "preload": "ts-node -P settings/tsconfig.preload.json src/blog-loader.ts",
         "test": "ts-node -P tsconfig.preload.json src/workshop.ts",
         "export": "next build & next export"
     },

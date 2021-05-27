@@ -22,23 +22,12 @@ const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
 export default function _App({ Component, pageProps, router }: AppProps): JSX.Element {
     i("_app.tsx", "router", router.asPath, "pageProps", Object.keys(pageProps))
 
-    // const { layoutProps } = pageProps
     const layoutProps: ILayoutPros = { menus, routeTree, routes, pathToMarkdowns }
-    // const { routes, pathToMarkdowns } = layoutProps
 
     let content: JSX.Element = null
 
     const _path: string = router.asPath
     const currentRoute = routes.find(r => r._path == _path)
-
-    //https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_app.js
-    useEffect(() => {
-        // Remove the server-side injected CSS.
-        const jssStyles = document.querySelector('#jss-server-side')
-        if (jssStyles) {
-            jssStyles.parentElement.removeChild(jssStyles)
-        }
-    }, [])
 
     useEffect(() => {
         const handleRouteChange = (url: URL) => {
@@ -90,4 +79,4 @@ export async function getInitialProps(appContext: AppContext): Promise<AppInitia
     return { pageProps: { layoutProps } }
 }
 
-// _App.getInitialProps = getInitialProps
+_App.getInitialProps = getInitialProps

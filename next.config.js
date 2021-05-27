@@ -30,26 +30,18 @@ const externals = {
     "lodash": "_",
     "react": "React",
     "victory": "Victory",
-    // "@material-ui/core": "MaterialUI",// /^@material-ui\/(core|icons)[\/a-zA-Z]*/, //https://stackoverflow.com/questions/51310723/how-does-one-specify-material-ui-core-as-an-external-in-webpack
     "highlight.js": "hljs"
 }
 
 module.exports = withMDX({
+    basePath: "/target",
+    distDir: "/tmp",
+
     pageExtensions: ["md", "mdx", "jsx", "js", "ts", "tsx"],
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
         // Note: we provide webpack above so you should not `require` it
         // Perform customizations to webpack config
         config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
-
-        // Important: return the modified config
-        // config["externals"] = externals
-        // console.info("phase", phase)
-        // console.info("buildId", JSON.stringify(buildId))
-        // console.info("dev", JSON.stringify(dev))
-        // console.info("isServer", JSON.stringify(isServer))
-        // console.info("defaultLoaders", JSON.stringify(defaultLoaders))
-        // console.info("webpack", JSON.stringify(webpack))
-        // console.info("config.externals", JSON.stringify(config["externals"]))
 
         if (!isServer) {
             config["externals"] = [...config["externals"], externals]

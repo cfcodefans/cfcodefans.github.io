@@ -113,6 +113,7 @@ export function RangeSelect({ start, end, orientation, marks = [], onRangeChange
     }, [orientation])
 
     return <Rnd
+        default={{ x: 10, y: 10, height: rest["height"], width: rest["width"] }}
         style={{
             display: "flex",
             alignItems: "center",
@@ -167,7 +168,7 @@ export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
         if (v1 < v2) setValue(values)
     }
 
-    return <div className="w-100 bg-info d-flex justify-content-between" style={{ height: "2rem" }}>
+    return <div className="bg-info d-flex justify-content-between" style={{ height: "40px", width: "800px" }}>
         {!_.isEmpty(marks) && marks.map(mark => mark.label)}
 
     </div>

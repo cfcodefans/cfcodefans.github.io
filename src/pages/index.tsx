@@ -22,15 +22,7 @@ export default function IndexPage({ layoutProps }: { layoutProps: ILayoutPros })
         mds = Object.values(pathToMarkdowns).filter(md => !md.path.includes("resume.mdx")).sort(sortMds)
     }
 
-    // i("index.tsx", "mds.created", mds.map(md => md.createdAt))
     let pageContent: JSX.Element = <BlogList mds={mds} />
 
     return pageContent
 }
-
-// export async function getStaticProps(context: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
-//     i("index.tsx", "context", context)
-//     const layoutProps: ILayoutPros = { menus, routeTree, routes, pathToMarkdowns }
-//     i("index.tsx", "menus", layoutProps.menus.length)
-//     return { props: { layoutProps } }
-// }
