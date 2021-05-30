@@ -59,26 +59,27 @@ class TemplateDoc extends Document {
     render(): JSX.Element {
         return <Html prefix="og: https://ogp.me/ns#">
             <Head>
-                <link href="/css/common.css" rel="stylesheet" />
-                <link href="/css/component.css" rel="stylesheet" />
-                <link href="/css/mainframe-protrait.css" rel="stylesheet" media="(orientation: portrait)" />
-                <link href="/css/mainframe-landscape.css" rel="stylesheet" media="(orientation: landscape)" />
+                <link href="/assets/css/common.css" rel="stylesheet" />
+                <link href="/assets/css/component.css" rel="stylesheet" />
+                <link href="/assets/css/mainframe-protrait.css" rel="stylesheet" media="(orientation: portrait)" />
+                <link href="/assets/css/mainframe-landscape.css" rel="stylesheet" media="(orientation: landscape)" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.css" rel="stylesheet" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css" rel="stylesheet" />
                 <link href="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/css/mdb.css" rel="stylesheet" />
-                <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.3.2/styles/default.min.css" rel="stylesheet" />
+                <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/styles/default.min.css" rel="stylesheet" />
                 <meta property="og:type" content="website" />
             </Head>
             <body className="root" onLoad={this.docOnLoad}>
                 <Main />
                 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/react-bootstrap/1.5.2/react-bootstrap.min.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.1/umd/react.development.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.1/umd/react-dom.development.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.2/umd/react.development.min.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/d3/6.2.0/d3.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/d3/6.7.0/d3.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/victory/35.5.1/victory.js"></script>
 
                 <NextScript />

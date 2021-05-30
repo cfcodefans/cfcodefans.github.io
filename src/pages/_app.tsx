@@ -20,7 +20,11 @@ const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
 }
 
 export default function _App({ Component, pageProps, router }: AppProps): JSX.Element {
-    i("_app.tsx", "router", router.asPath, "pageProps", Object.keys(pageProps))
+    // i("_app.tsx", "router", router.asPath, "pageProps", Object.keys(pageProps))
+
+    if (router.asPath.endsWith("jpg")) {
+        i("_app.tsx", "catch jpg", router.asPath)
+    }
 
     const layoutProps: ILayoutPros = { menus, routeTree, routes, pathToMarkdowns }
 
@@ -75,7 +79,7 @@ export default function _App({ Component, pageProps, router }: AppProps): JSX.El
 export async function getInitialProps(appContext: AppContext): Promise<AppInitialProps> {
     const { Component, ctx, } = appContext
     const layoutProps: ILayoutPros = { menus, routeTree, routes, pathToMarkdowns }
-    i("_app.tsx", "menus", layoutProps.menus.length)
+    // i("_app.tsx", "menus", layoutProps.menus.length)
     return { pageProps: { layoutProps } }
 }
 

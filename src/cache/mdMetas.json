@@ -62,13 +62,13 @@
         "disclaimer generator"
       ],
       "og": {
-        "image": "https://cfcodefans.github.io/res/business/disclaimer.png"
+        "image": "https://cfcodefans.github.io/assets/res/business/disclaimer.png"
       }
     },
     "excerpt": "<div class=\"text-center\"><p><img src=\"https://upload.wikimedia.org/wikipedia/commons/4/4d/19120417_Disclaimer_-_not_responsible_for_wife%27s_debts_-_The_New_York_Times.jpg\" alt=\"disclaimer\" height=\"240\"/></p></div><p>As viewers in most time, the terms on websites/apps are the least concerned. I&#x27;d just click/tap on the &quot;accept&quot; button to\nshut the terms down asap. However, when table is turned and I wish to switch roles to be makers of online content,\nI can&#x27;t help asking myself</p>",
     "path": "study/business/what-about-disclaimer.mdx",
     "createdAt": "2020-12-15",
-    "modifiedAt": "2020-12-15"
+    "modifiedAt": "2021-05-30"
   },
   "/tech/data/database/h2db-source.mdx": {
     "meta": {
@@ -82,10 +82,10 @@
       ],
       "title": "Study of H2 the Java SQL database"
     },
-    "excerpt": "<p><img src=\"https://www.h2database.com/html/images/h2-logo-2.png\" alt=\"OGP\"/></p><p>I want to study more about database, not just how to query and store data.\nI wish to know how a database is built, what concerns are to be addressed.\nI figure <span><a href=\"https://h2database.com\">h2databasae</a>  <a href=\"https://h2database.com\" target=\"_blank\">[+]</a></span> could be a good starting point</p>",
+    "excerpt": "<div class=\"text-center\"><p><img src=\"https://www.h2database.com/html/images/h2-logo-2.png\" alt=\"OGP\"/></p></div><p>I want to study more about database, not just how to query and store data.\nI wish to know how a database is built, what concerns are to be addressed.\nI figure <span><a href=\"https://h2database.com\">h2databasae</a>  <a href=\"https://h2database.com\" target=\"_blank\">[+]</a></span> could be a good starting point</p>",
     "path": "tech/data/database/h2db-source.mdx",
     "createdAt": "2020-11-16",
-    "modifiedAt": "2020-11-22"
+    "modifiedAt": "2021-05-30"
   },
   "/tech/data/database/mysql-etl-study-1.mdx": {
     "meta": {
@@ -103,10 +103,10 @@
         "image": "https://cfcodefans.github.io/res/mdx/mysql-logo.png"
       }
     },
-    "excerpt": "<div class=\"text-center\"><p><img src=\"/res/mdx/mysql-logo.png\" alt=\"MYSQL\" height=\"100\"/></p></div><p>In the preparation of another blog talking about spatial feature of MYSQL, I started with data collection,\nthen I wondered how capable MYSQL could be on <span><a href=\"https://en.wikipedia.org/wiki/Extract,_transform,_load\">ETL(Extraction/Transform/Loading)</a>  <a href=\"https://en.wikipedia.org/wiki/Extract,_transform,_load\" target=\"_blank\">[+]</a></span>.</p><p>Firstly I found some geo data from <span><a href=\"https://geojson-maps.ash.ms/d9f6df37-7191-4b49-8b5c-1c875e4fc951\">AshKyd</a>  <a href=\"https://geojson-maps.ash.ms/d9f6df37-7191-4b49-8b5c-1c875e4fc951\" target=\"_blank\">[+]</a></span></p>",
+    "excerpt": "<div class=\"text-center\"><p><img src=\"/assets/res/mdx/mysql-logo.png\" alt=\"MYSQL\" height=\"100\"/></p></div><p>In the preparation of another blog talking about spatial feature of MYSQL, I started with data collection,\nthen I wondered how capable MYSQL could be on <span><a href=\"https://en.wikipedia.org/wiki/Extract,_transform,_load\">ETL(Extraction/Transform/Loading)</a>  <a href=\"https://en.wikipedia.org/wiki/Extract,_transform,_load\" target=\"_blank\">[+]</a></span>.</p><p>Firstly I found some geo data from <span><a href=\"https://geojson-maps.ash.ms/d9f6df37-7191-4b49-8b5c-1c875e4fc951\">AshKyd</a>  <a href=\"https://geojson-maps.ash.ms/d9f6df37-7191-4b49-8b5c-1c875e4fc951\" target=\"_blank\">[+]</a></span></p>",
     "path": "tech/data/database/mysql-etl-study-1.mdx",
     "createdAt": "2020-12-02",
-    "modifiedAt": "2020-12-02"
+    "modifiedAt": "2021-05-30"
   },
   "/tech/data/database/mysql-spartial-study-1.mdx": {
     "meta": {
@@ -121,13 +121,13 @@
       ],
       "title": "Study of MYSQL spatial feature",
       "og": {
-        "image": "https://cfcodefans.github.io/res/mdx/mysql-logo.png"
+        "image": "https://cfcodefans.github.io/assets/res/mdx/mysql-logo.png"
       }
     },
-    "excerpt": "<div class=\"text-center\"><p><img src=\"/res/mdx/mysql-logo.png\" alt=\"MYSQL\" height=\"100\"/></p></div><p>The infamous slogan of internet startup, quoted from silicon valley, &quot;social, mobile, local&quot;.\nWhen it comes to &quot;mobile&quot; &amp; &quot;local&quot;, we need to store, query geo location data. So let us study\n<span><a target=\"_blank\" href=\"https://dev.mysql.com/doc/refman/8.0/en/spatial-types.html\">mysql spatial feature</a>  <a target=\"_blank\" href=\"https://dev.mysql.com/doc/refman/8.0/en/spatial-types.html\">[+]</a></span>. </p>",
+    "excerpt": "<div class=\"text-center\"><p><img src=\"/assets/res/mdx/mysql-logo.png\" alt=\"MYSQL\" height=\"100\"/></p></div><p>The infamous slogan of internet startup, quoted from silicon valley, &quot;social, mobile, local&quot;.\nWhen it comes to &quot;mobile&quot; &amp; &quot;local&quot;, we need to store, query geo location data. So let us study\n<span><a target=\"_blank\" href=\"https://dev.mysql.com/doc/refman/8.0/en/spatial-types.html\">mysql spatial feature</a>  <a target=\"_blank\" href=\"https://dev.mysql.com/doc/refman/8.0/en/spatial-types.html\">[+]</a></span>. </p>",
     "path": "tech/data/database/mysql-spartial-study-1.mdx",
     "createdAt": "2020-11-26",
-    "modifiedAt": "2020-11-26"
+    "modifiedAt": "2021-05-30"
   },
   "/tech/web/backend/nginx-portal-setup.mdx": {
     "meta": {
@@ -141,13 +141,13 @@
       ],
       "title": "setting up nginx",
       "og": {
-        "image": "https://cfcodefans.github.io/res/backend/nginx.png"
+        "image": "https://cfcodefans.github.io/assets/res/backend/nginx.png"
       }
     },
-    "excerpt": "<div class=\"text-center\"><p><img src=\"https://cfcodefans.github.io/res/backend/nginx.png\" alt=\"NGINX\" height=\"100\"/></p></div><p>A note from my study about how to setup and use nginx to work as proxy,  so that we could\nbypass <span><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS\">cors</a>  <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS\" target=\"_blank\">[+]</a></span> limitation to fetch data (disclaimer!).</p>",
+    "excerpt": "<div class=\"text-center\"><p><img src=\"/assets/res/backend/nginx.png\" alt=\"NGINX\" height=\"100\"/></p></div><p>A note from my study about how to setup and use nginx to work as proxy,  so that we could\nbypass <span><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS\">cors</a>  <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS\" target=\"_blank\">[+]</a></span> limitation to fetch data (disclaimer!).</p>",
     "path": "tech/web/backend/nginx-portal-setup.mdx",
     "createdAt": "2021-02-08",
-    "modifiedAt": "2021-04-21"
+    "modifiedAt": "2021-05-30"
   },
   "/tech/web/html/what-is-open-graph.mdx": {
     "meta": {
@@ -167,7 +167,7 @@
     "excerpt": "<div class=\"text-center\"><p><img src=\"https://ogp.me/logo.png\" alt=\"OGP\" height=\"100\"/></p></div><p>As I studied so far, <span><a target=\"_blank\" href=\"https://ogp.me/\">Open-Graph-Protocol</a>  <a target=\"_blank\" href=\"https://ogp.me/\">[+]</a></span> is the protocol recognized by social network. In detail,\nyou could add certain set of meta tags into your web pages, then when the web pages are shared by links in soical networks, such as\n<span><a href=\"https://linkedin.com/\">linkedin</a>  <a href=\"https://linkedin.com/\" target=\"_blank\">[+]</a></span>, the social network could extract the info from the meta tags according to Open Graph Protocol\nand display these info to make the shared links more informative.</p>",
     "path": "tech/web/html/what-is-open-graph.mdx",
     "createdAt": "2020-11-22",
-    "modifiedAt": "2020-11-22"
+    "modifiedAt": "2021-05-30"
   },
   "/tech/web/markdown/markdown-sample.mdx": {
     "meta": {
@@ -196,13 +196,13 @@
       ],
       "title": "How to embed react into markdown?",
       "og": {
-        "image": "https://cfcodefans.github.io/res/mdx/mdx.png"
+        "image": "https://cfcodefans.github.io/assets/res/mdx/mdx.png"
       }
     },
-    "excerpt": "<div class=\"text-center\"><p><img src=\"https://mdx-logo.now.sh/\" alt=\"MDX\" height=\"100\"/></p></div><p><span><a target=\"_blank\" href=\"https://mdxjs.com/\">MDX</a>  <a target=\"_blank\" href=\"https://mdxjs.com/\">[+]</a></span> is interesting extension for <span><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">markdown</a>  <a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">[+]</a></span></p>",
+    "excerpt": "<div class=\"text-center\"><p><img src=\"/assets/res/mdx/mdx.png\" alt=\"MDX\" height=\"100\"/></p></div><p><span><a target=\"_blank\" href=\"https://mdxjs.com/\">MDX</a>  <a target=\"_blank\" href=\"https://mdxjs.com/\">[+]</a></span> is interesting extension for <span><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">markdown</a>  <a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">[+]</a></span></p>",
     "path": "tech/web/markdown/mdx-study.mdx",
     "createdAt": "2020-11-16",
-    "modifiedAt": "2020-11-22"
+    "modifiedAt": "2021-05-30"
   },
   "/tech/web/ssg/react-static-intro.mdx": {
     "meta": {

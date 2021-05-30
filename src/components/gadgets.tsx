@@ -8,11 +8,20 @@ import { ResizeEnable, Rnd } from "react-rnd"
 import { _jsonp } from "./utils"
 
 export default function NavBreadCrumbs({ _path }: { _path: string }): JSX.Element {
-    return <div className="d-flex">{
-        _path.split("/")
-            .filter(part => part.length > 0)
-            .map((part: string, i: number, parts: string[]) => (<Link key={i} href={"/" + parts.slice(0, i + 1).join("/")}>{part}</Link>))
-    }</div>
+    return <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">{
+            _path.split("/")
+                .filter(part => part.length > 0)
+                .map((part: string, i: number, parts: string[]) =>
+                (<li key={i}
+                    className={`breadcrumb-item ${i == parts.length ? "active" : ""}`}
+                    aria-current={`${i == parts.length ? "page" : "false"}`}>
+                    <Link href={"/" + parts.slice(0, i + 1).join("/")}>
+                        {part}
+                    </Link>
+                </li>))
+        }</ol>
+    </nav>
 }
 
 const FILE_NAME: string = "gadgets.tsx"

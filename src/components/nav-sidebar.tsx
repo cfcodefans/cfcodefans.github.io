@@ -1,4 +1,4 @@
-import { deepTraverse } from "lib/commons"
+import { deepTraverse, i } from "lib/commons"
 import _ from "lodash"
 import { NextRouter, useRouter } from "next/dist/client/router"
 import Link from "next/link"
@@ -10,7 +10,7 @@ const UL_STYLE: string = "nav "
 
 function isClosestMenu(modal: IMenuItemModal, rp: string): boolean {
     const mp: string = `/${modal.link}`
-    console.info(mp, rp, rp.substring(0, rp.lastIndexOf("/")))
+    // i("isClosestMenu", mp, rp, rp.substring(0, rp.lastIndexOf("/")))
 
     if (_.isEmpty(mp) || _.isEmpty(rp)) return false
     if (modal.children.map(c => `/${c.link}`).find(cp => cp === rp)) return false
@@ -71,7 +71,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
         <div className="menu_header flex-lg-column align-items-center">
             <div className="logo text-center d-flex align-items-center m-2">
                 <a href="/">
-                    <img className="rounded-circle w-100 h-100 hoverable" src="/images/cfcodefans.jpg" />
+                    <img className="rounded-circle w-100 h-100 hoverable" src="/assets/images/cfcodefans.jpg" />
                 </a>
             </div>
             <div className="nav-title text-center flex-grow-1 w-100">
@@ -84,7 +84,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
         </div>
 
         <div id="menu_nav" className="d-flex align-items-center navbar pl-1 pr-1 border border-0 z-depth-0 ">
-            <nav aria-label="breadcrumb" className="d-flex d-lg-none justify-content-between w-100 mb-2 primary-color font-up-bold">
+            <div aria-label="breadcrumb" className="d-flex d-lg-none justify-content-between w-100 mb-2 font-up-bold">
                 <NavBreadCrumbs _path={currentPath} />
 
                 <button className="navbar-toggler"
@@ -92,15 +92,15 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
                     data-toggle="collapse"
                     data-target="#menu_box"
                     aria-controls="menu_box"
-                    aria-expanded="true"
+                    aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span className="dark-blue-text">
                         <i className="fas fa-bars fa-1x"></i>
                     </span>
                 </button>
-            </nav>
+            </div>
 
-            <div className="navbar-collapse border border-0 z-depth-0 d-lg-block pr-1" id="menu_box">
+            <div className="collapse border border-0 z-depth-0 d-lg-block pr-1" id="menu_box">
                 <nav className={`menu ${UL_STYLE} smooth-scroll w-100 `}>
                     {menus.map(m => linkAndElements.get(m.link))}
                 </nav>

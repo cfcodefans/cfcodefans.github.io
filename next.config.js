@@ -34,8 +34,8 @@ const externals = {
 }
 
 module.exports = withMDX({
-    basePath: "/target",
-    distDir: "/tmp",
+    // basePath: "/target",
+    // distDir: "/tmp",
 
     pageExtensions: ["md", "mdx", "jsx", "js", "ts", "tsx"],
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
