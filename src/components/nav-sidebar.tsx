@@ -85,6 +85,11 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
 
         <div id="menu_nav" className="d-flex align-items-center navbar pl-1 pr-1 border border-0 z-depth-0 ">
             <div aria-label="breadcrumb" className="d-flex d-lg-none justify-content-between w-100 mb-2 font-up-bold">
+                <div className="logo text-center d-flex align-items-center m-2">
+                    <a href="/">
+                        <img className="rounded-circle w-100 h-100 hoverable" src="/assets/images/cfcodefans.jpg" />
+                    </a>
+                </div>
                 <NavBreadCrumbs _path={currentPath} />
 
                 <button className="navbar-toggler"
@@ -100,7 +105,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
                 </button>
             </div>
 
-            <div className="collapse border border-0 z-depth-0 d-lg-block pr-1" id="menu_box">
+            <div className="collapse navbar-collapse navbar nav border border-0 z-depth-0 d-lg-block pr-1" id="menu_box">
                 <nav className={`menu ${UL_STYLE} smooth-scroll w-100 `}>
                     {menus.map(m => linkAndElements.get(m.link))}
                 </nav>

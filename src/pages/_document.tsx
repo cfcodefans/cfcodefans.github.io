@@ -73,7 +73,6 @@ class TemplateDoc extends Document {
                 <Main />
                 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/react-bootstrap/1.5.2/react-bootstrap.min.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.2/umd/react.development.min.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>

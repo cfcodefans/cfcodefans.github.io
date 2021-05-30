@@ -205,3 +205,7 @@ code {
 .main-pane article table {
     border: solid 1px gray;
 }
+
+.navbar .breadcrumb .breadcrumb-item:before {
+    color: gray !important;
+}
