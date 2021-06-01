@@ -146,7 +146,6 @@ export function RangeSelect({ start, end, orientation, marks = [], onRangeChange
             _.isFunction(onRangeChange) && onRangeChange(start, start + range.length)
         }}
         enableResizing={enabledSides} >
-
     </Rnd>
 }
 

@@ -12,6 +12,10 @@
 
 .root {
     background-color: var(--cool-gray-20);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-x: hidden;
 }
 
 .menu-layer-0 {
@@ -64,9 +68,9 @@
     font-weight: bold;
 }
 
-
 .menu-sidebar {
-    position: fixed;
+    position:sticky;
+    top: 0px;
 }
 
 .menu-sidebar .menu_header .nav-title a {

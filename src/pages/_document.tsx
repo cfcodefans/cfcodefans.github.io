@@ -69,17 +69,18 @@ class TemplateDoc extends Document {
                 <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/styles/default.min.css" rel="stylesheet" />
                 <meta property="og:type" content="website" />
             </Head>
-            <body className="root" onLoad={this.docOnLoad}>
+            <body onLoad={this.docOnLoad}>
                 <Main />
-                <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.min.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.2/umd/react.development.min.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/react-bootstrap/1.5.2/react-bootstrap.min.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
                 <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/d3/6.7.0/d3.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/victory/35.5.1/victory.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/d3/6.7.0/d3.min.js"></script>
+                <script src="https://cdn.bootcdn.net/ajax/libs/victory/35.5.1/victory.min.js"></script>
 
                 <NextScript />
 

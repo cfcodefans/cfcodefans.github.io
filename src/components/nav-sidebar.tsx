@@ -3,6 +3,7 @@ import _ from "lodash"
 import { NextRouter, useRouter } from "next/dist/client/router"
 import Link from "next/link"
 import React, { ReactElement, ReactNodeArray, useEffect, useState } from "react"
+import { Nav, Navbar } from "react-bootstrap"
 import { IMenuItemModal } from "../types"
 import NavBreadCrumbs from "./gadgets"
 
@@ -21,25 +22,26 @@ function isClosestMenu(modal: IMenuItemModal, rp: string): boolean {
 function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuItemModal }): JSX.Element {
     const _link: string = `/${modal.link}`
     const router: NextRouter = useRouter()
-    //z-depth-1-half
 
     const isSelected: boolean = isClosestMenu(modal, router.asPath)
 
-    return (<nav className={`menu-layer-${modal.layer} nav-item w-100 mt-1`}>
-        <Link href={_link}>
-            <a className={`icon-${modal.icon} nav-link ${isSelected ? "active ml-n1 grey lighten-3" : ""} rounded-pill hoverable d-flex pl-2 pr-1 justify-content-between`}>
-                <span className="menu-label text-capitalize">{modal.label}</span>&nbsp;
-                <span className={`${isSelected ? "" : "x-ball grey lighten-3 "} px-2 align-self-center`}>{modal.leaveCount}</span>
-            </a>
-        </Link>
+    return (<Nav className={`menu-layer-${modal.layer} flex-column mt-1`}>
+        <Nav.Link key={modal.label} eventKey={modal.label} as={"div"}>
+            <Link href={_link}>
+                <a className={`icon-${modal.icon} ${isSelected ? "active ml-n1 grey lighten-3" : ""} rounded-pill hoverable d-flex pl-2 pr-1 justify-content-between`}>
+                    <span className="menu-label text-capitalize">{modal.label}</span>&nbsp;
+                    <span className={`${isSelected ? "" : "x-ball grey lighten-3 "} px-2 align-self-center`}>{modal.leaveCount}</span>
+                </a>
+            </Link>
+        </Nav.Link>
         {
             children
             && children.filter(rn => rn).length > 0
-            && (<nav className={`${UL_STYLE} `} key={modal.label}>
+            && (<Nav key={modal.label} className=" flex-column">
                 {children}
-            </nav>)
+            </Nav>)
         }
-    </nav>)
+    </Nav>)
 }
 
 export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.Element {
@@ -67,8 +69,9 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
 
-    return (<nav className="nav-sidebar menu-sidebar d-flex flex-column mr-lg-1">
-        <div className="menu_header flex-lg-column align-items-center">
+    return <Navbar collapseOnSelect expand="lg" className="nav-sidebar menu-sidebar">
+
+        <Navbar.Brand as={"div"} href="/" className="menu-header align-items-center">
             <div className="logo text-center d-flex align-items-center m-2">
                 <a href="/">
                     <img className="rounded-circle w-100 h-100 hoverable" src="/assets/images/cfcodefans.jpg" />
@@ -81,36 +84,61 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
                     </a>
                 </Link>
             </div>
-        </div>
+        </Navbar.Brand>
 
-        <div id="menu_nav" className="d-flex align-items-center navbar pl-1 pr-1 border border-0 z-depth-0 ">
-            <div aria-label="breadcrumb" className="d-flex d-lg-none justify-content-between w-100 mb-2 font-up-bold">
-                <div className="logo text-center d-flex align-items-center m-2">
-                    <a href="/">
-                        <img className="rounded-circle w-100 h-100 hoverable" src="/assets/images/cfcodefans.jpg" />
-                    </a>
-                </div>
-                <NavBreadCrumbs _path={currentPath} />
+        <Navbar.Toggle aria-controls="menu_box" />
 
-                <button className="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#menu_box"
-                    aria-controls="menu_box"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span className="dark-blue-text">
-                        <i className="fas fa-bars fa-1x"></i>
-                    </span>
-                </button>
+        <Navbar.Collapse id="menu_box" className="align-items-start w-100">
+            <div className={`menu smooth-scroll w-100`}>
+                {menus.map(m => linkAndElements.get(m.link))}
             </div>
+        </Navbar.Collapse>
+    </Navbar>
 
-            <div className="collapse navbar-collapse navbar nav border border-0 z-depth-0 d-lg-block pr-1" id="menu_box">
-                <nav className={`menu ${UL_STYLE} smooth-scroll w-100 `}>
-                    {menus.map(m => linkAndElements.get(m.link))}
-                </nav>
-            </div>
-        </div>
-    </nav>)
+    // return (<nav className="nav-sidebar menu-sidebar d-flex flex-column mr-lg-1">
+    //     <div className="menu_header flex-lg-column align-items-center">
+    //         <div className="logo text-center d-flex align-items-center m-2">
+    //             <a href="/">
+    //                 <img className="rounded-circle w-100 h-100 hoverable" src="/assets/images/cfcodefans.jpg" />
+    //             </a>
+    //         </div>
+    //         <div className="nav-title text-center flex-grow-1 w-100">
+    //             <Link href="/resume">
+    //                 <a className="text-capitalize font-weight-bold">
+    //                     [cfcodefans]
+    //                 </a>
+    //             </Link>
+    //         </div>
+    //     </div>
+
+    //     <div id="menu_nav" className="d-flex align-items-center navbar pl-1 pr-1 border border-0 z-depth-0 ">
+    //         <div aria-label="breadcrumb" className="d-flex d-lg-none justify-content-between w-100 mb-2 font-up-bold">
+    //             <div className="logo text-center d-flex align-items-center m-2">
+    //                 <a href="/">
+    //                     <img className="rounded-circle w-100 h-100 hoverable" src="/assets/images/cfcodefans.jpg" />
+    //                 </a>
+    //             </div>
+    //             <NavBreadCrumbs _path={currentPath} />
+
+    //             <button className="navbar-toggler"
+    //                 type="button"
+    //                 data-toggle="collapse"
+    //                 data-target="#menu_box"
+    //                 aria-controls="menu_box"
+    //                 aria-expanded="false"
+    //                 aria-label="Toggle navigation">
+    //                 <span className="dark-blue-text">
+    //                     <i className="fas fa-bars fa-1x"></i>
+    //                 </span>
+    //             </button>
+    //         </div>
+
+    //         <div className="collapse navbar-collapse navbar nav border border-0 z-depth-0 d-lg-block pr-1" id="menu_box">
+    //             <nav className={`menu ${UL_STYLE} smooth-scroll w-100 `}>
+    //                 {menus.map(m => linkAndElements.get(m.link))}
+    //             </nav>
+    //         </div>
+    //     </div>
+    // </nav>)
 
 }

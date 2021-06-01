@@ -27,6 +27,7 @@ const externals = {
     "jquery": "$",
     "bootstrap": "BootStrap",
     "react-dom": "ReactDOM",
+    "react-bootstrap": "ReactBootstrap",
     "lodash": "_",
     "react": "React",
     "victory": "Victory",

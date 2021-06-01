@@ -5,6 +5,8 @@
 }
 
 .root {
+    display: flex;
+    flex-direction: row;
 }
 
 .navbar-toggler {
@@ -12,11 +14,12 @@
 }
 
 .nav-sidebar {
-    position: fixed;
-    left: 0px;
+    position:sticky !important;
     top: 0px;
-    bottom: 0px;
     width: var(--nav-sidebar-width);
+
+    display: flex;
+    flex-direction: column !important;
 }
 .nav-sidebar .navbar {
     display: none;
@@ -35,34 +38,30 @@
 }
 
 .top-navbar {
-    position: fixed;
-    left: var(--nav-sidebar-width);
+    position: sticky;
     top: 0px;
-    right: var(--misc-sidebar-width);
-    height: var(--top-navbar-height);
     background-color: var(--cool-gray-20);
 }
 
 .misc-sidebar {
-    position: fixed;
+    position:sticky;
     top: 0px;
-    right:0px;
-    bottom: 0px;
     width: var(--misc-sidebar-width);
 }
 
 .main-pane {
-    margin-top: var(--top-navbar-height);
-    margin-left: var(--nav-sidebar-width);
-    margin-right: var(--misc-sidebar-width);
+    height: 100vh;
 }
 
 .menu {
-    flex-direction: column;
+    flex-direction: column !important;
 }
 
-.menu_header {
+.menu-header {
     display:flex !important;
+    flex-direction: column !important;
+    margin-left: auto;
+    margin-right: auto !important;
 }
 
 .menu-sidebar .logo {

@@ -36,15 +36,15 @@ export const CtxProvider: React.FC = ({ children }: { children: ReactNode }) => 
 export default function Layout({ children, home, layoutProps }: { children: ReactNode, home: boolean, layoutProps: ILayoutPros }): JSX.Element {
     const { menus } = layoutProps
 
-    return (<div style={{ "maxWidth": "1920px", "position": "relative" }}  >
-        <CtxProvider>
+    return <CtxProvider>
+        <div className="root">
             <NavSideBar menus={menus} />
-            <MiscSideBar />
-            <main className="main-pane p-3">
+            <main className="main-pane flex-grow-1 p-3">
                 <NavTopBar />
                 {children}
             </main>
-        </CtxProvider>
-    </div>)
+            <MiscSideBar />
+        </div>
+    </CtxProvider>
 }
 
