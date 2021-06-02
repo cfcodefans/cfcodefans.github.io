@@ -1,6 +1,7 @@
 :root {
     --nav-sidebar-width:14vw;
     --misc-sidebar-width:16vw;
+    --main-pane-width:70vw;
     --top-navbar-height:3rem;
 }
 
@@ -46,11 +47,13 @@
 .misc-sidebar {
     position:sticky;
     top: 0px;
+    left:0px;
     width: var(--misc-sidebar-width);
 }
 
 .main-pane {
     height: 100vh;
+    width: var(--main-pane-width);
 }
 
 .menu {

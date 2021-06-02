@@ -26,7 +26,7 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
     const isSelected: boolean = isClosestMenu(modal, router.asPath)
 
     return (<Nav className={`menu-layer-${modal.layer} flex-column mt-1`}>
-        <Nav.Link key={modal.label} eventKey={modal.label} as={"div"}>
+        <Nav.Link key={modal.label} eventKey={modal.label} as={"div"} active={isSelected}>
             <Link href={_link}>
                 <a className={`icon-${modal.icon} ${isSelected ? "active ml-n1 grey lighten-3" : ""} rounded-pill hoverable d-flex pl-2 pr-1 justify-content-between`}>
                     <span className="menu-label text-capitalize">{modal.label}</span>&nbsp;
@@ -34,13 +34,7 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
                 </a>
             </Link>
         </Nav.Link>
-        {
-            children
-            && children.filter(rn => rn).length > 0
-            && (<Nav key={modal.label} className=" flex-column">
-                {children}
-            </Nav>)
-        }
+        {children}
     </Nav>)
 }
 
