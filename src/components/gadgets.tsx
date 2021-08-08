@@ -97,13 +97,13 @@ function xByPercent(el: HTMLElement, percent: number): string {
     return el ? Math.round(el.clientWidth * percent / 100) + "px" : percent + "%"
 }
 
-export function RangeSelect({ start, end, orientation, marks = [], onRangeChange, ...rest }: {
+export function RangeSelect({ start, end, orientation = "horizontal", marks = [], onRangeChange, ...rest }: {
     start: number,
     end: number,
     orientation: "vertical" | "horizontal",
     onRangeChange: (start: number, end: number) => void,
     marks: Mark[],
-}): JSX.Element {
+} | Record<string | number | symbol, any>): JSX.Element {
 
     const [range, setRange] = useState({ start, length: end - start })
     const isVertical: boolean = orientation === "vertical"
@@ -113,7 +113,7 @@ export function RangeSelect({ start, end, orientation, marks = [], onRangeChange
             top: isVertical,
             bottom: isVertical,
             right: !isVertical,
-            left: isVertical,
+            left: !isVertical,
             topRight: false,
             bottomRight: false,
             bottomLeft: false,
@@ -121,17 +121,25 @@ export function RangeSelect({ start, end, orientation, marks = [], onRangeChange
         }
     }, [orientation])
 
-    return <Rnd
-        default={{ x: 10, y: 10, height: rest["height"], width: rest["width"] }}
+    const height: number = rest["height"]
+    const width: number = rest["width"]
+
+    return <div style={{
+        position:"absolute",
+        backgroundColor:"transparent",
+        height,
+        width
+    }}> <Rnd
+        maxHeight={height}
+        maxWidth={width}
+        bounds="parent"
+        default={{ x: 0, y: 0, height: rest["height"], width: rest["width"] }}
         style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
             borderLeft: "solid 5px #ddd",
             borderRight: "solid 5px #ddd",
             borderTop: "solid 1px #ddd",
             borderBottom: "solid 1px #ddd",
-            background: "#f0f0f0",
+            backgroundColor:"transparent",
             height: "100%",
         }}
         onDragStop={(e, d) => {
@@ -145,8 +153,10 @@ export function RangeSelect({ start, end, orientation, marks = [], onRangeChange
             setRange({ start, length })
             _.isFunction(onRangeChange) && onRangeChange(start, start + range.length)
         }}
+        dragAxis={!isVertical ? "x" : "y"}
         enableResizing={enabledSides} >
-    </Rnd>
+            {orientation}
+        </Rnd></div>
 }
 
 // ref_v: React.MutableRefObject<Range<Date>>
@@ -176,9 +186,8 @@ export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
         if (v1 < v2) setValue(values)
     }
 
-    return <div className="bg-info d-flex justify-content-between" style={{ height: "40px", width: "800px" }}>
+    return <div className="d-flex justify-content-between" style={{ height: "40px", width: "1200px" }}>
         {!_.isEmpty(marks) && marks.map(mark => mark.label)}
-
     </div>
     //aria-labelledby="range-slider"
     // getAriaValueText={valuetext}

@@ -4,7 +4,7 @@ import { format, startOfDay, startOfMonth, startOfYesterday } from "date-fns"
 import { addDate, i, yesterday } from "lib/commons"
 import React, { useMemo, useState } from "react"
 
-import { DateRangeSlide, genDateMarks } from "components/gadgets"
+import { DateRangeSlide, genDateMarks, RangeSelect } from "components/gadgets"
 import _ from "lodash"
 
 const FILE_NAME: string = "workshop.tsx"
@@ -17,10 +17,28 @@ export default function Workshop(): JSX.Element {
         i(FILE_NAME, "JsonpDataLoader.historySearchHandler", resp)
         return Promise.resolve(resp as STOCK.SOHU_STOCK.RawResp[])
     }
-    return <div className="w-100">
 
-        <DateRangeSlide start={addDate(startOfDay(startOfYesterday()), -120)}
-            end={startOfYesterday()} stepDay={1} />
+    function onRangeChange(start: number, end: number) {
+
+    }
+
+    return <div className="w-100 h-100 white">
+
+        {/* <DateRangeSlide start={addDate(startOfDay(startOfYesterday()), -240)} end={startOfYesterday()} stepDay={1} /> */}
+        <div id="field" style={{
+            width: 640,
+            height: 480,
+            backgroundColor: "lightblue",
+            position: "absolute"
+        }}>
+            <RangeSelect orientation="vertical"
+                start={0}
+                end={100}
+                marks={_.range(0, 100, 20).map(i => ({ value: i }))}
+                onRangeChange={onRangeChange}
+                height={480}
+                width={80} />
+        </div>
         {/* <RangeSlider start={addDate(startOfDay(startOfYesterday()), -120)}
             end={startOfYesterday()} stepDay={1} /> */}
         {/*  <p>{url}</p>
