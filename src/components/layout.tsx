@@ -39,8 +39,8 @@ export default function Layout({ children, home, layoutProps }: { children: Reac
     return <CtxProvider>
         <div className="root">
             <NavSideBar menus={menus} />
+            <NavTopBar />
             <main className="main-pane p-3">
-                <NavTopBar />
                 {children}
             </main>
             <MiscSideBar />

@@ -2,13 +2,18 @@
     --nav-sidebar-height:auto;
     --nav-sidebar-width:100%;
     --misc-sidebar-height:3rem;
-    --top-navbar-height:3rem;
+    --top-navbar-height:2rem;
     --border-radius: 1rem !important;
 }
 
 .root {
     display: flex;
     flex-direction: column;
+}
+
+.nav-sidebar {
+    box-shadow: none !important;
+    --webkit-box-shadow: none !important;
 }
 
 nav #nav_items {
@@ -38,7 +43,13 @@ nav #nav_items {
     height: var(--top-navbar-height);
     top: 0px;
     box-shadow: var(--nav-box-shadow-bottom);
+    background-color: white;
 }
+.top-navbar .breadcrumb {
+    background-color: white;
+    padding: 0.5rem 0.75rem;
+}
+
 .misc-sidebar {
     position: sticky;
     bottom: 0px;
@@ -55,7 +66,6 @@ nav #nav_items {
 
 .menu {
     flex-direction: row;
-    background-color: lightgrey;
     padding: 1rem 0.5rem 1rem !important;
     border-bottom-right-radius: var(--border-radius) !important;
     border-bottom-left-radius: var(--border-radius) !important;

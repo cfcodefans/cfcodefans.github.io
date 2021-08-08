@@ -1,5 +1,6 @@
 :root {
     --nav-sidebar-width:14vw;
+    --nav-sidebar-bgcolor: unset;
     --misc-sidebar-width:16vw;
     --main-pane-width:70vw;
     --top-navbar-height:3rem;
@@ -21,6 +22,10 @@
 
     display: flex;
     flex-direction: column !important;
+    background-color: var(--nav-sidebar-bgcolor);
+
+    box-shadow: none !important;
+    --webkit-box-shadow: none !important;
 }
 .nav-sidebar .navbar {
     display: none;
@@ -39,8 +44,10 @@
 }
 
 .top-navbar {
-    position: sticky;
+    position: fixed;
     top: 0px;
+    left: var(--nav-sidebar-width);
+    right: var(--misc-sidebar-width);
     background-color: var(--cool-gray-20);
 }
 
@@ -53,6 +60,7 @@
 
 .main-pane {
     height: 100vh;
+    margin-top: var(--top-navbar-height);
     width: var(--main-pane-width);
 }
 
@@ -70,4 +78,10 @@
 .menu-sidebar .logo {
     height: 6rem;
     width: 6rem;
+}
+
+#menu_box {
+    flex-grow: unset;
+    background-color: white;
+    border-radius: 1rem;
 }
