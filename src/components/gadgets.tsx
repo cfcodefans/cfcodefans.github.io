@@ -97,6 +97,10 @@ function xByPercent(el: HTMLElement, percent: number): string {
     return el ? Math.round(el.clientWidth * percent / 100) + "px" : percent + "%"
 }
 
+
+const BORDER_HANDLER:string = "solid 5px #ddd"
+const BORDER_NO_HANDLER:string = "solid 1px #ddd"
+
 export function RangeSelect({ start, end, orientation = "horizontal", marks = [], onRangeChange, ...rest }: {
     start: number,
     end: number,
@@ -135,10 +139,10 @@ export function RangeSelect({ start, end, orientation = "horizontal", marks = []
         bounds="parent"
         default={{ x: 0, y: 0, height: rest["height"], width: rest["width"] }}
         style={{
-            borderLeft: "solid 5px #ddd",
-            borderRight: "solid 5px #ddd",
-            borderTop: "solid 1px #ddd",
-            borderBottom: "solid 1px #ddd",
+            borderLeft: !isVertical? BORDER_HANDLER : BORDER_NO_HANDLER,
+            borderRight: !isVertical? BORDER_HANDLER : BORDER_NO_HANDLER,
+            borderTop: isVertical? BORDER_HANDLER : BORDER_NO_HANDLER,
+            borderBottom: isVertical? BORDER_HANDLER : BORDER_NO_HANDLER,
             backgroundColor:"transparent",
             height: "100%",
         }}

@@ -22,14 +22,14 @@ export default function Workshop(): JSX.Element {
 
     }
 
-    return <div className="w-100 h-100 white">
+    return <div className="d-flex flex-row h-100 white">
 
         {/* <DateRangeSlide start={addDate(startOfDay(startOfYesterday()), -240)} end={startOfYesterday()} stepDay={1} /> */}
-        <div id="field" style={{
-            width: 640,
+        <div id="vfield" style={{
+            width: 320,
             height: 480,
             backgroundColor: "lightblue",
-            position: "absolute"
+            position: "static"
         }}>
             <RangeSelect orientation="vertical"
                 start={0}
@@ -38,6 +38,20 @@ export default function Workshop(): JSX.Element {
                 onRangeChange={onRangeChange}
                 height={480}
                 width={80} />
+        </div>
+        <div id="hfield" style={{
+            width: 480,
+            height: 320,
+            backgroundColor: "lightyellow",
+            position: "static"
+        }}>
+            <RangeSelect orientation="horizontal"
+                start={0}
+                end={100}
+                marks={_.range(0, 100, 20).map(i => ({ value: i }))}
+                onRangeChange={onRangeChange}
+                height={80}
+                width={480} />
         </div>
         {/* <RangeSlider start={addDate(startOfDay(startOfYesterday()), -120)}
             end={startOfYesterday()} stepDay={1} /> */}
