@@ -5,6 +5,7 @@ import _ from "lodash"
 import Link from "next/link"
 import React, { useEffect, useMemo, useState } from "react"
 import { ResizeEnable, Rnd } from "react-rnd"
+import { CSSProperties } from "react-transition-group/node_modules/@types/react"
 import { _jsonp } from "./utils"
 
 export default function NavBreadCrumbs({ _path }: { _path: string }): JSX.Element {
@@ -98,8 +99,8 @@ function xByPercent(el: HTMLElement, percent: number): string {
 }
 
 
-const BORDER_HANDLER:string = "solid 5px #ddd"
-const BORDER_NO_HANDLER:string = "solid 1px #ddd"
+const BORDER_HANDLER: string = "solid 5px #ddd"
+const BORDER_NO_HANDLER: string = "solid 1px #ddd"
 
 export function RangeSelect({ start, end, orientation = "horizontal", marks = [], onRangeChange, ...rest }: {
     start: number,
@@ -125,12 +126,23 @@ export function RangeSelect({ start, end, orientation = "horizontal", marks = []
         }
     }, [orientation])
 
+    const style: CSSProperties = useMemo((): CSSProperties => {
+        return {
+            borderLeft: !isVertical ? BORDER_HANDLER : BORDER_NO_HANDLER,
+            borderRight: !isVertical ? BORDER_HANDLER : BORDER_NO_HANDLER,
+            borderTop: isVertical ? BORDER_HANDLER : BORDER_NO_HANDLER,
+            borderBottom: isVertical ? BORDER_HANDLER : BORDER_NO_HANDLER,
+            backgroundColor: "transparent",
+            height: "100%",
+        }
+    }, [orientation])
+
     const height: number = rest["height"]
     const width: number = rest["width"]
 
     return <div style={{
-        position:"absolute",
-        backgroundColor:"transparent",
+        position: "absolute",
+        backgroundColor: "transparent",
         height,
         width
     }}> <Rnd
@@ -138,14 +150,7 @@ export function RangeSelect({ start, end, orientation = "horizontal", marks = []
         maxWidth={width}
         bounds="parent"
         default={{ x: 0, y: 0, height: rest["height"], width: rest["width"] }}
-        style={{
-            borderLeft: !isVertical? BORDER_HANDLER : BORDER_NO_HANDLER,
-            borderRight: !isVertical? BORDER_HANDLER : BORDER_NO_HANDLER,
-            borderTop: isVertical? BORDER_HANDLER : BORDER_NO_HANDLER,
-            borderBottom: isVertical? BORDER_HANDLER : BORDER_NO_HANDLER,
-            backgroundColor:"transparent",
-            height: "100%",
-        }}
+        style={style}
         onDragStop={(e, d) => {
             const start: number = isVertical ? d.x : d.y
             setRange({ start, length: range.length })
@@ -160,7 +165,8 @@ export function RangeSelect({ start, end, orientation = "horizontal", marks = []
         dragAxis={!isVertical ? "x" : "y"}
         enableResizing={enabledSides} >
             {orientation}
-        </Rnd></div>
+        </Rnd>
+    </div>
 }
 
 // ref_v: React.MutableRefObject<Range<Date>>
