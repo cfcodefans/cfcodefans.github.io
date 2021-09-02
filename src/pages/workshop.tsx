@@ -22,11 +22,13 @@ export default function Workshop(): JSX.Element {
 
     }
 
-    return <div className="d-flex flex-row h-100 white">
-        <svg width={100} height={100} baseProfile="fill">
+    return <div className="d-flex flex-column w-100 h-100 white">
+        {/* <svg width={100} height={100} baseProfile="fill">
             <rect x="0" y="0" width="100" height="100" fill="lightgreen" stroke="#ccc" strokeWidth="2" />            
-        </svg>
-        {/* <DateRangeSlide start={addDate(startOfDay(startOfYesterday()), -240)} end={startOfYesterday()} stepDay={1} /> */}
+        </svg> */}
+        <DateRangeSlide start={addDate(startOfDay(startOfYesterday()), -90)}
+            end={startOfYesterday()}
+            stepDay={1} />
         {/* <div id="vfield" style={{
             width: 320,
             height: 480,

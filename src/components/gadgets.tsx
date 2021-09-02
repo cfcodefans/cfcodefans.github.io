@@ -1,11 +1,12 @@
 // import { Breadcrumbs, makeStyles, Slider } from "@material-ui/core"
-import { format, startOfDay, startOfMonth } from "date-fns"
+import { addDays, differenceInDays, format, startOfDay, startOfMonth } from "date-fns"
 import { compare, DateUnit, diffDate, i, ISO_DATE_FMT, jsf, span, yesterday } from "lib/commons"
 import _ from "lodash"
 import Link from "next/link"
 import React, { useEffect, useMemo, useState } from "react"
-import { ResizeEnable, Rnd } from "react-rnd"
+import { HandleComponent, ResizeEnable, Rnd } from "react-rnd"
 import { CSSProperties } from "react-transition-group/node_modules/@types/react"
+import { useMeasure } from "react-use"
 import { _jsonp } from "./utils"
 
 export default function NavBreadCrumbs({ _path }: { _path: string }): JSX.Element {
@@ -59,7 +60,7 @@ export function DataLoaderTempl<P, T>({ params, loader, renderCmp, fallbackCmp }
             })
     }, [params])
 
-    if (respState.state == "loading") return fallbackCmp({})
+    if (respState.state == "loading") return fallbackCmp({ })
     if (respState.state == "failed")
         return <pre>failed to load data with &nbsp;
             {jsf(params)} &nbsp;
@@ -99,16 +100,25 @@ function xByPercent(el: HTMLElement, percent: number): string {
 }
 
 
-const BORDER_HANDLER: string = "solid 5px #ddd"
-const BORDER_NO_HANDLER: string = "solid 1px #ddd"
+const BORDER_HANDLER: string = "solid 1px #33b5e5"
+const BORDER_NO_HANDLER: string = "solid 1px #33b5e5"
+const RESIZE_HANDLER_CMP_CSS: string = "badge-pill badge-info rnd-handler-cmp"
 
-export function RangeSelect({ start, end, orientation = "horizontal", marks = [], onRangeChange, ...rest }: {
-    start: number,
-    end: number,
-    orientation: "vertical" | "horizontal",
-    onRangeChange: (start: number, end: number) => void,
-    marks: Mark[],
-} | Record<string | number | symbol, any>): JSX.Element {
+export function RangeSelect({ start,
+    end,
+    orientation = "horizontal",
+    onRangeChange,
+    onRangeChanged,
+    children,
+    render = (v) => v, ...rest }: {
+        start: number,
+        end: number,
+        orientation: "vertical" | "horizontal",
+        onRangeChange: (start: number, end: number) => void,
+        onRangeChanged: (start: number, end: number) => void,
+        children?: React.ReactNode,
+        render?: (value: number) => any
+    } | Record<string | number | symbol, any>): JSX.Element {
 
     const [range, setRange] = useState({ start, length: end - start })
     const isVertical: boolean = orientation === "vertical"
@@ -128,6 +138,7 @@ export function RangeSelect({ start, end, orientation = "horizontal", marks = []
 
     const style: CSSProperties = useMemo((): CSSProperties => {
         return {
+            borderRadius: "8px",
             borderLeft: !isVertical ? BORDER_HANDLER : BORDER_NO_HANDLER,
             borderRight: !isVertical ? BORDER_HANDLER : BORDER_NO_HANDLER,
             borderTop: isVertical ? BORDER_HANDLER : BORDER_NO_HANDLER,
@@ -136,6 +147,17 @@ export function RangeSelect({ start, end, orientation = "horizontal", marks = []
             height: "100%",
         }
     }, [orientation])
+
+    const resizeHandlerCmps: HandleComponent = isVertical
+        ? {
+            top: <i className={RESIZE_HANDLER_CMP_CSS}>{render && render(range.start)}</i>,
+            bottom: <i className={RESIZE_HANDLER_CMP_CSS}>{render && render(range.start + range.length)}</i>
+        }
+        : {
+            left: <i className={RESIZE_HANDLER_CMP_CSS}>{render && render(range.start)}</i>,
+            right: <i className={RESIZE_HANDLER_CMP_CSS}>{render && render(range.start + range.length)}</i>
+        }
+    // }, [orientation])
 
     const height: number = rest["height"]
     const width: number = rest["width"]
@@ -151,69 +173,96 @@ export function RangeSelect({ start, end, orientation = "horizontal", marks = []
         bounds="parent"
         default={{ x: 0, y: 0, height: rest["height"], width: rest["width"] }}
         style={style}
-        onDragStop={(e, d) => {
-            const start: number = isVertical ? d.x : d.y
+        resizeHandleComponent={resizeHandlerCmps}
+        onDrag={(e, d) => {
+            const start: number = Math.round(isVertical ? d.y : d.x)
             setRange({ start, length: range.length })
             _.isFunction(onRangeChange) && onRangeChange(start, start + range.length)
         }}
-        onResizeStop={(e, direction, ref, delta, position) => {
-            const start: number = isVertical ? position.x : position.y
-            const length: number = isVertical ? ref.clientHeight : ref.clientWidth
+        onDragStop={(e, d) => {
+            const start: number = Math.round(isVertical ? d.y : d.x)
+            setRange({ start, length: range.length })
+            _.isFunction(onRangeChanged) && onRangeChanged(start, start + range.length)
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+            const start: number = Math.round(isVertical ? position.y : position.x)
+            const length: number = Math.round(isVertical ? ref.clientHeight : ref.clientWidth)
             setRange({ start, length })
             _.isFunction(onRangeChange) && onRangeChange(start, start + range.length)
         }}
+        onResizeStop={(e, direction, ref, delta, position) => {
+            const start: number = Math.round(isVertical ? position.y : position.x)
+            const length: number = Math.round(isVertical ? ref.clientHeight : ref.clientWidth)
+            setRange({ start, length })
+            _.isFunction(onRangeChanged) && onRangeChanged(start, start + range.length)
+        }}
         dragAxis={!isVertical ? "x" : "y"}
-        enableResizing={enabledSides} >
-            {orientation}
+        enableResizing={enabledSides} {...rest}>
+            {children}
         </Rnd>
     </div>
 }
 
 // ref_v: React.MutableRefObject<Range<Date>>
-export function DateRangeSlide({ start, end, stepDay, onRangeChange }: {
+export function DateRangeSlide({ start, end, stepDay, onDateRangeChange, onDateRangeChanged }: {
     start: Date
     end: Date
     stepDay: number
-    onRangeChange?: (d1: Date, d2: Date) => void
+    onDateRangeChange?: (d1: Date, d2: Date) => void
+    onDateRangeChanged?: (d1: Date, d2: Date) => void
 }): JSX.Element {
     const now: Date = new Date
 
-    const maxDate: Date = _.maxBy([start, end], (d: Date) => d.getTime()) || yesterday()
-    const max: number = startOfDay(maxDate).getTime()
-    const minDate: Date = _.minBy([start, end], (d: Date) => d.getTime()) || startOfMonth(now)
-    const min: number = startOfDay(minDate).getTime()
+    const [maxDate, minDate, days] = useMemo(() => {
+        const maxDate: Date = _.maxBy([start, end], (d: Date) => d.getTime()) || yesterday()
+        const minDate: Date = _.minBy([start, end], (d: Date) => d.getTime()) || startOfMonth(now)
+        const days: number = differenceInDays(maxDate, minDate)
+        return [maxDate, minDate, days]
+    }, [start, end])
 
-    const [value, setValue] = useState([min, max])
-    const step: number = stepDay * 86400 * 1000
+    const [range, setRange] = useState({ start, end })
 
     let marks: Mark[] = useMemo(
         () => genDateMarks(start, end),
         [[start, end]])
 
-    const handleChange = (event: any, newValue: number | number[]) => {
-        const values: number[] = newValue as number[]
-        const [v1, v2] = values
-        if (v1 < v2) setValue(values)
+    const [containerRef, { height, width }] = useMeasure()
+    const containerHeight: number = Math.round(height)
+    const containerWidth: number = Math.round(width)
+
+    function mapper(v: number, width: number): Date {
+        return addDays(minDate, Math.round(v / width * days) + 1)
     }
 
-    return <div className="d-flex justify-content-between" style={{ height: "40px", width: "1200px" }}>
-        {!_.isEmpty(marks) && marks.map(mark => mark.label)}
+    return <div
+        style={{ height: "80px", width: "100%", backgroundColor: "transparent" }}
+        ref={containerRef}>
+        {containerHeight > 0 && containerWidth > 0 &&
+            <div className="position-absolute" style={{ zIndex: 100, width: containerWidth, height: containerHeight }}>
+                <RangeSelect orientation="horizontal"
+                    start={0}
+                    end={containerWidth}
+                    onRangeChange={(v1: number, v2: number) => {
+                        const d1: Date = mapper(v1, containerWidth)
+                        const d2: Date = mapper(v2, containerWidth)
+                        setRange({ start: d1, end: d2 })
+                        _.isFunction(onDateRangeChange) && onDateRangeChange(d1, d2)
+                    }}
+                    onRangeChanged={(v1: number, v2: number) => {
+                        const d1: Date = mapper(v1, containerWidth)
+                        const d2: Date = mapper(v2, containerWidth)
+                        _.isFunction(onDateRangeChanged) && onDateRangeChanged(d1, d2)
+                    }}
+                    render={(v: number) => mapper(v, containerWidth)?.toISOString()?.substring(0, 10)}
+                    height={containerHeight}
+                    width={containerWidth} >
+                    <i className="rnd-handler-cmp">{differenceInDays(range.end, range.start)} days</i>
+                </RangeSelect>
+            </div>}
+        <div className="d-flex justify-content-between">
+            {!_.isEmpty(marks) && marks.map(mark => mark.label)}
+        </div>
     </div>
-    //aria-labelledby="range-slider"
-    // getAriaValueText={valuetext}
-    // return (<Slider
-    //     onChangeCommitted={(ev, newRange: number[]) => {
-    //         onRangeChange && onRangeChange(new Date(newRange[0]), new Date(newRange[1]))
-    //     }}
-    //     defaultValue={[min, max]}
-    //     step={step} marks={marks}
-    //     min={min}
-    //     max={max}
-    //     value={value}
-    //     onChange={handleChange}
-    //     valueLabelDisplay="on"
-    //     valueLabelFormat={(value, index) => format(new Date(value), "MM-dd")}
-    // />)
 }
 
 export type Mark = { value: number, label?: React.ReactNode }
@@ -233,7 +282,7 @@ export function genDateMarks(start: Date, end: Date, step: DateUnit = "month"): 
             else fmt = "MM-dd"
         }
 
-        return { value: d.getTime(), label: <i>{format(d, fmt)}</i> }
+        return { value: d.getTime(), label: <i key={i}>{format(d, fmt)}</i> }
     }).filter(m => m)
 }
 
