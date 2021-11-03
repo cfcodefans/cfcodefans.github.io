@@ -76,7 +76,7 @@ export namespace STOCK_CMP {
                 }}>Search</button>
             </div>
             <div className="row pt-4 px-5">
-                <DateRangeSlide onRangeChange={(d1, d2) => rangeRef.current = { _1: d1, _2: d2 }}
+                <DateRangeSlide onDateRangeChange={(d1: Date, d2: Date) => rangeRef.current = { _1: d1, _2: d2 }}
                     start={_start} end={_end} stepDay={1} />
             </div>
             <div>

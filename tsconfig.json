@@ -1,38 +1,39 @@
 {
-    "compilerOptions": {
-        "baseUrl": "./src",
-        "target": "ESNext",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext",
-            "ESNext"
-        ],
-        "sourceRoot": "src",
-        "sourceMap": true,
-        "allowJs": true,
-        "skipLibCheck": true,
-        "strict": false,
-        "forceConsistentCasingInFileNames": true,
-        "noEmit": true,
-        "esModuleInterop": true,
-        "module": "ESNext",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "jsx": "preserve"
-    },
-    "include": [
-        "next-env.d.ts",
-        "**/*.json",
-        "**/*.ts",
-        "**/*.tsx",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "target": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "ESNext"
     ],
-    "exclude": [
-        "node_modules",
-        "dist",
-        ".next",
-        "out",
-        "next.config.js"
-    ]
+    "sourceRoot": "src",
+    "sourceMap": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.json",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".next",
+    "out",
+    "next.config.js"
+  ]
 }

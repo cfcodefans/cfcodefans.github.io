@@ -7,6 +7,7 @@ export const PHASE_DEVELOPMENT_SERVER = "phase-development-server"
 const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, PHASE_EXPORT } = require("next/constants")
 
 // const withLess = require("@zeit/next-less")
+const _ = require("lodash")
 const _attr = require("remark-attr")
 const remarkMath = require("remark-math")
 const removeImports = require("remark-mdx-remove-imports")
@@ -42,12 +43,12 @@ module.exports = withMDX({
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
         // Note: we provide webpack above so you should not `require` it
         // Perform customizations to webpack config
-        config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
+        // config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
 
         if (!isServer) {
-            config["externals"] = [...config["externals"], externals]
+            config["externals"] = _.isArrayLike(config["externals"]) ? [...config["externals"], externals] : [externals]
             console.info("webpack.externals", config["externals"])
-            config["node"] = { global: true, fs: "empty" }
+            // config["node"] = { global: true, fs: "empty" }
         }
 
         return config

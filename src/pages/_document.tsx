@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from "next/document"
 import { i } from "lib/commons"
-import { RenderPage } from "next/dist/next-server/lib/utils"
 import React from "react"
 
 class TemplateDoc extends Document {
@@ -71,16 +70,16 @@ class TemplateDoc extends Document {
             </Head>
             <body onLoad={this.docOnLoad}>
                 <Main />
-                <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.2/umd/react.development.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/react-bootstrap/1.5.2/react-bootstrap.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/d3/6.7.0/d3.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/victory/35.5.1/victory.min.js"></script>
+                <script async src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                <script async src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+                <script async src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.min.js"></script>
+                <script async src="https://cdn.bootcdn.net/ajax/libs/react/17.0.2/umd/react.development.min.js"></script>
+                <script async src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
+                <script async src="https://cdn.bootcdn.net/ajax/libs/react-bootstrap/1.5.2/react-bootstrap.min.js"></script>
+                <script async src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+                <script async src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+                <script async src="https://cdn.bootcdn.net/ajax/libs/d3/6.7.0/d3.min.js"></script>
+                <script async src="https://cdn.bootcdn.net/ajax/libs/victory/35.5.1/victory.min.js"></script>
 
                 <NextScript />
 
