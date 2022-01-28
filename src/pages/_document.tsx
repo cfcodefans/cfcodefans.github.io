@@ -44,7 +44,8 @@ class TemplateDoc extends Document {
         也可以连写：meta name="format-detection" content="telephone=no,email=no,adress=no"
         下面具体说下每个设置的作用：
         一、telephone
-        你明明写的一串数字没加链接样式，而iPhone会自动把你这个文字加链接样式、并且点击这个数字还会自动拨号！想去掉这个拨号链接该如何操作呢？这时我们的meta又该大显神通了，代码如下：
+        你明明写的一串数字没加链接样式，而iPhone会自动把你这个文字加链接样式、并且点击这个数字还会自动拨号！想去掉这个拨号链接该如何操作呢？
+        这时我们的meta又该大显神通了，代码如下：
         telephone=no就禁止了把数字转化为拨号链接！
         telephone=yes就开启了把数字转化为拨号链接，要开启转化功能，这个meta就不用写了,在默认是情况下就是开启！
         二、email
@@ -62,24 +63,24 @@ class TemplateDoc extends Document {
                 <link href="/assets/css/component.css" rel="stylesheet" />
                 <link href="/assets/css/mainframe-protrait.css" rel="stylesheet" media="(orientation: portrait)" />
                 <link href="/assets/css/mainframe-landscape.css" rel="stylesheet" media="(orientation: landscape)" />
-                <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.css" rel="stylesheet" />
-                <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css" rel="stylesheet" />
-                <link href="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/css/mdb.css" rel="stylesheet" />
-                <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/styles/default.min.css" rel="stylesheet" />
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+                <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet" />
+                {/* <link href="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/css/mdb.css" rel="stylesheet" /> */}
+                <link href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css" rel="stylesheet" />
                 <meta property="og:type" content="website" />
             </Head>
             <body onLoad={this.docOnLoad}>
                 <Main />
-                <script async src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                <script async src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-                <script async src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.min.js"></script>
-                <script async src="https://cdn.bootcdn.net/ajax/libs/react/17.0.2/umd/react.development.min.js"></script>
-                <script async src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
-                <script async src="https://cdn.bootcdn.net/ajax/libs/react-bootstrap/1.5.2/react-bootstrap.min.js"></script>
-                <script async src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
-                <script async src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-                <script async src="https://cdn.bootcdn.net/ajax/libs/d3/6.7.0/d3.min.js"></script>
-                <script async src="https://cdn.bootcdn.net/ajax/libs/victory/35.5.1/victory.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+                {/* <script async src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.min.js"></script> */}
+                <script async src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/react-bootstrap@2.1.1/cjs/index.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/highlight.js@11.4.0/lib/index.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/d3@7.3.0/dist/d3.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/victory@36.2.0/lib/index.min.js"></script>
 
                 <NextScript />
 

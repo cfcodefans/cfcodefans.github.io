@@ -1,13 +1,9 @@
 import { promises as fsp } from "fs"
-import fs from "fs"
 import { Dictionary } from "lodash"
 import * as _p from "path"
 import { getMDXMeta, isMDX, LOAD_PATHS, pathTreeToMenuTree, pathTreeToRouteTree } from "./lib/blogs"
 import { deepTraverse, i, jsf } from "./lib/commons"
 import { IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "./types"
-
-import * as x2j from "xml2js"
-
 
 // const sitemap = require("nextjs-sitemap-generator")
 
@@ -76,6 +72,7 @@ async function main(): Promise<void> {
         ])
 
     } catch (e) {
+        e(FILE_NAME, "error occurs in loading blogs", e)
         throw e
     }
 }
