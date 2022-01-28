@@ -53,7 +53,7 @@ export async function loadExcerpt(root: Parent, mdxStr: string): Promise<string>
     return x
 }
 
-const EXPORT_JSON_REGEX: RegExp = new RegExp("/\{.*\}/", "gm").compile()
+const EXPORT_JSON_REGEX: RegExp = new RegExp("/\{.*\}/", "gm")//.compile()
 
 export async function getMetaAndExcerptFromMDX(mdxStr: string): Promise<[any, string]> {
     const root: Parent = mdxCompiler.parse(mdxStr) as Parent
