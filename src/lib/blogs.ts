@@ -241,7 +241,7 @@ export async function _getStaticPaths(context: GetStaticPathsContext): Promise<G
 }
 
 export async function _getStaticProps(context: GetStaticPropsContext): Promise<GetStaticPropsResult<any>> {
-    // i("index.tsx", "context", context)
+    i("index.tsx", "context", context)
     // const layoutProps: ILayoutPros = await bootstrap()
     // i("index.tsx", "layoutProps", [layoutProps.menus.length, layoutProps.routeTree.length])
     return { props: {} }
