@@ -68,6 +68,20 @@
     font-weight: bold;
 }
 
+.menu-sidebar .active.nav-link {
+    background-color: darkgrey;
+    border-radius: 50rem;
+}
+
+.menu-sidebar .nav-link:hover {
+    background-color: lightgray;
+    border-radius: 50rem;
+}
+
+.menu-sidebar .active.nav-link a {
+    color:white;
+}
+
 .menu-sidebar {
     position:sticky;
     top: 0px;

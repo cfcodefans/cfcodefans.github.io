@@ -3,7 +3,7 @@ import _ from "lodash"
 import { NextRouter, useRouter } from "next/dist/client/router"
 import Link from "next/link"
 import React, { ReactElement, ReactNodeArray, useEffect, useState } from "react"
-import { Nav, Navbar } from "react-bootstrap"
+import { Badge, Nav, Navbar } from "react-bootstrap"
 import { IMenuItemModal } from "../types"
 import NavBreadCrumbs from "./gadgets"
 
@@ -24,16 +24,26 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
     const router: NextRouter = useRouter()
 
     const isSelected: boolean = isClosestMenu(modal, router.asPath)
+    // ${isSelected ? "active ml-n1 bg-light lighten-3" : ""} rounded-pill hoverable 
 
-    return (<Nav className={`menu-layer-${modal.layer} flex-column mt-1`}>
-        <Nav.Link key={modal.label} eventKey={modal.label} as={"div"} active={isSelected}>
-            <Link href={_link}>
-                <a className={`icon-${modal.icon} ${isSelected ? "active ml-n1 grey lighten-3" : ""} rounded-pill hoverable d-flex pl-2 pr-1 justify-content-between`}>
-                    <span className="menu-label text-capitalize">{modal.label}</span>&nbsp;
-                    <span className={`${isSelected ? "" : "x-ball grey lighten-3 "} px-2 align-self-center`}>{modal.leaveCount}</span>
-                </a>
-            </Link>
-        </Nav.Link>
+    const theLink: JSX.Element = <Nav.Link key={modal.label}
+        className={`${modal.layer == 2 ? "menu-layer-2  " : ""} my-1`}
+        eventKey={modal.label}
+        as={"div"}
+        active={isSelected}>
+        <Link href={_link}>
+            <a className={`icon-${modal.icon} d-flex pl-2 pr-1 justify-content-between`}>
+                <span className="menu-label text-capitalize">{modal.label}</span>
+                {/* <span className={`${isSelected ? "" : "x-ball grey lighten-3 "} px-2 align-self-center`}>{modal.leaveCount}</span> */}
+                <Badge className="px-2 align-self-center" pill >{modal.leaveCount}</Badge>
+            </a>
+        </Link>
+    </Nav.Link>
+
+    if (modal.layer == 2) return theLink
+
+    return (<Nav className={`menu-layer-${modal.layer} flex-column  `}>
+        {theLink}
         {children}
     </Nav>)
 }
@@ -63,7 +73,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
 
-    return <Navbar collapseOnSelect expand="lg" className="nav-sidebar menu-sidebar">
+    return <Navbar collapseOnSelect expand="lg" className="nav-sidebar menu-sidebar navbar-light">
 
         <Navbar.Brand as={"div"} href="/" className="menu-header align-items-center">
             <div className="logo text-center d-flex align-items-center m-2">

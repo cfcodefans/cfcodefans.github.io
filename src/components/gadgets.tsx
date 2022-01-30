@@ -4,26 +4,35 @@ import { compare, DateUnit, diffDate, i, ISO_DATE_FMT, jsf, span, yesterday } fr
 import _ from "lodash"
 import Link from "next/link"
 import React, { useEffect, useMemo, useState } from "react"
+import { Breadcrumb } from "react-bootstrap"
 import { HandleComponent, ResizeEnable, Rnd } from "react-rnd"
 import { CSSProperties } from "react-transition-group/node_modules/@types/react"
 import { useMeasure } from "react-use"
 import { _jsonp } from "./utils"
 
 export default function NavBreadCrumbs({ _path }: { _path: string }): JSX.Element {
-    return <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">{
-            _path.split("/")
-                .filter(part => part.length > 0)
-                .map((part: string, i: number, parts: string[]) =>
-                (<li key={i}
-                    className={`breadcrumb-item ${i == parts.length ? "active" : ""}`}
-                    aria-current={`${i == parts.length ? "page" : "false"}`}>
-                    <Link href={"/" + parts.slice(0, i + 1).join("/")}>
-                        {part}
-                    </Link>
-                </li>))
-        }</ol>
-    </nav>
+    // return <nav aria-label="breadcrumb">
+    //     <ol className="breadcrumb">{
+    //         _path.split("/")
+    //             .filter(part => part.length > 0)
+    //             .map((part: string, i: number, parts: string[]) =>
+    //             (<li key={i}
+    //                 className={`breadcrumb-item ${i == parts.length ? "active" : ""}`}
+    //                 aria-current={`${i == parts.length ? "page" : "false"}`}>
+    //                 <Link href={"/" + parts.slice(0, i + 1).join("/")}>
+    //                     {part}
+    //                 </Link>
+    //             </li>))
+    //     }</ol>
+    // </nav>
+    return <Breadcrumb>{
+        _path.split("/")
+            .filter(part => part.length > 0)
+            .map((part: string, i: number, parts: string[]) =>
+            (<Breadcrumb.Item key={i} active={i == parts.length - 1}>
+                <Link href={"/" + parts.slice(0, i + 1).join("/")}>{part}</Link>
+            </Breadcrumb.Item>))
+    }</Breadcrumb>
 }
 
 const FILE_NAME: string = "gadgets.tsx"
@@ -60,7 +69,7 @@ export function DataLoaderTempl<P, T>({ params, loader, renderCmp, fallbackCmp }
             })
     }, [params])
 
-    if (respState.state == "loading") return fallbackCmp({ })
+    if (respState.state == "loading") return fallbackCmp({})
     if (respState.state == "failed")
         return <pre>failed to load data with &nbsp;
             {jsf(params)} &nbsp;

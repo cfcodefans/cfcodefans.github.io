@@ -27,10 +27,11 @@ const withMDX = require("@next/mdx")({
 const externals = {
     "jquery": "$",
     "bootstrap": "BootStrap",
+    "react": "React",
     "react-dom": "ReactDOM",
     "react-bootstrap": "ReactBootstrap",
+    // "react-bootstrap": "react-bootstrap",
     "lodash": "_",
-    "react": "React",
     "victory": "Victory",
     "highlight.js": "hljs"
 }

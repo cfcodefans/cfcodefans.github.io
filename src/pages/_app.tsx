@@ -2,6 +2,7 @@ import { MDXProvider } from "@mdx-js/react"
 import { AppContext, AppInitialProps, AppProps } from "next/app"
 import Head from "next/head"
 import React, { ReactNodeArray } from "react"
+
 import pathToMarkdowns from "cache/mdMetas.json"
 import menus from "cache/menus.json"
 import routeTree from "cache/route-tree.json"
