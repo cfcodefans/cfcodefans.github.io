@@ -244,6 +244,7 @@ export function DateRangeSlide({ start, end, stepDay, onDateRangeChange, onDateR
     }
 
     return <div
+        className="position-relative"
         style={{ height: "80px", width: "100%", backgroundColor: "transparent" }}
         ref={containerRef}>
         {containerHeight > 0 && containerWidth > 0 &&
