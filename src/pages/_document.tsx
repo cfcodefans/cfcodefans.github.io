@@ -65,22 +65,25 @@ class TemplateDoc extends Document {
                 <link href="/assets/css/mainframe-landscape.css" rel="stylesheet" media="(orientation: landscape)" />
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
                 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet" />
-                {/* <link href="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/css/mdb.css" rel="stylesheet" /> */}
+                <link href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.10.2/css/mdb.min.css" rel="stylesheet" />
                 <link href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css" rel="stylesheet" />
                 <meta property="og:type" content="website" />
+
+
             </Head>
             <body onLoad={this.docOnLoad}>
                 <Main />
+
                 <script async src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
                 <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
                 {/* <script async src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.min.js"></script> */}
                 <script async src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js"></script>
                 <script async src="https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/react-bootstrap@2.1.1/cjs/index.min.js"></script>
                 <script async src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/highlight.js@11.4.0/lib/index.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/react-bootstrap@2.1.1/dist/react-bootstrap.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
                 <script async src="https://cdn.jsdelivr.net/npm/d3@7.3.0/dist/d3.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/victory@36.2.0/lib/index.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/victory@36.2.1/dist/victory.js"></script>
 
                 <NextScript />
 

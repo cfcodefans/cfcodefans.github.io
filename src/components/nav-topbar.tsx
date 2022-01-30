@@ -9,7 +9,7 @@ export default function NavTopBar(): JSX.Element {
         return null
     }
 
-    return <div className="top-navbar">
+    return <div className="top-navbar ">
         <NavBreadCrumbs _path={router.asPath} />
     </div>
 }

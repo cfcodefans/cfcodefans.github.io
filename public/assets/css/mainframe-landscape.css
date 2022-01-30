@@ -66,6 +66,7 @@
 
 .menu {
     flex-direction: column !important;
+    padding: 0.25rem;
 }
 
 .menu-header {
@@ -82,6 +83,6 @@
 
 #menu_box {
     flex-grow: unset;
-    background-color: white;
-    border-radius: 1rem;
+    background-color:white;
+    border-radius: 0 1rem 1rem 0;
 }

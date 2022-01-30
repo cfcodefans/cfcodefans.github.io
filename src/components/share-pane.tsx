@@ -24,7 +24,7 @@ export default function SharePane({ meta }: { meta: any }): JSX.Element {
     const btnClass: string = ""
     const iconClass: string = "rounded-circle mx-1 hoverable"
 
-    return <div className="share-pane float-right d-flex justify-content-between">
+    return <div className="share-pane float-end d-flex justify-content-between">
         <LinkedinShareButton url={url} title={title} summary={description} source={url} className={btnClass}>
             <LinkedinIcon className={iconClass} />
         </LinkedinShareButton>

@@ -68,6 +68,24 @@
     font-weight: bold;
 }
 
+.menu-sidebar .active.nav-link {
+    /* background-color: darkgrey; */
+    background-color: var(--cool-gray-20);
+    border-radius: 50rem 0 0 50rem;
+    margin-right: -0.25rem;
+}
+
+.menu-sidebar .nav-link:hover {
+    /* background-color: lightgray; */
+    background-color: var(--cool-gray-20);
+    border-radius: 50rem 0 0 50rem;
+    margin-right: -0.25rem;
+}
+
+.menu-sidebar .active.nav-link a {
+    color: gray;
+}
+
 .menu-sidebar {
     position:sticky;
     top: 0px;
