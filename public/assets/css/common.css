@@ -7,11 +7,11 @@
     --corner-radius-full: 50%;
     --warm-gray-20: #f3f2ef;
     --blue-gray:#f8f9fc;
-    --cool-gray-20: rgb(238, 243, 248);
+    --bg-root: lightgray;
   }
 
 .root {
-    background-color: var(--cool-gray-20);
+    background-color: var(--bg-root);
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -70,14 +70,41 @@
 
 .menu-sidebar .active.nav-link {
     /* background-color: darkgrey; */
-    background-color: var(--cool-gray-20);
+    background-color: var(--bg-root);
     border-radius: 50rem 0 0 50rem;
     margin-right: -0.25rem;
 }
 
+.menu-sidebar .active.nav-link::before {
+    content: " ";
+    background: unset;
+    height: 1rem;
+    width: 1rem;
+    display: block;
+    z-index: 1;
+    position: absolute;
+    top: -1rem;
+    right: 0px;
+    border-radius: 0 0 1rem 0;
+    box-shadow: 0.25rem 0.35rem var(--bg-root);
+}
+
+.menu-sidebar .active.nav-link::after {
+    content: " ";
+    background: unset;
+    height: 1rem;
+    width: 1rem;
+    display: block;
+    z-index: 1;
+    position: absolute;
+    right: 0px;
+    border-radius: 0 1rem 0 0;
+    box-shadow: 0.25rem -0.35rem var(--bg-root);
+}
+
 .menu-sidebar .nav-link:hover {
     /* background-color: lightgray; */
-    background-color: var(--cool-gray-20);
+    background-color: var(--bg-root);
     border-radius: 50rem 0 0 50rem;
     margin-right: -0.25rem;
 }

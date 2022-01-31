@@ -69,21 +69,20 @@ class TemplateDoc extends Document {
                 <link href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css" rel="stylesheet" />
                 <meta property="og:type" content="website" />
 
-
+                <script src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+                <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
             </Head>
             <body onLoad={this.docOnLoad}>
                 <Main />
 
-                <script async src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
                 {/* <script async src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.min.js"></script> */}
-                <script async src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/react-bootstrap@2.1.1/dist/react-bootstrap.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@2.1.1/dist/react-bootstrap.min.js"></script>
                 <script async src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
                 <script async src="https://cdn.jsdelivr.net/npm/d3@7.3.0/dist/d3.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/victory@36.2.1/dist/victory.js"></script>
+                <script defer src="https://cdn.jsdelivr.net/npm/victory@36.2.1/dist/victory.js"></script>
 
                 <NextScript />
 

@@ -27,7 +27,7 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
     // ${isSelected ? "active ml-n1 bg-light lighten-3" : ""} rounded-pill hoverable 
 
     const theLink: JSX.Element = <Nav.Link key={modal.label}
-        className={`${modal.layer == 2 ? "menu-layer-2  " : ""} my-1`}
+        className={`${modal.layer == 2 ? "menu-layer-2  " : ""} my-1 position-relative`}
         eventKey={modal.label}
         as={"div"}
         active={isSelected}>
@@ -73,7 +73,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
 
-    return <Navbar collapseOnSelect expand="lg" className="nav-sidebar menu-sidebar navbar-light">
+    return <Navbar collapseOnSelect expand="md" className="nav-sidebar menu-sidebar navbar-light">
 
         <Navbar.Brand as={"div"} href="/" className="menu-header align-items-center">
             <div className="logo text-center d-flex align-items-center m-2">

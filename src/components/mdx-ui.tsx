@@ -20,7 +20,7 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
     //https://github.com/cfcodefans/cfcodefans.github.io/blob/with-nextjs/src/pages/study/business/tushare-setup.mdx
     //https://github.com/cfcodefans/cfcodefans.github.io/blob/with-nextjs/src/pages/study/business/tushare-setup
 
-    return (<article className="blog-item d-flex flex-column align-items-center rounded-2 container pt-3 mt-3 mb-3">
+    return (<article className="blog-item d-flex flex-column align-items-center rounded-6 container pt-3 mt-3 mb-3">
         <header className="text-center">
             <h1>{meta["title"]}</h1>
             <h5>
