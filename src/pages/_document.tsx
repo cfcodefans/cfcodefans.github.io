@@ -80,9 +80,9 @@ class TemplateDoc extends Document {
 
                 {/* <script async src="https://cdn.bootcdn.net/ajax/libs/mdbootstrap/4.9.0/js/mdb.min.js"></script> */}
                 <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@2.1.1/dist/react-bootstrap.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
-                <script async src="https://cdn.jsdelivr.net/npm/d3@7.3.0/dist/d3.min.js"></script>
-                <script defer src="https://cdn.jsdelivr.net/npm/victory@36.2.1/dist/victory.js"></script>
+                <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/d3@7.3.0/dist/d3.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/victory@36.2.1/dist/victory.js"></script>
 
                 <NextScript />
 
