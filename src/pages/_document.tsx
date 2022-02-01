@@ -63,9 +63,9 @@ class TemplateDoc extends Document {
                 <link href="/assets/css/component.css" rel="stylesheet" />
                 <link href="/assets/css/mainframe-protrait.css" rel="stylesheet" media="(orientation: portrait)" />
                 <link href="/assets/css/mainframe-landscape.css" rel="stylesheet" media="(orientation: landscape)" />
+                <link href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.10.2/css/mdb.min.css" rel="stylesheet" />
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
                 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet" />
-                <link href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.10.2/css/mdb.min.css" rel="stylesheet" />
                 <link href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/default.min.css" rel="stylesheet" />
                 <meta property="og:type" content="website" />
 

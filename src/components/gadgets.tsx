@@ -25,7 +25,7 @@ export default function NavBreadCrumbs({ _path }: { _path: string }): JSX.Elemen
     //             </li>))
     //     }</ol>
     // </nav>
-    return <Breadcrumb>{
+    return <Breadcrumb className="fw-bold  opacity-75 bg-white">{
         _path.split("/")
             .filter(part => part.length > 0)
             .map((part: string, i: number, parts: string[]) =>

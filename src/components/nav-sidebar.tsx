@@ -73,7 +73,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
 
-    return <Navbar collapseOnSelect expand="md" className="nav-sidebar menu-sidebar navbar-light">
+    return <Navbar collapseOnSelect expand="md" className="nav-sidebar menu-sidebar">
 
         <Navbar.Brand as={"div"} href="/" className="menu-header align-items-center">
             <div className="logo text-center d-flex align-items-center m-2">
@@ -90,7 +90,9 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
             </div>
         </Navbar.Brand>
 
-        <Navbar.Toggle aria-controls="menu_box" />
+        <Navbar.Toggle aria-controls="menu_box" label="..." className="border-0">
+            <span className="navbar-toggler-icon"></span>
+        </Navbar.Toggle>
 
         <Navbar.Collapse id="menu_box" className="align-items-start w-100">
             <div className={`menu smooth-scroll w-100`}>

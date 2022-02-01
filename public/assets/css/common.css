@@ -1,4 +1,6 @@
 :root {
+    --black-a75: rgba(0,0,0,0.75);
+    --cool-gray-20: #eef3f8;
     --border-radius: 0.8rem !important;
     --corner-radius-small: 0.4rem;
     --corner-radius-medium: 0.8rem;
@@ -7,9 +9,14 @@
     --corner-radius-full: 50%;
     --warm-gray-20: #f3f2ef;
     --blue-gray:#f8f9fc;
-    --bg-root: lightgray;
-  }
+    
+    --bg-ga-nav-btn-sel:#e8f0fe;
+    --bg-root: var(--bg-ga-nav-btn-sel);
 
+    --color-background-none-tint-hover: var(var(--black-a75));
+    --voyager-color-background-input-search: var(--cool-gray-20);
+  }
+  /* var(--color-background-none-tint-hover) */
 .root {
     background-color: var(--bg-root);
     width: 100vw;
@@ -73,33 +80,6 @@
     background-color: var(--bg-root);
     border-radius: 50rem 0 0 50rem;
     margin-right: -0.25rem;
-}
-
-.menu-sidebar .active.nav-link::before {
-    content: " ";
-    background: unset;
-    height: 1rem;
-    width: 1rem;
-    display: block;
-    z-index: 1;
-    position: absolute;
-    top: -1rem;
-    right: 0px;
-    border-radius: 0 0 1rem 0;
-    box-shadow: 0.25rem 0.35rem var(--bg-root);
-}
-
-.menu-sidebar .active.nav-link::after {
-    content: " ";
-    background: unset;
-    height: 1rem;
-    width: 1rem;
-    display: block;
-    z-index: 1;
-    position: absolute;
-    right: 0px;
-    border-radius: 0 1rem 0 0;
-    box-shadow: 0.25rem -0.35rem var(--bg-root);
 }
 
 .menu-sidebar .nav-link:hover {

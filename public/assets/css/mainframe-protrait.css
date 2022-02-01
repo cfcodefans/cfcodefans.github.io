@@ -40,7 +40,7 @@ nav #nav_items {
 
 .top-navbar {
     position: sticky;
-    height: var(--top-navbar-height);
+    /* height: var(--top-navbar-height); */
     top: 0px;
     box-shadow: var(--nav-box-shadow-bottom);
     background-color: white;
