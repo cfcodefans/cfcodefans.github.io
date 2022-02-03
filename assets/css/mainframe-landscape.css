@@ -1,0 +1,126 @@
+:root {
+    --nav-sidebar-width:14vw;
+    --nav-sidebar-bgcolor: unset;
+    --misc-sidebar-width:16vw;
+    --main-pane-width:70vw;
+    --top-navbar-height:3rem;
+}
+
+.root {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-toggler {
+    display: none;
+}
+
+.nav-sidebar {
+    position:sticky !important;
+    top: 0px;
+    width: var(--nav-sidebar-width);
+
+    display: flex;
+    flex-direction: column !important;
+    background-color: var(--nav-sidebar-bgcolor);
+
+    box-shadow: none !important;
+    --webkit-box-shadow: none !important;
+}
+.nav-sidebar .navbar {
+    display: none;
+}
+.nav-sidebar #nav_items {
+    display: block;
+    width: 100%;
+    position: relative;
+    top: 0px;
+}
+
+#nav_items ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-navbar {
+    position: fixed;
+    top: 0px;
+    left: var(--nav-sidebar-width);
+    right: var(--misc-sidebar-width);
+    background-color: unset;
+    padding: 0 1rem 0 1rem;
+}
+
+.top-navbar nav {
+    margin-top: 1rem;
+    padding: 0 0.5rem 0 0.5rem;
+    border-radius: 0  0 1rem  1rem;
+}
+
+.misc-sidebar {
+    position:sticky;
+    top: 0px;
+    left:0px;
+    width: var(--misc-sidebar-width);
+}
+
+.main-pane {
+    height: 100vh;
+    /* margin-top: var(--top-navbar-height); */
+    width: var(--main-pane-width);
+}
+
+.main-pane .content {
+    margin-top: var(--top-navbar-height);
+}
+
+.menu {
+    flex-direction: column !important;
+    padding: 0.25rem;
+}
+
+.menu-header {
+    display:flex !important;
+    flex-direction: column !important;
+    margin-left: auto;
+    margin-right: auto !important;
+}
+
+.menu-sidebar .logo {
+    height: 6rem;
+    width: 6rem;
+}
+
+#menu_box {
+    flex-grow: unset;
+    background-color:white;
+    border-radius: 0 1rem 1rem 0;
+}
+
+.menu-sidebar .active.nav-link::before {
+    content: " ";
+    background: unset;
+    height: 1rem;
+    width: 1rem;
+    display: block;
+    z-index: 1;
+    position: absolute;
+    top: -1rem;
+    right: 0px;
+    border-radius: 0 0 1rem 0;
+    box-shadow: 0.25rem 0.35rem var(--bg-root);
+}
+
+.menu-sidebar .active.nav-link::after {
+    content: " ";
+    background: unset;
+    height: 1rem;
+    width: 1rem;
+    display: block;
+    z-index: 1;
+    position: absolute;
+    right: 0px;
+    border-radius: 0 1rem 0 0;
+    box-shadow: 0.25rem -0.35rem var(--bg-root);
+}
