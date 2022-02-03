@@ -9,9 +9,13 @@
     --corner-radius-full: 50%;
     --warm-gray-20: #f3f2ef;
     --blue-gray:#f8f9fc;
+<<<<<<< HEAD:assets/css/common.css
     
     --bg-ga-nav-btn-sel:#e8f0fe;
     --bg-root: var(--bg-ga-nav-btn-sel);
+=======
+  }
+>>>>>>> 7487ff34b938a416cfedf9baee8c67c1dcb76062:css/common.css
 
     --color-background-none-tint-hover: var(var(--black-a75));
     --voyager-color-background-input-search: var(--cool-gray-20);
