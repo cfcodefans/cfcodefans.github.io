@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Fdigest","\u002Ftech\u002Fdata\u002Fdatabase","\u002Ftech\u002Fweb\u002Fhtml","\u002Ftech\u002Fweb","\u002Ftech\u002Fweb\u002Fmarkdown","\u002Fstudy","\u002Ftech\u002Fweb\u002Fssg","\u002Ftech","\u002Fstudy\u002Fbusiness","\u002Ftech\u002Fweb\u002Fbackend","\u002Ftech\u002Fdata"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
