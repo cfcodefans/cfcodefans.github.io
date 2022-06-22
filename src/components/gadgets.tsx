@@ -1,36 +1,21 @@
 // import { Breadcrumbs, makeStyles, Slider } from "@material-ui/core"
-import { addDays, differenceInDays, format, startOfDay, startOfMonth } from "date-fns"
+import { addDays, differenceInDays, format, startOfMonth } from "date-fns"
 import { compare, DateUnit, diffDate, i, ISO_DATE_FMT, jsf, span, yesterday } from "lib/commons"
 import _ from "lodash"
 import Link from "next/link"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { CSSProperties, useEffect, useMemo, useState } from "react"
 import { Breadcrumb } from "react-bootstrap"
 import { HandleComponent, ResizeEnable, Rnd } from "react-rnd"
-import { CSSProperties } from "react-transition-group/node_modules/@types/react"
 import { useMeasure } from "react-use"
 import { _jsonp } from "./utils"
 
 export default function NavBreadCrumbs({ _path }: { _path: string }): JSX.Element {
-    // return <nav aria-label="breadcrumb">
-    //     <ol className="breadcrumb">{
-    //         _path.split("/")
-    //             .filter(part => part.length > 0)
-    //             .map((part: string, i: number, parts: string[]) =>
-    //             (<li key={i}
-    //                 className={`breadcrumb-item ${i == parts.length ? "active" : ""}`}
-    //                 aria-current={`${i == parts.length ? "page" : "false"}`}>
-    //                 <Link href={"/" + parts.slice(0, i + 1).join("/")}>
-    //                     {part}
-    //                 </Link>
-    //             </li>))
-    //     }</ol>
-    // </nav>
-    return <Breadcrumb className="fw-bold  opacity-75 bg-white">{
+    return <Breadcrumb className="fw-bold fs-4 opacity-75 bg-white">{
         _path.split("/")
             .filter(part => part.length > 0)
             .map((part: string, i: number, parts: string[]) =>
             (<Breadcrumb.Item key={i} active={i == parts.length - 1}>
-                <Link href={"/" + parts.slice(0, i + 1).join("/")}>{part}</Link>
+                <Link href={"/" + parts.slice(0, i + 1).join("/")}><a className="text-decoration-none">{part}</a></Link>
             </Breadcrumb.Item>))
     }</Breadcrumb>
 }
@@ -45,7 +30,7 @@ export function SimpleInsp({ obj }: { obj: any }): JSX.Element {
             .sort((p1: [string, unknown], p2: [string, unknown]) => compare(p1[0], p2[0]))
             .map((pair: [string, unknown], i: number) => <>
                 <dt key={pair[0]} className="col">{pair[0]}</dt>
-                <dd key={pair[0] + "-" + i} className="col">{pair[1]}</dd>
+                <dd key={pair[0] + "-" + i} className="col">{JSON.stringify(pair[1])}</dd>
             </>)
     }</dl>
 }

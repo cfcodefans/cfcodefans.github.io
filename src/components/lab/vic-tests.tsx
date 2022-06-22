@@ -1,6 +1,5 @@
 import React from "react"
 import * as vic from "victory"
-import { i } from "lib/commons"
 
 export type TData2d = { x: string | number, y: number, label: string }
 

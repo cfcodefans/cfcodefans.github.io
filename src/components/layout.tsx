@@ -24,7 +24,7 @@ export function CTX_REDUCER(ctx: LayoutCtx, _ctx: Partial<LayoutCtx>): LayoutCtx
     return _.assign({ ...ctx }, { ..._ctx })
 }
 
-export const CtxProvider: React.FC = ({ children }: { children: ReactNode }) => {
+export function CtxProvider({ children }: { children: ReactNode }): JSX.Element {
     const [_ctx, ctxDispatcher] = useReducer(CTX_REDUCER, LAYOUT_CTX)
     _ctx.dispatcher = ctxDispatcher
 

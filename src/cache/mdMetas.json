@@ -14,41 +14,6 @@
     "createdAt": "2021-08-04",
     "modifiedAt": "2021-08-04"
   },
-  "/study/business/stock-data-1.mdx": {
-    "meta": {
-      "title": "Loading stock data from yahoo",
-      "authors": [
-        "cfcodefans"
-      ],
-      "tags": [
-        "financial",
-        "stock",
-        "yahoo",
-        "data"
-      ]
-    },
-    "excerpt": "<p><em>How to get stock data from yahoo</em></p>",
-    "path": "study/business/stock-data-1.mdx",
-    "createdAt": "2021-08-04",
-    "modifiedAt": "2021-08-04"
-  },
-  "/study/business/tushare-setup.mdx": {
-    "meta": {
-      "title": "Tushare, Financial data python library",
-      "authors": [
-        "cfcodefans"
-      ],
-      "tags": [
-        "financial",
-        "python",
-        "analysis"
-      ]
-    },
-    "excerpt": "<p><span><a target=\"_blank\" href=\"http://tushare.org/\">Tushare</a>  <a target=\"_blank\" href=\"http://tushare.org/\">[+]</a></span></p><p><em>Tushare is a free, open sourced python financial data interface library</em>.\nIts primary features include collecting data of financial, such as stock; cleaning data and storing data,\nwhich provides financial analysts with quick, neat, and diversy data for analysis, reduces difficulty on\ndata collection for them, allows them to focus more on realization of strategy and modeling....</p>",
-    "path": "study/business/tushare-setup.mdx",
-    "createdAt": "2021-08-04",
-    "modifiedAt": "2021-08-04"
-  },
   "/study/business/what-about-disclaimer.mdx": {
     "meta": {
       "title": "What about disclaimer",
@@ -149,27 +114,24 @@
     "createdAt": "2021-08-04",
     "modifiedAt": "2021-08-04"
   },
-  "/tech/web/html/what-is-open-graph.mdx": {
+  "/tech/web/backend/react-static-intro.mdx": {
     "meta": {
+      "title": "What is React-static",
       "authors": [
         "cfcodefans"
       ],
       "tags": [
-        "open-graph-protocal",
-        "seo",
-        "social graph"
-      ],
-      "title": "What is Open Graph?",
-      "og": {
-        "image": "https://ogp.me/logo.png"
-      }
+        "react",
+        "static site",
+        "github page"
+      ]
     },
-    "excerpt": "<div class=\"text-center\"><p><img src=\"https://ogp.me/logo.png\" alt=\"OGP\" height=\"100\"/></p></div><p>As I studied so far, <span><a target=\"_blank\" href=\"https://ogp.me/\">Open-Graph-Protocol</a>  <a target=\"_blank\" href=\"https://ogp.me/\">[+]</a></span> is the protocol recognized by social network. In detail,\nyou could add certain set of meta tags into your web pages, then when the web pages are shared by links in soical networks, such as\n<span><a href=\"https://linkedin.com/\">linkedin</a>  <a href=\"https://linkedin.com/\" target=\"_blank\">[+]</a></span>, the social network could extract the info from the meta tags according to Open Graph Protocol\nand display these info to make the shared links more informative.</p>",
-    "path": "tech/web/html/what-is-open-graph.mdx",
+    "excerpt": "<p><span><a href=\"https://react-static.js.org/\">react-static</a>  <a href=\"https://react-static.js.org/\" target=\"_blank\">[+]</a></span> is a static web page generator.\nWe can define some functions in static.config.js to load data, and render\nthese data with templates built by react components. These templates are also\norganized by <span><a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\">React-Static Route</a>  <a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\" target=\"_blank\">[+]</a></span></p>",
+    "path": "tech/web/backend/react-static-intro.mdx",
     "createdAt": "2021-08-04",
-    "modifiedAt": "2021-08-04"
+    "modifiedAt": "2022-06-22"
   },
-  "/tech/web/markdown/markdown-sample.mdx": {
+  "/tech/web/frontend/markdown-sample.mdx": {
     "meta": {
       "authors": [
         "StackEdit"
@@ -180,11 +142,11 @@
       "title": "Welcome to StackEdit!"
     },
     "excerpt": "<p>Hi! I&#x27;m your first Markdown file in <strong>StackEdit</strong>. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the <strong>file explorer</strong> on the left corner of the navigation bar.</p>",
-    "path": "tech/web/markdown/markdown-sample.mdx",
+    "path": "tech/web/frontend/markdown-sample.mdx",
     "createdAt": "2021-08-04",
-    "modifiedAt": "2021-08-04"
+    "modifiedAt": "2022-06-22"
   },
-  "/tech/web/markdown/mdx-study.mdx": {
+  "/tech/web/frontend/mdx-study.mdx": {
     "meta": {
       "authors": [
         "cfcodefans"
@@ -200,25 +162,28 @@
       }
     },
     "excerpt": "<div class=\"text-center\"><p><img src=\"/assets/res/mdx/mdx.png\" alt=\"MDX\" height=\"100\"/></p></div><p><span><a target=\"_blank\" href=\"https://mdxjs.com/\">MDX</a>  <a target=\"_blank\" href=\"https://mdxjs.com/\">[+]</a></span> is interesting extension for <span><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">markdown</a>  <a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">[+]</a></span></p>",
-    "path": "tech/web/markdown/mdx-study.mdx",
+    "path": "tech/web/frontend/mdx-study.mdx",
     "createdAt": "2021-08-04",
-    "modifiedAt": "2021-08-04"
+    "modifiedAt": "2022-06-22"
   },
-  "/tech/web/ssg/react-static-intro.mdx": {
+  "/tech/web/frontend/what-is-open-graph.mdx": {
     "meta": {
-      "title": "What is React-static",
       "authors": [
         "cfcodefans"
       ],
       "tags": [
-        "react",
-        "static site",
-        "github page"
-      ]
+        "open-graph-protocal",
+        "seo",
+        "social graph"
+      ],
+      "title": "What is Open Graph?",
+      "og": {
+        "image": "https://ogp.me/logo.png"
+      }
     },
-    "excerpt": "<p><span><a href=\"https://react-static.js.org/\">react-static</a>  <a href=\"https://react-static.js.org/\" target=\"_blank\">[+]</a></span> is a static web page generator.\nWe can define some functions in static.config.js to load data, and render\nthese data with templates built by react components. These templates are also\norganized by <span><a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\">React-Static Route</a>  <a href=\"https://github.com/react-static/react-static/blob/master/docs/api.md#routes\" target=\"_blank\">[+]</a></span></p>",
-    "path": "tech/web/ssg/react-static-intro.mdx",
+    "excerpt": "<div class=\"text-center\"><p><img src=\"https://ogp.me/logo.png\" alt=\"OGP\" height=\"100\"/></p></div><p>As I studied so far, <span><a target=\"_blank\" href=\"https://ogp.me/\">Open-Graph-Protocol</a>  <a target=\"_blank\" href=\"https://ogp.me/\">[+]</a></span> is the protocol recognized by social network. In detail,\nyou could add certain set of meta tags into your web pages, then when the web pages are shared by links in soical networks, such as\n<span><a href=\"https://linkedin.com/\">linkedin</a>  <a href=\"https://linkedin.com/\" target=\"_blank\">[+]</a></span>, the social network could extract the info from the meta tags according to Open Graph Protocol\nand display these info to make the shared links more informative.</p>",
+    "path": "tech/web/frontend/what-is-open-graph.mdx",
     "createdAt": "2021-08-04",
-    "modifiedAt": "2021-08-04"
+    "modifiedAt": "2022-06-22"
   }
 }

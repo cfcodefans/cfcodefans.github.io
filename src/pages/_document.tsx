@@ -82,7 +82,7 @@ class TemplateDoc extends Document {
                 <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@2.1.1/dist/react-bootstrap.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/d3@7.3.0/dist/d3.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/victory@36.2.1/dist/victory.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/victory@36.5.0/dist/victory.js"></script>
 
                 <NextScript />
 

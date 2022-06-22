@@ -1,11 +1,10 @@
-import { deepTraverse, i } from "lib/commons"
+import { deepTraverse } from "lib/commons"
 import _ from "lodash"
 import { NextRouter, useRouter } from "next/dist/client/router"
 import Link from "next/link"
-import React, { ReactElement, ReactNodeArray, useEffect, useState } from "react"
+import { ReactElement, ReactNode, ReactNodeArray, useEffect, useState } from "react"
 import { Badge, Nav, Navbar } from "react-bootstrap"
 import { IMenuItemModal } from "../types"
-import NavBreadCrumbs from "./gadgets"
 
 const UL_STYLE: string = "nav "
 
@@ -32,9 +31,8 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
         as={"div"}
         active={isSelected}>
         <Link href={_link}>
-            <a className={`icon-${modal.icon} d-flex pl-2 pr-1 justify-content-between`}>
+            <a className={`icon-${modal.icon} d-flex pl-2 pr-1 justify-content-between text-decoration-none`}>
                 <span className="menu-label text-capitalize">{modal.label}</span>
-                {/* <span className={`${isSelected ? "" : "x-ball grey lighten-3 "} px-2 align-self-center`}>{modal.leaveCount}</span> */}
                 <Badge className="px-2 align-self-center" pill >{modal.leaveCount}</Badge>
             </a>
         </Link>
@@ -62,7 +60,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     deepTraverse(modalStack, (mi: IMenuItemModal) => {
         if (!_.isEmpty(mi.children)) {
             let menuItemElm: ReactElement = linkAndElements.get(mi.link)
-            let elementChildrenRef: ReactNodeArray = menuItemElm.props.children
+            let elementChildrenRef: ReactNode[] = menuItemElm.props.children
             elementChildrenRef.push(...mi.children.map(subMI => linkAndElements.get(subMI.link)))
         }
 

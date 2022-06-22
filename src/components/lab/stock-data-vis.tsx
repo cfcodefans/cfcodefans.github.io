@@ -4,8 +4,8 @@ import { format } from "date-fns"
 import { addDate, i, jsf, Range, yesterday } from "lib/commons"
 import _, { round } from "lodash"
 import React, { useRef, useState } from "react"
-import * as vic from "victory"
-import { CallbackArgs } from "victory-core"
+import { VictoryChart, VictoryTheme, VictoryGroup, VictoryLine, VictoryCursorContainer, VictoryCandlestick, VictoryTooltip, VictoryAxis, LineSegment, VictoryBar } from "victory"
+import { CallbackArgs } from "victory-core/lib/types"
 import { STOCK } from "./stocks"
 
 // import { CircularProgress } from "@material-ui/core/CircularProgress"
@@ -130,64 +130,64 @@ export namespace STOCK_CMP {
         i(FILENAME, "StockCandleChart.render", data.start, data.end)
 
         return <div>
-            <vic.VictoryChart theme={vic.VictoryTheme.material}
+            <VictoryChart theme={VictoryTheme.material}
                 scale={{ x: "time" }}
                 width={640}
                 height={320}
                 padding={{ left: 60 }}
                 domainPadding={20}>
 
-                <vic.VictoryGroup>
-                    <vic.VictoryLine colorScale={["lightblue"]} standalone={true}
+                <VictoryGroup>
+                    <VictoryLine colorScale={["lightblue"]} standalone={true}
                         containerComponent={
-                            <vic.VictoryCursorContainer cursorLabel={(datum) => `${round(datum.x, 2)}, ${round(datum.y, 2)}`} />
+                            <VictoryCursorContainer cursorLabel={(datum) => `${round(datum.x, 2)}, ${round(datum.y, 2)}`} />
                         }
                         data={data.dailyPrices}
                         y={(datum: TStockPriceVO) => datum.close} />
-                    <vic.VictoryLine colorScale={["orange"]}
+                    <VictoryLine colorScale={["orange"]}
                         data={data.dailyPrices}
                         y={(datum) => datum.ma5} />
-                    <vic.VictoryLine colorScale={["green"]}
+                    <VictoryLine colorScale={["green"]}
                         data={data.dailyPrices}
                         y={(datum) => datum.ma20} />
 
-                    <vic.VictoryCandlestick
+                    <VictoryCandlestick
                         data={data.dailyPrices}
-                        labelComponent={<vic.VictoryTooltip />}
+                        labelComponent={<VictoryTooltip />}
                         labels={priceTooltip}
                         style={{ data: { fill: (args: CallbackArgs) => args.datum.color } }}
                     />
-                </vic.VictoryGroup>
+                </VictoryGroup>
 
-                <vic.VictoryAxis gridComponent={<vic.LineSegment />}
+                <VictoryAxis gridComponent={<LineSegment />}
                     tickCount={10}
                     dependentAxis
                     style={{ grid: { stroke: "grey" } }} />
-                <vic.VictoryAxis gridComponent={<vic.LineSegment />}
+                <VictoryAxis gridComponent={<LineSegment />}
                     fixLabelOverlap={true}
                     style={{ grid: { stroke: "grey" } }} />
-            </vic.VictoryChart>
-            <vic.VictoryChart theme={vic.VictoryTheme.material}
+            </VictoryChart>
+            <VictoryChart theme={VictoryTheme.material}
                 scale={{ x: "time" }}
                 width={640}
                 height={160}
                 padding={{ left: 60, bottom: 40 }}
                 domainPadding={20}>
-                <vic.VictoryBar
+                <VictoryBar
                     barRatio={0.9}
-                    labelComponent={<vic.VictoryTooltip />}
+                    labelComponent={<VictoryTooltip />}
                     labels={turnoverTooltip}
                     style={{ data: { fill: (args: CallbackArgs) => args.datum.color } }}
                     data={data.dailyPrices}
                     y={(datum) => datum.turnover} />
-                <vic.VictoryAxis gridComponent={<vic.LineSegment />}
+                <VictoryAxis gridComponent={<LineSegment />}
                     fixLabelOverlap={true}
                     style={{ grid: { stroke: "grey" } }} />
-                <vic.VictoryAxis gridComponent={<vic.LineSegment />}
+                <VictoryAxis gridComponent={<LineSegment />}
                     tickCount={3}
                     dependentAxis
                     style={{ grid: { stroke: "grey" } }} />
-            </vic.VictoryChart>
+            </VictoryChart>
         </div>
     }
 

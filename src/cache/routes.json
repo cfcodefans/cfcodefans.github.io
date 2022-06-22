@@ -8,69 +8,6 @@
         "_path": "/tech/web",
         "children": [
           {
-            "path": "/ssg",
-            "_path": "/tech/web/ssg",
-            "children": [
-              {
-                "path": "/react-static-intro.mdx",
-                "_path": "/tech/web/ssg/react-static-intro.mdx",
-                "children": [],
-                "offsprings": [],
-                "childrenCount": 0,
-                "comparedTo": null
-              },
-              {
-                "path": "/index.tsx",
-                "_path": "/tech/web/ssg/index.tsx",
-                "children": [],
-                "offsprings": [],
-                "childrenCount": 0,
-                "comparedTo": null
-              }
-            ],
-            "offsprings": [
-              "/tech/web/ssg/react-static-intro.mdx"
-            ],
-            "childrenCount": 1,
-            "comparedTo": null
-          },
-          {
-            "path": "/markdown",
-            "_path": "/tech/web/markdown",
-            "children": [
-              {
-                "path": "/mdx-study.mdx",
-                "_path": "/tech/web/markdown/mdx-study.mdx",
-                "children": [],
-                "offsprings": [],
-                "childrenCount": 0,
-                "comparedTo": null
-              },
-              {
-                "path": "/markdown-sample.mdx",
-                "_path": "/tech/web/markdown/markdown-sample.mdx",
-                "children": [],
-                "offsprings": [],
-                "childrenCount": 0,
-                "comparedTo": null
-              },
-              {
-                "path": "/index.tsx",
-                "_path": "/tech/web/markdown/index.tsx",
-                "children": [],
-                "offsprings": [],
-                "childrenCount": 0,
-                "comparedTo": null
-              }
-            ],
-            "offsprings": [
-              "/tech/web/markdown/mdx-study.mdx",
-              "/tech/web/markdown/markdown-sample.mdx"
-            ],
-            "childrenCount": 2,
-            "comparedTo": null
-          },
-          {
             "path": "/index.tsx",
             "_path": "/tech/web/index.tsx",
             "children": [],
@@ -79,20 +16,28 @@
             "comparedTo": null
           },
           {
-            "path": "/html",
-            "_path": "/tech/web/html",
+            "path": "/frontend",
+            "_path": "/tech/web/frontend",
             "children": [
               {
                 "path": "/what-is-open-graph.mdx",
-                "_path": "/tech/web/html/what-is-open-graph.mdx",
+                "_path": "/tech/web/frontend/what-is-open-graph.mdx",
                 "children": [],
                 "offsprings": [],
                 "childrenCount": 0,
                 "comparedTo": null
               },
               {
-                "path": "/index.tsx",
-                "_path": "/tech/web/html/index.tsx",
+                "path": "/mdx-study.mdx",
+                "_path": "/tech/web/frontend/mdx-study.mdx",
+                "children": [],
+                "offsprings": [],
+                "childrenCount": 0,
+                "comparedTo": null
+              },
+              {
+                "path": "/markdown-sample.mdx",
+                "_path": "/tech/web/frontend/markdown-sample.mdx",
                 "children": [],
                 "offsprings": [],
                 "childrenCount": 0,
@@ -100,15 +45,25 @@
               }
             ],
             "offsprings": [
-              "/tech/web/html/what-is-open-graph.mdx"
+              "/tech/web/frontend/what-is-open-graph.mdx",
+              "/tech/web/frontend/mdx-study.mdx",
+              "/tech/web/frontend/markdown-sample.mdx"
             ],
-            "childrenCount": 1,
+            "childrenCount": 3,
             "comparedTo": null
           },
           {
             "path": "/backend",
             "_path": "/tech/web/backend",
             "children": [
+              {
+                "path": "/react-static-intro.mdx",
+                "_path": "/tech/web/backend/react-static-intro.mdx",
+                "children": [],
+                "offsprings": [],
+                "childrenCount": 0,
+                "comparedTo": null
+              },
               {
                 "path": "/nginx-portal-setup.mdx",
                 "_path": "/tech/web/backend/nginx-portal-setup.mdx",
@@ -127,17 +82,18 @@
               }
             ],
             "offsprings": [
+              "/tech/web/backend/react-static-intro.mdx",
               "/tech/web/backend/nginx-portal-setup.mdx"
             ],
-            "childrenCount": 1,
+            "childrenCount": 2,
             "comparedTo": null
           }
         ],
         "offsprings": [
-          "/tech/web/ssg/react-static-intro.mdx",
-          "/tech/web/markdown/mdx-study.mdx",
-          "/tech/web/markdown/markdown-sample.mdx",
-          "/tech/web/html/what-is-open-graph.mdx",
+          "/tech/web/frontend/what-is-open-graph.mdx",
+          "/tech/web/frontend/mdx-study.mdx",
+          "/tech/web/frontend/markdown-sample.mdx",
+          "/tech/web/backend/react-static-intro.mdx",
           "/tech/web/backend/nginx-portal-setup.mdx"
         ],
         "childrenCount": 5,
@@ -219,10 +175,10 @@
       }
     ],
     "offsprings": [
-      "/tech/web/ssg/react-static-intro.mdx",
-      "/tech/web/markdown/mdx-study.mdx",
-      "/tech/web/markdown/markdown-sample.mdx",
-      "/tech/web/html/what-is-open-graph.mdx",
+      "/tech/web/frontend/what-is-open-graph.mdx",
+      "/tech/web/frontend/mdx-study.mdx",
+      "/tech/web/frontend/markdown-sample.mdx",
+      "/tech/web/backend/react-static-intro.mdx",
       "/tech/web/backend/nginx-portal-setup.mdx",
       "/tech/data/database/mysql-spartial-study-1.mdx",
       "/tech/data/database/mysql-etl-study-1.mdx",
@@ -395,69 +351,6 @@
     "_path": "/tech/web",
     "children": [
       {
-        "path": "/ssg",
-        "_path": "/tech/web/ssg",
-        "children": [
-          {
-            "path": "/react-static-intro.mdx",
-            "_path": "/tech/web/ssg/react-static-intro.mdx",
-            "children": [],
-            "offsprings": [],
-            "childrenCount": 0,
-            "comparedTo": null
-          },
-          {
-            "path": "/index.tsx",
-            "_path": "/tech/web/ssg/index.tsx",
-            "children": [],
-            "offsprings": [],
-            "childrenCount": 0,
-            "comparedTo": null
-          }
-        ],
-        "offsprings": [
-          "/tech/web/ssg/react-static-intro.mdx"
-        ],
-        "childrenCount": 1,
-        "comparedTo": null
-      },
-      {
-        "path": "/markdown",
-        "_path": "/tech/web/markdown",
-        "children": [
-          {
-            "path": "/mdx-study.mdx",
-            "_path": "/tech/web/markdown/mdx-study.mdx",
-            "children": [],
-            "offsprings": [],
-            "childrenCount": 0,
-            "comparedTo": null
-          },
-          {
-            "path": "/markdown-sample.mdx",
-            "_path": "/tech/web/markdown/markdown-sample.mdx",
-            "children": [],
-            "offsprings": [],
-            "childrenCount": 0,
-            "comparedTo": null
-          },
-          {
-            "path": "/index.tsx",
-            "_path": "/tech/web/markdown/index.tsx",
-            "children": [],
-            "offsprings": [],
-            "childrenCount": 0,
-            "comparedTo": null
-          }
-        ],
-        "offsprings": [
-          "/tech/web/markdown/mdx-study.mdx",
-          "/tech/web/markdown/markdown-sample.mdx"
-        ],
-        "childrenCount": 2,
-        "comparedTo": null
-      },
-      {
         "path": "/index.tsx",
         "_path": "/tech/web/index.tsx",
         "children": [],
@@ -466,20 +359,28 @@
         "comparedTo": null
       },
       {
-        "path": "/html",
-        "_path": "/tech/web/html",
+        "path": "/frontend",
+        "_path": "/tech/web/frontend",
         "children": [
           {
             "path": "/what-is-open-graph.mdx",
-            "_path": "/tech/web/html/what-is-open-graph.mdx",
+            "_path": "/tech/web/frontend/what-is-open-graph.mdx",
             "children": [],
             "offsprings": [],
             "childrenCount": 0,
             "comparedTo": null
           },
           {
-            "path": "/index.tsx",
-            "_path": "/tech/web/html/index.tsx",
+            "path": "/mdx-study.mdx",
+            "_path": "/tech/web/frontend/mdx-study.mdx",
+            "children": [],
+            "offsprings": [],
+            "childrenCount": 0,
+            "comparedTo": null
+          },
+          {
+            "path": "/markdown-sample.mdx",
+            "_path": "/tech/web/frontend/markdown-sample.mdx",
             "children": [],
             "offsprings": [],
             "childrenCount": 0,
@@ -487,15 +388,25 @@
           }
         ],
         "offsprings": [
-          "/tech/web/html/what-is-open-graph.mdx"
+          "/tech/web/frontend/what-is-open-graph.mdx",
+          "/tech/web/frontend/mdx-study.mdx",
+          "/tech/web/frontend/markdown-sample.mdx"
         ],
-        "childrenCount": 1,
+        "childrenCount": 3,
         "comparedTo": null
       },
       {
         "path": "/backend",
         "_path": "/tech/web/backend",
         "children": [
+          {
+            "path": "/react-static-intro.mdx",
+            "_path": "/tech/web/backend/react-static-intro.mdx",
+            "children": [],
+            "offsprings": [],
+            "childrenCount": 0,
+            "comparedTo": null
+          },
           {
             "path": "/nginx-portal-setup.mdx",
             "_path": "/tech/web/backend/nginx-portal-setup.mdx",
@@ -514,17 +425,18 @@
           }
         ],
         "offsprings": [
+          "/tech/web/backend/react-static-intro.mdx",
           "/tech/web/backend/nginx-portal-setup.mdx"
         ],
-        "childrenCount": 1,
+        "childrenCount": 2,
         "comparedTo": null
       }
     ],
     "offsprings": [
-      "/tech/web/ssg/react-static-intro.mdx",
-      "/tech/web/markdown/mdx-study.mdx",
-      "/tech/web/markdown/markdown-sample.mdx",
-      "/tech/web/html/what-is-open-graph.mdx",
+      "/tech/web/frontend/what-is-open-graph.mdx",
+      "/tech/web/frontend/mdx-study.mdx",
+      "/tech/web/frontend/markdown-sample.mdx",
+      "/tech/web/backend/react-static-intro.mdx",
       "/tech/web/backend/nginx-portal-setup.mdx"
     ],
     "childrenCount": 5,
@@ -534,6 +446,14 @@
     "path": "/backend",
     "_path": "/tech/web/backend",
     "children": [
+      {
+        "path": "/react-static-intro.mdx",
+        "_path": "/tech/web/backend/react-static-intro.mdx",
+        "children": [],
+        "offsprings": [],
+        "childrenCount": 0,
+        "comparedTo": null
+      },
       {
         "path": "/nginx-portal-setup.mdx",
         "_path": "/tech/web/backend/nginx-portal-setup.mdx",
@@ -552,9 +472,10 @@
       }
     ],
     "offsprings": [
+      "/tech/web/backend/react-static-intro.mdx",
       "/tech/web/backend/nginx-portal-setup.mdx"
     ],
-    "childrenCount": 1,
+    "childrenCount": 2,
     "comparedTo": null
   },
   {
@@ -574,20 +495,36 @@
     "comparedTo": null
   },
   {
-    "path": "/html",
-    "_path": "/tech/web/html",
+    "path": "/react-static-intro.mdx",
+    "_path": "/tech/web/backend/react-static-intro.mdx",
+    "children": [],
+    "offsprings": [],
+    "childrenCount": 0,
+    "comparedTo": null
+  },
+  {
+    "path": "/frontend",
+    "_path": "/tech/web/frontend",
     "children": [
       {
         "path": "/what-is-open-graph.mdx",
-        "_path": "/tech/web/html/what-is-open-graph.mdx",
+        "_path": "/tech/web/frontend/what-is-open-graph.mdx",
         "children": [],
         "offsprings": [],
         "childrenCount": 0,
         "comparedTo": null
       },
       {
-        "path": "/index.tsx",
-        "_path": "/tech/web/html/index.tsx",
+        "path": "/mdx-study.mdx",
+        "_path": "/tech/web/frontend/mdx-study.mdx",
+        "children": [],
+        "offsprings": [],
+        "childrenCount": 0,
+        "comparedTo": null
+      },
+      {
+        "path": "/markdown-sample.mdx",
+        "_path": "/tech/web/frontend/markdown-sample.mdx",
         "children": [],
         "offsprings": [],
         "childrenCount": 0,
@@ -595,14 +532,24 @@
       }
     ],
     "offsprings": [
-      "/tech/web/html/what-is-open-graph.mdx"
+      "/tech/web/frontend/what-is-open-graph.mdx",
+      "/tech/web/frontend/mdx-study.mdx",
+      "/tech/web/frontend/markdown-sample.mdx"
     ],
-    "childrenCount": 1,
+    "childrenCount": 3,
     "comparedTo": null
   },
   {
-    "path": "/index.tsx",
-    "_path": "/tech/web/html/index.tsx",
+    "path": "/markdown-sample.mdx",
+    "_path": "/tech/web/frontend/markdown-sample.mdx",
+    "children": [],
+    "offsprings": [],
+    "childrenCount": 0,
+    "comparedTo": null
+  },
+  {
+    "path": "/mdx-study.mdx",
+    "_path": "/tech/web/frontend/mdx-study.mdx",
     "children": [],
     "offsprings": [],
     "childrenCount": 0,
@@ -610,7 +557,7 @@
   },
   {
     "path": "/what-is-open-graph.mdx",
-    "_path": "/tech/web/html/what-is-open-graph.mdx",
+    "_path": "/tech/web/frontend/what-is-open-graph.mdx",
     "children": [],
     "offsprings": [],
     "childrenCount": 0,
@@ -619,109 +566,6 @@
   {
     "path": "/index.tsx",
     "_path": "/tech/web/index.tsx",
-    "children": [],
-    "offsprings": [],
-    "childrenCount": 0,
-    "comparedTo": null
-  },
-  {
-    "path": "/markdown",
-    "_path": "/tech/web/markdown",
-    "children": [
-      {
-        "path": "/mdx-study.mdx",
-        "_path": "/tech/web/markdown/mdx-study.mdx",
-        "children": [],
-        "offsprings": [],
-        "childrenCount": 0,
-        "comparedTo": null
-      },
-      {
-        "path": "/markdown-sample.mdx",
-        "_path": "/tech/web/markdown/markdown-sample.mdx",
-        "children": [],
-        "offsprings": [],
-        "childrenCount": 0,
-        "comparedTo": null
-      },
-      {
-        "path": "/index.tsx",
-        "_path": "/tech/web/markdown/index.tsx",
-        "children": [],
-        "offsprings": [],
-        "childrenCount": 0,
-        "comparedTo": null
-      }
-    ],
-    "offsprings": [
-      "/tech/web/markdown/mdx-study.mdx",
-      "/tech/web/markdown/markdown-sample.mdx"
-    ],
-    "childrenCount": 2,
-    "comparedTo": null
-  },
-  {
-    "path": "/index.tsx",
-    "_path": "/tech/web/markdown/index.tsx",
-    "children": [],
-    "offsprings": [],
-    "childrenCount": 0,
-    "comparedTo": null
-  },
-  {
-    "path": "/markdown-sample.mdx",
-    "_path": "/tech/web/markdown/markdown-sample.mdx",
-    "children": [],
-    "offsprings": [],
-    "childrenCount": 0,
-    "comparedTo": null
-  },
-  {
-    "path": "/mdx-study.mdx",
-    "_path": "/tech/web/markdown/mdx-study.mdx",
-    "children": [],
-    "offsprings": [],
-    "childrenCount": 0,
-    "comparedTo": null
-  },
-  {
-    "path": "/ssg",
-    "_path": "/tech/web/ssg",
-    "children": [
-      {
-        "path": "/react-static-intro.mdx",
-        "_path": "/tech/web/ssg/react-static-intro.mdx",
-        "children": [],
-        "offsprings": [],
-        "childrenCount": 0,
-        "comparedTo": null
-      },
-      {
-        "path": "/index.tsx",
-        "_path": "/tech/web/ssg/index.tsx",
-        "children": [],
-        "offsprings": [],
-        "childrenCount": 0,
-        "comparedTo": null
-      }
-    ],
-    "offsprings": [
-      "/tech/web/ssg/react-static-intro.mdx"
-    ],
-    "childrenCount": 1,
-    "comparedTo": null
-  },
-  {
-    "path": "/index.tsx",
-    "_path": "/tech/web/ssg/index.tsx",
-    "children": [],
-    "offsprings": [],
-    "childrenCount": 0,
-    "comparedTo": null
-  },
-  {
-    "path": "/react-static-intro.mdx",
-    "_path": "/tech/web/ssg/react-static-intro.mdx",
     "children": [],
     "offsprings": [],
     "childrenCount": 0,
@@ -760,22 +604,6 @@
             "comparedTo": null
           },
           {
-            "path": "/tushare-setup.mdx",
-            "_path": "/study/business/tushare-setup.mdx",
-            "children": [],
-            "offsprings": [],
-            "childrenCount": 0,
-            "comparedTo": null
-          },
-          {
-            "path": "/stock-data-1.mdx",
-            "_path": "/study/business/stock-data-1.mdx",
-            "children": [],
-            "offsprings": [],
-            "childrenCount": 0,
-            "comparedTo": null
-          },
-          {
             "path": "/index.tsx",
             "_path": "/study/business/index.tsx",
             "children": [],
@@ -785,20 +613,16 @@
           }
         ],
         "offsprings": [
-          "/study/business/what-about-disclaimer.mdx",
-          "/study/business/tushare-setup.mdx",
-          "/study/business/stock-data-1.mdx"
+          "/study/business/what-about-disclaimer.mdx"
         ],
-        "childrenCount": 3,
+        "childrenCount": 1,
         "comparedTo": null
       }
     ],
     "offsprings": [
-      "/study/business/what-about-disclaimer.mdx",
-      "/study/business/tushare-setup.mdx",
-      "/study/business/stock-data-1.mdx"
+      "/study/business/what-about-disclaimer.mdx"
     ],
-    "childrenCount": 3,
+    "childrenCount": 1,
     "comparedTo": null
   },
   {
@@ -814,22 +638,6 @@
         "comparedTo": null
       },
       {
-        "path": "/tushare-setup.mdx",
-        "_path": "/study/business/tushare-setup.mdx",
-        "children": [],
-        "offsprings": [],
-        "childrenCount": 0,
-        "comparedTo": null
-      },
-      {
-        "path": "/stock-data-1.mdx",
-        "_path": "/study/business/stock-data-1.mdx",
-        "children": [],
-        "offsprings": [],
-        "childrenCount": 0,
-        "comparedTo": null
-      },
-      {
         "path": "/index.tsx",
         "_path": "/study/business/index.tsx",
         "children": [],
@@ -839,32 +647,14 @@
       }
     ],
     "offsprings": [
-      "/study/business/what-about-disclaimer.mdx",
-      "/study/business/tushare-setup.mdx",
-      "/study/business/stock-data-1.mdx"
+      "/study/business/what-about-disclaimer.mdx"
     ],
-    "childrenCount": 3,
+    "childrenCount": 1,
     "comparedTo": null
   },
   {
     "path": "/index.tsx",
     "_path": "/study/business/index.tsx",
-    "children": [],
-    "offsprings": [],
-    "childrenCount": 0,
-    "comparedTo": null
-  },
-  {
-    "path": "/stock-data-1.mdx",
-    "_path": "/study/business/stock-data-1.mdx",
-    "children": [],
-    "offsprings": [],
-    "childrenCount": 0,
-    "comparedTo": null
-  },
-  {
-    "path": "/tushare-setup.mdx",
-    "_path": "/study/business/tushare-setup.mdx",
     "children": [],
     "offsprings": [],
     "childrenCount": 0,

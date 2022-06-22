@@ -16,7 +16,7 @@ import * as gtag from "lib/analystic"
 import { useEffect } from "react"
 import SharePane from "components/share-pane"
 
-const MDX_Frame: React.FC = ({ children }: { children: ReactNodeArray }) => {
+function MDX_Frame({ children }: { children: ReactNodeArray }): JSX.Element {
     return <article children={children} />
 }
 
@@ -67,14 +67,14 @@ export default function _App({ Component, pageProps, router }: AppProps): JSX.El
         content = <Layout home layoutProps={layoutProps}><Component {...pageProps} /></Layout>
     }
 
-    return (<>
+    return <>
         <Head>
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
             <meta name="format-detection" content="telephone=no" />
             <meta name="X-FRAME-OPTIONS" content="deny" />
         </Head>
         {content}
-    </>)
+    </>
 }
 
 export async function getInitialProps(appContext: AppContext): Promise<AppInitialProps> {
