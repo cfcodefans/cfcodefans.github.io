@@ -5,7 +5,7 @@ import { addDate, i, jsf, Range, yesterday } from "lib/commons"
 import _, { round } from "lodash"
 import React, { useRef, useState } from "react"
 import { VictoryChart, VictoryTheme, VictoryGroup, VictoryLine, VictoryCursorContainer, VictoryCandlestick, VictoryTooltip, VictoryAxis, LineSegment, VictoryBar } from "victory"
-import { CallbackArgs } from "victory-core/lib/types"
+import { CallbackArgs } from "victory-core/lib/types/callbacks"
 import { STOCK } from "./stocks"
 
 // import { CircularProgress } from "@material-ui/core/CircularProgress"
@@ -146,10 +146,10 @@ export namespace STOCK_CMP {
                         y={(datum: TStockPriceVO) => datum.close} />
                     <VictoryLine colorScale={["orange"]}
                         data={data.dailyPrices}
-                        y={(datum) => datum.ma5} />
+                        y={(datum) => datum["ma5"]} />
                     <VictoryLine colorScale={["green"]}
                         data={data.dailyPrices}
-                        y={(datum) => datum.ma20} />
+                        y={(datum) => datum["ma20"]} />
 
                     <VictoryCandlestick
                         data={data.dailyPrices}
@@ -179,7 +179,7 @@ export namespace STOCK_CMP {
                     labels={turnoverTooltip}
                     style={{ data: { fill: (args: CallbackArgs) => args.datum.color } }}
                     data={data.dailyPrices}
-                    y={(datum) => datum.turnover} />
+                    y={(datum) => datum["turnover"]} />
                 <VictoryAxis gridComponent={<LineSegment />}
                     fixLabelOverlap={true}
                     style={{ grid: { stroke: "grey" } }} />

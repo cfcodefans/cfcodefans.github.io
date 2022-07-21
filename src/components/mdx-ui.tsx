@@ -25,8 +25,8 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
             <h1>{meta["title"]}</h1>
             <h5>
                 Created at: <time dateTime={props.createdAt}>{props.createdAt}</time>
-            &nbsp;|&nbsp;By: {meta && meta["authors"]}
-            &nbsp;|&nbsp;At: <a href={`https://github.com/cfcodefans/cfcodefans.github.io/blob/with-nextjs/src/pages/${_link}.mdx`}>Source</a>
+                &nbsp;|&nbsp;By: {meta && meta["authors"]}
+                &nbsp;|&nbsp;At: <a href={`https://github.com/cfcodefans/cfcodefans.github.io/blob/with-nextjs/src/pages/${_link}.mdx`}>Source</a>
             </h5>
         </header>
         <hr />
@@ -71,12 +71,10 @@ export function BlogArticle({ content, metaInfo }: { content: ReactNode, metaInf
 }
 
 export default function CustomLink({ as, href, children, ...otherProps }: { children: ReactNode, as: string, href: string }): JSX.Element {
-    return <Link as={as} href={href}>
-        <span>
-            <a {...otherProps} href={href}>{children}</a> &nbsp;
-            <a {...otherProps} href={href} target="_blank">[+]</a>
-        </span>
-    </Link>
+    return <span>
+        <a {...otherProps} href={href}>{children}</a> &nbsp;
+        <a {...otherProps} href={href} target="_blank">[+]</a>
+    </span>
 }
 
 // Custom components/renderers to pass to MDX.

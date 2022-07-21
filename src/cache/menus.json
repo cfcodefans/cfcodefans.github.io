@@ -123,6 +123,15 @@
             "link": "tech/web/frontend",
             "children": [
               {
+                "label": "index.tsx",
+                "link": "tech/web/frontend/index.tsx",
+                "children": [],
+                "icon": "index.tsx",
+                "leaveCount": 0,
+                "layer": 3,
+                "comparedTo": null
+              },
+              {
                 "label": "markdown-sample.mdx",
                 "link": "tech/web/frontend/markdown-sample.mdx",
                 "children": [],

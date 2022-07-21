@@ -42,6 +42,14 @@
                 "offsprings": [],
                 "childrenCount": 0,
                 "comparedTo": null
+              },
+              {
+                "path": "/index.tsx",
+                "_path": "/tech/web/frontend/index.tsx",
+                "children": [],
+                "offsprings": [],
+                "childrenCount": 0,
+                "comparedTo": null
               }
             ],
             "offsprings": [
@@ -385,6 +393,14 @@
             "offsprings": [],
             "childrenCount": 0,
             "comparedTo": null
+          },
+          {
+            "path": "/index.tsx",
+            "_path": "/tech/web/frontend/index.tsx",
+            "children": [],
+            "offsprings": [],
+            "childrenCount": 0,
+            "comparedTo": null
           }
         ],
         "offsprings": [
@@ -529,6 +545,14 @@
         "offsprings": [],
         "childrenCount": 0,
         "comparedTo": null
+      },
+      {
+        "path": "/index.tsx",
+        "_path": "/tech/web/frontend/index.tsx",
+        "children": [],
+        "offsprings": [],
+        "childrenCount": 0,
+        "comparedTo": null
       }
     ],
     "offsprings": [
@@ -537,6 +561,14 @@
       "/tech/web/frontend/markdown-sample.mdx"
     ],
     "childrenCount": 3,
+    "comparedTo": null
+  },
+  {
+    "path": "/index.tsx",
+    "_path": "/tech/web/frontend/index.tsx",
+    "children": [],
+    "offsprings": [],
+    "childrenCount": 0,
     "comparedTo": null
   },
   {

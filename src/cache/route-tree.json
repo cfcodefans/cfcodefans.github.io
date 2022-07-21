@@ -121,6 +121,14 @@
                 "offsprings": [],
                 "childrenCount": 0,
                 "comparedTo": null
+              },
+              {
+                "path": "/index.tsx",
+                "_path": "/tech/web/frontend/index.tsx",
+                "children": [],
+                "offsprings": [],
+                "childrenCount": 0,
+                "comparedTo": null
               }
             ],
             "offsprings": [

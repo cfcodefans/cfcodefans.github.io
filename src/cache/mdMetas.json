@@ -71,7 +71,7 @@
     "excerpt": "<div class=\"text-center\"><p><img src=\"/assets/res/mdx/mysql-logo.png\" alt=\"MYSQL\" height=\"100\"/></p></div><p>In the preparation of another blog talking about spatial feature of MYSQL, I started with data collection,\nthen I wondered how capable MYSQL could be on <span><a href=\"https://en.wikipedia.org/wiki/Extract,_transform,_load\">ETL(Extraction/Transform/Loading)</a>  <a href=\"https://en.wikipedia.org/wiki/Extract,_transform,_load\" target=\"_blank\">[+]</a></span>.</p><p>Firstly I found some geo data from <span><a href=\"https://geojson-maps.ash.ms/d9f6df37-7191-4b49-8b5c-1c875e4fc951\">AshKyd</a>  <a href=\"https://geojson-maps.ash.ms/d9f6df37-7191-4b49-8b5c-1c875e4fc951\" target=\"_blank\">[+]</a></span></p>",
     "path": "tech/data/database/mysql-etl-study-1.mdx",
     "createdAt": "2021-08-04",
-    "modifiedAt": "2021-08-04"
+    "modifiedAt": "2022-06-29"
   },
   "/tech/data/database/mysql-spartial-study-1.mdx": {
     "meta": {

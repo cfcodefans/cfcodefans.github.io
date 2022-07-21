@@ -7,7 +7,7 @@
         "clean": "rimraf out .next",
         "serve": "serve out -p 3000",
         "dev:watch": "next-remote-watch ./blogs",
-        "dev": "next dev",
+        "dev": "next dev -p 4000",
         "build": "next build",
         "start": "next start",
         "opd": "node --v8-pool-size=32 --max_old_space_size=512 ./node_modules/next/dist/bin/next dev",

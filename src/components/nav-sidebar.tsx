@@ -98,5 +98,4 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
             </div>
         </Navbar.Collapse>
     </Navbar>
-
 }
