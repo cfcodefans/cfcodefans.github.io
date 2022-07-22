@@ -74,7 +74,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     return <Navbar collapseOnSelect expand="md" className="sidebar nav-sidebar menu-sidebar">
 
         <Navbar.Brand as={"div"} href="/" className="menu-header align-items-center">
-            <div className="logo text-center d-flex align-items-center m-2">
+            <div className="logo text-center d-flex align-items-center mx-2">
                 <a href="/">
                     <img className="rounded-circle w-100 h-100 hoverable" src="/assets/images/cfcodefans.jpg" />
                 </a>
@@ -88,7 +88,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
             </div>
         </Navbar.Brand>
 
-        <Navbar.Toggle aria-controls="menu_box" label="..." className="border-0">
+        <Navbar.Toggle aria-controls="menu_box" label="..." className="border-0 mr-2">
             <span className="navbar-toggler-icon"></span>
         </Navbar.Toggle>
 
