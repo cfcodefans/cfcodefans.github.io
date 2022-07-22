@@ -1,14 +1,48 @@
 :root {
-    --nav-sidebar-height:auto;
-    --nav-sidebar-width:100%;
-    --misc-sidebar-height:3rem;
-    --top-navbar-height:2rem;
+    --nav-sidebar-height: auto;
+    --nav-sidebar-width: 100%;
+    --misc-sidebar-height: 3rem;
+    --top-navbar-height: 2rem;
     --border-radius: 1rem !important;
 }
 
 .root {
-    display: flex;
+    /* display: flex;
+    flex-direction: column; */
+
+    display: grid;
+    grid-template-areas: "sidebar"
+        "topbar"
+        "main"
+        "miscbar";
+
+    grid-template-rows: auto auto 1fr 3rem;
+}
+
+.sidebar {
+    display: flex !important;
     flex-direction: column;
+    grid-area: sidebar;
+}
+
+.sidebar.collapse {
+    height: 0px;
+}
+
+.sidebar.collapse.show {
+    height: 10rem !important;
+}
+
+.topbar {
+    grid-area: topbar;
+}
+
+.main {
+    grid-area: main;
+}
+
+.miscbar {
+    grid-area: miscbar;
 }
 
 .nav-sidebar {
@@ -31,7 +65,7 @@ nav #nav_items {
 .nav-sidebar {
     width: 100vw;
 
-    position:sticky;
+    position: sticky;
     top: 0px;
 
     display: flex;
@@ -39,15 +73,14 @@ nav #nav_items {
 }
 
 .top-navbar {
-    position: sticky;
-    /* height: var(--top-navbar-height); */
-    top: 0px;
     box-shadow: var(--nav-box-shadow-bottom);
     background-color: white;
 }
+
 .top-navbar .breadcrumb {
     background-color: white;
     padding: 0.5rem 0.75rem;
+    margin: 0px;
 }
 
 .misc-sidebar {
@@ -58,6 +91,7 @@ nav #nav_items {
 .main-pane {
     width: 100vw;
     overflow-y: auto;
+    height: auto;
 }
 
 #menu_box {
@@ -72,7 +106,7 @@ nav #nav_items {
 }
 
 .menu-header {
-    display:flex !important;
+    display: flex !important;
     flex-direction: row !important;
 }
 

@@ -14,7 +14,7 @@ export default function NavBreadCrumbs({ _path }: { _path: string }): JSX.Elemen
         _path.split("/")
             .filter(part => part.length > 0)
             .map((part: string, i: number, parts: string[]) =>
-            (<Breadcrumb.Item key={i} active={i == parts.length - 1}>
+            (<Breadcrumb.Item key={i} active={i == parts.length - 1} >
                 <Link href={"/" + parts.slice(0, i + 1).join("/")}><a className="text-decoration-none">{part}</a></Link>
             </Breadcrumb.Item>))
     }</Breadcrumb>

@@ -71,7 +71,7 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
     const [currentPath, setCurrentPath] = useState("")
     useEffect(() => setCurrentPath((window && window.location.pathname) || ""))
 
-    return <Navbar collapseOnSelect expand="md" className="nav-sidebar menu-sidebar">
+    return <Navbar collapseOnSelect expand="md" className="sidebar nav-sidebar menu-sidebar">
 
         <Navbar.Brand as={"div"} href="/" className="menu-header align-items-center">
             <div className="logo text-center d-flex align-items-center m-2">
