@@ -77,7 +77,11 @@ export namespace STOCK_CMP {
             </div>
             <div className="row pt-4 px-5">
                 <DateRangeSlide onDateRangeChange={(d1: Date, d2: Date) => rangeRef.current = { _1: d1, _2: d2 }}
-                    start={_start} end={_end} stepDay={1} />
+                    start={_start}
+                    min={_start}
+                    end={_end}
+                    max={_end}
+                    stepDay={1} />
             </div>
             <div>
                 {jsf(url)}

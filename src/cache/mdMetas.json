@@ -164,7 +164,7 @@
     "excerpt": "<div class=\"text-center\"><p><img src=\"/assets/res/mdx/mdx.png\" alt=\"MDX\" height=\"100\"/></p></div><p><span><a target=\"_blank\" href=\"https://mdxjs.com/\">MDX</a>  <a target=\"_blank\" href=\"https://mdxjs.com/\">[+]</a></span> is interesting extension for <span><a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">markdown</a>  <a target=\"_blank\" href=\"https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet\">[+]</a></span></p>",
     "path": "tech/web/frontend/mdx-study.mdx",
     "createdAt": "2021-08-04",
-    "modifiedAt": "2022-06-22"
+    "modifiedAt": "2022-07-24"
   },
   "/tech/web/frontend/simple-date-range-selector.mdx": {
     "meta": {
@@ -181,7 +181,7 @@
         "image": "https://cfcodefans.github.io/assets/res/mdx/calender-alt-solid.png"
       }
     },
-    "excerpt": "<div class=\"text-center\"><p><img src=\"/assets/res/mdx/calender-alt-solid.png\" alt=\"MDX\" height=\"100\"/></p></div><p>When it comes to select a range of date with a date for start and a date for end,\nit would take 3 to 4 clicks to select a date with <span><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date\">datetime picker</a>  <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date\" target=\"_blank\">[+]</a></span> in HTML 5.</p>",
+    "excerpt": "<div class=\"text-center\"><p><img src=\"/assets/res/mdx/calendar-alt-solid.png\" alt=\"MDX\"/></p></div><p>When it comes to select a range of date with a date for start and a date for end,\nit would take 3 to 4 clicks to select a date with <span><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date\">datetime picker</a>  <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date\" target=\"_blank\">[+]</a></span> in HTML 5.</p>",
     "path": "tech/web/frontend/simple-date-range-selector.mdx",
     "createdAt": "2022-07-24",
     "modifiedAt": "2022-07-24"
