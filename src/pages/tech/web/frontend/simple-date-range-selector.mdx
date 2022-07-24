@@ -1,0 +1,115 @@
+import Head from "next/head"
+import { DateRangeSlide, genDateMarks } from "components/gadgets"
+
+export const meta = {"authors": ["cfcodefans"], 
+"tags":["react", "rnd", "date-range-selector"],
+"title":"A simple date range selector built by react?",
+"og": {"image":"https://cfcodefans.github.io/assets/res/mdx/calender-alt-solid.png"}}
+
+<div className="text-center">
+
+![MDX](/assets/res/mdx/calender-alt-solid.png){height="100"}
+</div>
+
+When it comes to select a range of date with a date for start and a date for end, 
+it would take 3 to 4 clicks to select a date with [datetime picker](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date) in HTML 5.
+<!--more-->
+
+There is quite a lot of details in the datetime picker element shipped with html5, like "min", "max", "value"....
+
+```html
+<label htmlFor="start">Start date:</label>
+<input type="date" id="start" 
+    name="trip-start"
+    value="2020-07-22"
+    min="2018-01-01" 
+    max="2022-12-31"/>
+```
+
+It feels a bit awkward to select a range of date by 7 to 8 clicks on two date pickers.
+
+<div className=" bg-light rounded-5 p-2" style={{width:"800px"}}>
+    <div className="row">
+        <div className="col-md-6">
+            <label htmlFor="start">Start date:</label>&nbsp;
+            <input type="date" id="start" 
+                name="trip-start"
+                value="2020-07-22"
+                min="2018-01-01" 
+                max="2022-12-31"/>
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="end">End date:</label>&nbsp;
+            <input type="date" id="end" 
+                name="trip-start"
+                value="2020-08-22"
+                min="2018-01-01" 
+                max="2022-12-31"/>
+        </div>
+    </div>
+</div>
+
+How about the [range input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range) for date selector?
+Well, It is called "range" but more like a pointer to one value. And it takes two clicks to change the range.
+
+<div className=" bg-light rounded-5 p-2 w-100">
+    <datalist id="marks">
+        {genDateMarks(new Date("2021-07-22"), new Date("2022-08-22")).map((m,i)=><option key={i} value={i}/>)}
+    </datalist>
+    <div className="row">
+        <div className="col-md-2 d-flex align-items-center">
+            <label htmlFor="range1">Start date:</label>
+        </div>
+        <div className="col-md-10" >
+            <div className="w-100 d-flex justify-content-between">
+                {genDateMarks(new Date("2021-07-22"), new Date("2022-08-22")).map((m,i)=>m.label)}
+            </div>
+            <input id="range1" className="w-100" type="range" list="marks" value="5" step="1">
+            </input>
+        </div>
+    </div>
+        <div className="row">
+        <div className="col-md-2 d-flex align-items-center">
+            <label htmlFor="range2">End date:</label>
+        </div>
+        <div className="col-md-10" >
+             <div className="w-100 d-flex justify-content-between">
+                {genDateMarks(new Date("2021-07-22"), new Date("2022-08-22")).map((m,i)=>m.label)}
+            </div>
+            <input id="range2" className="w-100" type="range" list="marks" value="15" step="1">
+            </input>
+        </div>
+    </div>
+</div>
+
+I looked quite long to find a date range selector that is responsive and convenient.
+Then the implementation on ElasicSearch seems cool and inspired me to build this.
+
+<div className=" bg-light rounded-5 p-2 w-100" style={{height:"150px"}}>
+    <DateRangeSlide start={new Date("2021-07-22")}
+        end={new Date("2022-08-22")}
+        min={new Date("2021-01-01")}
+        max={new Date("2022-12-31")}
+        stepDay={1} />
+</div>
+
+You could drag the handlers on both sides to increase or decrease the range.
+and you can drag the selected area to move along the guage, to change the start and end date at the same time.
+
+When the range is changed, the handlers on both sides show the new date responsively, as well as the 
+range width indicator in the middle.
+
+The way to use it is straightforward:
+(It is important to place the component in a div with fixed height)
+
+```jsx
+<div className=" bg-light rounded-5 p-2 w-100" style={{height:"150px"}}>
+    <DateRangeSlide start={new Date("2021-07-22")}
+        end={new Date("2022-08-22")}
+        min={new Date("2021-01-01")}
+        max={new Date("2022-12-31")}
+        stepDay={1} />
+</div>
+```
+
+At last, the credit goes to [react-rnd](https://github.com/bokuweb/react-rnd) and [react-draggable](https://github.com/react-grid-layout/react-draggable)

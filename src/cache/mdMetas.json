@@ -166,6 +166,26 @@
     "createdAt": "2021-08-04",
     "modifiedAt": "2022-06-22"
   },
+  "/tech/web/frontend/simple-date-range-selector.mdx": {
+    "meta": {
+      "authors": [
+        "cfcodefans"
+      ],
+      "tags": [
+        "react",
+        "rnd",
+        "date-range-selector"
+      ],
+      "title": "A simple date range selector built by react?",
+      "og": {
+        "image": "https://cfcodefans.github.io/assets/res/mdx/calender-alt-solid.png"
+      }
+    },
+    "excerpt": "<div class=\"text-center\"><p><img src=\"/assets/res/mdx/calender-alt-solid.png\" alt=\"MDX\" height=\"100\"/></p></div><p>When it comes to select a range of date with a date for start and a date for end,\nit would take 3 to 4 clicks to select a date with <span><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date\">datetime picker</a>  <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date\" target=\"_blank\">[+]</a></span> in HTML 5.</p>",
+    "path": "tech/web/frontend/simple-date-range-selector.mdx",
+    "createdAt": "2022-07-24",
+    "modifiedAt": "2022-07-24"
+  },
   "/tech/web/frontend/what-is-open-graph.mdx": {
     "meta": {
       "authors": [

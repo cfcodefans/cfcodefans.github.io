@@ -96,7 +96,7 @@ function xByPercent(el: HTMLElement, percent: number): string {
 
 const BORDER_HANDLER: string = "solid 1px #33b5e5"
 const BORDER_NO_HANDLER: string = "solid 1px #33b5e5"
-const RESIZE_HANDLER_CMP_CSS: string = "badge-pill badge-info rnd-handler-cmp"
+const RESIZE_HANDLER_CMP_CSS: string = "badge-pill badge-info rnd-handler-cmp p-1 rounded-5 bg-primary text-white"
 
 export function RangeSelect({ start,
     end,
@@ -165,7 +165,7 @@ export function RangeSelect({ start,
         maxHeight={height}
         maxWidth={width}
         bounds="parent"
-        default={{ x: 0, y: 0, height: rest["height"], width: rest["width"] }}
+        default={{ x: Math.max(0, Math.min(range.start, width - 100)), y: 0, height: rest["height"], width: Math.min(rest["width"], range.length) }}
         style={style}
         resizeHandleComponent={resizeHandlerCmps}
         onDrag={(e, d) => {
@@ -198,9 +198,11 @@ export function RangeSelect({ start,
 }
 
 // ref_v: React.MutableRefObject<Range<Date>>
-export function DateRangeSlide({ start, end, stepDay, onDateRangeChange, onDateRangeChanged }: {
+export function DateRangeSlide({ start, end, min, max, stepDay, onDateRangeChange, onDateRangeChanged }: {
     start: Date
     end: Date
+    min: Date
+    max: Date
     stepDay: number
     onDateRangeChange?: (d1: Date, d2: Date) => void
     onDateRangeChanged?: (d1: Date, d2: Date) => void
@@ -208,17 +210,17 @@ export function DateRangeSlide({ start, end, stepDay, onDateRangeChange, onDateR
     const now: Date = new Date
 
     const [maxDate, minDate, days] = useMemo(() => {
-        const maxDate: Date = _.maxBy([start, end], (d: Date) => d.getTime()) || yesterday()
-        const minDate: Date = _.minBy([start, end], (d: Date) => d.getTime()) || startOfMonth(now)
+        const maxDate: Date = _.maxBy([min, max], (d: Date) => d.getTime()) || yesterday()
+        const minDate: Date = _.minBy([min, max], (d: Date) => d.getTime()) || startOfMonth(now)
         const days: number = differenceInDays(maxDate, minDate)
         return [maxDate, minDate, days]
-    }, [start, end])
+    }, [min, max])
 
     const [range, setRange] = useState({ start, end })
 
     let marks: Mark[] = useMemo(
-        () => genDateMarks(start, end),
-        [[start, end]])
+        () => genDateMarks(min, max),
+        [[min, max]])
 
     const [containerRef, { height, width }] = useMeasure()
     const containerHeight: number = Math.round(height)
@@ -227,16 +229,21 @@ export function DateRangeSlide({ start, end, stepDay, onDateRangeChange, onDateR
     function mapper(v: number, width: number): Date {
         return addDays(minDate, Math.round(v / width * days) + 1)
     }
+    function _mapper(d: Date, width: number): number {
+        return differenceInDays(d, minDate) / days * width
+    }
+
 
     return <div
         className="position-relative"
-        style={{ height: "80px", width: "100%", backgroundColor: "transparent" }}
+        style={{ height: "100%", width: "100%", backgroundColor: "transparent" }}
         ref={containerRef}>
+
         {containerHeight > 0 && containerWidth > 0 &&
             <div className="position-absolute" style={{ zIndex: 100, width: containerWidth, height: containerHeight }}>
                 <RangeSelect orientation="horizontal"
-                    start={0}
-                    end={containerWidth}
+                    start={_mapper(start, containerWidth)}
+                    end={_mapper(end, containerWidth)}
                     onRangeChange={(v1: number, v2: number) => {
                         const d1: Date = mapper(v1, containerWidth)
                         const d2: Date = mapper(v2, containerWidth)
@@ -251,7 +258,7 @@ export function DateRangeSlide({ start, end, stepDay, onDateRangeChange, onDateR
                     render={(v: number) => mapper(v, containerWidth)?.toISOString()?.substring(0, 10)}
                     height={containerHeight}
                     width={containerWidth} >
-                    <i className="rnd-handler-cmp">{differenceInDays(range.end, range.start)} days</i>
+                    <i className="rnd-handler-cmp bg-info bg-opacity-25">{differenceInDays(range.end, range.start)} days</i>
                 </RangeSelect>
             </div>}
         <div className="d-flex justify-content-between">
@@ -268,12 +275,13 @@ export function genDateMarks(start: Date, end: Date, step: DateUnit = "month"): 
         let label: string = `${step}`
         let fmt: string = "MM-dd"
 
+        let month: number = d.getUTCMonth()
         if (step === "year") {
-            let month: number = d.getUTCMonth()
             if (month !== 1 && month !== 6) return null
             fmt = ISO_DATE_FMT
         } else if (step === "month") {
-            if (i == 0 || i == arr.length - 1) fmt = ISO_DATE_FMT
+            if (i == 0 || i == arr.length - 1 || month === 0) 
+                fmt = ISO_DATE_FMT
             else fmt = "MM-dd"
         }
 

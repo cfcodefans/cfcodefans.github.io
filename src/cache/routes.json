@@ -28,6 +28,14 @@
                 "comparedTo": null
               },
               {
+                "path": "/simple-date-range-selector.mdx",
+                "_path": "/tech/web/frontend/simple-date-range-selector.mdx",
+                "children": [],
+                "offsprings": [],
+                "childrenCount": 0,
+                "comparedTo": null
+              },
+              {
                 "path": "/mdx-study.mdx",
                 "_path": "/tech/web/frontend/mdx-study.mdx",
                 "children": [],
@@ -54,10 +62,11 @@
             ],
             "offsprings": [
               "/tech/web/frontend/what-is-open-graph.mdx",
+              "/tech/web/frontend/simple-date-range-selector.mdx",
               "/tech/web/frontend/mdx-study.mdx",
               "/tech/web/frontend/markdown-sample.mdx"
             ],
-            "childrenCount": 3,
+            "childrenCount": 4,
             "comparedTo": null
           },
           {
@@ -99,12 +108,13 @@
         ],
         "offsprings": [
           "/tech/web/frontend/what-is-open-graph.mdx",
+          "/tech/web/frontend/simple-date-range-selector.mdx",
           "/tech/web/frontend/mdx-study.mdx",
           "/tech/web/frontend/markdown-sample.mdx",
           "/tech/web/backend/react-static-intro.mdx",
           "/tech/web/backend/nginx-portal-setup.mdx"
         ],
-        "childrenCount": 5,
+        "childrenCount": 6,
         "comparedTo": null
       },
       {
@@ -184,6 +194,7 @@
     ],
     "offsprings": [
       "/tech/web/frontend/what-is-open-graph.mdx",
+      "/tech/web/frontend/simple-date-range-selector.mdx",
       "/tech/web/frontend/mdx-study.mdx",
       "/tech/web/frontend/markdown-sample.mdx",
       "/tech/web/backend/react-static-intro.mdx",
@@ -192,7 +203,7 @@
       "/tech/data/database/mysql-etl-study-1.mdx",
       "/tech/data/database/h2db-source.mdx"
     ],
-    "childrenCount": 8,
+    "childrenCount": 9,
     "comparedTo": null
   },
   {
@@ -379,6 +390,14 @@
             "comparedTo": null
           },
           {
+            "path": "/simple-date-range-selector.mdx",
+            "_path": "/tech/web/frontend/simple-date-range-selector.mdx",
+            "children": [],
+            "offsprings": [],
+            "childrenCount": 0,
+            "comparedTo": null
+          },
+          {
             "path": "/mdx-study.mdx",
             "_path": "/tech/web/frontend/mdx-study.mdx",
             "children": [],
@@ -405,10 +424,11 @@
         ],
         "offsprings": [
           "/tech/web/frontend/what-is-open-graph.mdx",
+          "/tech/web/frontend/simple-date-range-selector.mdx",
           "/tech/web/frontend/mdx-study.mdx",
           "/tech/web/frontend/markdown-sample.mdx"
         ],
-        "childrenCount": 3,
+        "childrenCount": 4,
         "comparedTo": null
       },
       {
@@ -450,12 +470,13 @@
     ],
     "offsprings": [
       "/tech/web/frontend/what-is-open-graph.mdx",
+      "/tech/web/frontend/simple-date-range-selector.mdx",
       "/tech/web/frontend/mdx-study.mdx",
       "/tech/web/frontend/markdown-sample.mdx",
       "/tech/web/backend/react-static-intro.mdx",
       "/tech/web/backend/nginx-portal-setup.mdx"
     ],
-    "childrenCount": 5,
+    "childrenCount": 6,
     "comparedTo": null
   },
   {
@@ -531,6 +552,14 @@
         "comparedTo": null
       },
       {
+        "path": "/simple-date-range-selector.mdx",
+        "_path": "/tech/web/frontend/simple-date-range-selector.mdx",
+        "children": [],
+        "offsprings": [],
+        "childrenCount": 0,
+        "comparedTo": null
+      },
+      {
         "path": "/mdx-study.mdx",
         "_path": "/tech/web/frontend/mdx-study.mdx",
         "children": [],
@@ -557,10 +586,11 @@
     ],
     "offsprings": [
       "/tech/web/frontend/what-is-open-graph.mdx",
+      "/tech/web/frontend/simple-date-range-selector.mdx",
       "/tech/web/frontend/mdx-study.mdx",
       "/tech/web/frontend/markdown-sample.mdx"
     ],
-    "childrenCount": 3,
+    "childrenCount": 4,
     "comparedTo": null
   },
   {
@@ -582,6 +612,14 @@
   {
     "path": "/mdx-study.mdx",
     "_path": "/tech/web/frontend/mdx-study.mdx",
+    "children": [],
+    "offsprings": [],
+    "childrenCount": 0,
+    "comparedTo": null
+  },
+  {
+    "path": "/simple-date-range-selector.mdx",
+    "_path": "/tech/web/frontend/simple-date-range-selector.mdx",
     "children": [],
     "offsprings": [],
     "childrenCount": 0,

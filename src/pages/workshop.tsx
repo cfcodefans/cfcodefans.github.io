@@ -1,11 +1,8 @@
-import { STOCK_CMP } from "components/lab/stock-data-vis"
 import { STOCK } from "components/lab/stocks"
-import { format, startOfDay, startOfMonth, startOfYesterday } from "date-fns"
-import { addDate, i, yesterday } from "lib/commons"
-import React, { useMemo, useState } from "react"
+import { startOfDay, startOfYesterday } from "date-fns"
+import { addDate, i } from "lib/commons"
 
-import { DateRangeSlide, genDateMarks, RangeSelect } from "components/gadgets"
-import _ from "lodash"
+import { DateRangeSlide } from "components/gadgets"
 
 const FILE_NAME: string = "workshop.tsx"
 
@@ -26,9 +23,14 @@ export default function Workshop(): JSX.Element {
         {/* <svg width={100} height={100} baseProfile="fill">
             <rect x="0" y="0" width="100" height="100" fill="lightgreen" stroke="#ccc" strokeWidth="2" />            
         </svg> */}
-        <DateRangeSlide start={addDate(startOfDay(startOfYesterday()), -90)}
-            end={startOfYesterday()}
-            stepDay={1} />
+
+        <div className=" bg-light rounded-5 p-2 w-100" style={{ height: "150px" }}>
+            <DateRangeSlide min={addDate(startOfDay(startOfYesterday()), -90)}
+                max={startOfYesterday()}
+                start={addDate(startOfDay(startOfYesterday()), -80)}
+                end={addDate(startOfDay(startOfYesterday()), -50)}
+                stepDay={1} />
+        </div>
         {/* <div id="vfield" style={{
             width: 320,
             height: 480,
