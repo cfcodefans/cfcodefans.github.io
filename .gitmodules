@@ -1,4 +1,4 @@
-[submodule "out"]
-	path = out
-	url = https://cfcodefans@github.com/cfcodefans/cfcodefans.github.io.git
+[submodule "cfcodefans.github.io"]
+	path = cfcodefans.github.io
+	url = https://github.com/cfcodefans/cfcodefans.github.io.git
 	branch = master
