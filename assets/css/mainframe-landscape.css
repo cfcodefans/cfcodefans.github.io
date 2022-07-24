@@ -1,14 +1,36 @@
 :root {
-    --nav-sidebar-width:14vw;
-    --nav-sidebar-bgcolor: unset;
-    --misc-sidebar-width:16vw;
-    --main-pane-width:70vw;
-    --top-navbar-height:3rem;
+    --nav-sidebar-width: 15%;
+    --nav-sidebar-bgcolor: white;
+    --misc-sidebar-width: 15%;
+    --main-pane-width: 70vw;
+    --top-navbar-height: 3rem;
 }
 
 .root {
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
+    display: grid;
+    grid-template-areas: "sidebar topbar miscbar"
+        "sidebar main miscbar";
+
+    grid-template-columns: var(--nav-sidebar-width) 1fr var(--misc-sidebar-width);
+    grid-template-rows: 3rem 1fr;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.topbar {
+    grid-area: topbar;
+}
+
+.main {
+    grid-area: main;
+}
+
+.miscbar {
+    grid-area: miscbar;
 }
 
 .navbar-toggler {
@@ -16,9 +38,9 @@
 }
 
 .nav-sidebar {
-    position:sticky !important;
+    position: sticky !important;
     top: 0px;
-    width: var(--nav-sidebar-width);
+    height: 100vh;
 
     display: flex;
     flex-direction: column !important;
@@ -27,9 +49,11 @@
     box-shadow: none !important;
     --webkit-box-shadow: none !important;
 }
+
 .nav-sidebar .navbar {
     display: none;
 }
+
 .nav-sidebar #nav_items {
     display: block;
     width: 100%;
@@ -44,7 +68,7 @@
 }
 
 .top-navbar {
-    position: fixed;
+    position: sticky;
     top: 0px;
     left: var(--nav-sidebar-width);
     right: var(--misc-sidebar-width);
@@ -53,27 +77,16 @@
 }
 
 .top-navbar nav {
-    margin-top: 1rem;
     padding: 0 0.5rem 0 0.5rem;
-    border-radius: 0  0 1rem  1rem;
+    border-radius: 0 0 1rem 1rem;
 }
 
 .misc-sidebar {
-    position:sticky;
+    position: sticky;
     top: 0px;
-    left:0px;
-    width: var(--misc-sidebar-width);
-}
-
-.main-pane {
     height: 100vh;
-    /* margin-top: var(--top-navbar-height); */
-    width: var(--main-pane-width);
 }
 
-.main-pane .content {
-    margin-top: var(--top-navbar-height);
-}
 
 .menu {
     flex-direction: column !important;
@@ -81,7 +94,7 @@
 }
 
 .menu-header {
-    display:flex !important;
+    display: flex !important;
     flex-direction: column !important;
     margin-left: auto;
     margin-right: auto !important;
@@ -94,11 +107,11 @@
 
 #menu_box {
     flex-grow: unset;
-    background-color:white;
+    background-color: white;
     border-radius: 0 1rem 1rem 0;
 }
 
-.menu-sidebar .active.nav-link::before {
+/* .menu-sidebar .active.nav-link::before {
     content: " ";
     background: unset;
     height: 1rem;
@@ -123,4 +136,4 @@
     right: 0px;
     border-radius: 0 1rem 0 0;
     box-shadow: 0.25rem -0.35rem var(--bg-root);
-}
+} */
