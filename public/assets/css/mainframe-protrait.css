@@ -7,8 +7,6 @@
 }
 
 .root {
-    /* display: flex;
-    flex-direction: column; */
 
     display: grid;
     grid-template-areas: "sidebar"
@@ -74,11 +72,10 @@ nav #nav_items {
 
 .top-navbar {
     box-shadow: var(--nav-box-shadow-bottom);
-    background-color: white;
+    background-color: unset;
 }
 
 .top-navbar .breadcrumb {
-    background-color: white;
     padding: 0.5rem 0.75rem;
     margin: 0px;
 }
@@ -92,6 +89,9 @@ nav #nav_items {
     width: 100vw;
     overflow-y: auto;
     height: auto;
+    
+    margin-top: -5rem;
+    padding-top: 5rem;
 }
 
 #menu_box {

@@ -22,7 +22,7 @@ export function BlogItem(props: TMarkdownMetaInfo): JSX.Element {
 
     return (<article className="blog-item d-flex flex-column align-items-center rounded-6 container pt-3 mt-3 mb-3">
         <header className="text-center">
-            <h1>{meta["title"]}</h1>
+            <h2>{meta["title"]}</h2>
             <h5>
                 Created at: <time dateTime={props.createdAt}>{props.createdAt}</time>
                 &nbsp;|&nbsp;By: {meta && meta["authors"]}
@@ -52,7 +52,7 @@ export function BlogHeader(props: TMarkdownMetaInfo): JSX.Element {
             <meta name="keywords" content={meta["tags"]} />
             {og && Object.keys(og).map(k => <meta property={`og:${k}`} content={og[k]} key={k} />)}
         </Head>
-        <h1 className="mb-5">{meta["title"]}</h1>
+        <h2 className="mb-5">{meta["title"]}</h2>
         <h5>
             Created at: <time dateTime={props.createdAt}>{props.createdAt}</time>
             &nbsp;|&nbsp;By: {meta && meta["authors"]}

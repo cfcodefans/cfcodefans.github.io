@@ -1,7 +1,7 @@
 :root {
-    --nav-sidebar-width: 15vw;
-    --nav-sidebar-bgcolor: unset;
-    --misc-sidebar-width: 15vw;
+    --nav-sidebar-width: 15%;
+    --nav-sidebar-bgcolor: white;
+    --misc-sidebar-width: 15%;
     --main-pane-width: 70vw;
     --top-navbar-height: 3rem;
 }
@@ -68,7 +68,7 @@
 }
 
 .top-navbar {
-    position: fixed;
+    position: sticky;
     top: 0px;
     left: var(--nav-sidebar-width);
     right: var(--misc-sidebar-width);
@@ -86,8 +86,6 @@
     top: 0px;
     height: 100vh;
 }
-
-.main-pane {}
 
 
 .menu {
@@ -113,7 +111,7 @@
     border-radius: 0 1rem 1rem 0;
 }
 
-.menu-sidebar .active.nav-link::before {
+/* .menu-sidebar .active.nav-link::before {
     content: " ";
     background: unset;
     height: 1rem;
@@ -138,4 +136,4 @@
     right: 0px;
     border-radius: 0 1rem 0 0;
     box-shadow: 0.25rem -0.35rem var(--bg-root);
-}
+} */

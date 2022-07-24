@@ -1,5 +1,5 @@
 :root {
-    --black-a75: rgba(0,0,0,0.75);
+    --black-a75: rgba(0, 0, 0, 0.75);
     --cool-gray-20: #eef3f8;
     --border-radius: 0.8rem !important;
     --corner-radius-small: 0.4rem;
@@ -8,18 +8,21 @@
     --corner-radius-xlarge: 4.8rem;
     --corner-radius-full: 50%;
     --warm-gray-20: #f3f2ef;
-    --blue-gray:#f8f9fc;
-    
-    --bg-ga-nav-btn-sel:#e8f0fe;
+    --blue-gray: #f8f9fc;
+
+    --bg-ga-nav-btn-sel: #e8f0fe;
     --bg-root: var(--bg-ga-nav-btn-sel);
 
     --color-background-none-tint-hover: var(var(--black-a75));
     --voyager-color-background-input-search: var(--cool-gray-20);
 }
-  /* var(--color-background-none-tint-hover) */
+
+/* var(--color-background-none-tint-hover) */
 .root {
     background-color: var(--bg-root);
-    width: 100vw;
+    /* width: 100vw; */
+    max-width: 1920px;
+    margin: 0px auto 0px auto;
     height: 100vh;
     overflow-x: hidden;
 }
@@ -66,9 +69,7 @@
     padding-bottom: 0.125rem;
 }
 
-.menu-label {
-    
-}
+.menu-label {}
 
 .active .menu-label {
     font-weight: bold;
@@ -77,15 +78,17 @@
 .menu-sidebar .active.nav-link {
     /* background-color: darkgrey; */
     background-color: var(--bg-root);
-    border-radius: 50rem 0 0 50rem;
-    margin-right: -0.25rem;
+    border-radius: 50rem;
+    /* border-radius: 50rem 0 0 50rem; */
+    /* margin-right: -0.25rem; */
 }
 
 .menu-sidebar .nav-link:hover {
     /* background-color: lightgray; */
     background-color: var(--bg-root);
-    border-radius: 50rem 0 0 50rem;
-    margin-right: -0.25rem;
+    /* border-radius: 50rem 0 0 50rem; */
+    border-radius: 50rem;
+    /* margin-right: -0.25rem; */
 }
 
 .menu-sidebar .active.nav-link a {
@@ -93,7 +96,7 @@
 }
 
 .menu-sidebar {
-    position:sticky;
+    position: sticky;
     top: 0px;
 }
 
@@ -105,19 +108,19 @@
     /* color: darkgray; */
 }
 
-.menu-sidebar .menu_header .nav-title  a:before, .menu-sidebar .menu_header .nav-title a:after {
+/* .menu-sidebar .menu_header .nav-title a:before,
+.menu-sidebar .menu_header .nav-title a:after {
     content: '';
     border-top: 2px solid;
     margin: 0 5px 0 0;
     flex: 1 0 2px;
-    /* color: darkgray; */
 }
 
-.menu-sidebar .menu_header .nav-title  a:after {
+.menu-sidebar .menu_header .nav-title a:after {
     margin: 0 0 0 5px;
-}
+} */
 
-.menu-sidebar .menu_header .logo a > img {
+.menu-sidebar .menu_header .logo a>img {
     transform: scaleX(-1);
 }
 
@@ -213,9 +216,6 @@
 
 .blog-item {
     background-color: white;
-}
-
-.share-pane {
 }
 
 .share-pane button svg {

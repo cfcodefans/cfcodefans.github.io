@@ -23,15 +23,14 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
     const router: NextRouter = useRouter()
 
     const isSelected: boolean = isClosestMenu(modal, router.asPath)
-    // ${isSelected ? "active ml-n1 bg-light lighten-3" : ""} rounded-pill hoverable 
 
     const theLink: JSX.Element = <Nav.Link key={modal.label}
-        className={`${modal.layer == 2 ? "menu-layer-2  " : ""} my-1 position-relative`}
+        className={`${modal.layer == 2 ? "menu-layer-2  " : ""} position-relative`}
         eventKey={modal.label}
         as={"div"}
         active={isSelected}>
         <Link href={_link}>
-            <a className={`icon-${modal.icon} d-flex pl-2 pr-1 justify-content-between text-decoration-none`}>
+            <a className={`icon-${modal.icon} d-flex justify-content-between text-decoration-none`}>
                 <span className="menu-label text-capitalize">{modal.label}</span>
                 <Badge className="px-2 align-self-center" pill >{modal.leaveCount}</Badge>
             </a>
@@ -88,11 +87,11 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
             </div>
         </Navbar.Brand>
 
-        <Navbar.Toggle aria-controls="menu_box" label="..." className="border-0 mr-2">
+        <Navbar.Toggle aria-controls="menu_box" label="..." className="border-0 me-2">
             <span className="navbar-toggler-icon"></span>
         </Navbar.Toggle>
 
-        <Navbar.Collapse id="menu_box" className="align-items-start w-100">
+        <Navbar.Collapse id="menu_box" className="align-items-start w-100 px-2">
             <div className={`menu smooth-scroll w-100`}>
                 {menus.map(m => linkAndElements.get(m.link))}
             </div>
