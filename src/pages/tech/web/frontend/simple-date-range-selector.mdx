@@ -8,7 +8,8 @@ export const meta = {"authors": ["cfcodefans"],
 
 <div className="text-center">
 
-![MDX](/assets/res/mdx/calender-alt-solid.png){height="100"}
+![MDX](/assets/res/mdx/calendar-alt-solid.png)
+
 </div>
 
 When it comes to select a range of date with a date for start and a date for end, 
@@ -85,7 +86,7 @@ Well, It is called "range" but more like a pointer to one value. And it takes tw
 I looked quite long to find a date range selector that is responsive and convenient.
 Then the implementation on ElasicSearch seems cool and inspired me to build this.
 
-<div className=" bg-light rounded-5 p-2 w-100" style={{height:"150px"}}>
+<div className=" bg-light rounded-5 p-2 " style={{height:"150px", width:"1200px"}}>
     <DateRangeSlide start={new Date("2021-07-22")}
         end={new Date("2022-08-22")}
         min={new Date("2021-01-01")}
@@ -103,7 +104,7 @@ The way to use it is straightforward:
 (It is important to place the component in a div with fixed height)
 
 ```jsx
-<div className=" bg-light rounded-5 p-2 w-100" style={{height:"150px"}}>
+<div className=" bg-light rounded-5 p-2" style={{height:"150px", width:"1200px"}}>
     <DateRangeSlide start={new Date("2021-07-22")}
         end={new Date("2022-08-22")}
         min={new Date("2021-01-01")}
@@ -111,5 +112,7 @@ The way to use it is straightforward:
         stepDay={1} />
 </div>
 ```
+
+The source code of [DateRangeSlide](https://github.com/cfcodefans/cfcodefans.github.io/blob/c0fcf1eef74114dd83a57922178f28b2425c4739/src/components/gadgets.tsx#L201)
 
 At last, the credit goes to [react-rnd](https://github.com/bokuweb/react-rnd) and [react-draggable](https://github.com/react-grid-layout/react-draggable)
