@@ -197,7 +197,6 @@ export function RangeSelect({ start,
     </div>
 }
 
-// ref_v: React.MutableRefObject<Range<Date>>
 export function DateRangeSlide({ start, end, min, max, stepDay, onDateRangeChange, onDateRangeChanged }: {
     start: Date
     end: Date
@@ -280,7 +279,7 @@ export function genDateMarks(start: Date, end: Date, step: DateUnit = "month"): 
             if (month !== 1 && month !== 6) return null
             fmt = ISO_DATE_FMT
         } else if (step === "month") {
-            if (i == 0 || i == arr.length - 1 || month === 0) 
+            if (i == 0 || i == arr.length - 1 || month === 0)
                 fmt = ISO_DATE_FMT
             else fmt = "MM-dd"
         }

@@ -1,77 +1,40 @@
-import { STOCK } from "components/lab/stocks"
-import { startOfDay, startOfYesterday } from "date-fns"
-import { addDate, i } from "lib/commons"
-
-import { DateRangeSlide } from "components/gadgets"
-
+import { useProperVisRect } from "components/algo-ds-vis/vis-utils"
+import React, { CSSProperties, useEffect, useMemo, useState } from "react"
+import { useMeasure, useMedia, useOrientation } from "react-use"
+import { VictoryAxis, VictoryChart, VictoryTickStyleObject } from "victory"
 const FILE_NAME: string = "workshop.tsx"
 
+
+const _grid: CSSProperties = { stroke: "lightgrey", strokeWidth: 1 }
+const _tick: VictoryTickStyleObject = { stroke: "black", strokeWidth: 1, size: 5 }
 
 export default function Workshop(): JSX.Element {
     // const classes = useStyles()
 
-    async function historySearchHandler(resp: any): Promise<STOCK.SOHU_STOCK.RawResp[]> {
-        i(FILE_NAME, "JsonpDataLoader.historySearchHandler", resp)
-        return Promise.resolve(resp as STOCK.SOHU_STOCK.RawResp[])
-    }
+    let measureRect = useProperVisRect(4 / 3.0)
+    let { width, height } = measureRect
+    let orientation = useMedia("(orientation: portrait)")
 
-    function onRangeChange(start: number, end: number) {
+    let cmp: JSX.Element = <div className="d-block bg-light rounded" style={{ width: `${width}px`, height: `${height}px` }}  >
+        <VictoryChart width={width} height={height}>
+            <VictoryAxis
+                standalone={false}
+                width={width} height={1}
+                domain={[0, width / 30]}
+                tickCount={width / 30}
+                style={{ ticks: _tick, grid: _grid }}
+                orientation="bottom" />
 
-    }
-
-    return <div className="d-flex flex-column w-100 h-100 white">
-        {/* <svg width={100} height={100} baseProfile="fill">
-            <rect x="0" y="0" width="100" height="100" fill="lightgreen" stroke="#ccc" strokeWidth="2" />            
-        </svg> */}
-
-        <div className=" bg-light rounded-5 p-2 w-100" style={{ height: "150px" }}>
-            <DateRangeSlide min={addDate(startOfDay(startOfYesterday()), -90)}
-                max={startOfYesterday()}
-                start={addDate(startOfDay(startOfYesterday()), -80)}
-                end={addDate(startOfDay(startOfYesterday()), -50)}
-                stepDay={1} />
-        </div>
-        {/* <div id="vfield" style={{
-            width: 320,
-            height: 480,
-            backgroundColor: "lightblue",
-            position: "static"
-        }}>
-            <RangeSelect orientation="vertical"
-                start={0}
-                end={100}
-                marks={_.range(0, 100, 20).map(i => ({ value: i }))}
-                onRangeChange={onRangeChange}
-                height={480}
-                width={80} />
-        </div>
-        <div id="hfield" style={{
-            width: 480,
-            height: 320,
-            backgroundColor: "lightyellow",
-            position: "static"
-        }}>
-            <RangeSelect orientation="horizontal"
-                start={0}
-                end={100}
-                marks={_.range(0, 100, 20).map(i => ({ value: i }))}
-                onRangeChange={onRangeChange}
-                height={80}
-                width={480} />
-        </div> */}
-        {/* <RangeSlider start={addDate(startOfDay(startOfYesterday()), -120)}
-            end={startOfYesterday()} stepDay={1} /> */}
-        {/*  <p>{url}</p>
-                <STOCK_CMP.StockInfoPanel _code="600104"
-            _start={addDate(startOfDay(startOfYesterday()), -120)}
-            _end={startOfYesterday()} />
-        <JsonpDataLoader url={url}
-            callbackFnName={"cn_600104"}
-            callbackFn={historySearchHandler}
-            renderCmp={(raws: STOCK.SOHU_STOCK.RawResp[]) => {
-                const [raw] = raws
-                return <STOCK_CMP.StockCandleChart sds={raw.hq.map(d => STOCK.SOHU_STOCK.toTStockData(d))} />
-            }}
-            fallbackCmp={() => <CircularProgress animation="grow" />} /> */}
+            <VictoryAxis
+                dependentAxis={true}
+                standalone={false}
+                width={1} height={width}
+                domain={[0, height / 30]}
+                tickCount={height / 30}
+                style={{ ticks: _tick, grid: _grid }}
+                orientation="left" />
+        </VictoryChart>
     </div>
+
+    return cmp
 }
