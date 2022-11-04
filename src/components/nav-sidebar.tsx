@@ -25,14 +25,14 @@ function MenuItem({ children, modal }: { children: ReactNodeArray, modal: IMenuI
     const isSelected: boolean = isClosestMenu(modal, router.asPath)
 
     const theLink: JSX.Element = <Nav.Link key={modal.label}
-        className={`${modal.layer == 2 ? "menu-layer-2  " : ""} position-relative`}
+        className={`${modal.layer == 2 ? "menu-layer-2  " : ""} position-relative mt-1`}
         eventKey={modal.label}
         as={"div"}
         active={isSelected}>
         <Link href={_link}>
             <a className={`icon-${modal.icon} d-flex justify-content-between text-decoration-none`}>
                 <span className="menu-label text-capitalize">{modal.label}</span>
-                <Badge className="px-2 align-self-center" pill >{modal.leaveCount}</Badge>
+                <Badge className="px-2 align-self-center" pill style={{ background: "var(--bg-root) !important" }} text="dark">{modal.leaveCount}</Badge>
             </a>
         </Link>
     </Nav.Link>

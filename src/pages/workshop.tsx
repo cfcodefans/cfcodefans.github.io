@@ -1,6 +1,6 @@
 import { useProperVisRect } from "components/algo-ds-vis/vis-utils"
-import React, { CSSProperties, useEffect, useMemo, useState } from "react"
-import { useMeasure, useMedia, useOrientation } from "react-use"
+import { CSSProperties } from "react"
+import { useMedia } from "react-use"
 import { VictoryAxis, VictoryChart, VictoryTickStyleObject } from "victory"
 const FILE_NAME: string = "workshop.tsx"
 

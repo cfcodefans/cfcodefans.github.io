@@ -27,10 +27,6 @@
     overflow-x: hidden;
 }
 
-.menu-layer-0 {
-    /* margin-bottom: 0.5rem; */
-}
-
 .menu-layer-0 .menu-label {
     font-size: larger;
     font-weight: bolder;
@@ -68,8 +64,6 @@
     padding-top: 0.125rem;
     padding-bottom: 0.125rem;
 }
-
-.menu-label {}
 
 .active .menu-label {
     font-weight: bold;
