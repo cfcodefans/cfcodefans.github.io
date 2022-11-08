@@ -234,15 +234,6 @@
         "leaveCount": 0,
         "layer": 1,
         "comparedTo": null
-      },
-      {
-        "label": "math",
-        "link": "study/math",
-        "children": [],
-        "icon": "math",
-        "leaveCount": 0,
-        "layer": 1,
-        "comparedTo": null
       }
     ],
     "icon": "study",

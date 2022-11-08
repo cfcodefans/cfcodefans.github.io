@@ -21,6 +21,7 @@ export default function Workshop(): JSX.Element {
                 standalone={false}
                 width={width} height={1}
                 domain={[0, width / 30]}
+                label="whatever x" 
                 tickCount={width / 30}
                 style={{ ticks: _tick, grid: _grid }}
                 orientation="bottom" />
@@ -30,6 +31,7 @@ export default function Workshop(): JSX.Element {
                 standalone={false}
                 width={1} height={width}
                 domain={[0, height / 30]}
+                label="whatever y"
                 tickCount={height / 30}
                 style={{ ticks: _tick, grid: _grid }}
                 orientation="left" />

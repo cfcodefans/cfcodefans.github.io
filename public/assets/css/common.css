@@ -27,6 +27,10 @@
     overflow-x: hidden;
 }
 
+.bg-root {
+    background-color: var(--bg-root);
+}
+
 .menu-layer-0 .menu-label {
     font-size: larger;
     font-weight: bolder;

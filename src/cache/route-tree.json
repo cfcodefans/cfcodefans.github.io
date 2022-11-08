@@ -29,14 +29,6 @@
     "_path": "/study",
     "children": [
       {
-        "path": "/math",
-        "_path": "/study/math",
-        "children": [],
-        "offsprings": [],
-        "childrenCount": 0,
-        "comparedTo": null
-      },
-      {
         "path": "/index.tsx",
         "_path": "/study/index.tsx",
         "children": [],

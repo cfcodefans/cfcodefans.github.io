@@ -78,10 +78,10 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
                     <img className="rounded-circle w-100 h-100 hoverable" src="/assets/images/cfcodefans.jpg" />
                 </a>
             </div>
-            <div className="nav-title text-center flex-grow-1 w-100">
+            <div className="nav-title text-center flex-grow-1 w-100 bg-root mt-1 rounded-5 p-1">
                 <Link href="/resume">
-                    <a className="font-weight-bold">
-                        [cfcodefans blogs]
+                    <a className="font-weight-bold ">
+                        cfcodefans<br />blogs
                     </a>
                 </Link>
             </div>
