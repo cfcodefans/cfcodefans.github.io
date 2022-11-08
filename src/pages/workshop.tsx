@@ -28,7 +28,6 @@ function ScatterGen(): JSX.Element {
                 width={width} height={1}
                 label="whatever X"
                 domain={[0, width / 30]}
-                label="whatever x" 
                 tickCount={width / 30}
                 style={{ ticks: _tick, grid: _grid }}
                 orientation="bottom" />
@@ -39,7 +38,6 @@ function ScatterGen(): JSX.Element {
                 width={1} height={width}
                 label="whatever Y"
                 domain={[0, height / 30]}
-                label="whatever y"
                 tickCount={height / 30}
                 style={{ ticks: _tick, grid: _grid }}
                 orientation="left" />
