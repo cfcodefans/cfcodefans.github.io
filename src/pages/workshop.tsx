@@ -43,6 +43,7 @@ function ScatterGen(): JSX.Element {
                 orientation="left" />
 
             <VictoryScatter
+                standalone={false}
                 style={{ data: { fill: "#c43a31" } }}
                 size={5}
                 data={scatter}
