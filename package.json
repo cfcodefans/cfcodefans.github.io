@@ -4,8 +4,8 @@
     "private": true,
     "exports": "modern.js",
     "scripts": {
-        "clean": "rimraf out .next",
-        "serve": "serve out -p 3000",
+        "clean": "rimraf out .next cfcodefans.github.io/**",
+        "serve": "serve cfcodefans.github.io -p 3000",
         "dev:watch": "next-remote-watch ./blogs",
         "dev": "next dev -p 4000",
         "build": "next build",
@@ -59,7 +59,7 @@
         "nextjs-sitemap-generator": "^1.1.3",
         "remark-mdx-remove-exports": "^1.6.21",
         "rimraf": "^3.0.2",
-        "serve": "^11.3.2",
+        "serve": "^14.1.2",
         "ts-node": "^10.8.1",
         "typescript": "^4.0.3"
     },

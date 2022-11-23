@@ -80,8 +80,8 @@ export default function NavSideBar({ menus }: { menus: IMenuItemModal[] }): JSX.
             </div>
             <div className="nav-title text-center flex-grow-1 w-100 bg-root mt-1 rounded-5 p-1">
                 <Link href="/resume">
-                    <a className="font-weight-bold ">
-                        cfcodefans<br />blogs
+                    <a className="font-weight-bold main-title">
+                        cfcodefans<span>&nbsp;<br/></span>blogs
                     </a>
                 </Link>
             </div>
