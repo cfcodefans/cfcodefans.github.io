@@ -1,5 +1,5 @@
 import { IMenuItemModal, IPathInfo, IRouteModal, TMarkdownMetaInfo } from "./types"
-// import * as routes from "./cache/routes.json"
+// import * as routes from "./data/routes.json"
 import { i } from "./lib/commons"
 
 

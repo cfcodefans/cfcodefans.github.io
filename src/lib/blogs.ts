@@ -67,8 +67,8 @@ export async function getMDXMeta(path: string, filePath: string): Promise<TMarkd
             meta: metaData,
             excerpt: excerpt,
             path,
-            createdAt: format(fileStats.birthtime, ISO_DATE_FMT),
-            modifiedAt: format(fileStats.ctime, ISO_DATE_FMT)//yyyy-MM-dd'T'HH:mm:ss.SSSxxx
+            createdAt: metaData["createdAt"] ?? format(fileStats.birthtime, ISO_DATE_FMT),
+            modifiedAt: metaData["modifiedAt"] ?? format(fileStats.ctime, ISO_DATE_FMT) //yyyy-MM-dd'T'HH:mm:ss.SSSxxx
         }
     } catch (e) {
         i("blogs.ts", "failed to get meta for", filePath)

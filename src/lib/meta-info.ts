@@ -9,7 +9,7 @@ import * as _p from "path"
 
 const CWD: string = process.cwd()
 const FILE_NAME: string = "/pages/api/meta-info.ts"
-const CACHE_PATH: string = _p.resolve(`${CWD}/src/cache/`)
+const CACHE_PATH: string = _p.resolve(`${CWD}/src/data/`)
 
 
 class LayoutPros implements ILayoutPros {

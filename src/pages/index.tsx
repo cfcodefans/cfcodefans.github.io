@@ -1,5 +1,5 @@
-import pathToMarkdowns from "cache/mdMetas.json"
-import routes from "cache/routes.json"
+import pathToMarkdowns from "data/markdown-meta.json"
+import routes from "data/routes.json"
 import { BlogList } from "components/mdx-ui"
 import { compare } from "lib/commons"
 import { NextRouter, useRouter } from "next/dist/client/router"
