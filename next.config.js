@@ -30,7 +30,6 @@ const externals = {
     "react": "React",
     "react-dom": "ReactDOM",
     "react-bootstrap": "ReactBootstrap",
-    // "react-bootstrap": "react-bootstrap",
     "lodash": "_",
     "victory": "Victory",
     "highlight.js": "hljs"
