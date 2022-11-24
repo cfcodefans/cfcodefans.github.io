@@ -2,3 +2,6 @@
 	path = cfcodefans.github.io
 	url = https://github.com/cfcodefans/cfcodefans.github.io.git
 	branch = master
+[submodule "out"]
+	path = out
+	url = https://github.com/cfcodefans/cfcodefans.github.io.git
