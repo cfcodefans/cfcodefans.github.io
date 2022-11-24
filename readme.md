@@ -29,7 +29,7 @@ yarn preload
 ```
 
 ```cmd
-yarn export && copy settings\_git out\.git && copy settings\_nojekyll out\.nojekyll && rename out cfcodefans.github.io
+yarn export && copy settings\_git out\.git && copy settings\_nojekyll out\.nojekyll
 ```
 
 ```cmd
