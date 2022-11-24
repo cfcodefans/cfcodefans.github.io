@@ -27,8 +27,8 @@
     overflow-x: hidden;
 }
 
-.menu-layer-0 {
-    /* margin-bottom: 0.5rem; */
+.bg-root {
+    background-color: var(--bg-root);
 }
 
 .menu-layer-0 .menu-label {
@@ -68,8 +68,6 @@
     padding-top: 0.125rem;
     padding-bottom: 0.125rem;
 }
-
-.menu-label {}
 
 .active .menu-label {
     font-weight: bold;

@@ -114,3 +114,10 @@ nav #nav_items {
     height: 2rem;
     width: 2rem;
 }
+
+.main-title {
+    text-transform: capitalize;
+}
+.main-title br {
+    display: none;
+}

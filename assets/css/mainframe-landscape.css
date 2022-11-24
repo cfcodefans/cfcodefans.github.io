@@ -1,8 +1,14 @@
 :root {
-    --nav-sidebar-width: 15%;
+    /* --nav-sidebar-width: 15%;
     --nav-sidebar-bgcolor: white;
     --misc-sidebar-width: 15%;
     --main-pane-width: 70vw;
+    --top-navbar-height: 3rem; */
+
+    --nav-sidebar-width: 12rem;
+    --nav-sidebar-bgcolor: white;
+    --misc-sidebar-width: 12rem;
+    --main-pane-width: auto;
     --top-navbar-height: 3rem;
 }
 
@@ -101,8 +107,15 @@
 }
 
 .menu-sidebar .logo {
-    height: 6rem;
-    width: 6rem;
+    height: 8rem;
+    width: 8rem;
+}
+
+.main-title {
+    text-transform: capitalize;
+}
+.main-title br {
+    display: inline;
 }
 
 #menu_box {
